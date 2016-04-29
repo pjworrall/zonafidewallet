@@ -1,0 +1,80 @@
+<head>
+    <title>Zonafide - Protecting you from identity theft</title>
+
+    <meta name="description"
+          content="Zonafide uses your social and professional networks to prevent criminals committing fraud with your identity.">
+
+    <meta name="author" content="Paul Worrall, Interition Ltd">
+
+    <meta name="keywords"
+          content="neighborhood watch services, change name after marriage, prevent identity theft, register office services, registry office services, protect vulnerable people, parental protection of young people">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Zonafide User Client (Version Waters)</h1>
+    <h4>Create a Zone</h4>
+    <p>In the past any action could be carried out, at any time, in your name. If an impostor obtained enough
+        information about you to satisfy
+        an organisations criteria they could carry out an action as you. When you use Zonafide no action can be
+        carried out,
+        at anytime, without you declaring that a Zone exists for the action.</p>
+    <p>This is so different to how organisations have you behave today that you need to experience it. Let's create
+        our first Zone.</p>
+    <br>
+
+    <h4>Activate a Zonafide ID</h4>
+    <p>First we need to activate your Zonafide ID. You would have been given a phrase to remember when you first
+        created
+        it.</p>
+    <div>
+        <form class="set-credential">
+            <input type="text" name="seed" size="80" placeholder="Enter the phrase to activate..."/>
+        </form>
+    </div>
+    <br>
+    <br>
+    <div>Your ZID: <strong>{{zid}}</strong></div>
+    <br>
+    <h2>Protect an Action with a Zone</h2>
+    <p>To start to protect an action your first create a zone and invite others to acknowledge you intend to perform
+        an action. You do not specify what the action is yet.
+        At all times Zonafide ensures only just enough information is used to make your action possible. This stops
+        information leakage. You might be used to organisations
+        asking you for as much information as possible. That is because the information is of interest to them but
+        not necessarily in your interests to reveal it.</p>
+    <form class="create-zone">
+        <button>Create Zone</button>
+    </form>
+</div>
+<p>A Zone was created (this will be shown as a QR Code): <strong>{{zad}}</strong></p>
+
+<h2>Zone Members</h2>
+
+<p>Provide the address of someone who you would like to acknowledge the action protected by the zone. This makes it much more difficult for
+an imposter to carry out an action as you because they would have to compromise that person to. The more members that you have to acknowledge
+your zone the harder it would be to compromise you.</p>
+
+<div>
+    <form class="set-member">
+        <input type="text" size="80" id="member" placeholder="Enter the address..."/>
+    </form>
+</div>
+<h2>Check A Member</h2>
+
+<p>To test the member was added. Provide the member ZID again...</p>
+
+<div>
+    <form class="is-member">
+        <input type="text" size="80" id="ismember" placeholder="Enter the address..."/>
+    </form>
+    <br>
+    <div>Yes or No?: <strong>{{ismember}}</strong></div>
+</div>
+
+</body>
