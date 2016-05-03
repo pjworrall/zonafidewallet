@@ -1,5 +1,5 @@
 'use strict';
 
-require('../imports/ui/body.js');
+require('../imports/startup/client');
 
 //# sourceMappingURL=main-compiled.js.map

@@ -5,6 +5,7 @@
     "start": "meteor run"
   },
   "dependencies": {
+    "bootstrap-sass": "^3.3.6",
     "eth-lightwallet": "^2.3.1",
     "hooked-web3-provider": "^1.0.0",
     "meteor-node-stubs": "^0.2.3",
