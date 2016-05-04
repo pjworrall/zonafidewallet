@@ -52,6 +52,9 @@ Template.unlock.events({
                 // the parameter 1 is the number of addresses in the HD wallet to create. We only need 1 currently.
                 Keystore.generateNewAddress(pwDerivedKey, 1);
 
+                // put the keystore into a global
+                ZidStore.set(Keystore);
+
                 Session.set('lock',false);
 
             } else {

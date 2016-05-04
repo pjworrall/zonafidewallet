@@ -4,11 +4,15 @@
 
 Session.set('lock', true);
 
-function ZidStoreWrapper() {
-    function set() {
-        this.keystore = KeyStore;
+ZidStore = {
+    keystore: 'undefined',
+
+    set: function(keystore) {
+        this.keystore = keystore;
+    },
+
+    get: function() {
+        return this.keystore;
     }
 }
-
-ZidStore = new ZidStoreWrapper();
 
