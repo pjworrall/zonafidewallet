@@ -5,6 +5,7 @@
 import { Template } from 'meteor/templating';
 import { Session } from 'meteor/session';
 
+// todo : not sure this is needed
 import '../../startup/client/globals.js';
 
 import './unlock.html';
@@ -45,7 +46,7 @@ Template.unlock.events({
 
             if (!err) {
 
-                Keystore = new lightwallet.keystore(
+                var Keystore = new lightwallet.keystore(
                     seed,
                     pwDerivedKey);
 
