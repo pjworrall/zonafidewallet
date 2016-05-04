@@ -15,6 +15,12 @@ FlowRouter.route('/', {
     }
 });
 
+FlowRouter.route('/list', {
+    action: function() {
+        BlazeLayout.render("layout", {content: "list"});
+    }
+});
+
 FlowRouter.route('/identities', {
     action: function() {
         BlazeLayout.render("layout", {content: "identities"});
@@ -42,5 +48,23 @@ FlowRouter.route('/acknowledge', {
 FlowRouter.route('/edit', {
     action: function() {
         BlazeLayout.render("layout", {content: "edit"});
+    }
+});
+
+FlowRouter.route('/about', {
+    action: function() {
+        BlazeLayout.render("layout", {content: "about"});
+    }
+});
+
+FlowRouter.route('/unlock', {
+    action: function() {
+        BlazeLayout.render("layout", {content: "unlock"});
+    }
+});
+
+FlowRouter.route('/lock', {
+    action: function() {
+        BlazeLayout.render("layout", {content: "lock"});
     }
 });
