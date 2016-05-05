@@ -2,8 +2,8 @@
 
     <div class="row">
         <div class="col-xs-12 text-left">
-            <h4>Protect an Action</h4>
-            <p>To protect an action you first create a zone. You do not specify what the action is yet.
+            <h4>Create a Zone</h4>
+            <p>Create a Zone to protect an action. You do not specify what the action is yet.
                 Zones ensure only just enough information is used to make your action possible. This stops
                 information leakage. You might be used to organisations
                 asking you for a lot more information. That is because it is in their interests:
@@ -18,7 +18,16 @@
         </div>
 
         {{#if zad}}
-            <p>A Zone was created (this will be shown as a QR Code): <strong>{{zad}}</strong></p>
+        <div class="col-xs-12 text-left">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <p>A Zone was created. ZAD (Zone Address): <strong>{{zad}}</strong>. This is public but only
+                    you can control it.  You will refer to this when carrying out the action with the other party. You will add
+                    people to acknowledge the Zone next. You will add the party involved in the action, the description and any
+                    reference information once the Zone is acknowledged.</p>
+                </div>
+            </div>
+        </div>
         {{/if}}
     </div>
 

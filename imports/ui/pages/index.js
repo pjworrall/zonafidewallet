@@ -3,6 +3,7 @@
  */
 
 
+import './home.js';
 import './unlock.js';
 import './lock.js';
 import './creation.js';

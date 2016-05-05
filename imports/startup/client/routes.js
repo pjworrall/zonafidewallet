@@ -11,7 +11,7 @@ import '../../ui/pages';
 
 FlowRouter.route('/', {
     action: function() {
-        BlazeLayout.render("layout", {content: "list"});
+        BlazeLayout.render("layout", {content: "home"});
     }
 });
 

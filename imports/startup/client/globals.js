@@ -3,9 +3,9 @@
  */
 
 Session.set('lock', true);
+Session.set('zid', false);
 
 ZidStore = {
-    keystore: 'undefined',
 
     set: function(keystore) {
         this.keystore = keystore;

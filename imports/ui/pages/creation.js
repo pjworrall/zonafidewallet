@@ -168,7 +168,7 @@ Template.creation.events({
             setWeb3Provider(keyStore);
         } else {
             // todo: alert problem with settign Web3 provider
-            console.log('geth callback error: ' + error);
+            console.log('geth callback error: ');
         }
 
         zoneFactory.new(

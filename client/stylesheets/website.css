@@ -87,3 +87,13 @@ body {
 .navbar-header, .container > .navbar-collapse, .container > .navbar-header {
     background-color: #33C3F0;
 }
+
+.jumbotron {
+    color: #579ac0;
+}
+
+.panel-body {
+    color: #579ac0;
+}
+
+

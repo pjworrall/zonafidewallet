@@ -8,15 +8,16 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="http://www.zonafide.net">
+            <a class="navbar-brand" href="/">
                 <span class="zonafide-logo fa-2x zicon"></span>
             </a>
-            <p class="navbar-text">You're in the Zone</p>
+            <p class="navbar-text">Active ZID: XXX</p>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
                 {{#if locked}}
                     <li><a href="/unlock"><i class="fa fa-unlock fa-2x" aria-hidden="true"></i></a></li>
+                    <li><a href="/identities"><i class="fa fa-users  fa-2x" aria-hidden="true"></i></a></li>
                 {{else}}
                     <li><a href="/lock"><i class="fa fa-lock fa-2x" aria-hidden="true"></i></a></li>
                     <!-- TODO: this should all be disabled until we are unlocked -->
