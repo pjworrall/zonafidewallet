@@ -7,6 +7,7 @@ import './home.js';
 import './unlock.js';
 import './lock.js';
 import './creation.js';
+import './members.js';
 import './edit.js';
 import './identities.js';
 import './list.js';

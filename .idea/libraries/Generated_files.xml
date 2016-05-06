@@ -43,6 +43,7 @@
         <item url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-es2015-spread/lib/index-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/regexpu-core/rewrite-pattern-compiled.js" />
         <item url="file://$PROJECT_DIR$/imports/ui/pages/about-compiled.js" />
+        <item url="file://$PROJECT_DIR$/imports/ui/pages/users-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/babel-helper-replace-supers/lib/index-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-es2015-parameters/lib/index-compiled.js" />
         <item url="file://$PROJECT_DIR$/imports/ui/body-compiled.js" />
@@ -148,11 +149,8 @@
       <root url="file://$PROJECT_DIR$/node_modules/bootstrap/dist/js/npm-compiled.js" />
       <root url="file://$PROJECT_DIR$/imports/ui/pages/navigator-compiled.js" />
       <root url="file://$PROJECT_DIR$/imports/ui/pages/navigator-compiled.js" />
-      <root url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-es2015-modules-commonjs/lib/index-compiled.js" />
-      <root url="file://$PROJECT_DIR$/node_modules/.bin/jsesc-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/bootstrap-sass/assets/javascripts/bootstrap/tooltip-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/bootstrap-sass/assets/javascripts/bootstrap/tab-compiled.js" />
-      <root url="file://$PROJECT_DIR$/imports/api/zonafide/zone-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/bootstrap-sass/assets/javascripts/bootstrap/alert-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/bootstrap-sass/assets/javascripts/bootstrap/affix-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/bootstrap-sass/test/dummy_rails/app/assets/javascripts/application-compiled.js" />
@@ -171,7 +169,6 @@
       <root url="file://$PROJECT_DIR$/node_modules/babel-helper-regex/lib/index-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/bootstrap-sass/assets/javascripts/bootstrap/carousel-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/babel-helper-function-name/lib/index-compiled.js" />
-      <root url="file://$PROJECT_DIR$/server/main-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/bootstrap-sass/assets/javascripts/bootstrap/collapse-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-es2015-unicode-regex/lib/index-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/bootstrap-sass/assets/javascripts/bootstrap/scrollspy-compiled.js" />
@@ -189,9 +186,9 @@
       <root url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-es2015-spread/lib/index-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/regexpu-core/rewrite-pattern-compiled.js" />
       <root url="file://$PROJECT_DIR$/imports/ui/pages/about-compiled.js" />
+      <root url="file://$PROJECT_DIR$/imports/ui/pages/members-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/babel-helper-replace-supers/lib/index-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-es2015-parameters/lib/index-compiled.js" />
-      <root url="file://$PROJECT_DIR$/imports/ui/body-compiled.js" />
       <root url="file://$PROJECT_DIR$/imports/ui/layouts/layout-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-es2015-parameters/lib/default-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-es2015-parameters/lib/rest-compiled.js" />
@@ -203,7 +200,6 @@
       <root url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-es2015-classes/lib/index-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-es2015-arrow-functions/lib/index-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/babel-preset-es2015/index-compiled.js" />
-      <root url="file://$PROJECT_DIR$/imports/ui/pages/home-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-es2015-object-super/lib/index-compiled.js" />
       <root url="file://$PROJECT_DIR$/imports/ui/pages/index-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-es2015-classes/lib/vanilla-compiled.js" />
@@ -226,16 +222,13 @@
       <root url="file://$PROJECT_DIR$/node_modules/regjsparser/bin/parser-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-es2015-block-scoping/lib/tdz-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/regjsgen/regjsgen-compiled.js" />
-      <root url="file://$PROJECT_DIR$/imports/startup/client/routes-compiled.js" />
       <root url="file://$PROJECT_DIR$/client/bootstrap/js/bootstrap.min-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-es2015-block-scoped-functions/lib/index-compiled.js" />
       <root url="file://$PROJECT_DIR$/imports/ui/pages/personal-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/regjsparser/parser-compiled.js" />
-      <root url="file://$PROJECT_DIR$/imports/startup/client/globals-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/babel-helper-hoist-variables/lib/index-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-es2015-for-of/lib/index-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-es2015-computed-properties/lib/index-compiled.js" />
-      <root url="file://$PROJECT_DIR$/imports/ui/pages/acknowledge-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-es2015-block-scoping/lib/index-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-es2015-destructuring/lib/index-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/jsesc/bin/jsesc-compiled.js" />
@@ -243,6 +236,15 @@
       <root url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-es2015-sticky-regex/lib/index-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/.bin/regjsparser-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-es2015-literals/lib/index-compiled.js" />
+      <root url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-es2015-modules-commonjs/lib/index-compiled.js" />
+      <root url="file://$PROJECT_DIR$/node_modules/.bin/jsesc-compiled.js" />
+      <root url="file://$PROJECT_DIR$/imports/api/zonafide/zone-compiled.js" />
+      <root url="file://$PROJECT_DIR$/server/main-compiled.js" />
+      <root url="file://$PROJECT_DIR$/imports/ui/body-compiled.js" />
+      <root url="file://$PROJECT_DIR$/imports/ui/pages/home-compiled.js" />
+      <root url="file://$PROJECT_DIR$/imports/startup/client/routes-compiled.js" />
+      <root url="file://$PROJECT_DIR$/imports/startup/client/globals-compiled.js" />
+      <root url="file://$PROJECT_DIR$/imports/ui/pages/acknowledge-compiled.js" />
     </CLASSES>
     <SOURCES />
   </library>

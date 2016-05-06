@@ -68,3 +68,9 @@ FlowRouter.route('/lock', {
         BlazeLayout.render("layout", {content: "lock"});
     }
 });
+
+FlowRouter.route('/members', {
+    action: function() {
+        BlazeLayout.render("layout", {content: "members"});
+    }
+});
