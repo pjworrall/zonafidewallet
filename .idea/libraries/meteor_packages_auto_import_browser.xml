@@ -127,7 +127,9 @@
         <item url="file://$USER_HOME$/.meteor/packages/http/1.1.5/web.browser/httpcall_server.js" />
         <item url="file://$USER_HOME$/.meteor/packages/http/1.1.5/web.browser/httpcall_client.js" />
         <item url="file://$USER_HOME$/.meteor/packages/id-map/1.0.7/web.browser/id-map.js" />
+        <item url="file://$USER_HOME$/.meteor/packages/nunohvidal_lz-string/1.3.3/web.browser/packages/nunohvidal:lz-string.js" />
         <item url="file://$USER_HOME$/.meteor/packages/jquery/1.11.8/web.browser/jquery.js" />
+        <item url="file://$USER_HOME$/.meteor/packages/jeffm_local-persist/1.3.0/web.browser/local-persist.js" />
         <item url="file://$USER_HOME$/.meteor/packages/jquery/1.11.8/web.browser/main.js" />
         <item url="file://$USER_HOME$/.meteor/packages/launch-screen/1.0.11/web.browser/default-behavior.js" />
         <item url="file://$USER_HOME$/.meteor/packages/kadira_flow-router/2.12.1/web.browser/client/router.js" />
@@ -281,7 +283,9 @@
       <root url="file://$USER_HOME$/.meteor/packages/http/1.1.5/web.browser/httpcall_server.js" />
       <root url="file://$USER_HOME$/.meteor/packages/http/1.1.5/web.browser/httpcall_client.js" />
       <root url="file://$USER_HOME$/.meteor/packages/id-map/1.0.7/web.browser/id-map.js" />
+      <root url="file://$USER_HOME$/.meteor/packages/nunohvidal_lz-string/1.3.3/web.browser/packages/nunohvidal:lz-string.js" />
       <root url="file://$USER_HOME$/.meteor/packages/jquery/1.11.8/web.browser/jquery.js" />
+      <root url="file://$USER_HOME$/.meteor/packages/jeffm_local-persist/1.3.0/web.browser/local-persist.js" />
       <root url="file://$USER_HOME$/.meteor/packages/jquery/1.11.8/web.browser/main.js" />
       <root url="file://$USER_HOME$/.meteor/packages/launch-screen/1.0.11/web.browser/default-behavior.js" />
       <root url="file://$USER_HOME$/.meteor/packages/kadira_flow-router/2.12.1/web.browser/client/router.js" />

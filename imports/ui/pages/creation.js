@@ -182,7 +182,9 @@ Template.creation.events({
                 if (!error) {
                     if (typeof contract.address != 'undefined') {
                         console.log('Confirmed. address: ' + contract.address + ' transactionHash: ' + contract.transactionHash);
-                        // ? Zone = contract;
+
+                        ZidUserLocalData.insert({_id: contract.address});
+
                         Session.set('zad', contract.address);
                     }
                 } else {
