@@ -24,7 +24,7 @@ ZidStore = {
 };
 
 // the client side collections to store the state
-ZidUserLocalData = new Mongo.Collection('ZidUserLocalData',{connection: null});
+ZidUserLocalData = new Mongo.Collection('ZidUserLocalData', {connection: null});
 
 // jeffm:local-persist used to persist the collection to browser store
 
@@ -37,5 +37,4 @@ ZidUserLocalDataObserver = new LocalPersist(ZidUserLocalData, 'ZidUserLocalDataO
             alert('Please delete some of the obsolete Zones before saving more.');
         }
     });
-
 

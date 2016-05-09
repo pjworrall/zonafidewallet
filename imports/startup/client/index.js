@@ -4,3 +4,5 @@
 
 import './routes.js';
 import './globals.js';
+import './ethereum.js';
+import './web3.js';
