@@ -18,7 +18,6 @@ Template.list.onCreated(function () {
         unknown: 'fa fa-check-circle'
     };
 
-    // Keystore and Zone will be available as Template.instance().X
     var ks = this.KeyStore = ZidStore.get();
 
     var web3;
@@ -35,7 +34,9 @@ Template.list.onCreated(function () {
 Template.list.helpers({
 
     zads() {
-        return ZidUserLocalData.find();
+        return ZidUserLocalData.find({}, {
+            sort: { _id: -1 }
+        });
     }
 });
 
