@@ -8,6 +8,16 @@ import './list.html';
 
 Template.list.onCreated(function () {
 
+    this.ZoneStateSymbols = {
+        new: 'fa fa-plus-circle',
+        members: 'fa fa-circle-o-notch',
+        acknowledged: 'fa fa-circle-o',
+        actioned: 'fa fa-check-circle-o',
+        confirmed: 'fa fa-check-circle',
+        pause: 'fa fa-question-circle',
+        unknown: 'fa fa-check-circle'
+    };
+
     // Keystore and Zone will be available as Template.instance().X
     var ks = this.KeyStore = ZidStore.get();
 
@@ -31,34 +41,39 @@ Template.list.helpers({
 
 Template.list.events({
 
-    'submit .create'(event) {
+    'submit .create'(event, template) {
         // Prevent default browser form submit
         event.preventDefault();
 
         console.log('performing create event');
 
-        var Zone = Template.instance().Zone;
-        var KeyStore = Template.instance().KeyStore;
+        var Zone = template.Zone;
+        var KeyStore = template.KeyStore;
 
         Zone.new(ZonafideEnvironment.caller(KeyStore.getAddresses()[0]),
             function (error, contract) {
                 if (!error) {
+
                     if (typeof contract.address != 'undefined') {
-                        console.log('Confirmed. address: ' + contract.address + ' transactionHash: ' + contract.transactionHash);
+                        console.log('Confirmed. address: '
+                            + contract.address
+                            + ' transactionHash: '
+                            + contract.transactionHash);
 
-                        ZidUserLocalData.insert({_id: contract.address});
-
-                        Session.set('zad', contract.address);
+                        ZidUserLocalData.insert({
+                            address: contract.address,
+                            symbol: template.ZoneStateSymbols.new
+                        });
                     }
+
                 } else {
                     // todo: alert, geth call failed
                     console.log('geth callback error: ' + error);
                 }
-
             });
     },
 
-    'submit .addMember'(event) {
+    'submit .addMember'(event, template) {
         // Prevent default browser form submit
         event.preventDefault();
 
@@ -67,8 +82,8 @@ Template.list.events({
         const zad = event.target.zad.value;
         const zid = event.target.zid.value;
 
-        var Zone = Template.instance().Zone;
-        var KeyStore = Template.instance().KeyStore;
+        var Zone = template.Zone;
+        var KeyStore = template.KeyStore;
 
         var zone = Zone.at(zad);
 
@@ -81,14 +96,13 @@ Template.list.events({
             function (error, obj) {
                 if (error) {
                     console.log("ERROR - members.events: " + err);
-                    Session.set('result', "something unexpected happened, sorry!");
                 } else {
                     console.log("INFO - members.events: " + obj);
                 }
             });
     },
 
-    'submit .acknowledge'(event) {
+    'submit .acknowledge'(event, template) {
 
         // Prevent default browser form submit
         event.preventDefault();
@@ -97,8 +111,8 @@ Template.list.events({
 
         const zad = event.target.zad.value;
 
-        var Zone = Template.instance().Zone;
-        var KeyStore = Template.instance().KeyStore;
+        var Zone = template.Zone;
+        var KeyStore = template.KeyStore;
 
         var zone = Zone.at(zad);
 
@@ -108,17 +122,49 @@ Template.list.events({
 
                 if (err) {
                     console.log("ERROR - acknowledge.events: " + err);
-                    Session.set('result', "something unexpected happened, sorry!");
                 } else {
                     console.log("INFO - acknowledge.events: " + obj);
-                    Template.instance().result.set(obj);
+                }
+            });
+    },
+    'submit .status'(event, template) {
+
+        // Prevent default browser form submit
+        event.preventDefault();
+
+        console.log('status.events: called');
+
+        const zad = event.target.zad.value;
+
+        var Zone = template.Zone;
+        var KeyStore = template.KeyStore;
+
+        var zone = Zone.at(zad);
+
+        zone.isQuorum(
+            ZonafideEnvironment.caller(KeyStore.getAddresses()[0]),
+            function (err, obj) {
+
+                if (err) {
+                    console.log("ERROR - status.events: " + err);
+                } else {
+                    console.log("INFO - status.events: " + obj);
                 }
 
             });
+
+        zone.isActive(
+            ZonafideEnvironment.caller(KeyStore.getAddresses()[0]),
+            function (err, obj) {
+
+                if (err) {
+                    console.log("ERROR - status.events: " + err);
+                } else {
+                    console.log("INFO - status.events: " + obj);
+                }
+
+            });
+
     }
 
 });
-
-
-
-

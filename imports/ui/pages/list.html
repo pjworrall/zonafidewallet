@@ -1,26 +1,30 @@
 <template name="list">
 
     <div class="row">
-        <div class="col-xs-12 text-left">
+        <div class="col-xs-12 text-center">
 
             <form class="create">
-                <h4>Zones</h4><button><i class="fa fa-plus fa-2x" aria-hidden="true"></i></button>
+                <h4>Zones</h4>
+                <button><i class="fa fa-plus fa-4x" aria-hidden="true"></i></button>
+                <button><i class="fa fa-refresh fa-4x" aria-hidden="true"></i></button>
             </form>
 
-            <ul>
             {{#each zads}}
-                <li>{{_id}}</li>
+                <br>
+                <a href="{{_id}}/{{address}}">
+                    <i class="fa {{#if symbol}} {{symbol}} {{else}} fa-thumbs-o-down  {{/if}} fa-4x"
+                       aria-hidden="true"></i>
+                </a>
             {{/each}}
-            </ul>
 
         </div>
     </div>
 
-
     <div class="row">
         <div class="col-xs-12 text-left">
             <form class="addMember">
-            <h4>Members</h4><button><i class="fa fa-plus fa-2x" aria-hidden="true"></i></button>
+                <h4>Members</h4>
+                <button><i class="fa fa-plus fa-2x" aria-hidden="true"></i></button>
                 <div class="input-group">
                     <p>What is the Zone you want to add the member to?</p>
                     <input class="form-control"
@@ -44,16 +48,36 @@
     <div class="row">
         <div class="col-xs-12 text-left">
             <form class="acknowledge">
-                <h4>Acknowledge</h4><button><i class="fa fa-thumbs-o-up fa-2x" aria-hidden="true"></i></button>
+                <h4>Acknowledgements</h4>
+                <button><i class="fa fa-thumbs-o-up fa-2x" aria-hidden="true"></i></button>
                 <div class="input-group">
                     <input class="form-control"
                            type="text"
                            name="zad"
                            size="60"
                            placeholder="Provide the ZAD.."/>
-                        <!--<span class="input-group-addon">-->
-                            <!--<i class="fa fa-clipboard"></i>-->
-                        <!--</span>-->
+                    <!--<span class="input-group-addon">-->
+                    <!--<i class="fa fa-clipboard"></i>-->
+                    <!--</span>-->
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 text-left">
+            <form class="status">
+                <h4>TESTING STATUS'S</h4>
+                <button><i class="fa fa-eye fa-2x" aria-hidden="true"></i></button>
+                <div class="input-group">
+                    <input class="form-control"
+                           type="text"
+                           name="zad"
+                           size="60"
+                           placeholder="Provide the ZAD.."/>
+                    <!--<span class="input-group-addon">-->
+                    <!--<i class="fa fa-clipboard"></i>-->
+                    <!--</span>-->
                 </div>
             </form>
         </div>
