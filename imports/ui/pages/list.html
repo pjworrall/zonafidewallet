@@ -1,21 +1,62 @@
 <template name="list">
 
-        <div class="row">
-            <div class="col-xs-12 text-left">
-                    <p>You should see a list of Zones</p>
+    <div class="row">
+        <div class="col-xs-12 text-left">
 
-                    {{#each zads}}
-                            {{_id}}<br>
-                    {{/each}}
+            <form class="create">
+                <h4>Zones</h4><button><i class="fa fa-plus fa-2x" aria-hidden="true"></i></button>
+            </form>
 
-            </div>
+            <ul>
+            {{#each zads}}
+                <li>{{_id}}</li>
+            {{/each}}
+            </ul>
+
         </div>
+    </div>
 
-    <form class="create">
-        <!--<div class="btn-group btn-group-lg" role="create" aria-label="Create">-->
-        <!--<button type="button" class="btn btn-default">Create</button>-->
-        <!--</div>-->
-        <button><i class="fa fa-plus fa-2x" aria-hidden="true"></i></button>
-    </form>
+
+    <div class="row">
+        <div class="col-xs-12 text-left">
+            <form class="addMember">
+            <h4>Members</h4><button><i class="fa fa-plus fa-2x" aria-hidden="true"></i></button>
+                <div class="input-group">
+                    <p>What is the Zone you want to add the member to?</p>
+                    <input class="form-control"
+                           type="text"
+                           name="zad"
+                           size="80"
+                           placeholder="Provide the ZAD.."
+                           aria-describedby="basic-addon1"/>
+                    <p>What is the ZID of the member?</p>
+                    <input class="form-control"
+                           type="text"
+                           name="zid"
+                           size="80"
+                           placeholder="Provide the ZAD.."
+                           aria-describedby="basic-addon1"/>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 text-left">
+            <form class="acknowledge">
+                <h4>Acknowledge</h4><button><i class="fa fa-thumbs-o-up fa-2x" aria-hidden="true"></i></button>
+                <div class="input-group">
+                    <input class="form-control"
+                           type="text"
+                           name="zad"
+                           size="80"
+                           placeholder="Provide the ZAD.."/>
+                        <span class="input-group-addon">
+                            <i class="fa fa-clipboard"></i>
+                        </span>
+                </div>
+            </form>
+        </div>
+    </div>
 
 </template>
