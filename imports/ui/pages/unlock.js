@@ -56,10 +56,12 @@ Template.unlock.events({
                 // put the keystore into a global
                 ZidStore.set(Keystore);
 
-                // I am not sure lock is redundant as I can alternatively test for zid
+                // todo: I am not sure lock is redundant as I can alternatively test for zid
                 Session.set('lock',false);
 
                 Session.set('zid',Keystore.getAddresses()[0]);
+
+                BlazeLayout.render("layout", {content: "list"});
 
             } else {
                 console.log(".unlock.events: " + "lightwallet failed to get keystore");
