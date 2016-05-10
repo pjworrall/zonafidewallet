@@ -12,8 +12,12 @@
             {{#each zads}}
                 <br>
                 <a href="{{_id}}/{{address}}">
-                    <i class="fa {{#if symbol}} {{symbol}} {{else}} fa-thumbs-o-down  {{/if}} fa-4x"
-                       aria-hidden="true"></i>
+                    <i class="tooltipped fa {{#if symbol}} {{symbol}} {{else}} fa-thumbs-o-down  {{/if}} fa-4x"
+                       data-toggle="tooltip"
+                       data-placement="left"
+                       title="Replace With Content!!!"
+                       aria-hidden="true">
+                    </i>
                 </a>
             {{/each}}
 

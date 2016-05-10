@@ -6,6 +6,13 @@ import { ReactiveVar } from 'meteor/reactive-var';
 
 import './list.html';
 
+Template.list.onRendered(function() {
+
+    console.log("I am rendered!!!");
+    // initialize Bootstrap tooltips
+    $('.tooltipped').tooltip();
+});
+
 Template.list.onCreated(function () {
 
     this.ZoneStateSymbols = {
