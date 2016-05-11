@@ -6,15 +6,11 @@
             <p>Having other people in your Zone prevents others carrying out actions in your name because
             they would need to get control of their identities as well.</p>
 
+            <p>Selected ZID: <strong>{{address}}</strong></p>
+
             <form class="addMember">
+                <input type="hidden" value="{{address}}" name="zad"/>
                 <div class="input-group">
-                    <p>What is the Zone you want to add the member to?</p>
-                    <input class="form-control"
-                           type="text"
-                           name="zad"
-                           size="80"
-                           placeholder="Provide the ZAD.."
-                           aria-describedby="basic-addon1"/>
                     <p>What is the ZID of the member?</p>
                     <input class="form-control"
                            type="text"

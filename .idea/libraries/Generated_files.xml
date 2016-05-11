@@ -65,6 +65,7 @@
         <item url="file://$PROJECT_DIR$/node_modules/winston/lib/winston/config-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/babel-helper-replace-supers/lib/index-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/winston/lib/winston/config/syslog-config-compiled.js" />
+        <item url="file://$PROJECT_DIR$/imports/ui/pages/members-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/winston/lib/winston/config/npm-config-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-es2015-parameters/lib/index-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/pkginfo/test/pkginfo-test-compiled.js" />

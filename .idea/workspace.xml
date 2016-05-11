@@ -2,27 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="22cef14b-748f-4bc9-b76d-9127bdde131c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/loading.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/imports/startup/client/router.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/imports/ui/pages/settings.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/imports/ui/pages/settings.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/imports/ui/pages/zone.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/imports/ui/pages/zone.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/imports/ui/layouts/layout.js" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/imports/startup/client/routes.js" afterPath="$PROJECT_DIR$/imports/startup/client/routes.txt" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/imports/ui/layouts/layout.html" afterPath="$PROJECT_DIR$/client/layout.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Generated_files.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Generated_files.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/meteor_packages_auto_import_browser.xml" afterPath="$PROJECT_DIR$/.idea/libraries/meteor_packages_auto_import_browser.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.meteor/packages" afterPath="$PROJECT_DIR$/.meteor/packages" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.meteor/versions" afterPath="$PROJECT_DIR$/.meteor/versions" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/startup/client/globals.js" afterPath="$PROJECT_DIR$/imports/startup/client/globals.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/startup/client/index.js" afterPath="$PROJECT_DIR$/imports/startup/client/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/pages/acknowledge.js" afterPath="$PROJECT_DIR$/imports/ui/pages/acknowledge.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/pages/index.js" afterPath="$PROJECT_DIR$/imports/ui/pages/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/pages/list.html" afterPath="$PROJECT_DIR$/imports/ui/pages/list.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/pages/list.js" afterPath="$PROJECT_DIR$/imports/ui/pages/list.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/pages/unlock.js" afterPath="$PROJECT_DIR$/imports/ui/pages/unlock.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/startup/client/router.js" afterPath="$PROJECT_DIR$/imports/startup/client/router.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/pages/members.html" afterPath="$PROJECT_DIR$/imports/ui/pages/members.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/pages/members.js" afterPath="$PROJECT_DIR$/imports/ui/pages/members.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/pages/zone.html" afterPath="$PROJECT_DIR$/imports/ui/pages/zone.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/pages/zone.js" afterPath="$PROJECT_DIR$/imports/ui/pages/zone.js" />
     </list>
     <ignored path="waters.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -53,11 +39,51 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="zone.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="zone.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/imports/ui/pages/zone.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7847358">
-              <caret line="110" column="46" selection-start-line="110" selection-start-column="46" selection-end-line="110" selection-end-column="46" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="72" column="40" selection-start-line="72" selection-start-column="24" selection-end-line="72" selection-end-column="40" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="acknowledge.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/imports/ui/pages/acknowledge.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="35" column="48" selection-start-line="35" selection-start-column="48" selection-end-line="35" selection-end-column="48" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="members.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/imports/ui/pages/members.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="53" column="8" selection-start-line="53" selection-start-column="8" selection-end-line="53" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="identities.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/imports/ui/pages/identities.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.70458406">
+              <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="members.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/imports/ui/pages/members.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-5.0">
+              <caret line="8" column="61" selection-start-line="8" selection-start-column="61" selection-end-line="8" selection-end-column="61" />
               <folding />
             </state>
           </provider>
@@ -66,8 +92,8 @@
       <file leaf-file-name="zone.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/imports/ui/pages/zone.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.0">
-              <caret line="8" column="26" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
+            <state vertical-scroll-proportion="-8.75">
+              <caret line="14" column="11" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -126,9 +152,7 @@
         <option value="$PROJECT_DIR$/imports/ui/pages/identities.js" />
         <option value="$PROJECT_DIR$/imports/ui/pages/identities.html" />
         <option value="$PROJECT_DIR$/imports/ui/pages/creation.html" />
-        <option value="$PROJECT_DIR$/imports/ui/pages/members.html" />
         <option value="$PROJECT_DIR$/imports/ui/pages/unlock.html" />
-        <option value="$PROJECT_DIR$/imports/ui/pages/members.js" />
         <option value="$PROJECT_DIR$/imports/ui/pages/acknowledge.html" />
         <option value="$PROJECT_DIR$/imports/ui/pages/creation.js" />
         <option value="$PROJECT_DIR$/client/hack.js" />
@@ -147,12 +171,14 @@
         <option value="$PROJECT_DIR$/imports/ui/pages/settings.js" />
         <option value="$PROJECT_DIR$/imports/ui/pages/settings.html" />
         <option value="$PROJECT_DIR$/client/layout.html" />
-        <option value="$PROJECT_DIR$/imports/startup/client/router.js" />
         <option value="$PROJECT_DIR$/imports/ui/pages/unlock.js" />
         <option value="$PROJECT_DIR$/imports/ui/pages/list.js" />
-        <option value="$PROJECT_DIR$/imports/ui/pages/zone.html" />
         <option value="$PROJECT_DIR$/imports/startup/client/globals.js" />
+        <option value="$PROJECT_DIR$/imports/ui/pages/zone.html" />
         <option value="$PROJECT_DIR$/imports/ui/pages/zone.js" />
+        <option value="$PROJECT_DIR$/imports/startup/client/router.js" />
+        <option value="$PROJECT_DIR$/imports/ui/pages/members.html" />
+        <option value="$PROJECT_DIR$/imports/ui/pages/members.js" />
       </list>
     </option>
   </component>
@@ -164,8 +190,8 @@
     <detection-done>true</detection-done>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="69" />
-    <option name="y" value="23" />
+    <option name="x" value="11" />
+    <option name="y" value="37" />
     <option name="width" value="1203" />
     <option name="height" value="836" />
   </component>
@@ -546,7 +572,13 @@
       <option name="project" value="LOCAL" />
       <updated>1462962104269</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="BON-298: patterns for Zone icons to change and reflect lifecycle status. Migrated back to Iron Router from Flow Router.  Zone template abstracted out of list view to handle each Zone in isolation. etc.">
+      <created>1462984745434</created>
+      <option name="number" value="00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1462984745434</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TodoView">
@@ -559,21 +591,21 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="69" y="23" width="1203" height="836" extended-state="0" />
+    <frame x="11" y="37" width="1203" height="836" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20981388" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32692307" sideWeight="0.48768863" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2774799" sideWeight="0.5566836" order="10" side_tool="true" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17069893" sideWeight="0.56006765" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2774799" sideWeight="0.4433164" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20375335" sideWeight="0.5786802" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17069893" sideWeight="0.43993232" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20295699" sideWeight="0.57022" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32409972" sideWeight="0.80481035" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35080644" sideWeight="0.79949236" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -609,7 +641,8 @@
     <MESSAGE value="BON-298: sorted list of zones with newest first (descending)" />
     <MESSAGE value="BON-298: added bootstrap tooltip support for explanations of states" />
     <MESSAGE value="Commit before attempting migration to Iron Router from Flow Router" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit before attempting migration to Iron Router from Flow Router" />
+    <MESSAGE value="BON-298: patterns for Zone icons to change and reflect lifecycle status. Migrated back to Iron Router from Flow Router.  Zone template abstracted out of list view to handle each Zone in isolation. etc." />
+    <option name="LAST_COMMIT_MESSAGE" value="BON-298: patterns for Zone icons to change and reflect lifecycle status. Migrated back to Iron Router from Flow Router.  Zone template abstracted out of list view to handle each Zone in isolation. etc." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -794,25 +827,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/pages/members.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.0131333">
-          <caret line="149" column="4" selection-start-line="149" selection-start-column="4" selection-end-line="149" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/pages/creation.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.9418386">
           <caret line="130" column="0" selection-start-line="130" selection-start-column="0" selection-end-line="130" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/pages/members.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.058939096">
-          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="30" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -857,6 +875,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="15" column="3" selection-start-line="15" selection-start-column="3" selection-end-line="15" selection-end-column="3" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -864,6 +883,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.12647554">
           <caret line="7" column="19" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -896,28 +916,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.082417585">
           <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/pages/identities.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.2931035">
-          <caret line="45" column="27" selection-start-line="45" selection-start-column="27" selection-end-line="45" selection-end-column="27" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imports/startup/client/router.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.43956044">
-          <caret line="16" column="38" selection-start-line="16" selection-start-column="38" selection-end-line="16" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/pages/identities.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.4285715">
-          <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -925,6 +924,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.41208792">
           <caret line="17" column="20" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -944,13 +944,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/pages/acknowledge.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6043956">
-          <caret line="57" column="32" selection-start-line="57" selection-start-column="32" selection-end-line="57" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/pages/acknowledge.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.545977">
@@ -963,21 +956,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3478261">
           <caret line="56" column="39" selection-start-line="56" selection-start-column="39" selection-end-line="56" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/pages/zone.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.0">
-          <caret line="8" column="26" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/pages/list.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="57" column="27" selection-start-line="57" selection-start-column="27" selection-end-line="57" selection-end-column="27" />
           <folding />
         </state>
       </provider>
@@ -992,10 +970,74 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/pages/identities.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9889094">
+          <caret line="45" column="27" selection-start-line="45" selection-start-column="27" selection-end-line="45" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/pages/zone.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.75">
+          <caret line="14" column="11" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/pages/zone.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7847358">
-          <caret line="110" column="46" selection-start-line="110" selection-start-column="46" selection-end-line="110" selection-end-column="46" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="72" column="40" selection-start-line="72" selection-start-column="24" selection-end-line="72" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/pages/list.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="57" column="27" selection-start-line="57" selection-start-column="27" selection-end-line="57" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/startup/client/router.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5221239">
+          <caret line="22" column="24" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/pages/members.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.0">
+          <caret line="8" column="61" selection-start-line="8" selection-start-column="61" selection-end-line="8" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/pages/acknowledge.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="35" column="48" selection-start-line="35" selection-start-column="48" selection-end-line="35" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/pages/members.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="53" column="8" selection-start-line="53" selection-start-column="8" selection-end-line="53" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/pages/identities.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.70458406">
+          <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
           <folding />
         </state>
       </provider>
