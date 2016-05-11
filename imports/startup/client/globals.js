@@ -38,3 +38,12 @@ ZidUserLocalDataObserver = new LocalPersist(ZidUserLocalData, 'ZidUserLocalDataO
         }
     });
 
+ZoneStateSymbols = {
+    new: 'fa fa-plus-circle',
+    members: 'fa fa-circle-o-notch',
+    acknowledged: 'fa fa-circle-o',
+    actioned: 'fa fa-check-circle-o',
+    confirmed: 'fa fa-check-circle',
+    pause: 'fa fa-pause-circle',
+    unknown: 'fa fa-question-circle'
+};

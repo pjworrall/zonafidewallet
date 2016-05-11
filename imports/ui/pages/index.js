@@ -11,6 +11,8 @@ import './members.js';
 import './edit.js';
 import './identities.js';
 import './list.js';
+import './zone.js';
 import './personal.js';
 import './acknowledge.js';
+import './settings.js';
 import './about.js';

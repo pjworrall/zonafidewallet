@@ -28,15 +28,7 @@
             </form>
 
             {{#each zads}}
-                <br>
-                <a class="zone" href="{{pathFor 'postEdit'}} {{_id}}/{{address}}">
-                    <i class="tooltipped fa {{#if symbol}} {{symbol}} {{else}} fa-thumbs-o-down  {{/if}} fa-4x"
-                       data-toggle="tooltip"
-                       data-placement="left"
-                       title="Replace With Content!!!"
-                       aria-hidden="true">
-                    </i>
-                </a>
+                {{> zone }}<br>
             {{/each}}
 
         </div>

@@ -61,8 +61,6 @@ Template.unlock.events({
 
                 Session.set('zid',Keystore.getAddresses()[0]);
 
-                BlazeLayout.render("layout", {content: "list"});
-
             } else {
                 console.log(".unlock.events: " + "lightwallet failed to get keystore");
                 // todo: put some kind of alert here
