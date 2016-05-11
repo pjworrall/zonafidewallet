@@ -7,8 +7,6 @@ import { ReactiveVar } from 'meteor/reactive-var';
 import './list.html';
 
 Template.list.onRendered(function() {
-
-    console.log("I am rendered!!!");
     // initialize Bootstrap tooltips
     $('.tooltipped').tooltip();
 });
@@ -135,7 +133,7 @@ Template.list.events({
                 }
             });
     },
-    'submit .status'(event, template) {
+    'click .status'(event, template) {
 
         // Prevent default browser form submit
         event.preventDefault();
@@ -172,6 +170,14 @@ Template.list.events({
                 }
 
             });
+
+    },
+    'dbclick .status'(event, template) {
+
+        // Prevent default browser form submit
+        event.preventDefault();
+
+        console.log('dbclick .status: called');
 
     }
 
