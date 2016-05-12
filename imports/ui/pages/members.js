@@ -18,8 +18,8 @@ Template.members.onCreated(function () {
         web3 = ZonafideWeb3.getInstance(ZonafideEnvironment.Node, ks);
         this.Zone = web3.eth.contract(ZonafideEnvironment.abi);
     } else {
-        // todo: alert problem with settign Web3 provider
-        console.log('no keystore: Have we unlocked a ZID?');
+        sAlert.error('A ZID is not unlocked',
+            {timeout: 'none', sAlertIcon: 'fa fa-exclamation-circle', sAlertTitle: 'Development Error'});
     }
 });
 
@@ -39,12 +39,8 @@ Template.members.events({
         // Prevent default browser form submit
         event.preventDefault();
 
-        console.log('submit .addMember: called');
-
         const zad = event.target.zad.value;
         const zid = event.target.zid.value;
-
-        console.log('zad was: ' + zad);
 
         var Zone = template.Zone;
         var KeyStore = template.KeyStore;
@@ -59,9 +55,11 @@ Template.members.events({
 
             function (error, obj) {
                 if (error) {
-                    console.log("ERROR - members.events: " + err);
+                    sAlert.error('Report to Zonafide: ' + error,
+                        {timeout: 'none', sAlertIcon: 'fa fa-exclamation-circle', sAlertTitle: 'Zonafide Access Failure'});
                 } else {
-                    console.log("INFO - members.events: " + obj);
+                    sAlert.info('member possibly set but callback not handling confirmation yet: ' + obj,
+                        {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Developer Issue'});
                 }
             });
 
@@ -71,12 +69,8 @@ Template.members.events({
         // Prevent default browser form submit
         event.preventDefault();
 
-        console.log('submit .addMember: called');
-
         const zad = event.target.zad.value;
         const zid = event.target.zid.value;
-
-        console.log('zad was: ' + zad);
 
         var Zone = template.Zone;
         var KeyStore = template.KeyStore;
@@ -87,11 +81,21 @@ Template.members.events({
         const quorum = 1;
 
         zone.isMember([zid], ZonafideEnvironment.caller(KeyStore.getAddresses()[0]),
+
+            //todo: this is not handling errors like 'not a BigNumber' , do we need a try catch somewhere?
+
             function (error, obj) {
                 if (error) {
-                    console.log("ERROR - members.events: " + err);
+                    sAlert.error('Report to Zonafide: ' + error,
+                        {timeout: 'none', sAlertIcon: 'fa fa-exclamation-circle', sAlertTitle: 'Zonafide Access Failure'});
                 } else {
-                    console.log("INFO - members.events: " + obj);
+                    if(obj) {
+                        sAlert.info(zid + ' reported to be a member but full development of callback not complete: ' + obj,
+                            {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Yes, a member'});
+                    } else {
+                    sAlert.info(zid + ' reported not a member but full development of callback not complete: ' + obj,
+                        {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'No, not a member'});
+                    }
                 }
             });
 

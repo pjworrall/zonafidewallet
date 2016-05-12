@@ -359,7 +359,7 @@
       <root url="file://$PROJECT_DIR$/imports/ui/pages/menu-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-es2015-literals/lib/index-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-es2015-modules-commonjs/lib/index-compiled.js" />
-      <root url="file://$PROJECT_DIR$/imports/startup/client/a-alerts-compiled.js" />
+      <root url="file://$PROJECT_DIR$/client/a-alerts-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/.bin/jsesc-compiled.js" />
       <root url="file://$PROJECT_DIR$/imports/ui/pages/settings-compiled.js" />
       <root url="file://$PROJECT_DIR$/imports/ui/pages/zone-compiled.js" />

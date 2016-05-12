@@ -15,8 +15,8 @@ Template.acknowledge.onCreated(function () {
         web3 = ZonafideWeb3.getInstance(ZonafideEnvironment.Node, ks);
         this.Zone = web3.eth.contract(ZonafideEnvironment.abi);
     } else {
-        // todo: alert problem with settign Web3 provider
-        console.log('no keystore: Have we unlocked a ZID?');
+        sAlert.error('A ZID is not unlocked',
+            {timeout: 'none', sAlertIcon: 'fa fa-exclamation-circle', sAlertTitle: 'Development Error'});
     }
 
 });
@@ -57,12 +57,15 @@ Template.acknowledge.events({
 
         zone.setAcknowledgement(
             ZonafideEnvironment.caller(KeyStore.getAddresses()[0]),
-            function (err, obj) {
+            function (error, obj) {
+            //todo: this is not handling errors like 'not a BigNumber' , do we need a try catch somewhere?
 
-                if (err) {
-                    console.log("ERROR - acknowledge.events: " + err);
+                if (error) {
+                    sAlert.error('Report to Zonafide: ' + error,
+                        {timeout: 'none', sAlertIcon: 'fa fa-exclamation-circle', sAlertTitle: 'Zonafide Access Failure'});
                 } else {
-                    console.log("INFO - acknowledge.events: " + obj);
+                    sAlert.info(zid + ' transaction id returned but callback not handling any form of confirmation (mined): ' + obj,
+                        {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Acknowledged'});
                 }
             });
     }

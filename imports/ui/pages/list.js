@@ -15,8 +15,8 @@ Template.list.onCreated(function () {
         web3 = ZonafideWeb3.getInstance(ZonafideEnvironment.Node, ks);
         this.Zone = web3.eth.contract(ZonafideEnvironment.abi);
     } else {
-        // todo: alert problem with settign Web3 provider
-        console.log('no keystore: Have we unlocked a ZID?');
+        sAlert.error('A ZID is not unlocked',
+            {timeout: 'none', sAlertIcon: 'fa fa-exclamation-circle', sAlertTitle: 'Development Error'});
     }
 
 });
@@ -25,7 +25,7 @@ Template.list.helpers({
 
     zads() {
         return ZidUserLocalData.find({}, {
-            sort: { _id: -1 }
+            sort: {_id: -1}
         });
     }
 
@@ -56,6 +56,13 @@ Template.list.events({
                             address: contract.address,
                             symbol: ZoneStateSymbols.new
                         });
+                        // todo: got to refactor out the parameters here and across all alerts currently
+                        // todo: I mean. shouldn't using the info method provide appropriate symbol?
+                        sAlert.info(contract.address,
+                            {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Zone established'});
+                    } else {
+                        sAlert.info('A Zone is being registered',
+                            {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Zone requested'});
                     }
 
                 } else {
