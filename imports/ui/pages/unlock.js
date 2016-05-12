@@ -61,9 +61,12 @@ Template.unlock.events({
 
                 Session.set('zid',Keystore.getAddresses()[0]);
 
+                sAlert.info('You active kido', {timeout: 'none'});
+
             } else {
                 console.log(".unlock.events: " + "lightwallet failed to get keystore");
                 // todo: put some kind of alert here
+                sAlert.warning('Passphrase was not recognised', {timeout: 'none'});
             }
 
         });

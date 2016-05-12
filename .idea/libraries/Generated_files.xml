@@ -63,9 +63,9 @@
         <item url="file://$PROJECT_DIR$/imports/ui/pages/about-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/regexpu-core/rewrite-pattern-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/winston/lib/winston/config-compiled.js" />
+        <item url="file://$PROJECT_DIR$/imports/ui/pages/members-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/babel-helper-replace-supers/lib/index-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/winston/lib/winston/config/syslog-config-compiled.js" />
-        <item url="file://$PROJECT_DIR$/imports/ui/pages/members-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/winston/lib/winston/config/npm-config-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-es2015-parameters/lib/index-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/pkginfo/test/pkginfo-test-compiled.js" />
@@ -116,8 +116,8 @@
         <item url="file://$PROJECT_DIR$/node_modules/colors/lib/custom/zalgo-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-regenerator/src/visit-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/colors/lib/custom/trap-compiled.js" />
-        <item url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-regenerator/src/index-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/colors/lib/system/supports-colors-compiled.js" />
+        <item url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-regenerator/src/index-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-es2015-duplicate-keys/lib/index-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/colors/lib/index-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/regjsparser/bin/parser-compiled.js" />
@@ -141,8 +141,10 @@
         <item url="file://$PROJECT_DIR$/node_modules/jsesc/jsesc-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-es2015-sticky-regex/lib/index-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/.bin/regjsparser-compiled.js" />
+        <item url="file://$PROJECT_DIR$/imports/ui/pages/menu-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-es2015-literals/lib/index-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-es2015-modules-commonjs/lib/index-compiled.js" />
+        <item url="file://$PROJECT_DIR$/imports/startup/client/a-alerts-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/.bin/jsesc-compiled.js" />
         <item url="file://$PROJECT_DIR$/imports/ui/pages/settings-compiled.js" />
         <item url="file://$PROJECT_DIR$/imports/ui/pages/zone-compiled.js" />
@@ -276,9 +278,9 @@
       <root url="file://$PROJECT_DIR$/imports/ui/pages/about-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/regexpu-core/rewrite-pattern-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/winston/lib/winston/config-compiled.js" />
+      <root url="file://$PROJECT_DIR$/imports/ui/pages/members-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/babel-helper-replace-supers/lib/index-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/winston/lib/winston/config/syslog-config-compiled.js" />
-      <root url="file://$PROJECT_DIR$/imports/ui/pages/members-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/winston/lib/winston/config/npm-config-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-es2015-parameters/lib/index-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/pkginfo/test/pkginfo-test-compiled.js" />
@@ -329,8 +331,8 @@
       <root url="file://$PROJECT_DIR$/node_modules/colors/lib/custom/zalgo-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-regenerator/src/visit-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/colors/lib/custom/trap-compiled.js" />
-      <root url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-regenerator/src/index-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/colors/lib/system/supports-colors-compiled.js" />
+      <root url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-regenerator/src/index-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-es2015-duplicate-keys/lib/index-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/colors/lib/index-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/regjsparser/bin/parser-compiled.js" />
@@ -354,8 +356,10 @@
       <root url="file://$PROJECT_DIR$/node_modules/jsesc/jsesc-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-es2015-sticky-regex/lib/index-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/.bin/regjsparser-compiled.js" />
+      <root url="file://$PROJECT_DIR$/imports/ui/pages/menu-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-es2015-literals/lib/index-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-es2015-modules-commonjs/lib/index-compiled.js" />
+      <root url="file://$PROJECT_DIR$/imports/startup/client/a-alerts-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/.bin/jsesc-compiled.js" />
       <root url="file://$PROJECT_DIR$/imports/ui/pages/settings-compiled.js" />
       <root url="file://$PROJECT_DIR$/imports/ui/pages/zone-compiled.js" />

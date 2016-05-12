@@ -1,36 +1,13 @@
 <template name="layout">
 
-    <nav class="navbar navbar-default">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">
-                <span class="zonafide-logo fa-2x zicon"></span>
-            </a>
-        </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
-            <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/unlock"><i class="fa fa-unlock fa-2x" aria-hidden="true"></i></a></li>
-                <!-- TODO: this should all be disabled until we are unlocked -->
-                    <li><a href="/identities"><i class="fa fa-users  fa-2x" aria-hidden="true"></i></a></li>
-                    <li><a href="/lock"><i class="fa fa-lock fa-2x" aria-hidden="true"></i></a></li>
-                    <li><a href="/list"><i class="fa fa-list fa-2x" aria-hidden="true"></i></a></li>
-                    <li><a href="/acknowledge"><i class="fa fa-thumbs-o-up fa-2x" aria-hidden="true"></i></a></li>
-                    <li><a href="/identities"><i class="fa fa-user  fa-2x" aria-hidden="true"></i></a></li>
-                    <li><a href="/personal"><i class="fa fa-pencil fa-2x" aria-hidden="true"></i></a></li>
-                    <li><a href="/settings"><i class="fa fa-gear fa-2x" aria-hidden="true"></i></a></li>
-                    <li><a href="/about"><i class="fa fa-question-circle-o fa-2x" aria-hidden="true"></i></a></li>
-            </ul>
-        </div>
-    </nav>
+    <div class="container">
+        {{> menu }}
+    </div>
 
     <div class="container">
         {{> yield}}
     </div>
 
+        {{> sAlert}}
 
 </template>

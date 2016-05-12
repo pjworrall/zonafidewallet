@@ -16,3 +16,4 @@ import './personal.js';
 import './acknowledge.js';
 import './settings.js';
 import './about.js';
+import './menu.js';
