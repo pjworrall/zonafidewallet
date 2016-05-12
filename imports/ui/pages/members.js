@@ -35,13 +35,14 @@ Template.members.helpers({
 
 Template.members.events({
 
-    'submit .addMember'(event, template) {
+    'submit .add'(event, template) {
         // Prevent default browser form submit
         event.preventDefault();
 
         console.log('submit .addMember: called');
 
         const zad = event.target.zad.value;
+        const zid = event.target.zid.value;
 
         console.log('zad was: ' + zad);
 
@@ -56,6 +57,36 @@ Template.members.events({
         zone.setMembers([zid], quorum,
             ZonafideEnvironment.caller(KeyStore.getAddresses()[0]),
 
+            function (error, obj) {
+                if (error) {
+                    console.log("ERROR - members.events: " + err);
+                } else {
+                    console.log("INFO - members.events: " + obj);
+                }
+            });
+
+    },
+
+    'submit .check'(event, template) {
+        // Prevent default browser form submit
+        event.preventDefault();
+
+        console.log('submit .addMember: called');
+
+        const zad = event.target.zad.value;
+        const zid = event.target.zid.value;
+
+        console.log('zad was: ' + zad);
+
+        var Zone = template.Zone;
+        var KeyStore = template.KeyStore;
+
+        var zone = Zone.at(zad);
+
+        // todo: quorum set hard at 1 for now
+        const quorum = 1;
+
+        zone.isMember([zid], ZonafideEnvironment.caller(KeyStore.getAddresses()[0]),
             function (error, obj) {
                 if (error) {
                     console.log("ERROR - members.events: " + err);

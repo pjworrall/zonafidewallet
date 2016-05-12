@@ -8,7 +8,7 @@
 
             <p>Selected ZID: <strong>{{address}}</strong></p>
 
-            <form class="addMember">
+            <form class="add">
                 <input type="hidden" value="{{address}}" name="zad"/>
                 <div class="input-group">
                     <p>What is the ZID of the member?</p>
@@ -19,9 +19,21 @@
                            placeholder="Provide the ZAD.."
                            aria-describedby="basic-addon1"/>
                 </div>
-                <button>Add</button>
+                <button><i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i></button>
             </form>
-
+            <form class="check">
+                <input type="hidden" value="{{address}}" name="zad"/>
+                <div class="input-group">
+                    <p>Check if a member?</p>
+                    <input class="form-control"
+                           type="text"
+                           name="zid"
+                           size="80"
+                           placeholder="Provide the ZAD to check.."
+                           aria-describedby="basic-addon1"/>
+                </div>
+                <button><i class="fa fa-question-circle fa-2x" aria-hidden="true"></i></button>
+            </form>
 
         </div>
     </div>

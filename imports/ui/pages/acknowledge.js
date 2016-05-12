@@ -6,7 +6,7 @@ import { ReactiveVar } from 'meteor/reactive-var';
 
 import './acknowledge.html';
 
-Template.list.onCreated(function () {
+Template.acknowledge.onCreated(function () {
 
     var ks = this.KeyStore = ZidStore.get();
 
