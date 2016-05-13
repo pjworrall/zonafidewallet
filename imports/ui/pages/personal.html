@@ -1,11 +1,56 @@
 <template name="personal">
 
-        <div class="row">
-            <div class="col-xs-12 text-left">
-                <div class="service-box">
-                    <p>I am going to manage my personal information</p>
+    <div class="row">
+        <div class="col-xs-12 text-left">
+            <h4>Personal Data</h4>
+            <p>You can store the name and address details you might commonly use with a Zone here. So you
+            don't have to type it in every time you need it in a Zone. This information is stored on your device
+            and not in anyone else's services.  </p>
+
+            <!-- todo: got to put proper form labels and stuff on this -->
+            <form class="save">
+                <div class="input-group">
+                    <h4>Counter Party ZID</h4>
+                    <p>The family name the party knows you by... </p>
+                    <input class="form-control"
+                           type="text"
+                           name="familyName"
+                           size="60"
+                           placeholder="Family name..."/>
+
+                    <p>Any first names they know you by... </p>
+                    <input class="form-control"
+                           type="text"
+                           name="firstName"
+                           size="60"
+                           placeholder="First names..."/>
+
+                    <p>House name or number</p>
+                    <input class="form-control"
+                           type="text"
+                           name="houseId"
+                           size="40"
+                           placeholder="Number or name"/>
+
+                    <p>First line of address</p>
+                    <input class="form-control"
+                           type="text"
+                           name="streetAddress"
+                           size="80"
+                           placeholder="Street address"/>
+
+                    <p>Post Code</p>
+                    <input class="form-control"
+                           type="text"
+                           name="postCode"
+                           size="10"
+                           placeholder="..."/>
                 </div>
-            </div>
+
+                <button><i class="fa fa-floppy-o fa-2x" aria-hidden="true"></i></button>
+            </form>
+
         </div>
+    </div>
 
 </template>

@@ -16,6 +16,8 @@ Router.route('/unlock', {name: 'unlock'});
 
 Router.route('/list', {name: 'list'});
 
+Router.route('/edit', {name: 'edit'});
+
 Router.route('/lock', {name: 'lock'});
 
 Router.route('/members/:_id',

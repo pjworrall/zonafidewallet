@@ -2,7 +2,6 @@
  * Created by pjworrall on 03/05/2016.
  */
 import { Template } from 'meteor/templating';
-import { ReactiveVar } from 'meteor/reactive-var';
 
 import './acknowledge.html';
 
@@ -22,19 +21,13 @@ Template.acknowledge.onCreated(function () {
 });
 
 Template.acknowledge.onCreated(function () {
-
-    console.log('.acknowledge.onCreated: setting reactive vars');
-
-    this.result = new ReactiveVar();
-
+   // redundant
 });
 
 
 Template.acknowledge.helpers({
 
-    result() {
-        return Template.instance().result.get();
-    }
+    // redundant
 
 });
 
@@ -64,7 +57,7 @@ Template.acknowledge.events({
                     sAlert.error('Report to Zonafide: ' + error,
                         {timeout: 'none', sAlertIcon: 'fa fa-exclamation-circle', sAlertTitle: 'Zonafide Access Failure'});
                 } else {
-                    sAlert.info(zid + ' transaction id returned but callback not handling any form of confirmation (mined): ' + obj,
+                    sAlert.info(zad + ' transaction id returned but callback not handling any form of confirmation (mined): ' + obj,
                         {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Acknowledged'});
                 }
             });

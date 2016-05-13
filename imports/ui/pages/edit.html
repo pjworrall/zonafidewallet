@@ -2,9 +2,75 @@
 
         <div class="row">
             <div class="col-xs-12 text-left">
-                <div class="service-box">
-                    <p>I am going to edit a Zone</p>
-                </div>
+                <h4>Activate A Zone</h4>
+                <p>Once a Zone is acknowledged you can action it.  This means declaring who the action is to be with and
+                providing details to them.  Only they can see the details of the action in the Zone.</p>
+
+                <!-- todo: got to put proper form labels and stuff on this -->
+                <form class="edit">
+                    <div class="input-group">
+                        <h4>Name and Address</h4>
+                        <p>This is the Zone ID of the party that you want the action to be with.</p>
+                        <input class="form-control"
+                               type="text"
+                               name="zid"
+                               size="80"
+                               placeholder="Counter party ZID.."/>
+
+                        <p>Description of the action you want to take.</p>
+                        <input class="form-control"
+                               type="text"
+                               name="action"
+                               size="80"
+                               placeholder="What do you want to do?.."/>
+
+                        <p>The family name the party knows you by... </p>
+                        <input class="form-control"
+                               type="text"
+                               name="familyName"
+                               size="60"
+                               placeholder="Family name..."/>
+                        <p>Any first names they know you by... </p>
+                        <input class="form-control"
+                               type="text"
+                               name="firstName"
+                               size="60"
+                               placeholder="First names..."/>
+                        <p>An account reference they might need... </p>
+                        <input class="form-control"
+                               type="text"
+                               name="reference"
+                               size="60"
+                               placeholder="Account reference..."/>
+                        <p>House name or number</p>
+                        <input class="form-control"
+                               type="text"
+                               name="houseId"
+                               size="40"
+                               placeholder="Number or name"/>
+                        <p>First line of address</p>
+                        <input class="form-control"
+                               type="text"
+                               name="streetAddress"
+                               size="80"
+                               placeholder="Street address"/>
+                        <p>Post Code</p>
+                        <input class="form-control"
+                               type="text"
+                               name="postCode"
+                               size="10"
+                               placeholder="..."/>
+                        <p>ZAD</p>
+                        <input class="form-control"
+                               type="text"
+                               name="zad"
+                               size="80"
+                               placeholder="Provide the ZAD.."/>
+                    </div>
+
+                    <button><i class="fa fa-check-circle fa-2x" aria-hidden="true"></i></button>
+                </form>
+
             </div>
         </div>
 
