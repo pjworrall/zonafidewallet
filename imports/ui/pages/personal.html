@@ -4,8 +4,8 @@
         <div class="col-xs-12 text-left">
             <h4>Personal Data</h4>
             <p>You can store the name and address details you might commonly use with a Zone here. So you
-            don't have to type it in every time you need it in a Zone. This information is stored on your device
-            and not in anyone else's services.  </p>
+                don't have to type it in every time you need it in a Zone. This information is stored on your device
+                and not in anyone else's services. </p>
 
             <!-- todo: got to put proper form labels and stuff on this -->
             <form class="save">
@@ -16,40 +16,50 @@
                            type="text"
                            name="familyName"
                            size="60"
-                           placeholder="Family name..."/>
+                           placeholder="{{#if address.familyName}}{{address.familyName}}{{else}}Family name... {{/if}}"/>
 
                     <p>Any first names they know you by... </p>
                     <input class="form-control"
                            type="text"
                            name="firstName"
                            size="60"
-                           placeholder="First names..."/>
+                           placeholder="{{#if address.firstName}}{{address.firstName}}{{else}}First names... {{/if}}"/>
 
                     <p>House name or number</p>
                     <input class="form-control"
                            type="text"
                            name="houseId"
                            size="40"
-                           placeholder="Number or name"/>
+                           placeholder="{{#if address.houseId}}{{address.houseId}}{{else}}Number or name...{{/if}}"/>
 
                     <p>First line of address</p>
                     <input class="form-control"
                            type="text"
                            name="streetAddress"
                            size="80"
-                           placeholder="Street address"/>
+                           placeholder="{{#if address.streetAddress}}{{address.streetAddress}}{{else}}Street address...{{/if}}"/>
 
                     <p>Post Code</p>
                     <input class="form-control"
                            type="text"
                            name="postCode"
                            size="10"
-                           placeholder="..."/>
+                           placeholder="{{#if address.postCode}}{{address.postCode}}{{else}}Post Code...{{/if}}"/>
+                    <br>
+                    <button><i class="fa fa-floppy-o fa-2x" aria-hidden="true"></i></button>
                 </div>
-
-                <button><i class="fa fa-floppy-o fa-2x" aria-hidden="true"></i></button>
             </form>
-
+            <br>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 text-left">
+            <div class="input-group">
+                <form class="remove">
+                    <input type="hidden" name="_id" value="{{address._id}}">
+                    <button><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></button>
+                </form>
+            </div>
         </div>
     </div>
 

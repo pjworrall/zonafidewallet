@@ -26,15 +26,26 @@ ZidStore = {
 // the client side collections to store the state
 ZidUserLocalData = new Mongo.Collection('ZidUserLocalData', {connection: null});
 
+ZidUserLocalPersonalData = new Mongo.Collection('ZidUserLocalPersonalData', {connection: null});
+
 // jeffm:local-persist used to persist the collection to browser store
 
 // todo: need to revisit these parameters
 ZidUserLocalDataObserver = new LocalPersist(ZidUserLocalData, 'ZidUserLocalDataObserver',
     {                                     // options are optional!
-        maxDocuments: 99,                   // maximum number of line items in cart
+        maxDocuments: 5,                   // maximum number of line items in cart
         storageFull: function (col, doc) {  // function to handle maximum being exceeded
             col.remove({_id: doc._id});
             alert('Please delete some of the obsolete Zones before saving more.');
+        }
+    });
+
+ZidUserLocalPersonalDataObserver = new LocalPersist(ZidUserLocalPersonalData, 'ZidUserLocalPersonalDataObserver',
+    {                                     // options are optional!
+        maxDocuments: 1,                  // max number of docs to store
+        storageFull: function (col, doc) {  // function to handle maximum being exceeded
+            col.remove({_id: doc._id});
+            alert('You can only have one address record currently.');
         }
     });
 
