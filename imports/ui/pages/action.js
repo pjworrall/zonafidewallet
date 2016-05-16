@@ -49,23 +49,42 @@ Template.action.events({
         const zid = event.target.zid.value;
 
         /*
-           todo: this has to be encrypted with the counter party ZID
+         todo: this has to be encrypted with the counter party ZID
          */
-        const description = {
+        var description = {
             action: event.target.action.value,
-            firstName: event.target.firstName.value,
-            familyName: event.target.familyName.value,
-            reference: event.target.reference.value,
-            houseId: event.target.houseId.value,
-            streetAddress: event.target.streetAddress.value,
-            postCode: event.target.postCode.value
+            reference: event.target.reference.value
         };
 
-        console.log("edit.events - description: " + JSON.stringify(description) + " :" + zid );
+        const includePersonalDetails = event.target.details.checked;
+
+        console.log("includePersonalDetails: " + includePersonalDetails);
+
+        if (includePersonalDetails) {
+
+            var pd = ZidUserLocalPersonalData.findOne();
+
+            // todo: this should only run if pd is not null or undefined
+            if (pd) {
+                description = {
+                    action: description.action,
+                    reference: description.reference,
+                    firstName: pd.firstName,
+                    familyName: pd.familyName,
+                    houseId: pd.houseId,
+                    streetAddress: pd.streetAddress,
+                    postCode: pd.postCode
+                }
+            } else {
+                sAlert.info("We didn't find any personal details to use. Provide some and try again.",
+                    {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'No personal details'});
+                return;
+            }
+        }
 
         var zone = Zone.at(zad);
 
-        zone.action(JSON.stringify(description),zid,
+        zone.action(JSON.stringify(description), zid,
             ZonafideEnvironment.caller(KeyStore.getAddresses()[0]),
             function (error, obj) {
                 //todo: this is not handling errors like 'not a BigNumber' , do we need a try catch somewhere?
@@ -74,7 +93,11 @@ Template.action.events({
 
                 if (error) {
                     sAlert.error('Report to Zonafide: ' + error,
-                        {timeout: 'none', sAlertIcon: 'fa fa-exclamation-circle', sAlertTitle: 'Zonafide Access Failure'});
+                        {
+                            timeout: 'none',
+                            sAlertIcon: 'fa fa-exclamation-circle',
+                            sAlertTitle: 'Zonafide Access Failure'
+                        });
                 } else {
                     sAlert.info(zad + ' transaction id returned but callback not handling any form of confirmation (mined): ' + obj,
                         {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Actioned'});
