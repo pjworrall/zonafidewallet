@@ -3,9 +3,9 @@
  */
 import { Template } from 'meteor/templating';
 
-import './edit.html';
+import './action.html';
 
-Template.edit.onCreated(function () {
+Template.action.onCreated(function () {
 
     var ks = this.KeyStore = ZidStore.get();
 
@@ -20,7 +20,7 @@ Template.edit.onCreated(function () {
 
 });
 
-Template.edit.helpers({
+Template.action.helpers({
     //this is here because we could experiment with a drop down list of Zones
     zads() {
         return ZidUserLocalData.find({}, {
@@ -30,7 +30,7 @@ Template.edit.helpers({
 
 });
 
-Template.edit.events({
+Template.action.events({
 
     'submit .edit'(event, template) {
         // Prevent default browser form submit
@@ -69,6 +69,8 @@ Template.edit.events({
             ZonafideEnvironment.caller(KeyStore.getAddresses()[0]),
             function (error, obj) {
                 //todo: this is not handling errors like 'not a BigNumber' , do we need a try catch somewhere?
+
+                console.log("error: " + error + ", obj: " + obj);
 
                 if (error) {
                     sAlert.error('Report to Zonafide: ' + error,

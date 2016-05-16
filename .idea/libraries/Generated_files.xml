@@ -319,7 +319,7 @@
       <root url="file://$PROJECT_DIR$/imports/ui/pages/list-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-regenerator/lib/index-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/colors/lib/colors-compiled.js" />
-      <root url="file://$PROJECT_DIR$/imports/ui/pages/edit-compiled.js" />
+      <root url="file://$PROJECT_DIR$/imports/ui/pages/action-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-regenerator/lib/hoist-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/colors/lib/styles-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-regenerator/lib/meta-compiled.js" />
