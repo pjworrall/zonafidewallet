@@ -21,11 +21,13 @@ Template.action.onCreated(function () {
 });
 
 Template.action.helpers({
-    //this is here because we could experiment with a drop down list of Zones
-    zads() {
-        return ZidUserLocalData.find({}, {
-            sort: {_id: -1}
-        });
+
+    address() {
+
+        var zone = ZidUserLocalData.findOne(
+            Template.instance().data._id);
+
+        return  zone.address;
     }
 
 });

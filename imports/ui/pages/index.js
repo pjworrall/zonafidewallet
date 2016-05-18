@@ -14,5 +14,6 @@ import './zone.js';
 import './personal.js';
 import './acknowledge.js';
 import './settings.js';
+import './confirm.js';
 import './about.js';
 import './menu.js';

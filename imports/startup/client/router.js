@@ -14,15 +14,25 @@ Router.route('/', {name: 'home'});
 
 Router.route('/unlock', {name: 'unlock'});
 
+Router.route('/lock', {name: 'lock'});
+
 Router.route('/list', {name: 'list'});
 
-Router.route('/action', {name: 'action'});
-
-Router.route('/lock', {name: 'lock'});
+Router.route('/action/:_id',
+    {
+        name: 'action',
+        data: function() { return this.params }
+    });
 
 Router.route('/members/:_id',
     {
         name: 'members',
+        data: function() { return this.params }
+    });
+
+Router.route('/confirm/:_id',
+    {
+        name: 'confirm',
         data: function() { return this.params }
     });
 

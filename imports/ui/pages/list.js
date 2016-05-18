@@ -39,37 +39,49 @@ Template.list.events({
 
         console.log('list.events: performing create event');
 
-        var Zone = template.Zone;
-        var KeyStore = template.KeyStore;
+        // if there are already five Zones let the user no that is the current limit
 
-        Zone.new(ZonafideEnvironment.caller(KeyStore.getAddresses()[0]),
-            function (error, contract) {
-                if (!error) {
+        var count = ZidUserLocalData.find().count();
 
-                    if (typeof contract.address != 'undefined') {
-                        console.log('Confirmed. address: '
-                            + contract.address
-                            + ' transactionHash: '
-                            + contract.transactionHash);
+        if (count >= 5) {
+            sAlert.info('Currently only five records of Zones can be remembered',
+                {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Zone Record Limit'});
+            return;
 
-                        ZidUserLocalData.insert({
-                            address: contract.address,
-                            symbol: ZoneStateSymbols.new
-                        });
-                        // todo: got to refactor out the parameters here and across all alerts currently
-                        // todo: I mean. shouldn't using the info method provide appropriate symbol?
-                        sAlert.info(contract.address,
-                            {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Zone established'});
+        } else {
+
+            var Zone = template.Zone;
+            var KeyStore = template.KeyStore;
+
+            Zone.new(ZonafideEnvironment.caller(KeyStore.getAddresses()[0]),
+                function (error, contract) {
+                    if (!error) {
+
+                        if (typeof contract.address != 'undefined') {
+                            console.log('Confirmed. address: '
+                                + contract.address
+                                + ' transactionHash: '
+                                + contract.transactionHash);
+
+                            ZidUserLocalData.insert({
+                                address: contract.address,
+                                symbol: ZoneStateSymbols.new
+                            });
+                            // todo: got to refactor out the parameters here and across all alerts currently
+                            // todo: I mean. shouldn't using the info method provide appropriate symbol?
+                            sAlert.info(contract.address,
+                                {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Zone established'});
+                        } else {
+                            sAlert.info('A Zone is being registered',
+                                {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Zone requested'});
+                        }
+
                     } else {
-                        sAlert.info('A Zone is being registered',
-                            {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Zone requested'});
+                        // todo: alert, geth call failed
+                        console.log('geth callback error: ' + error);
                     }
-
-                } else {
-                    // todo: alert, geth call failed
-                    console.log('geth callback error: ' + error);
-                }
-            });
+                });
+        }
     }
 
 });

@@ -36,8 +36,39 @@ Template.zone.events({
         console.log('dbclick .zone: called');
 
         const id = $(template.find('input[name=zad]')).val();
+        const zad = ZidUserLocalData.findOne(id).address;
 
-        Router.go("members", {_id: id});
+        var Zone = template.Zone;
+        var KeyStore = template.KeyStore;
+
+        var zone = Zone.at(zad);
+
+         /*
+
+            todo: Currently the use of functions on the contract to determine state may cause
+            too many rpc calls. Consider using a flag so one call can be made to determine
+            all states.
+
+          */
+
+        var quorum = zone.isQuorum(ZonafideEnvironment.caller(KeyStore.getAddresses()[0]));
+        var active = zone.isActive(ZonafideEnvironment.caller(KeyStore.getAddresses()[0]));
+
+        console.log("quorum: " + quorum + ", active: " + active );
+
+        if(active){
+            console.log("will route to confirm");
+            Router.go("confirm", {_id: id});
+        } else if(quorum){
+            Router.go("action", {_id: id});
+        }else if(!quorum){
+            // todo: query any members that do exist and pass through to view
+            Router.go("members", {_id: id});
+        } else {
+            // todo: we are going to need a locale capability to support multiple languages
+            sAlert.info("Did not recognise the state the Zone was in to determine what view to present.",
+                {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Developer Issue'});
+        }
 
     },
 

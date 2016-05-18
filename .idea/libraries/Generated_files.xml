@@ -48,6 +48,7 @@
         <item url="file://$PROJECT_DIR$/node_modules/bootstrap-sass/assets/javascripts/bootstrap/dropdown-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/babel-helper-define-map/lib/index-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/winston/lib/winston/common-compiled.js" />
+        <item url="file://$PROJECT_DIR$/imports/ui/pages/confirm-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/bootstrap-sass/assets/javascripts/bootstrap.min-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-es2015-function-name/lib/index-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/winston/lib/winston/transports/transport-compiled.js" />
@@ -100,11 +101,10 @@
         <item url="file://$PROJECT_DIR$/node_modules/babel-helper-call-delegate/lib/index-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-regenerator/lib/leap-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/colors/tests/safe-test-compiled.js" />
-        <item url="file://$PROJECT_DIR$/imports/ui/pages/creation-compiled.js" />
         <item url="file://$PROJECT_DIR$/imports/ui/pages/list-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-regenerator/lib/index-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/colors/lib/colors-compiled.js" />
-        <item url="file://$PROJECT_DIR$/imports/ui/pages/edit-compiled.js" />
+        <item url="file://$PROJECT_DIR$/imports/ui/pages/action-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-regenerator/lib/hoist-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/colors/lib/styles-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-regenerator/lib/meta-compiled.js" />
@@ -144,7 +144,6 @@
         <item url="file://$PROJECT_DIR$/imports/ui/pages/menu-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-es2015-literals/lib/index-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-es2015-modules-commonjs/lib/index-compiled.js" />
-        <item url="file://$PROJECT_DIR$/imports/startup/client/a-alerts-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/.bin/jsesc-compiled.js" />
         <item url="file://$PROJECT_DIR$/imports/ui/pages/settings-compiled.js" />
         <item url="file://$PROJECT_DIR$/imports/ui/pages/zone-compiled.js" />
@@ -217,6 +216,7 @@
       <root url="file://$PROJECT_DIR$/imports/startup/client/routes-compiled.js" />
       <root url="file://$PROJECT_DIR$/imports/ui/layouts/layout-compiled.js" />
       <root url="file://$PROJECT_DIR$/imports/startup/client/routes-compiled.js" />
+      <root url="file://$PROJECT_DIR$/imports/ui/pages/creation-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/winston/test/transports/file-tailrolling-test-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/winston/test/transports/file-maxfiles-test-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/bootstrap-sass/assets/javascripts/bootstrap/tooltip-compiled.js" />
@@ -263,6 +263,7 @@
       <root url="file://$PROJECT_DIR$/node_modules/bootstrap-sass/assets/javascripts/bootstrap/dropdown-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/babel-helper-define-map/lib/index-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/winston/lib/winston/common-compiled.js" />
+      <root url="file://$PROJECT_DIR$/imports/ui/pages/confirm-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/bootstrap-sass/assets/javascripts/bootstrap.min-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-es2015-function-name/lib/index-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/winston/lib/winston/transports/transport-compiled.js" />
@@ -315,7 +316,6 @@
       <root url="file://$PROJECT_DIR$/node_modules/babel-helper-call-delegate/lib/index-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-regenerator/lib/leap-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/colors/tests/safe-test-compiled.js" />
-      <root url="file://$PROJECT_DIR$/imports/ui/pages/creation-compiled.js" />
       <root url="file://$PROJECT_DIR$/imports/ui/pages/list-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-regenerator/lib/index-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/colors/lib/colors-compiled.js" />

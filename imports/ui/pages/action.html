@@ -6,8 +6,13 @@
                 <p>Once a Zone is acknowledged you can action it.  This means declaring who the action is to be with and
                 providing details to them.  Only they can see the details of the action in the Zone.</p>
 
+                <p>Current ZAD: <strong>{{address}}</strong></p>
+
                 <!-- todo: got to put proper form labels and stuff on this -->
                 <form class="edit">
+
+                    <input type="hidden"  name="zad" value="{{address}}"/>
+
                     <div class="input-group">
                         <h4>Name and Address</h4>
                         <p>This is the Zone ID of the party that you want the action to be with.</p>
@@ -37,12 +42,6 @@
                             </label>
                         </div>
 
-                        <p>ZAD (To be inherited from route..)</p>
-                        <input class="form-control"
-                               type="text"
-                               name="zad"
-                               size="80"
-                               placeholder="Provide the ZAD.."/>
                     </div>
 
                     <button><i class="fa fa-check-circle fa-2x" aria-hidden="true"></i></button>
