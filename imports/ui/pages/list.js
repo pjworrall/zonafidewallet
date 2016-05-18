@@ -6,6 +6,10 @@ import { ReactiveVar } from 'meteor/reactive-var';
 
 import './list.html';
 
+Template.list.onRendered(function() {
+    $('.tooltipped').tooltip();
+});
+
 Template.list.onCreated(function () {
 
     var ks = this.KeyStore = ZidStore.get();
@@ -66,8 +70,9 @@ Template.list.events({
                             ZidUserLocalData.insert({
                                 created: new Date(),
                                 address: contract.address,
-                                symbol: ZoneStateSymbols.new
+                                state: ZoneState.NEW
                             });
+
                             // todo: got to refactor out the parameters here and across all alerts currently
                             // todo: I mean. shouldn't using the info method provide appropriate symbol?
                             sAlert.info(contract.address,

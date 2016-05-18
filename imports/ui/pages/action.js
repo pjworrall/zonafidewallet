@@ -101,6 +101,9 @@ Template.action.events({
                             sAlertTitle: 'Zonafide Access Failure'
                         });
                 } else {
+                    // watchout, using address property and not record id
+                    ZidUserLocalData.update({address : zad},{$set:{state : ZoneState.ACTIONED}});
+
                     sAlert.info(zad + ' transaction id returned but callback not handling any form of confirmation (mined): ' + obj,
                         {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Actioned'});
                 }

@@ -1,18 +1,18 @@
 <template name="zone">
-    <form class="zone">
 
-        <input type="hidden" name="zad"
-               value="{{_id}}"/>
+        <form class="zone">
 
-        <span class="tooltipped"
-                data-toggle="tooltip"
-                data-placement="left"
-                title="Replace With Content!!!"
-                aria-hidden="true">
-            <i class="fa {{#if symbol}} {{symbol}} {{else}} fa-thumbs-o-down  {{/if}} fa-4x"></i>
-        </span>
+            <input type="hidden" name="zad"
+                   value="{{_id}}"/>
 
+        <button class="tooltipped"
+              data-toggle="tooltip"
+              data-placement="left"
+              title="{{action}}"
+              aria-hidden="true">
+            <i class="fa {{#if symbol}} {{symbol}} {{else}} fa-exclamation  {{/if}} fa-4x"></i>
+        </button>
+
+        </form>
         <p>{{address}}</p>
-
-    </form>
 </template>

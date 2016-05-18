@@ -6,9 +6,6 @@ import { Template } from 'meteor/templating';
 
 import './zone.html';
 
-Template.list.onRendered(function() {
-    $('.tooltipped').tooltip();
-});
 
 Template.zone.onCreated(function () {
     var ks = this.KeyStore = ZidStore.get();
@@ -24,44 +21,62 @@ Template.zone.onCreated(function () {
 });
 
 Template.zone.helpers({
-    //
+    action() {
+        var zone = ZidUserLocalData.findOne(
+            Template.instance().data._id);
+        return ZoneStateAction[zone.state];
+    },
+
+    symbol() {
+        var zone = ZidUserLocalData.findOne(
+            Template.instance().data._id);
+        return ZoneStateSymbol[zone.state];
+    }
 });
 
 Template.zone.events({
 
-    'dblclick .zone'(event, template) {
+    'click .zone'(event, template) {
         // Prevent default browser form submit
         event.preventDefault();
 
         console.log('dbclick .zone: called');
 
         const id = $(template.find('input[name=zad]')).val();
-        const zad = ZidUserLocalData.findOne(id).address;
+        const record = ZidUserLocalData.findOne(id);
+        const zad = record.address;
 
         var Zone = template.Zone;
         var KeyStore = template.KeyStore;
 
         var zone = Zone.at(zad);
 
-         /*
+        /*
 
-            todo: Currently the use of functions on the contract to determine state may cause
-            too many rpc calls. Consider using a flag so one call can be made to determine
-            all states.
+         todo: Currently the use of functions on the contract to determine state may cause
+         too many rpc calls. Consider using a flag so one call can be made to determine
+         all states.
 
-          */
+         */
 
         var quorum = zone.isQuorum(ZonafideEnvironment.caller(KeyStore.getAddresses()[0]));
-        var active = zone.isActive(ZonafideEnvironment.caller(KeyStore.getAddresses()[0]));
 
-        console.log("quorum: " + quorum + ", active: " + active );
+        console.log("ZAD state is: " + zad.state);
 
-        if(active){
-            console.log("will route to confirm");
+        if (record.state == ZoneState.ACTIONED) {
             Router.go("confirm", {_id: id});
-        } else if(quorum){
+
+        } else if (quorum) {
+            /*
+                note:
+                This state check is agains Ethereum. So we set ACKNOWLEDGED here because the change
+                is outside the application
+              */
+            ZidUserLocalData.update({_id: id}, {$set: {state: ZoneState.ACKNOWLEDGED}});
             Router.go("action", {_id: id});
-        }else if(!quorum){
+
+        } else if (record.state == ZoneState.NEW) {
+
             // todo: query any members that do exist and pass through to view
             Router.go("members", {_id: id});
         } else {
@@ -69,56 +84,6 @@ Template.zone.events({
             sAlert.info("Did not recognise the state the Zone was in to determine what view to present.",
                 {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Developer Issue'});
         }
-
-    },
-
-    'click .zone'(event, template) {
-
-        // Prevent default browser form submit
-        event.preventDefault();
-
-        console.log('click .zone: called');
-
-        const id = $(template.find('input[name=zad]')).val();
-        const zad = ZidUserLocalData.findOne(id).address;
-
-        var Zone = template.Zone;
-        var KeyStore = template.KeyStore;
-
-        var zone = Zone.at(zad);
-
-        // todo: should show progress when it is off doing this!!!
-
-        // todo: these are async so we really need to chain them in a promise
-        // todo: however we should test final states first and exit if met
-        // todo: to save time checking prerequisite states
-        // todo: doing it rough here to fake it but not efficient
-
-        zone.isQuorum(
-            ZonafideEnvironment.caller(KeyStore.getAddresses()[0]),
-            function (err, quorum) {
-                if (err) {
-                    console.log("ERROR - getting quorum status for Zone " + err);
-                } else {
-                    if(quorum) {
-                        ZidUserLocalData.update({_id : id},{$set:{symbol : ZoneStateSymbols.acknowledged}});
-                    }
-                }
-            });
-
-        zone.isActive(
-            ZonafideEnvironment.caller(KeyStore.getAddresses()[0]),
-            function (err, active) {
-                if (err) {
-                    console.log("ERROR - getting active status for Zone: " + err);
-                } else {
-                    if(active) {
-                        ZidUserLocalData.update({_id : id},{$set:{symbol : ZoneStateSymbols.active}});
-                    }
-                }
-            });
-
-        // todo : and others up to isConfirmed
 
     }
 

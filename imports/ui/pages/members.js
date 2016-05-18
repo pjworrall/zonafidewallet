@@ -58,6 +58,9 @@ Template.members.events({
                     sAlert.error('Report to Zonafide: ' + error,
                         {timeout: 'none', sAlertIcon: 'fa fa-exclamation-circle', sAlertTitle: 'Zonafide Access Failure'});
                 } else {
+                    // careful here..using address property rather that unique id of record, should be same impact
+                    ZidUserLocalData.update({address : zad},{$set:{state : ZoneState.MEMBERS}});
+
                     sAlert.info('member possibly set but callback not handling confirmation yet: ' + obj,
                         {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Developer Issue'});
                 }
@@ -76,9 +79,6 @@ Template.members.events({
         var KeyStore = template.KeyStore;
 
         var zone = Zone.at(zad);
-
-        // todo: quorum set hard at 1 for now
-        const quorum = 1;
 
         zone.isMember([zid], ZonafideEnvironment.caller(KeyStore.getAddresses()[0]),
 
