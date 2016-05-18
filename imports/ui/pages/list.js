@@ -25,7 +25,7 @@ Template.list.helpers({
 
     zads() {
         return ZidUserLocalData.find({}, {
-            sort: {_id: -1}
+            sort: {created: -1}
         });
     }
 
@@ -64,6 +64,7 @@ Template.list.events({
                                 + contract.transactionHash);
 
                             ZidUserLocalData.insert({
+                                created: new Date(),
                                 address: contract.address,
                                 symbol: ZoneStateSymbols.new
                             });

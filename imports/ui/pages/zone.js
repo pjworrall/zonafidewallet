@@ -98,7 +98,7 @@ Template.zone.events({
             ZonafideEnvironment.caller(KeyStore.getAddresses()[0]),
             function (err, quorum) {
                 if (err) {
-                    console.log("ERROR - getting quorum ststus for Zone " + err);
+                    console.log("ERROR - getting quorum status for Zone " + err);
                 } else {
                     if(quorum) {
                         ZidUserLocalData.update({_id : id},{$set:{symbol : ZoneStateSymbols.acknowledged}});
