@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="22cef14b-748f-4bc9-b76d-9127bdde131c" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/pages/home.html" afterPath="$PROJECT_DIR$/imports/ui/pages/home.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/pages/about.html" afterPath="$PROJECT_DIR$/imports/ui/pages/about.html" />
     </list>
     <ignored path="waters.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -34,11 +34,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="home.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="home.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/imports/ui/pages/home.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.59850377">
+            <state vertical-scroll-proportion="-10.0">
               <caret line="16" column="69" selection-start-line="16" selection-start-column="69" selection-end-line="16" selection-end-column="69" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="about.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/imports/ui/pages/about.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.7032419">
+              <caret line="33" column="39" selection-start-line="33" selection-start-column="39" selection-end-line="33" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -110,8 +120,8 @@
         <option value="$PROJECT_DIR$/imports/ui/pages/menu.html" />
         <option value="$PROJECT_DIR$/imports/ui/pages/unlock.html" />
         <option value="$PROJECT_DIR$/imports/ui/pages/action.html" />
-        <option value="$PROJECT_DIR$/imports/ui/pages/about.html" />
         <option value="$PROJECT_DIR$/imports/ui/pages/home.html" />
+        <option value="$PROJECT_DIR$/imports/ui/pages/about.html" />
       </list>
     </option>
   </component>
@@ -525,7 +535,13 @@
       <option name="project" value="LOCAL" />
       <updated>1463766271537</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="BON-306: front page asthetics...now stop..ahhhghgh.">
+      <created>1463766993489</created>
+      <option name="number" value="00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1463766993489</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TodoView">
@@ -593,7 +609,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="BON-271: Basic member acknowledgement page and controller complete" />
     <MESSAGE value="BON-268: basic ability to save zones to browser store" />
     <MESSAGE value="BON-293: Refactored web3 out into global function with correct singleton pattern and implemented zone creation on list view with it." />
     <MESSAGE value="BON-298: Consolidated adding members and acknowledgement onto the list view" />
@@ -618,7 +633,8 @@
     <MESSAGE value="BON-306: lots of cosmetic improvements." />
     <MESSAGE value="BON-306: a few more word crafting  improvements." />
     <MESSAGE value="BON-306: put a version in about." />
-    <option name="LAST_COMMIT_MESSAGE" value="BON-306: put a version in about." />
+    <MESSAGE value="BON-306: front page asthetics...now stop..ahhhghgh." />
+    <option name="LAST_COMMIT_MESSAGE" value="BON-306: front page asthetics...now stop..ahhhghgh." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -969,14 +985,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/pages/about.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7331671">
-          <caret line="35" column="98" selection-start-line="35" selection-start-column="98" selection-end-line="35" selection-end-column="98" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/pages/menu.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.9583333">
@@ -987,8 +995,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/pages/home.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.59850377">
+        <state vertical-scroll-proportion="-10.0">
           <caret line="16" column="69" selection-start-line="16" selection-start-column="69" selection-end-line="16" selection-end-column="69" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/pages/about.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7032419">
+          <caret line="33" column="39" selection-start-line="33" selection-start-column="39" selection-end-line="33" selection-end-column="39" />
           <folding />
         </state>
       </provider>
