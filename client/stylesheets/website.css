@@ -1,19 +1,30 @@
+a {
+    color: #fff;
+    text-decoration: none;
+}
+
+a:focus, a:hover {
+    color: #cbcbcb;
+    text-decoration: underline;
+}
+
+
 .fa-2x .fa-2x:hover {
     color: #333;
 }
 
 
 html {
-    background-color: #33C3F0;
+    background-color: #417390;
 }
 
 .container {
-    background-color: #33C3F0;
+    background-color: #417390;
     width: 100%;
 }
 
 body {
-    background-color: #333;
+    background-color: #417390;
     color: #fff;
 }
 
@@ -28,12 +39,12 @@ body {
 
 
 .logo-small {
-    color: #33C3F0;
+    color: #417390;
     font-size: 50px;
 }
 
 .logo {
-    color: #33C3F0;
+    color: #417390;
     font-size: 200px;
 }
 
@@ -45,7 +56,7 @@ body {
 
 .navbar {
     color: #fff !important;
-    background-color: #33C3F0;
+    background-color: #417390;
     margin-bottom: 0;
     z-index: 9999;
     border: 0;
@@ -57,17 +68,17 @@ body {
 
 .navbar li a, .navbar {
     color: #fff !important;
-    background-color: #33C3F0 !important;
+    background-color: #417390 !important;
 }
 
 .navbar-nav li a:hover, .navbar-nav li.active a {
     color: #31708f !important;
-    background-color: #33C3F0 !important;
+    background-color: #417390 !important;
 }
 
 .navbar-nav li a:hover, .navbar-nav li.active a {
     color: #fff !important;
-    background-color: #33C3F0 !important;
+    background-color: #417390 !important;
 }
 
 .navbar-default .navbar-toggle {
@@ -76,7 +87,7 @@ body {
 }
 
 .navbar-default .navbar-collapse, .navbar-default .navbar-form {
-    background-color: #33C3F0;
+    background-color: #417390;
 }
 
 .navbar-default .navbar-text {
@@ -88,7 +99,7 @@ body {
 }
 
 .navbar-header, .container > .navbar-collapse, .container > .navbar-header {
-    background-color: #33C3F0;
+    background-color: #417390;
 }
 
 .jumbotron {
@@ -109,7 +120,7 @@ button {
 }
 
 table {
-    color: #33C3F0;
+    color: #417390;
 }
 
 

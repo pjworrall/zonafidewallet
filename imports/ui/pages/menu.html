@@ -12,18 +12,19 @@
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-left">
                     {{#if locked}}
-                        <li><a href="/unlock"><i class="fa fa-unlock fa-2x" aria-hidden="true"></i></a></li>
-                        <li><a href="/identities"><i class="fa fa-users  fa-2x" aria-hidden="true"></i></a></li>
+                        <li><a href="/unlock"><i class="fa fa-unlock fa-2x" aria-hidden="true"></i>&nbsp;Unlock a Zone ID</a></li>
+                        <li><a href="/identities"><i class="fa fa-users  fa-2x" aria-hidden="true"></i>&nbsp;Manage Zone ID</a></li>
+                        <li><a href="/about"><i class="fa fa-question-circle-o fa-2x" aria-hidden="true"></i>&nbsp;About</a></li>
                         <!-- TODO: this should all be disabled until we are unlocked -->
                     {{else}}
-                        <li><a href="/list"><i class="fa fa-list fa-2x" aria-hidden="true"></i></a></li>
+                        <li><a href="/list"><i class="fa fa-list fa-2x" aria-hidden="true"></i>&nbsp;List Zones</a></li>
                         <!-- this menu item is provisional and will end up part of the interactive flow -->
-                        <li><a href="/acknowledge"><i class="fa fa-thumbs-o-up fa-2x" aria-hidden="true"></i></a></li>
-                        <li><a href="/identities"><i class="fa fa-user  fa-2x" aria-hidden="true"></i></a></li>
-                        <li><a href="/personal"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a></li>
-                        <li><a href="/settings"><i class="fa fa-gear fa-2x" aria-hidden="true"></i></a></li>
-                        <li><a href="/about"><i class="fa fa-question-circle-o fa-2x" aria-hidden="true"></i></a></li>
-                        <li><a href="/lock"><i class="fa fa-lock fa-2x" aria-hidden="true"></i></a></li>
+                        <li><a href="/acknowledge"><i class="fa fa-thumbs-o-up fa-2x" aria-hidden="true"></i>&nbsp;Acknowledge Zone</a></li>
+                        <li><a href="/identities"><i class="fa fa-user  fa-2x" aria-hidden="true"></i>&nbsp;Manage Zone ID</a></li>
+                        <li><a href="/personal"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>&nbsp;Manage Personal Info</a></li>
+                        <li><a href="/settings"><i class="fa fa-gear fa-2x" aria-hidden="true"></i>&nbsp;Settings</a></li>
+                        <li><a href="/lock"><i class="fa fa-lock fa-2x" aria-hidden="true"></i>&nbsp;Lock Zone ID</a></li>
+                        <li><a href="/about"><i class="fa fa-question-circle-o fa-2x" aria-hidden="true"></i>&nbsp;About</a></li>
                     {{/if}}
                 </ul>
             </div>

@@ -11,7 +11,7 @@ Template.menu.onRendered(function () {
 
     // to make bootstrap menu close when menu item chosen
     $(document).on('click','.navbar-collapse',function(e) {
-        if( $(e.target).is('i') ) {
+        if( $(e.target).is('i') || $(e.target).is('a') ) {
 
             $(this).collapse('hide');
         }
