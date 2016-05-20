@@ -62,8 +62,9 @@ Template.unlock.events({
 
                     Session.set('zid', Keystore.getAddresses()[0]);
 
-                    sAlert.info(Session.get('zid'),
-                        {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Active Zone ID (ZID)'});
+                    // forward to lsit view
+
+                    Router.go("list");
 
                 } catch(err) {
                     sAlert.error('Was not able to obtain keystore, is passphrase correct?', {timeout: 'none'});
