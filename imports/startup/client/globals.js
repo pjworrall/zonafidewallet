@@ -81,3 +81,4 @@ ZoneState = {
     PAUSE: 5,
     UNKNOWN: 6
 };
+
