@@ -37,7 +37,7 @@ Template.list.helpers({
 
 Template.list.events({
 
-    'submit .create'(event, template) {
+    'click .create a'(event, template) {
         // Prevent default browser form submit
         event.preventDefault();
 

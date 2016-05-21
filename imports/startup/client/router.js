@@ -18,6 +18,12 @@ Router.route('/lock', {name: 'lock'});
 
 Router.route('/list', {name: 'list'});
 
+Router.route('/code/:address',
+    {
+        name: 'code',
+        data: function() { return this.params }
+    });
+
 Router.route('/action/:_id',
     {
         name: 'action',

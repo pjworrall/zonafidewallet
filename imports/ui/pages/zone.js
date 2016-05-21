@@ -36,7 +36,7 @@ Template.zone.helpers({
 
 Template.zone.events({
 
-    'click .zone'(event, template) {
+    'dblclick .zone a'(event, template) {
         // Prevent default browser form submit
         event.preventDefault();
 
@@ -84,6 +84,20 @@ Template.zone.events({
             sAlert.info("Did not recognise the state the Zone was in to determine what view to present.",
                 {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Developer Issue'});
         }
+
+    },
+
+    'click #qrcode'(event, template) {
+
+       event.preventDefault();
+
+        console.log("single click called");
+
+        const id = $(template.find('input[name=zad]')).val();
+        const record = ZidUserLocalData.findOne(id);
+        const zad = record.address;
+
+        Router.go("code", { address: zad });
 
     }
 

@@ -2,17 +2,24 @@
 
         <form class="zone">
 
-            <input type="hidden" name="zad"
-                   value="{{_id}}"/>
+            <a  href="#"
+               class="tooltipped"
+               data-toggle="tooltip"
+               data-placement="left"
+               title="{{action}}"
+               aria-hidden="true">
 
-        <button class="tooltipped"
-              data-toggle="tooltip"
-              data-placement="left"
-              title="{{action}}"
-              aria-hidden="true">
-            <i class="fa {{#if symbol}} {{symbol}} {{else}} fa-exclamation  {{/if}} fa-4x"></i>
-        </button>
+                <i class="fa {{#if symbol}} {{symbol}} {{else}} fa-exclamation  {{/if}} fa-4x"></i>
+
+            </a>
+
+            <input type="hidden" name="zad" value="{{_id}}"/>
 
         </form>
-        <p>{{address}}</p>
+
+        <p><a href="#" id="qrcode" class="tooltipped"
+              data-toggle="tooltip"
+              data-placement="bottom"
+              title="Share with QR Code">{{address}}</a></p>
+
 </template>

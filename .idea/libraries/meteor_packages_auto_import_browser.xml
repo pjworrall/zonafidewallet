@@ -43,6 +43,7 @@
         <item url="file://$USER_HOME$/.meteor/packages/templating-tools/1.0.4/web.browser/html-scanner-tests.js" />
         <item url="file://$USER_HOME$/.meteor/packages/templating-tools/1.0.4/web.browser/throw-compile-error.js" />
         <item url="file://$USER_HOME$/.meteor/packages/templating-tools/1.0.4/web.browser/code-generation.js" />
+        <item url="file://$USER_HOME$/.meteor/packages/steeve_jquery-qrcode/0.2.2/web.browser/packages/steeve:jquery-qrcode.js" />
         <item url="file://$USER_HOME$/.meteor/packages/tracker/1.0.13/web.browser/deprecated.js" />
         <item url="file://$USER_HOME$/.meteor/packages/tracker/1.0.13/web.browser/tracker.js" />
         <item url="file://$USER_HOME$/.meteor/packages/allow-deny/1.0.4/web.browser/allow-deny.js" />
@@ -222,6 +223,7 @@
       <root url="file://$USER_HOME$/.meteor/packages/templating-tools/1.0.4/web.browser/html-scanner-tests.js" />
       <root url="file://$USER_HOME$/.meteor/packages/templating-tools/1.0.4/web.browser/throw-compile-error.js" />
       <root url="file://$USER_HOME$/.meteor/packages/templating-tools/1.0.4/web.browser/code-generation.js" />
+      <root url="file://$USER_HOME$/.meteor/packages/steeve_jquery-qrcode/0.2.2/web.browser/packages/steeve:jquery-qrcode.js" />
       <root url="file://$USER_HOME$/.meteor/packages/tracker/1.0.13/web.browser/deprecated.js" />
       <root url="file://$USER_HOME$/.meteor/packages/tracker/1.0.13/web.browser/tracker.js" />
       <root url="file://$USER_HOME$/.meteor/packages/allow-deny/1.0.4/web.browser/allow-deny.js" />

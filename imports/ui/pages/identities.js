@@ -21,6 +21,21 @@ Template.identities.onCreated(function () {
 
 });
 
+Template.identities.onRendered( function() {
+    // this seems inconsistent with Meteor idiom
+
+    if(Session.get('zid')) {
+
+        $('#qrcode').qrcode({
+            render: 'div',
+            size: 400,
+            text: Session.get('zid')
+        });
+
+    }
+
+});
+
 Template.identities.helpers({
 
     zid() {
@@ -78,6 +93,7 @@ Template.identities.events({
                 Session.set('zid',keyStore.getAddresses()[0]);
 
                 Session.set('lock',false);
+
 
             } else {
                 // todo: how to handle errors

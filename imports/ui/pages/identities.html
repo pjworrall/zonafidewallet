@@ -1,31 +1,48 @@
 <template name="identities">
 
 
-    <div class="row">
-        <div class="col-xs-12 text-left">
-            <h4>Create a ZID</h4>
-            <p>A Zone ID (ZID) is something you create and control.
-                 Anyone can know your ZID but it is only controllable by you and cannot be used to carry out actions in your name.</p>
-            <p>If you already have a ZID unlock it with <i class="fa fa-unlock fa-2x" aria-hidden="true"></i> above.
-                Otherwise you can create one below.</p>
-            <br>
-        </div>
-    </div>
-
     {{#if zid}}
+
         <div class="row">
             <div class="col-xs-12 text-left">
+
+                <h4>Share your ZID</h4>
+
+                <p>Present this QR Code</p>
+                <br>
                 <div class="panel panel-default">
-                    <div class="panel-body">
-                         <p>Your ZID is <strong>{{zid}}</strong> . Don't forget the passphrase and passwords you used with it. If you do you will just
-                        need to create a new one and use that for your Zones instead. You can abandon any Zones that were associated with the
-                        previous ZID. Nobody else can use those Zones: not even you!</p>
+                    <div class="panel-body ">
+                        <div id="qrcode"></div>
                     </div>
                 </div>
+
+                <strong>{{zid}}</strong>
             </div>
         </div>
     {{else}}
+        <div class="row">
+            <div class="col-xs-12 text-left">
+                <h4>Create a ZID</h4>
+                <p>A Zone ID (ZID) is something you create and control.
+                    Anyone can know your ZID but it is only controllable by you and cannot be used to carry out actions in
+                    your name.</p>
+                <p>If you already have a ZID unlock it with <i class="fa fa-unlock fa-2x" aria-hidden="true"></i> above.
+                    Otherwise you can create one below.</p>
+                <br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 text-left">
+                <p> Don't forget the passphrase and passwords you used with it. If
+                    you do you will just
+                    need to create a new one and use that for your Zones instead. You can abandon any Zones that were
+                    associated with the
+                    previous ZID. Nobody else can use those Zones: not even you!</p>
+            </div>
+        </div>
+
         {{#if seeded}}
+
             <div class="row">
                 <div class="col-xs-12 text-left">
 
@@ -70,4 +87,5 @@
             </div>
         {{/if}}
     {{/if}}
+
 </template>
