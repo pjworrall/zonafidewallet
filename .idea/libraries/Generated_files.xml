@@ -4,8 +4,10 @@
       <sourceFilesUrls>
         <item url="file://$PROJECT_DIR$/node_modules/winston/node_modules/async/support/sync-package-managers-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/bootstrap-sass/assets/javascripts/bootstrap/tooltip-compiled.js" />
+        <item url="file://$PROJECT_DIR$/imports/ui/pages/qrreader-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/bootstrap-sass/assets/javascripts/bootstrap/tab-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/bootstrap-sass/assets/javascripts/bootstrap/alert-compiled.js" />
+        <item url="file://$PROJECT_DIR$/imports/api/html5-qrcode/html5-qrcode.min-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/bootstrap-sass/assets/javascripts/bootstrap/affix-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/bootstrap-sass/test/dummy_rails/app/assets/javascripts/application-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/bootstrap-sass/assets/javascripts/bootstrap/popover-compiled.js" />
@@ -96,7 +98,6 @@
         <item url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-es2015-duplicate-keys/lib/index-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/colors/lib/index-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/regjsparser/bin/parser-compiled.js" />
-        <item url="file://$PROJECT_DIR$/imports/api/html5-qrcode/html5-qrcode-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/colors/lib/maps/rainbow-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-es2015-block-scoping/lib/tdz-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/colors/lib/maps/america-compiled.js" />
@@ -109,7 +110,6 @@
         <item url="file://$PROJECT_DIR$/imports/ui/pages/personal-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/regjsparser/parser-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/colors/lib/maps/zebra-compiled.js" />
-        <item url="file://$PROJECT_DIR$/imports/api/html5-qrcode/html5-qrcode.min-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/babel-helper-hoist-variables/lib/index-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-es2015-for-of/lib/index-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-es2015-computed-properties/lib/index-compiled.js" />
@@ -255,11 +255,14 @@
       <root url="file://$PROJECT_DIR$/imports/bower_components/jsqrcode/src/grid-compiled.js" />
       <root url="file://$PROJECT_DIR$/imports/bower_components/jsqrcode/src/gf256-compiled.js" />
       <root url="file://$PROJECT_DIR$/imports/bower_components/jsqrcode/src/bitmat-compiled.js" />
-      <root url="file://$PROJECT_DIR$/imports/api/html5-qrcode/html5-qrcode.min-compiled.js" />
+      <root url="file://$PROJECT_DIR$/imports/api/html5-qrcode/html5-qrcode-compiled.js" />
+      <root url="file://$PROJECT_DIR$/imports/api/html5-qrcode/html5-qrcode-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/winston/node_modules/async/support/sync-package-managers-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/bootstrap-sass/assets/javascripts/bootstrap/tooltip-compiled.js" />
+      <root url="file://$PROJECT_DIR$/imports/ui/pages/qrreader-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/bootstrap-sass/assets/javascripts/bootstrap/tab-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/bootstrap-sass/assets/javascripts/bootstrap/alert-compiled.js" />
+      <root url="file://$PROJECT_DIR$/imports/api/html5-qrcode/html5-qrcode.min-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/bootstrap-sass/assets/javascripts/bootstrap/affix-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/bootstrap-sass/test/dummy_rails/app/assets/javascripts/application-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/bootstrap-sass/assets/javascripts/bootstrap/popover-compiled.js" />
@@ -350,7 +353,6 @@
       <root url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-es2015-duplicate-keys/lib/index-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/colors/lib/index-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/regjsparser/bin/parser-compiled.js" />
-      <root url="file://$PROJECT_DIR$/imports/api/html5-qrcode/html5-qrcode-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/colors/lib/maps/rainbow-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-es2015-block-scoping/lib/tdz-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/colors/lib/maps/america-compiled.js" />
@@ -363,7 +365,6 @@
       <root url="file://$PROJECT_DIR$/imports/ui/pages/personal-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/regjsparser/parser-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/colors/lib/maps/zebra-compiled.js" />
-      <root url="file://$PROJECT_DIR$/imports/api/html5-qrcode/html5-qrcode.min-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/babel-helper-hoist-variables/lib/index-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-es2015-for-of/lib/index-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-es2015-computed-properties/lib/index-compiled.js" />

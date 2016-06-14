@@ -18,3 +18,4 @@ import './settings.js';
 import './confirm.js';
 import './about.js';
 import './menu.js';
+import './qrreader.js';
