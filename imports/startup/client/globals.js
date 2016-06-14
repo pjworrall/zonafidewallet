@@ -82,7 +82,7 @@ ZoneState = {
     UNKNOWN: 6
 };
 
-// current not used for QR Code rendering but here for reference
+// TODO: NOTE: !! current not used for QR Code rendering but here for reference
 
 QRCodeOptions = {
     // render method: 'canvas', 'image' or 'div'

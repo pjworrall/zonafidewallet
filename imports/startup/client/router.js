@@ -51,6 +51,3 @@ Router.route('/personal', {name: 'personal'});
 Router.route('/settings', {name: 'settings'});
 
 Router.route('/about', {name: 'about'});
-
-//test route for qr reader test page
-Router.route('/reader', {name: 'qrreader'});
