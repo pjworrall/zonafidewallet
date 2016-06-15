@@ -4,6 +4,9 @@
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 
+import '../../api/html5-qrcode/html5-qrcode.min.js';
+import '../../api/html5-qrcode/jsqrcode-combined.min.js';
+
 import './acknowledge.html';
 
 Template.acknowledge.onRendered(function() {
@@ -12,7 +15,7 @@ Template.acknowledge.onRendered(function() {
 
 Template.acknowledge.onCreated(function () {
 
-    this.zad = new ReactiveVar('Provide Zone Address...');
+    this.zad = new ReactiveVar('');
 
     var ks = this.KeyStore = ZidStore.get();
 
@@ -25,10 +28,6 @@ Template.acknowledge.onCreated(function () {
             {timeout: 'none', sAlertIcon: 'fa fa-exclamation-circle', sAlertTitle: 'Development Error'});
     }
 
-});
-
-Template.acknowledge.onCreated(function () {
-   // redundant
 });
 
 
@@ -70,19 +69,7 @@ Template.acknowledge.events({
         );
     },
 
-    // ack might have to come back out into its own page
-    'click #clipboard'(event, template) {
-
-        // Prevent default browser form submit
-        event.preventDefault();
-
-        console.log('clipboard.events: called');
-
-    },
-
-    // ack might have to come back out into its own page
-    'click #acknowledge'(event, template) {
-
+    'submit .service'(event, template) {
         // Prevent default browser form submit
         event.preventDefault();
 
@@ -100,7 +87,7 @@ Template.acknowledge.events({
         zone.setAcknowledgement(
             ZonafideEnvironment.caller(KeyStore.getAddresses()[0]),
             function (error, obj) {
-            //todo: this is not handling errors like 'not a BigNumber' , do we need a try catch somewhere?
+                //todo: this is not handling errors like 'not a BigNumber' , do we need a try catch somewhere?
 
                 if (error) {
                     sAlert.error('Report to Zonafide: ' + error,
