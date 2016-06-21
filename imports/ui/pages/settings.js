@@ -19,7 +19,7 @@ Template.settings.onCreated(function () {
     if (typeof ks != 'undefined') {
         // todo: this web3 instance should be instantiated once and used throughout the code!!!
         web3 = ZonafideWeb3.getInstance(ZonafideEnvironment.Node, ks);
-        this.balance.set(web3.eth.getBalance("0x09d5043d675d5ca75ee7bb51691fcc44543faade"));
+        this.balance.set(web3.eth.getBalance(ks.getAddresses()[0]));
         console.log("balance: " + this.balance.get());
     } else {
         sAlert.error('A ZID is not unlocked',
