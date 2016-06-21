@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="22cef14b-748f-4bc9-b76d-9127bdde131c" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/startup/client/ethereum.js" afterPath="$PROJECT_DIR$/imports/startup/client/ethereum.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/pages/settings.html" afterPath="$PROJECT_DIR$/imports/ui/pages/settings.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/pages/settings.js" afterPath="$PROJECT_DIR$/imports/ui/pages/settings.js" />
     </list>
     <ignored path="waters.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -24,11 +25,41 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ethereum.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/imports/startup/client/ethereum.js">
+      <file leaf-file-name="settings.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/imports/ui/pages/settings.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.19554456">
-              <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="19" />
+            <state vertical-scroll-proportion="0.3125">
+              <caret line="9" column="14" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="list.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/imports/ui/pages/list.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="50" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="unlock.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/imports/ui/pages/unlock.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="62" column="67" selection-start-line="62" selection-start-column="67" selection-end-line="62" selection-end-column="67" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settings.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/imports/ui/pages/settings.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -58,8 +89,6 @@
         <option value="$PROJECT_DIR$/imports/startup/client/index.js" />
         <option value="$PROJECT_DIR$/imports/ui/layouts/layout.html" />
         <option value="$PROJECT_DIR$/imports/ui/pages/loading.html" />
-        <option value="$PROJECT_DIR$/imports/ui/pages/settings.js" />
-        <option value="$PROJECT_DIR$/imports/ui/pages/settings.html" />
         <option value="$PROJECT_DIR$/client/layout.html" />
         <option value="$PROJECT_DIR$/imports/startup/client/a-alerts.js" />
         <option value="$PROJECT_DIR$/client/a-alerts.js" />
@@ -102,6 +131,8 @@
         <option value="$PROJECT_DIR$/imports/ui/pages/acknowledge.html" />
         <option value="$PROJECT_DIR$/imports/ui/pages/menu.html" />
         <option value="$PROJECT_DIR$/imports/startup/client/ethereum.js" />
+        <option value="$PROJECT_DIR$/imports/ui/pages/settings.js" />
+        <option value="$PROJECT_DIR$/imports/ui/pages/settings.html" />
       </list>
     </option>
   </component>
@@ -113,10 +144,10 @@
     <detection-done>true</detection-done>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="123" />
-    <option name="y" value="23" />
-    <option name="width" value="1151" />
-    <option name="height" value="693" />
+    <option name="x" value="6" />
+    <option name="y" value="26" />
+    <option name="width" value="1399" />
+    <option name="height" value="765" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -597,7 +628,13 @@
       <option name="project" value="LOCAL" />
       <updated>1466005143172</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="Ethereum node IP address for dev network">
+      <created>1466006957754</created>
+      <option name="number" value="00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1466006957754</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TodoView">
@@ -610,19 +647,19 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="123" y="23" width="1151" height="693" extended-state="0" />
+    <frame x="6" y="26" width="1399" height="765" extended-state="0" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26902655" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22060958" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32147744" sideWeight="0.48477158" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20295699" sideWeight="0.43993232" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.218107" sideWeight="0.48212868" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.281198" sideWeight="0.43654823" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27287853" sideWeight="0.56006765" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28083208" sideWeight="0.43654823" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24219911" sideWeight="0.56006765" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22553897" sideWeight="0.79949236" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13311148" sideWeight="0.79949236" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -665,7 +702,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="BON-298: added bootstrap tooltip support for explanations of states" />
     <MESSAGE value="Commit before attempting migration to Iron Router from Flow Router" />
     <MESSAGE value="BON-298: patterns for Zone icons to change and reflect lifecycle status. Migrated back to Iron Router from Flow Router.  Zone template abstracted out of list view to handle each Zone in isolation. etc." />
     <MESSAGE value="BON-298: router configured to pass zone doc id through to members page and populate form for adding members." />
@@ -690,7 +726,8 @@
     <MESSAGE value="got a test Reader page that reads a QR Code" />
     <MESSAGE value="got the QR reader working on the Acknowledge page" />
     <MESSAGE value="QR code working under https but when under https we run into cross domain problem with accessing geth over http. QR code remains but will not work while this configuration uses http to geth node." />
-    <option name="LAST_COMMIT_MESSAGE" value="QR code working under https but when under https we run into cross domain problem with accessing geth over http. QR code remains but will not work while this configuration uses http to geth node." />
+    <MESSAGE value="Ethereum node IP address for dev network" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ethereum node IP address for dev network" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -760,20 +797,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/pages/settings.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.22988506">
-          <caret line="8" column="11" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/pages/settings.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.082417585">
-          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/pages/about.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.10663507">
@@ -837,13 +860,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/pages/unlock.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8096515">
-          <caret line="66" column="38" selection-start-line="66" selection-start-column="38" selection-end-line="66" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/pages/unlock.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.0580205">
@@ -900,13 +916,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/imports/startup/client/web3.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.035128806">
-          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="14" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/pages/code.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4054054">
@@ -919,6 +928,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.13837638">
           <caret line="7" column="19" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -953,33 +963,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/pages/list.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.67164177">
-          <caret line="10" column="3" selection-start-line="10" selection-start-column="3" selection-end-line="10" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/pages/identities-compiled.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.11070111">
           <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/pages/members.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.44280443">
-          <caret line="17" column="37" selection-start-line="17" selection-start-column="37" selection-end-line="17" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imports/startup/client/globals.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.22509225">
-          <caret line="83" column="0" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -995,14 +982,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.69557196">
           <caret line="99" column="8" selection-start-line="99" selection-start-column="8" selection-end-line="99" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imports/startup/client/router.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.80627304">
-          <caret line="52" column="40" selection-start-line="52" selection-start-column="40" selection-end-line="52" selection-end-column="40" />
           <folding />
         </state>
       </provider>
@@ -1051,6 +1030,70 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.19554456">
           <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/pages/members.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.48681542">
+          <caret line="22" column="5" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/startup/client/web3.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.09127789">
+          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="14" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/startup/client/router.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.5821501">
+          <caret line="52" column="40" selection-start-line="52" selection-start-column="40" selection-end-line="52" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/startup/client/globals.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.5253549">
+          <caret line="83" column="0" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/pages/unlock.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="62" column="67" selection-start-line="62" selection-start-column="67" selection-end-line="62" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/pages/list.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/pages/settings.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/pages/settings.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3125">
+          <caret line="9" column="14" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
           <folding />
         </state>
       </provider>
