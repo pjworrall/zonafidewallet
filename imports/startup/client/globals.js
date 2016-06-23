@@ -28,6 +28,8 @@ ZidUserLocalData = new Mongo.Collection('ZidUserLocalData', {connection: null});
 
 ZidUserLocalPersonalData = new Mongo.Collection('ZidUserLocalPersonalData', {connection: null});
 
+ZonafideDappData = new Mongo.Collection('ZonafideDappData', {connection: null});
+
 // jeffm:local-persist used to persist the collection to browser store
 
 // todo: need to revisit these parameters
@@ -49,6 +51,14 @@ ZidUserLocalPersonalDataObserver = new LocalPersist(ZidUserLocalPersonalData, 'Z
         }
     });
 
+ZonafideDappDataObserver = new LocalPersist(ZonafideDappData, 'ZonafideDappDataObserver',
+    {                                     // options are optional!
+        maxDocuments: 1,                  // max number of docs to store
+        storageFull: function (col, doc) {  // function to handle maximum being exceeded
+            col.remove({_id: doc._id});
+            alert('Restricted to storing one set of settings.');
+        }
+    });
 
 // this needs to be abstracted into a locale admin
 ZoneStateAction = {
