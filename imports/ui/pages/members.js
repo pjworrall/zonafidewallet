@@ -11,16 +11,8 @@ Template.members.onRendered(function () {
 });
 
 Template.members.onCreated(function () {
-    var ks = this.KeyStore = ZidStore.get();
-
-    var web3;
-    if (typeof ks != 'undefined') {
-        web3 = ZonafideWeb3.getInstance(ZonafideEnvironment.Node, ks);
-        this.Zone = web3.eth.contract(ZonafideEnvironment.abi);
-    } else {
-        sAlert.error('A ZID is not unlocked',
-            {timeout: 'none', sAlertIcon: 'fa fa-exclamation-circle', sAlertTitle: 'Development Error'});
-    }
+    // todo: what do we do if this call does not work ? Should be using exceptions
+    this.Zone = ZonafideWeb3.getFactory();
 });
 
 Template.members.helpers({
@@ -51,7 +43,7 @@ Template.members.events({
         const quorum = 1;
 
         zone.setMembers([zid], quorum,
-            ZonafideEnvironment.caller(KeyStore.getAddresses()[0]),
+            ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]),
 
             function (error, obj) {
                 if (error) {
@@ -76,11 +68,10 @@ Template.members.events({
         const zid = event.target.zid.value;
 
         var Zone = template.Zone;
-        var KeyStore = template.KeyStore;
 
         var zone = Zone.at(zad);
 
-        zone.isMember([zid], ZonafideEnvironment.caller(KeyStore.getAddresses()[0]),
+        zone.isMember([zid], ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]),
 
             //todo: this is not handling errors like 'not a BigNumber' , do we need a try catch somewhere?
 

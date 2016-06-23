@@ -12,16 +12,8 @@ Template.list.onRendered(function() {
 
 Template.list.onCreated(function () {
 
-    var ks = this.KeyStore = ZidStore.get();
-
-    var web3;
-    if (typeof ks != 'undefined') {
-        web3 = ZonafideWeb3.getInstance(ZonafideEnvironment.Node, ks);
-        this.Zone = web3.eth.contract(ZonafideEnvironment.abi);
-    } else {
-        sAlert.error('A ZID is not unlocked',
-            {timeout: 'none', sAlertIcon: 'fa fa-exclamation-circle', sAlertTitle: 'Development Error'});
-    }
+    // todo: what do we do if this call does not work ? Should be using exceptions
+    this.Zone = ZonafideWeb3.getFactory();
 
 });
 
@@ -55,9 +47,8 @@ Template.list.events({
         } else {
 
             var Zone = template.Zone;
-            var KeyStore = template.KeyStore;
 
-            Zone.new(ZonafideEnvironment.caller(KeyStore.getAddresses()[0]),
+            Zone.new(ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]),
                 function (error, contract) {
                     if (!error) {
 

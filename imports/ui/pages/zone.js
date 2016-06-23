@@ -8,16 +8,8 @@ import './zone.html';
 
 
 Template.zone.onCreated(function () {
-    var ks = this.KeyStore = ZidStore.get();
-
-    var web3;
-    if (typeof ks != 'undefined') {
-        web3 = ZonafideWeb3.getInstance(ZonafideEnvironment.Node, ks);
-        this.Zone = web3.eth.contract(ZonafideEnvironment.abi);
-    } else {
-        // todo: alert problem with settign Web3 provider
-        console.log('no keystore: Have we unlocked a ZID?');
-    }
+    // todo: what do we do if this call does not work ? Should be using exceptions
+    this.Zone = ZonafideWeb3.getFactory();
 });
 
 Template.zone.helpers({
@@ -47,7 +39,6 @@ Template.zone.events({
         const zad = record.address;
 
         var Zone = template.Zone;
-        var KeyStore = template.KeyStore;
 
         var zone = Zone.at(zad);
 
@@ -59,7 +50,7 @@ Template.zone.events({
 
          */
 
-        var quorum = zone.isQuorum(ZonafideEnvironment.caller(KeyStore.getAddresses()[0]));
+        var quorum = zone.isQuorum(ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]));
 
         console.log("ZAD state is: " + zad.state);
 

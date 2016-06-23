@@ -7,16 +7,8 @@ import './action.html';
 
 Template.action.onCreated(function () {
 
-    var ks = this.KeyStore = ZidStore.get();
-
-    var web3;
-    if (typeof ks != 'undefined') {
-        web3 = ZonafideWeb3.getInstance(ZonafideEnvironment.Node, ks);
-        this.Zone = web3.eth.contract(ZonafideEnvironment.abi);
-    } else {
-        sAlert.error('A ZID is not unlocked',
-            {timeout: 'none', sAlertIcon: 'fa fa-exclamation-circle', sAlertTitle: 'Development Error'});
-    }
+    // todo: what do we do if this call does not work ? Should be using exceptions
+    this.Zone = ZonafideWeb3.getFactory();
 
 });
 
@@ -87,7 +79,7 @@ Template.action.events({
         var zone = Zone.at(zad);
 
         zone.action(JSON.stringify(description), zid,
-            ZonafideEnvironment.caller(KeyStore.getAddresses()[0]),
+            ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]),
             function (error, obj) {
                 //todo: this is not handling errors like 'not a BigNumber' , do we need a try catch somewhere?
 

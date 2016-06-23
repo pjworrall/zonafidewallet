@@ -16,18 +16,24 @@ import Web3 from 'web3';
 
 ZonafideWeb3 = (function () {
     var web3;
+    var provider;
 
     function createInstance() {
-        return new Web3();
-    }
 
-    return {
-        getInstance: function(node, provider) {
-            // todo: try/catch/throw?
+        web3 = new Web3();
 
-            if (!web3) {
-                web3 = createInstance();
-            }
+        var node;
+        var settings = ZonafideDappData.findOne({document: "settings"});
+
+        if (settings && settings.server) {
+            node = settings.server;
+        } else {
+            node = ZonafideEnvironment.Node;
+        }
+
+        provider =ZidStore.get();
+
+        if (typeof provider != 'undefined') {
 
             var web3Provider = new HookedWeb3Provider({
                 host: node,
@@ -36,9 +42,34 @@ ZonafideWeb3 = (function () {
 
             web3.setProvider(web3Provider);
 
-            return web3;
-
+        } else {
+            sAlert.error('A ZID is not unlocked',
+                {timeout: 'none', sAlertIcon: 'fa fa-exclamation-circle', sAlertTitle: 'Development Error'});
         }
-    };
+
+        // todo: behaviour is a bit undefined here if there has been an error
+        return web3;
+    }
+
+    return {
+        getInstance: function() {
+            // todo: try/catch/throw?
+            if (!web3) {
+                web3 = createInstance();
+            }
+            return web3;
+        },
+        getFactory: function() {
+            return this.getInstance().eth.contract(ZonafideEnvironment.abi);
+        },
+        getBalance: function() {
+            return this.getInstance().eth.getBalance(
+                    provider.getAddresses()[0]
+                );
+        },
+        reset: function() {
+                web3 = undefined;
+        }
+    }
 
 })();
