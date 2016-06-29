@@ -2,15 +2,26 @@
 
     <div class="row">
         <div class="col-xs-12 text-left">
-            <h4>Settings and Information</h4>
+            <form class="getBalance">
+                <h4>
+                    Current balance: {{balance}} &nbsp;
+                    <a href="#" class="tooltipped"
+                       data-toggle="tooltip"
+                       data-placement="right"
+                       title="Update balance">
+                    <i class="tooltipped fa fa-refresh"
+                       aria-hidden="true">
+                    </i>
+                </a>
 
-            <h4>Current balance: {{balance}}</h4>
+                </h4>
+            </form>
             <p>If this balance is Zero or too small to access the Zonafide network you will need
-            to <a href="">purchase credits</a></p>
+                to <a href="">purchase credits</a></p>
 
             <h4>Zonafide Server</h4>
 
-            <form class="node">
+            <form class="setNode">
                 <div class="input-group">
                     <p>Provide the address for the Zonafide Service you want to use:</p>
                     <input class="form-control"

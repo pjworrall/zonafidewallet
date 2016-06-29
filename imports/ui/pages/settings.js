@@ -14,7 +14,9 @@ Template.settings.onCreated(function () {
 
     this.balance = new ReactiveVar();
 
-    this.balance.set(ZonafideWeb3.getBalance());
+    //this.balance.set(ZonafideWeb3.getBalance());
+
+    this.balance.set("N/A");
 
 });
 
@@ -38,9 +40,11 @@ Template.settings.helpers({
 
 Template.settings.events({
 
-    'submit .node'(event) {
+    'submit .setNode'(event) {
         // Prevent default browser form submit
         event.preventDefault();
+
+        console.log(".setNode called...");
 
         const server = event.target.server.value;
 
@@ -52,11 +56,24 @@ Template.settings.events({
                 server: server
             },
             // if document does not exist yet create it
-            { upsert: true }
+            {upsert: true}
         );
 
         ZonafideWeb3.reset();
 
+    },
+    'click .getBalance a'(event) {
+
+        event.preventDefault();
+
+        console.log(".getBalance called...");
+
+        try {
+            Template.instance().balance.set(ZonafideWeb3.getBalance());
+        } catch (error) {
+            sAlert.error(error.toString(),
+                {timeout: 'none', sAlertIcon: 'fa fa-exclamation-circle', sAlertTitle: 'Could not retrieve balance'});
+        }
     }
 
 });

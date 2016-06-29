@@ -51,10 +51,13 @@ Template.zone.events({
          */
 
         var quorum = zone.isQuorum(ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]));
+        var confirmed = zone.isConfirmed(ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]));
 
         console.log("ZAD state is: " + zad.state);
 
-        if (record.state == ZoneState.ACTIONED) {
+        if (confirmed) {
+            ZidUserLocalData.update({_id: id}, {$set: {state: ZoneState.CONFIRMED}});
+        } else if (record.state == ZoneState.ACTIONED) {
             Router.go("confirm", {_id: id});
 
         } else if (quorum) {

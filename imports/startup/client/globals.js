@@ -76,8 +76,8 @@ ZoneStateSymbol = {
     1: "fa fa-circle-o-notch",
     2: "fa fa-circle-o",
     3: "fa fa-check-circle-o",
-    4: "fa fa-pause-circle",
-    5: "fa fa-check-circle",
+    4: "fa fa-check-circle",
+    5: "fa fa-pause-circle",
     6: "fa fa-question-circle"
 };
 
