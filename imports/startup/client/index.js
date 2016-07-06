@@ -3,6 +3,7 @@
  */
 
 import './router.js';
+import './receipt.js';
 import './globals.js';
 import './ethereum.js';
 import './web3.js';

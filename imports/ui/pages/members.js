@@ -16,13 +16,13 @@ Template.members.onCreated(function () {
 });
 
 Template.members.helpers({
-   address() {
+    address() {
 
-       var zone = ZidUserLocalData.findOne(
-           Template.instance().data._id);
+        var zone = ZidUserLocalData.findOne(
+            Template.instance().data._id);
 
-       return  zone.address;
-   }
+        return zone.address;
+    }
 });
 
 Template.members.events({
@@ -35,7 +35,6 @@ Template.members.events({
         const zid = event.target.zid.value;
 
         var Zone = template.Zone;
-        var KeyStore = template.KeyStore;
 
         var zone = Zone.at(zad);
 
@@ -45,16 +44,39 @@ Template.members.events({
         zone.setMembers([zid], quorum,
             ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]),
 
-            function (error, obj) {
+            function (error, tranHash) {
                 if (error) {
                     sAlert.error('Report to Zonafide: ' + error,
-                        {timeout: 'none', sAlertIcon: 'fa fa-exclamation-circle', sAlertTitle: 'Zonafide Access Failure'});
+                        {
+                            timeout: 'none',
+                            sAlertIcon: 'fa fa-exclamation-circle',
+                            sAlertTitle: 'Zonafide Access Failure'
+                        });
                 } else {
-                    // careful here..using address property rather that unique id of record, should be same impact
-                    ZidUserLocalData.update({address : zad},{$set:{state : ZoneState.MEMBERS}});
 
-                    sAlert.info('member possibly set but callback not handling confirmation yet: ' + obj,
-                        {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Developer Issue'});
+                    sAlert.info('A request to add a member has been made: ' + tranHash,
+                        {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Member Requested'});
+
+                    ZoneTransactionReceipt.check(tranHash, ZonafideWeb3.getInstance(), function (error, receipt) {
+                        if (error) {
+                            sAlert.info('Could not add member to Zone: ' + error.toString(),
+                                {
+                                    timeout: 'none',
+                                    sAlertIcon: 'fa fa-info-circle',
+                                    sAlertTitle: 'Failed to Add Member'
+                                });
+                        } else {
+                            // careful here..using address property rather that unique id of record, should be same impact
+                            ZidUserLocalData.update({address: zad}, {$set: {state: ZoneState.MEMBERS}});
+
+                            sAlert.info('Member added to Zone at block: ' + receipt.blockNumber,
+                                {
+                                    timeout: 'none',
+                                    sAlertIcon: 'fa fa-info-circle',
+                                    sAlertTitle: 'Member Added'
+                                });
+                        }
+                    });
                 }
             });
 
@@ -78,14 +100,18 @@ Template.members.events({
             function (error, obj) {
                 if (error) {
                     sAlert.error('Report to Zonafide: ' + error,
-                        {timeout: 'none', sAlertIcon: 'fa fa-exclamation-circle', sAlertTitle: 'Zonafide Access Failure'});
+                        {
+                            timeout: 'none',
+                            sAlertIcon: 'fa fa-exclamation-circle',
+                            sAlertTitle: 'Zonafide Access Failure'
+                        });
                 } else {
-                    if(obj) {
+                    if (obj) {
                         sAlert.info(zid + ' reported to be a member but full development of callback not complete: ' + obj,
                             {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Yes, a member'});
                     } else {
-                    sAlert.info(zid + ' reported not a member but full development of callback not complete: ' + obj,
-                        {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'No, not a member'});
+                        sAlert.info(zid + ' reported not a member but full development of callback not complete: ' + obj,
+                            {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'No, not a member'});
                     }
                 }
             });
