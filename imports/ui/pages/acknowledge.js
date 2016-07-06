@@ -77,15 +77,34 @@ Template.acknowledge.events({
 
         zone.setAcknowledgement(
             ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]),
-            function (error, obj) {
+            function (error, tranHash) {
                 //todo: this is not handling errors like 'not a BigNumber' , do we need a try catch somewhere?
 
                 if (error) {
                     sAlert.error('Report to Zonafide: ' + error,
                         {timeout: 'none', sAlertIcon: 'fa fa-exclamation-circle', sAlertTitle: 'Zonafide Access Failure'});
                 } else {
-                    sAlert.info(zad + ' transaction id returned but callback not handling any form of confirmation (mined): ' + obj,
-                        {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Acknowledged'});
+                    sAlert.info('A request to acknowledge Zone ' + zad + 'has been made: ' + tranHash,
+                        {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Acknowledgment request made'});
+
+                    ZoneTransactionReceipt.check(tranHash, ZonafideWeb3.getInstance(), function (error, receipt) {
+                        if (error) {
+                            sAlert.info('Could not acknowledge Zone: ' + error.toString(),
+                                {
+                                    timeout: 'none',
+                                    sAlertIcon: 'fa fa-info-circle',
+                                    sAlertTitle: 'Failed to Acknowledge Zone'
+                                });
+                        } else {
+                            sAlert.info('A request to acknowledge Zone ' + zad + 'has been made at block ' + receipt.blockNumber,
+                                {
+                                    timeout: 'none',
+                                    sAlertIcon: 'fa fa-info-circle',
+                                    sAlertTitle: 'Zone Acknowledged'
+                                });
+                        }
+                    });
+
                 }
             });
     }

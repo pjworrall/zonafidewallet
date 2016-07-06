@@ -28,8 +28,6 @@ ZoneTransactionReceipt = (function () {
             var count = 0;
             var callbackFired = false;
 
-            console.log("creating filter to poll for receipt..");
-
             // wait for receipt
             var filter = web3.eth.filter('latest', function (e) {
                 if (!e && !callbackFired) {
@@ -37,8 +35,6 @@ ZoneTransactionReceipt = (function () {
 
                     // stop watching after 50 blocks (timeout)
                     if (count > 50) {
-
-                        console.log("exceed poll threshold..abandoning");
 
                         filter.stopWatching();
                         callbackFired = true;
@@ -59,8 +55,6 @@ ZoneTransactionReceipt = (function () {
                             }
 
                             if (receipt && !callbackFired) {
-
-                                console.log("got a receipt ");
 
                                 filter.stopWatching();
                                 callbackFired = true;

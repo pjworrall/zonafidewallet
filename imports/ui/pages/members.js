@@ -107,10 +107,10 @@ Template.members.events({
                         });
                 } else {
                     if (obj) {
-                        sAlert.info(zid + ' reported to be a member but full development of callback not complete: ' + obj,
+                        sAlert.info(zid + ' is a member of Zone ' + obj,
                             {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Yes, a member'});
                     } else {
-                        sAlert.info(zid + ' reported not a member but full development of callback not complete: ' + obj,
+                        sAlert.info( 'Zone ' + obj + 'report ' + zid + ' was not a member',
                             {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'No, not a member'});
                     }
                 }

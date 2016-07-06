@@ -80,10 +80,10 @@ Template.action.events({
 
         zone.action(JSON.stringify(description), zid,
             ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]),
-            function (error, obj) {
+            function (error, tranHash) {
                 //todo: this is not handling errors like 'not a BigNumber' , do we need a try catch somewhere?
 
-                console.log("error: " + error + ", obj: " + obj);
+                console.log("error: " + error + ", obj: " + tranHash);
 
                 if (error) {
                     sAlert.error('Report to Zonafide: ' + error,
@@ -91,13 +91,34 @@ Template.action.events({
                             timeout: 'none',
                             sAlertIcon: 'fa fa-exclamation-circle',
                             sAlertTitle: 'Zonafide Access Failure'
+
                         });
                 } else {
-                    // watchout, using address property and not record id
-                    ZidUserLocalData.update({address : zad},{$set:{state : ZoneState.ACTIONED}});
 
-                    sAlert.info(zad + ' transaction id returned but callback not handling any form of confirmation (mined): ' + obj,
-                        {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Actioned'});
+                    sAlert.info('A request to action a Zone has been made: ' + tranHash,
+                        {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Zone Action Requested'});
+
+                    ZoneTransactionReceipt.check(tranHash, ZonafideWeb3.getInstance(), function (error, receipt) {
+                        if (error) {
+                            sAlert.info('Could not action Zone: ' + error.toString(),
+                                {
+                                    timeout: 'none',
+                                    sAlertIcon: 'fa fa-info-circle',
+                                    sAlertTitle: 'Failed to Action Zone'
+                                });
+                        } else {
+                            // watchout, using address property and not record id
+                            ZidUserLocalData.update({address : zad},{$set:{state : ZoneState.ACTIONED}});
+
+                            sAlert.info('Zone actioned at block: ' + receipt.blockNumber,
+                                {
+                                    timeout: 'none',
+                                    sAlertIcon: 'fa fa-info-circle',
+                                    sAlertTitle: 'Zone Actioned'
+                                });
+                        }
+                    });
+
                 }
             });
     }
