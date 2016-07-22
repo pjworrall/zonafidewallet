@@ -33,7 +33,7 @@ Template.acknowledge.helpers({
 
 Template.acknowledge.events({
 
-    // ack might have to come back out into its own page
+    // todo: this can be refactored out in some way. Duplicate in acknowledge.js .
     'click #qrscanner'(event, template) {
 
         // Prevent default browser form submit

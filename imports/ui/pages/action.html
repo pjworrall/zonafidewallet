@@ -1,53 +1,66 @@
 <template name="action">
 
-        <div class="row">
-            <div class="col-xs-12 text-left">
-                <h4>Activate A Zone</h4>
-                <p>Once a Zone is acknowledged you can action it.  This means declaring who the action is to be with and
-                providing details to them.  Only they can see the details of the action in the Zone.</p>
+    <div class="row">
+        <div class="col-xs-12 text-left">
+            <h4>Activate A Zone</h4>
+            <p>Once a Zone is acknowledged you can action it. This means declaring who the action is to be with and
+                providing details to them. Only they can see the details of the action in the Zone.</p>
 
-                <p>Current ZAD: <strong>{{address}}</strong></p>
+            <p>Current ZAD: <strong>{{address}}</strong></p>
 
-                <!-- todo: got to put proper form labels and stuff on this -->
-                <form class="edit">
+            <!-- todo: got to put proper form labels and stuff on this -->
+            <form class="edit">
 
-                    <input type="hidden"  name="zad" value="{{address}}"/>
+                <input type="hidden" name="zad" value="{{address}}"/>
 
-                    <div class="input-group">
-                        <h4>Name and Address</h4>
-                        <p>This is the Zone ID of the Service Provider that you want the action to be with.</p>
-                        <input class="form-control"
-                               type="text"
-                               name="zid"
-                               size="80"
-                               placeholder="Service Provider ZID.."/>
+                <div class="input-group">
+                    <h4>Action Details</h4>
+                    <p>This is the Zone ID of the Service Provider that you want the action to be with.</p>
+                    <input class="form-control"
+                           type="text"
+                           name="zid"
+                           size="80"
+                           value="{{zad}}"/>
+                    &nbsp;
+                    <a id="qrscanner" href="#" class="tooltipped"
+                       data-toggle="tooltip"
+                       data-placement="right"
+                       title="Scan ZAD">
+                        <i class="fa fa-qrcode fa-2x"
+                           aria-hidden="true">
+                        </i>
+                    </a>
 
-                        <p>Description of the action you want to take.</p>
-                        <input class="form-control"
-                               type="text"
-                               name="action"
-                               size="80"
-                               placeholder="What do you want to do?.."/>
+                    <p>Description of the action you want to take.</p>
+                    <input class="form-control"
+                           type="text"
+                           name="action"
+                           size="80"
+                           placeholder="What do you want to do?.."/>
 
-                        <p>An account reference they might need... </p>
-                        <input class="form-control"
-                               type="text"
-                               name="reference"
-                               size="60"
-                               placeholder="Account reference..."/>
+                    <p>An account reference they might need... </p>
+                    <input class="form-control"
+                           type="text"
+                           name="reference"
+                           size="60"
+                           placeholder="Account reference..."/>
 
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" name="details"> Include your current name and address?
-                            </label>
-                        </div>
-
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="details"> Include your current name and address?
+                        </label>
                     </div>
 
-                    <button><i class="fa fa-check-circle fa-2x" aria-hidden="true"></i></button>
-                </form>
+                </div>
 
-            </div>
+                <button><i class="fa fa-check-circle fa-2x" aria-hidden="true"></i></button>
+            </form>
+
         </div>
-
+    </div>
+    <div class="row">
+        <div class="col-xs-12 text-center">
+            <div id="reader" style="width:300px;height:250px"></div>
+        </div>
+    </div>
 </template>

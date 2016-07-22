@@ -4,7 +4,7 @@
         <div class="col-xs-12 text-left">
             <h4>Add Zone Members</h4>
             <p>Having other people in your Zone prevents others carrying out actions in your name because
-            they would need to get control of their identities as well.</p>
+                they would need to get control of their identities as well.</p>
 
             <p>Selected ZAD: <strong>{{address}}</strong></p>
 
@@ -16,25 +16,31 @@
                            type="text"
                            name="zid"
                            size="80"
-                           placeholder="Provide the ZAD.."
+                           value="{{zad}}"
                            aria-describedby="basic-addon1"/>
                 </div>
-                <button><i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i></button>
-            </form>
-            <form class="check">
-                <input type="hidden" value="{{address}}" name="zad"/>
-                <div class="input-group">
-                    <p>Check if a member?</p>
-                    <input class="form-control"
-                           type="text"
-                           name="zid"
-                           size="80"
-                           placeholder="Provide the ZAD to check.."
-                           aria-describedby="basic-addon1"/>
-                </div>
-                <button><i class="fa fa-question-circle fa-2x" aria-hidden="true"></i></button>
-            </form>
 
+                <div class="row">
+                    <div class="col-xs-12 text-left">
+                        <button>
+                            <i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i>
+                        </button>&nbsp;
+                        <a id="qrscanner" href="#" class="tooltipped"
+                           data-toggle="tooltip"
+                           data-placement="right"
+                           title="Scan ZAD">
+                            <i class="fa fa-qrcode fa-2x"
+                               aria-hidden="true">
+                            </i>
+                        </a>
+                    </div>
+                </div>
+            </form>
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <div id="reader" style="width:300px;height:250px"></div>
+                </div>
+            </div>
         </div>
     </div>
 

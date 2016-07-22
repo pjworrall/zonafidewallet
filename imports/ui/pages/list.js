@@ -69,7 +69,7 @@ Template.list.events({
                             sAlert.info(contract.address,
                                 {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Zone established'});
                         } else {
-                            sAlert.info('A Zone is being registered',
+                            sAlert.info('A Zone is being registered: ' + contract.transactionHash,
                                 {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Zone requested'});
                         }
 

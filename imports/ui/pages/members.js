@@ -3,6 +3,10 @@
  */
 
 import { Template } from 'meteor/templating';
+import { ReactiveVar } from 'meteor/reactive-var';
+
+import '../../api/html5-qrcode/html5-qrcode.min.js';
+import '../../api/html5-qrcode/jsqrcode-combined.min.js';
 
 import './members.html';
 
@@ -13,6 +17,9 @@ Template.members.onRendered(function () {
 Template.members.onCreated(function () {
     // todo: what do we do if this call does not work ? Should be using exceptions
     this.Zone = ZonafideWeb3.getFactory();
+
+    this.zad = new ReactiveVar('');
+
 });
 
 Template.members.helpers({
@@ -22,10 +29,40 @@ Template.members.helpers({
             Template.instance().data._id);
 
         return zone.address;
+    },
+    zad() {
+        return  Template.instance().zad.get();
     }
 });
 
 Template.members.events({
+
+    'click #qrscanner'(event, template) {
+
+        // Prevent default browser form submit
+        event.preventDefault();
+
+        console.log('qrscanner.events: called');
+
+        $('#reader').html5_qrcode(function(data){
+                // do something when code is read
+
+                console.log("data: " + data);
+
+                $('#reader').html5_qrcode_stop();
+
+                template.zad.set(data);
+
+            },
+            function(error){
+                //show read errors
+                console.log("error: " + error);
+            }, function(videoError){
+                //the video stream could be opened
+                console.log("videoError: " + error);
+            }
+        );
+    },
 
     'submit .add'(event, template) {
         // Prevent default browser form submit
