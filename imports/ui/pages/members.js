@@ -2,8 +2,8 @@
  * Created by pjworrall on 03/05/2016.
  */
 
-import { Template } from 'meteor/templating';
-import { ReactiveVar } from 'meteor/reactive-var';
+import {Template} from 'meteor/templating';
+import {ReactiveVar} from 'meteor/reactive-var';
 
 import '../../api/html5-qrcode/html5-qrcode.min.js';
 import '../../api/html5-qrcode/jsqrcode-combined.min.js';
@@ -31,7 +31,7 @@ Template.members.helpers({
         return zone.address;
     },
     zad() {
-        return  Template.instance().zad.get();
+        return Template.instance().zad.get();
     }
 });
 
@@ -44,24 +44,20 @@ Template.members.events({
 
         console.log('qrscanner.events: called');
 
-        $('#reader').html5_qrcode(function(data){
-                // do something when code is read
+        ZoneQRScanner.scan( function (error, result) {
 
-                console.log("data: " + data);
-
-                $('#reader').html5_qrcode_stop();
-
-                template.zad.set(data);
-
-            },
-            function(error){
-                //show read errors
-                console.log("error: " + error);
-            }, function(videoError){
-                //the video stream could be opened
-                console.log("videoError: " + error);
-            }
+                if (error) {
+                    //todo: change to sAlert
+                    alert("Scanning failed: " + error);
+                } else {
+                    if(!result.cancelled) {
+                        // todo: cancelled does not exist on browser scanner so how do we handle that?
+                        template.zad.set(result.text);
+                    }
+                }
+            }, $('#reader')
         );
+
     },
 
     'submit .add'(event, template) {
@@ -147,7 +143,7 @@ Template.members.events({
                         sAlert.info(zid + ' is a member of Zone ' + obj,
                             {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Yes, a member'});
                     } else {
-                        sAlert.info( 'Zone ' + obj + 'report ' + zid + ' was not a member',
+                        sAlert.info('Zone ' + obj + 'report ' + zid + ' was not a member',
                             {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'No, not a member'});
                     }
                 }

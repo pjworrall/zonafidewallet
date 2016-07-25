@@ -41,24 +41,20 @@ Template.acknowledge.events({
 
         console.log('qrscanner.events: called');
 
-        $('#reader').html5_qrcode(function(data){
-                // do something when code is read
+        ZoneQRScanner.scan( function (error, result) {
 
-                console.log("data: " + data);
-
-                $('#reader').html5_qrcode_stop();
-
-                template.zad.set(data);
-
-            },
-            function(error){
-                //show read errors
-                console.log("error: " + error);
-            }, function(videoError){
-                //the video stream could be opened
-                console.log("videoError: " + error);
-            }
+                if (error) {
+                    //todo: change to sAlert
+                    alert("Scanning failed: " + error);
+                } else {
+                    if(!result.cancelled) {
+                        // todo: cancelled does not exist on browser scanner so how do we handle that?
+                        template.zad.set(result.text);
+                    }
+                }
+            }, $('#reader')
         );
+
     },
 
     'submit .service'(event, template) {

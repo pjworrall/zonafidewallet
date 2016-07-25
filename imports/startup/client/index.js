@@ -6,4 +6,5 @@ import './router.js';
 import './receipt.js';
 import './globals.js';
 import './ethereum.js';
+import './qrscanner.js';
 import './web3.js';
