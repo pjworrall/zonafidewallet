@@ -46,6 +46,14 @@ Template.list.events({
 
         } else {
 
+            var name = prompt("Short name for zone","ten characters");
+            if (name === null) {
+                return;
+            } else {
+                // get rid of any unnecessary spaces
+                name = name.trim();
+            }
+
             var Zone = template.Zone;
 
             Zone.new(ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]),
@@ -61,7 +69,8 @@ Template.list.events({
                             ZidUserLocalData.insert({
                                 created: new Date(),
                                 address: contract.address,
-                                state: ZoneState.NEW
+                                state: ZoneState.NEW,
+                                name: name
                             });
 
                             // todo: got to refactor out the parameters here and across all alerts currently

@@ -20,6 +20,9 @@
         <p><a href="#" id="qrcode" class="tooltipped"
               data-toggle="tooltip"
               data-placement="bottom"
-              title="Share with QR Code">{{address}}</a></p>
-
+              title="Share with QR Code">{{#if name}}
+                                               {{name}}
+                                            {{else}}
+                                               {{address}}
+                                        {{/if}}</a></p>
 </template>

@@ -30,6 +30,13 @@ Template.members.helpers({
 
         return zone.address;
     },
+    name() {
+
+        var zone = ZidUserLocalData.findOne(
+            Template.instance().data._id);
+
+        return zone.name;
+    },
     zad() {
         return Template.instance().zad.get();
     }

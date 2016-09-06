@@ -85,13 +85,12 @@ Template.zone.events({
 
        event.preventDefault();
 
-        console.log("single click called");
-
         const id = $(template.find('input[name=zad]')).val();
         const record = ZidUserLocalData.findOne(id);
-        const zad = record.address;
 
-        Router.go("code", { address: zad });
+        console.log( "address: " + record.address + ", name: " + record.name );
+
+        Router.go("code", { 'address': record.address, 'name': record.name });
 
     }
 

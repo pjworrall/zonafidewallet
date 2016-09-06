@@ -3,15 +3,14 @@
     <div class="row">
         <div class="col-xs-12 text-center">
 
-            <h4>Share Your Zone</h4>
-
-            <p>Present this QR Code</p>
+            <h4>Share Zone Address{{#if name}} for {{name}} {{/if}}</h4>
             <br>
             <div class="panel panel-default">
                 <div class="panel-body ">
                     <div id="qrcode"></div>
                 </div>
             </div>
+            <strong>{{address}}</strong>
         </div>
     </div>
 
