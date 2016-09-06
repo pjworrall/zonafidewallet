@@ -47,7 +47,7 @@ Template.list.events({
         } else {
 
             var name = prompt("Short name for zone","ten characters");
-            if (name === null) {
+            if (name === null || name.match(/^ *$/) !== null) {
                 return;
             } else {
                 // get rid of any unnecessary spaces
