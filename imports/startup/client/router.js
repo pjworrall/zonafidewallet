@@ -4,6 +4,7 @@ import '../../ui/pages';
 
 Router.configure({
     layoutTemplate: 'layout',
+    notFoundTemplate: '404',
     onBeforeAction: function () {
         // if the user has not unlocked their account, render the Unlock template
         var route = Router.current().route.path();
