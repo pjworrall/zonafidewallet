@@ -10,7 +10,7 @@ Router.configure({
         var route = Router.current().route.path();
 
         // these can be public
-        if( route !== '/' || route !== '/about' || route !== '/identities') {
+        if( route === '/' || route === '/about' || route === '/identities') {
             this.next();
         } else if (typeof ZidStore.get() === 'undefined') {
                 this.render('unlock');
