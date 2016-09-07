@@ -3,11 +3,20 @@ import { Router } from 'meteor/iron:router';
 import '../../ui/pages';
 
 Router.configure({
-    layoutTemplate: 'layout'
-    //todo: use waitOn and loadingTemplate to update our Zones status;s
-    //todo: when we load the page(s), like..
-    //loadingTemplate: 'loading',
-    //waitOn: function() { return Meteor.subscribe('posts'); }
+    layoutTemplate: 'layout',
+    onBeforeAction: function () {
+        // if the user has not unlocked their account, render the Unlock template
+        var route = Router.current().route.path();
+
+        // these can be public
+        if( route !== '/' || route !== '/about' || route !== '/identities') {
+            this.next();
+        } else if (typeof ZidStore.get() === 'undefined') {
+                this.render('unlock');
+        } else {
+            this.next();
+        }
+    }
 });
 
 Router.route('/', {name: 'home'});
