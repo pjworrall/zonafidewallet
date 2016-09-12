@@ -1,63 +1,72 @@
 <template name="action">
 
-    <div class="row">
-        <div class="col-xs-12 text-left">
-            <h4>Activate Zone {{#if name}} for {{name}} {{/if}}</h4>
-            <p>Once a Zone is acknowledged you can action it. This means declaring who the action is to be with and
-                providing details to them. Only they can see the details of the action in the Zone.</p>
+    <form class="edit">
+        <div class="row">
+            <div class="col-xs-12 text-left">
+                <h4>Activate Zone {{#if name}} for {{name}} {{/if}}</h4>
 
-            <p>Current ZAD: <strong>{{address}}</strong></p>
+                <!-- todo: got to put proper form labels and stuff on this -->
 
-            <!-- todo: got to put proper form labels and stuff on this -->
-            <form class="edit">
 
-                <input type="hidden" name="zad" value="{{address}}"/>
+                    <input type="hidden" name="zad" value="{{address}}"/>
 
-                <div class="input-group">
-                    <h4>Action Details</h4>
-                    <p>This is the Zone ID of the Service Provider that you want the action to be with.</p>
+                    <label for="zid">Zone ID of the recipient:</label>
+
+                    <!-- todo: name of var should be zid-->
                     <input class="form-control"
                            type="text"
                            name="zid"
                            size="80"
                            value="{{zad}}"/>
-                    &nbsp;
-                    <a id="qrscanner" href="#" class="tooltipped"
-                       data-toggle="tooltip"
-                       data-placement="right"
-                       title="Scan ZAD">
-                        <i class="fa fa-qrcode fa-2x"
-                           aria-hidden="true">
-                        </i>
-                    </a>
 
-                    <p>Description of the action you want to take.</p>
+                </div>
+            </div>
+
+        <div class="row">
+            <div class="col-xs-12 text-center">
+                            <a id="qrscanner" href="#" class="tooltipped"
+                               data-toggle="tooltip"
+                               data-placement="right"
+                               title="Scan ZID">
+                                <i class="fa fa-qrcode fa-4x"
+                                   aria-hidden="true">
+                                </i>
+                            </a>
+                        </div>
+                    </div>
+
+        <div class="row">
+            <div class="col-xs-12 text-left">
+                    <label for="action">Description:</label>
                     <input class="form-control"
                            type="text"
                            name="action"
                            size="80"
                            placeholder="What do you want to do?.."/>
 
-                    <p>An account reference they might need... </p>
+                    <label for="reference">Reference:</label>
                     <input class="form-control"
                            type="text"
                            name="reference"
                            size="60"
-                           placeholder="Account reference..."/>
+                           placeholder="eg. account number"/>
 
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" name="details"> Include your current name and address?
-                        </label>
-                    </div>
-
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="details"> Include saved name and address?
+                    </label>
                 </div>
 
-                <button><i class="fa fa-check-circle fa-2x" aria-hidden="true"></i></button>
-            </form>
+                </div>
+            </div>
 
+        <div class="row">
+            <div class="col-xs-12 text-center">
+
+                    <button><i class="fa fa-arrow-circle-o-right fa-4x" aria-hidden="true"></i></button>
+            </div>
         </div>
-    </div>
+    </form>
     <div class="row">
         <div class="col-xs-12 text-center">
             <div id="reader" style="width:300px;height:250px"></div>
