@@ -1,5 +1,5 @@
 <template name="personal">
-    <form class="save">
+    <form class="form">
         <div class="row">
             <div class="col-xs-12 text-left">
                 <h4>Personal Data</h4>
@@ -8,54 +8,52 @@
                        type="text"
                        name="familyName"
                        size="60"
-                       placeholder="{{#if address.familyName}}{{address.familyName}}{{else}}Family name... {{/if}}"/>
+                       placeholder="{{#unless address.familyName}}Family name...{{else}} {{address.familyName}} {{/unless}}"/>
 
                 <label for="firstName">First names:</label>
                 <input class="form-control"
                        type="text"
                        name="firstName"
                        size="60"
-                       placeholder="{{#if address.firstName}}{{address.firstName}}{{else}}First names... {{/if}}"/>
+                       placeholder="{{#unless address.firstName}}First names...{{else}} {{address.firstName}} {{/unless}}"/>
 
                 <label for="houseId">House name or number:</label>
                 <input class="form-control"
                        type="text"
                        name="houseId"
                        size="40"
-                       placeholder="{{#if address.houseId}}{{address.houseId}}{{else}}Number or name...{{/if}}"/>
+                       placeholder="{{#unless address.houseId}}Number or name...{{else}} {{address.houseId}} {{/unless}}"/>
 
                 <label for="streetAddress">First line of address:</label>
                 <input class="form-control"
                        type="text"
                        name="streetAddress"
                        size="80"
-                       placeholder="{{#if address.streetAddress}}{{address.streetAddress}}{{else}}Street address...{{/if}}"/>
+                       placeholder="{{#unless address.streetAddress}}Street address...{{else}} {{address.streetAddress}} {{/unless}}"/>
 
                 <label for="postCode">Post or Zip code:</label>
                 <input class="form-control"
                        type="text"
                        name="postCode"
                        size="10"
-                       placeholder="{{#if address.postCode}}{{address.postCode}}{{else}}Post Code...{{/if}}"/>
+                       placeholder="{{#unless address.postCode}}Post Code...{{else}} {{address.postCode}} {{/unless}}"/>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-xs-12 text-left">
+            <div class="col-xs-6 text-center">
                 <br>
-                <button><i class="fa fa-floppy-o fa-4x" aria-hidden="true"></i></button>
+                <button id="save"><i class="fa fa-floppy-o fa-4x" aria-hidden="true"></i></button>
+                <br>
+            </div>
+            <div class="col-xs-6 text-center">
+                <br>
+
+                <button id="remove"><i class="fa fa-trash-o fa-4x" aria-hidden="true"></i></button>
                 <br>
             </div>
         </div>
-    </form>
 
-    <div class="row">
-        <div class="col-xs-12 text-centre">
-            <form class="remove">
-                <input type="hidden" name="_id" value="{{address._id}}">
-                <button><i class="fa fa-trash-o fa-4x" aria-hidden="true"></i></button>
-            </form>
-        </div>
-    </div>
+    </form>
 
 </template>

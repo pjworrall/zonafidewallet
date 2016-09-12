@@ -3,7 +3,7 @@
  */
 
 import { Template } from 'meteor/templating';
-import { ReactiveVar } from 'meteor/reactive-var';
+//import { ReactiveVar } from 'meteor/reactive-var';
 
 
 import './personal.html';
@@ -14,16 +14,14 @@ Template.personal.onCreated(function () {
 });
 
 Template.personal.helpers({
-    //this is here because we could experiment with a drop down list of Zones
     address() {
-        // provides the current data in the store
         return ZidUserLocalPersonalData.findOne();
     }
 });
 
 Template.personal.events({
 
-    'submit .save'(event, template) {
+    'submit .form'(event) {
         // Prevent default browser form submit
         event.preventDefault();
 
@@ -38,39 +36,17 @@ Template.personal.events({
         // todo: maybe needs a try catch
         ZidUserLocalPersonalData.insert(details);
 
-        sAlert.info(details.firstName + " "
-            + details.familyName + ", "
-            + details.houseId  + ", "
-            + details.streetAddress  + ", "
-            + details.postCode  + ", ",
-            {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Added'});
-
     },
 
-    'submit .remove'(event) {
+    'click .form #remove'(event, template) {
         // Prevent default browser form submit
         event.preventDefault();
 
-        console.log('personal.events: performing personal remove event');
-
-        const id = event.target._id.value;
-
-        console.log("removing: " + id );
-
-        // get the attributes to confirm the deletion
-        const details = ZidUserLocalPersonalData.findOne(id);
-
-        //ZidUserLocalPersonalData.remove({_id: id});
-
-        // emovign everything for now as there should only be one
+        // removing everything for now as there should only be one
         ZidUserLocalPersonalData.remove({});
 
-        sAlert.info(details.firstName + " "
-            + details.familyName + ", "
-            + details.houseId  + ", "
-            + details.streetAddress  + ", "
-            + details.postCode  + ", ",
-            {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Removed'});
+        // I should not have needed this but I could not get reactive var to work in time
+        template.find("form").reset();
 
     }
 
