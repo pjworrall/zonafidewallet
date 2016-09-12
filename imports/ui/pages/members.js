@@ -18,7 +18,7 @@ Template.members.onCreated(function () {
     // todo: what do we do if this call does not work ? Should be using exceptions
     this.Zone = ZonafideWeb3.getFactory();
 
-    this.zad = new ReactiveVar('');
+    this.zid = new ReactiveVar('');
 
 });
 
@@ -37,8 +37,8 @@ Template.members.helpers({
 
         return zone.name;
     },
-    zad() {
-        return Template.instance().zad.get();
+    zid() {
+        return Template.instance().zid.get();
     }
 });
 
@@ -59,7 +59,7 @@ Template.members.events({
                 } else {
                     if(!result.cancelled) {
                         // todo: cancelled does not exist on browser scanner so how do we handle that?
-                        template.zad.set(result.text);
+                        template.zid.set(result.text);
                     }
                 }
             }, $('#reader')
@@ -117,42 +117,6 @@ Template.members.events({
                                 });
                         }
                     });
-                }
-            });
-
-    },
-
-    'submit .check'(event, template) {
-        // Prevent default browser form submit
-        event.preventDefault();
-
-        const zad = event.target.zad.value;
-        const zid = event.target.zid.value;
-
-        var Zone = template.Zone;
-
-        var zone = Zone.at(zad);
-
-        zone.isMember([zid], ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]),
-
-            //todo: this is not handling errors like 'not a BigNumber' , do we need a try catch somewhere?
-
-            function (error, obj) {
-                if (error) {
-                    sAlert.error('Report to Zonafide: ' + error,
-                        {
-                            timeout: 'none',
-                            sAlertIcon: 'fa fa-exclamation-circle',
-                            sAlertTitle: 'Zonafide Access Failure'
-                        });
-                } else {
-                    if (obj) {
-                        sAlert.info(zid + ' is a member of Zone ' + obj,
-                            {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Yes, a member'});
-                    } else {
-                        sAlert.info('Zone ' + obj + 'report ' + zid + ' was not a member',
-                            {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'No, not a member'});
-                    }
                 }
             });
 

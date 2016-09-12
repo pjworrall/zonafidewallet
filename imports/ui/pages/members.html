@@ -3,38 +3,41 @@
     <div class="row">
         <div class="col-xs-12 text-left">
             <h4>Add Zone Members {{#if name}} for {{name}} {{/if}}</h4>
-            <p>Having other people in your Zone prevents others carrying out actions in your name because
-                they would need to get control of their identities as well.</p>
-
-            <p>Selected ZAD: <strong>{{address}}</strong></p>
 
             <form class="add">
                 <input type="hidden" value="{{address}}" name="zad"/>
                 <div class="input-group">
-                    <p>What is the ZID of the member?</p>
+                    <label for="zid">ZID:</label>
                     <input class="form-control"
                            type="text"
                            name="zid"
                            size="80"
-                           value="{{zad}}"
+                           value="{{zid}}"
                            aria-describedby="basic-addon1"/>
+                    <p>&nbsp;</p>
                 </div>
 
                 <div class="row">
-                    <div class="col-xs-12 text-left">
-                        <button>
-                            <i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i>
-                        </button>&nbsp;
+                    <div class="col-xs-12 text-center">
                         <a id="qrscanner" href="#" class="tooltipped"
                            data-toggle="tooltip"
                            data-placement="right"
-                           title="Scan ZAD">
-                            <i class="fa fa-qrcode fa-2x"
+                           title="Scan ZID">
+                            <i class="fa fa-qrcode fa-4x"
                                aria-hidden="true">
                             </i>
                         </a>
                     </div>
                 </div>
+
+                <div class="row">
+                    <div class="col-xs-12 text-center">
+                        <button>
+                            <i class="fa fa-arrow-circle-o-right fa-4x" aria-hidden="true"></i>
+                        </button>&nbsp;
+                    </div>
+                </div>
+
             </form>
             <div class="row">
                 <div class="col-xs-12 text-center">
