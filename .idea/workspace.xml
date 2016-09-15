@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="22cef14b-748f-4bc9-b76d-9127bdde131c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/splash/splash-1280x720.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/splash/splash-320x480.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/splash/splash-480x320.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/splash/splash-480x800.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/splash/splash-720x1280.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/splash/splash-800x480.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobile-config.js" afterPath="$PROJECT_DIR$/mobile-config.js" />
     </list>
     <ignored path="waters.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -315,14 +308,7 @@
       <workItem from="1473070938274" duration="18575000" />
       <workItem from="1473185084579" duration="666000" />
       <workItem from="1473236656168" duration="6822000" />
-      <workItem from="1473691843526" duration="26119000" />
-    </task>
-    <task id="LOCAL-00002" summary="BON-264: fleshed out more of the app skeleton. Opened keystore but not yet figured out how to share across application.">
-      <created>1462372409877</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1462372409877</updated>
+      <workItem from="1473691843526" duration="26150000" />
     </task>
     <task id="LOCAL-00003" summary="BON-264: got a global var working to share the keystore object across the app.">
       <created>1462377298866</created>
@@ -660,11 +646,18 @@
       <option name="project" value="LOCAL" />
       <updated>1473711365272</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="Improved personal data view and revised share zone id view">
+      <created>1473928708463</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1473928708463</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="95392000" />
+    <option name="totallyTimeSpent" value="95423000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
