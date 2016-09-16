@@ -17,5 +17,6 @@ import './acknowledge.js';
 import './settings.js';
 import './confirm.js';
 import './about.js';
+import './verify.js';
 import './menu.js';
 import './404.js';

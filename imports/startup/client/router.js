@@ -60,4 +60,6 @@ Router.route('/personal', {name: 'personal'});
 
 Router.route('/settings', {name: 'settings'});
 
+Router.route('/verify', {name: 'verify'});
+
 Router.route('/about', {name: 'about'});

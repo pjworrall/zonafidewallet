@@ -235,6 +235,7 @@
         <item url="file://$PROJECT_DIR$/node_modules/promised-io/engines/node/http-client-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/promised-io/engines/rhino/delay-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/promised-io/engines/rhino/fs-compiled.js" />
+        <item url="file://$PROJECT_DIR$/imports/ui/pages/verify-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/promised-io/tests/promise-spawn-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/promised-io/tests/promises-aplus-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/promised-io/tests/querystring-compiled.js" />
@@ -3758,6 +3759,7 @@
       <root url="file://$PROJECT_DIR$/node_modules/promised-io/engines/node/http-client-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/promised-io/engines/rhino/delay-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/promised-io/engines/rhino/fs-compiled.js" />
+      <root url="file://$PROJECT_DIR$/imports/ui/pages/verify-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/promised-io/tests/promise-spawn-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/promised-io/tests/promises-aplus-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/promised-io/tests/querystring-compiled.js" />

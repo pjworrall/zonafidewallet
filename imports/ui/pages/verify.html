@@ -1,0 +1,112 @@
+<template name="verify">
+
+    <div class="row">
+        <div class="col-xs-12 text-left">
+            <h4>Verify A Zone</h4>
+        </div>
+    </div>
+
+    <form class="zad">
+        <div class="row">
+            <div class="col-xs-12 text-left">
+
+                <label for="zad">Zone:</label>
+                <input name="zad" class="form-control"
+                       type="text"
+                       size="80"
+                       value="{{zad}}"/>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12 text-center">
+                <a id="ZadQrScanner" href="#" class="tooltipped"
+                   data-toggle="tooltip"
+                   data-placement="right"
+                   title="Scan ZAD">
+                    <i class="fa fa-qrcode fa-4x"
+                       aria-hidden="true">
+                    </i>
+                </a>
+                <button class="tooltipped"
+                        data-toggle="tooltip"
+                        data-placement="right"
+                        title="Check Zone">
+                    <i class="fa fa-arrow-circle-o-right fa-4x"
+                       aria-hidden="true">
+                    </i>
+                </button>
+            </div>
+        </div>
+
+    </form>
+
+    <div class="row">
+        <div class="col-xs-12 text-left">
+
+            <p>Active?: {{isactive}}. </p>
+
+            <p>Details: {{details}}. </p>
+        </div>
+    </div>
+
+    <form class="zid">
+
+        <div class="row">
+            <div class="col-xs-12 text-left">
+                <p>Check Member</p>
+                <label for="member">ZID:</label>
+
+                <input name="member_zid" class="form-control"
+                       type="text"
+                       size="80"
+                       value="{{zid}}"/>
+
+                <p>Member: <strong>{{member}}</strong> Acknowledger: <strong>{{acknowledger}}</strong></p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12 text-center">
+                <a id="ZidQrScanner" href="#" class="tooltipped"
+                   data-toggle="tooltip"
+                   data-placement="right"
+                   title="Scan ZID">
+                    <i class="fa fa-qrcode fa-4x"
+                       aria-hidden="true">
+                    </i>
+                </a>
+                <button class="tooltipped"
+                        data-toggle="tooltip"
+                        data-placement="right"
+                        title="Member Check">
+                    <i class="fa fa-arrow-circle-o-right fa-4x"
+                       aria-hidden="true">
+                    </i>
+                </button>
+            </div>
+        </div>
+
+    </form>
+
+    <div class="row">
+        <div class="col-xs-12 text-center">
+            <div id="reader" style="width:300px;height:250px"></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 text-left">
+            <p>Confirm the Zone has been processed by you</p>
+            <button id="confirm">Confirm</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 text-left">
+            <p>Zone contract version: {{version}} .</p>
+        </div>
+    </div>
+
+</template>
