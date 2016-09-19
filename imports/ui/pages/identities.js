@@ -94,6 +94,8 @@ Template.identities.events({
 
                 Session.set('lock',false);
 
+                Router.go("list");
+
 
             } else {
                 // todo: how to handle errors
