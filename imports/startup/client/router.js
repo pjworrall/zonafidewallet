@@ -12,7 +12,7 @@ Router.configure({
         // these can be public
         if( route === '/' || route === '/about' || route === '/identities') {
             this.next();
-        } else if (typeof ZidStore.get() === 'undefined') {
+        } else if (!Session.get("unlocked")) {
                 this.render('unlock');
         } else {
             this.next();

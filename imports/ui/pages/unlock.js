@@ -15,8 +15,8 @@ import lightwallet from 'eth-lightwallet';
 
 Template.unlock.helpers({
 
-    locked() {
-        return Session.get('lock');
+    unlocked() {
+        return Session.get('unlocked');
     },
     zid() {
 
@@ -61,6 +61,8 @@ Template.unlock.events({
                     Session.set('lock', false);
 
                     Session.set('zid', Keystore.getAddresses()[0]);
+
+                    Session.set("unlocked", true);
 
                     // forward to lsit view
 

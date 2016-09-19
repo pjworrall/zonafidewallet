@@ -1,20 +1,30 @@
 <template name="unlock">
 
+            {{#if unlocked}}
 
-            {{#if locked}}
+                <div class="row">
+                    <div class="col-xs-12 text-left">
+                        <br>
+                        <div>Unlocked ZID: <strong>{{zid}}</strong></div>
+                        <br>
+                    </div>
+                </div>
+
+            {{else}}
+
                 <form class="unlock">
                     <div class="row">
                         <div class="col-xs-12 text-left">
                             <h4>Unlock ZID</h4>
-                                <div class="input-group">
-                                    <input class="form-control"
-                                           type="text"
-                                           name="seed"
-                                           size="80"
-                                           placeholder="passphrase..."
-                                           aria-describedby="basic-addon1"/>
-                                </div>
-                         </div>
+                            <div class="input-group">
+                                <input class="form-control"
+                                       type="text"
+                                       name="seed"
+                                       size="80"
+                                       placeholder="passphrase..."
+                                       aria-describedby="basic-addon1"/>
+                            </div>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-12 text-center">
@@ -24,16 +34,6 @@
                         </div>
                     </div>
                 </form>
-
-            {{else}}
-
-            <div class="row">
-                <div class="col-xs-12 text-left">
-                    <br>
-                    <div>Unlocked ZID: <strong>{{zid}}</strong></div>
-                    <br>
-                </div>
-            </div>
 
             {{/if}}
 

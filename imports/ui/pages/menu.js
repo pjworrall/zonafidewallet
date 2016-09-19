@@ -22,8 +22,8 @@ Template.menu.onRendered(function () {
 
 Template.menu.helpers({
 
-    locked() {
-        return Session.get('lock');
+    unlocked() {
+        return Session.get('unlocked');
     }
 
 });

@@ -11,12 +11,7 @@
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-left">
-                    {{#if locked}}
-                        <li><a href="/unlock"><i class="fa fa-unlock fa-2x" aria-hidden="true"></i>&nbsp;Unlock</a></li>
-                        <li><a href="/identities"><i class="fa fa-users  fa-2x" aria-hidden="true"></i>&nbsp;Zonafide ID</a></li>
-                        <li><a href="/about"><i class="fa fa-question-circle-o fa-2x" aria-hidden="true"></i>&nbsp;About</a></li>
-                        <!-- TODO: this should all be disabled until we are unlocked -->
-                    {{else}}
+                    {{#if unlocked}}
                         <li><a href="/list"><i class="fa fa-list fa-2x" aria-hidden="true"></i>&nbsp;List</a></li>
                         <li><a href="/acknowledge"><i class="fa fa-thumbs-o-up fa-2x" aria-hidden="true"></i>&nbsp;Acknowledge</a></li>
                         <li><a href="/verify"><i class="fa fa-cogs fa-2x" aria-hidden="true"></i>&nbsp;Verify</a></li>
@@ -25,6 +20,11 @@
                         <li><a href="/settings"><i class="fa fa-gear fa-2x" aria-hidden="true"></i>&nbsp;Settings</a></li>
                         <li><a href="/lock"><i class="fa fa-lock fa-2x" aria-hidden="true"></i>&nbsp;Lock</a></li>
                         <li><a href="/about"><i class="fa fa-question-circle-o fa-2x" aria-hidden="true"></i>&nbsp;About</a></li>
+                    {{else}}
+                        <li><a href="/unlock"><i class="fa fa-unlock fa-2x" aria-hidden="true"></i>&nbsp;Unlock</a></li>
+                        <li><a href="/identities"><i class="fa fa-users  fa-2x" aria-hidden="true"></i>&nbsp;Zonafide ID</a></li>
+                        <li><a href="/about"><i class="fa fa-question-circle-o fa-2x" aria-hidden="true"></i>&nbsp;About</a></li>
+                        <!-- TODO: this should all be disabled until we are unlocked -->
                     {{/if}}
                 </ul>
             </div>
