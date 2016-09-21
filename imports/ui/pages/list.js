@@ -56,6 +56,8 @@ Template.list.events({
 
             var Zone = template.Zone;
 
+            console.log("address: " + ZidStore.get().getAddresses()[0]);
+
             Zone.new(ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]),
                 function (error, contract) {
                     if (!error) {

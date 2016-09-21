@@ -37,8 +37,7 @@ Template.unlock.events({
         const target = event.target;
         const seed = target.seed.value;
 
-        //todo: need to collect this from user, maybe put in session or something safer
-        var password = 'daytona';
+        var password = prompt('Provide a session Password', 'Password');
 
         lightwallet.keystore.deriveKeyFromPassword(password, function (err, pwDerivedKey) {
 
@@ -51,13 +50,13 @@ Template.unlock.events({
                         seed,
                         pwDerivedKey);
 
-                    // the parameter 1 is the number of addresses in the HD wallet to create. We only need 1 currently.
+                    // It seems every time we unlock we need to generate the address again.
+                    // I would have thought the generation in the identity creation would be enough.
                     Keystore.generateNewAddress(pwDerivedKey, 1);
 
                     // put the keystore into a global
                     ZidStore.set(Keystore);
 
-                    // todo: I am not sure lock is redundant as I can alternatively test for zid
                     Session.set('lock', false);
 
                     Session.set('zid', Keystore.getAddresses()[0]);

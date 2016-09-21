@@ -1,8 +1,10 @@
 /**
  * Created by pjworrall on 03/05/2016.
  */
-import { Template } from 'meteor/templating';
-import { ReactiveVar } from 'meteor/reactive-var';
+import {Template} from 'meteor/templating';
+import {ReactiveVar} from 'meteor/reactive-var';
+
+import lightwallet from 'eth-lightwallet';
 
 import './settings.html';
 
@@ -62,7 +64,7 @@ Template.settings.events({
         ZonafideWeb3.reset();
 
     },
-    'click .getBalance a'(event) {
+    'click #getBalance'(event) {
 
         event.preventDefault();
 
@@ -74,6 +76,16 @@ Template.settings.events({
             sAlert.error(error.toString(),
                 {timeout: 'none', sAlertIcon: 'fa fa-exclamation-circle', sAlertTitle: 'Could not retrieve balance'});
         }
+    },
+
+    'click #getSeed'() {
+
+        var password = prompt('Enter password to show your seed. Do not let anyone else see your seed.', 'Password');
+
+        lightwallet.keystore.deriveKeyFromPassword(password, function (err, pwDerivedKey) {
+            alert('Your seed is: "' + ZidStore.get().getSeed(pwDerivedKey) + '". Please write it down.')
+        })
     }
+
 
 });
