@@ -71,7 +71,13 @@ Template.settings.events({
         console.log(".getBalance called...");
 
         try {
-            Template.instance().balance.set(ZonafideWeb3.getBalance());
+
+            var balance = ZonafideWeb3.getBalance();
+
+            var round = Math.round(balance).toString();
+
+            Template.instance().balance.set(NumberWithCommas.convert(round));
+
         } catch (error) {
             sAlert.error(error.toString(),
                 {timeout: 'none', sAlertIcon: 'fa fa-exclamation-circle', sAlertTitle: 'Could not retrieve balance'});

@@ -63,9 +63,10 @@ ZonafideWeb3 = (function () {
             return this.getInstance().eth.contract(ZonafideEnvironment.abi);
         },
         getBalance: function() {
-            return this.getInstance().eth.getBalance(
-                    provider.getAddresses()[0]
-                );
+
+            var balance = this.getInstance().eth.getBalance(provider.getAddresses()[0]);
+
+            return this.getInstance().fromWei(balance,'finney');
         },
         reset: function() {
                 web3 = undefined;
