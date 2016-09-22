@@ -29,7 +29,7 @@ Template.list.helpers({
 
 Template.list.events({
 
-    'click .create a'(event, template) {
+    'dblclick .create a'(event, template) {
         // Prevent default browser form submit
         event.preventDefault();
 
