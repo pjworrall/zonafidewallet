@@ -6,7 +6,8 @@
         </div>
     </div>
 
-    <form class="zad">
+    <form class="getZone">
+
         <div class="row">
             <div class="col-xs-12 text-left">
 
@@ -42,28 +43,26 @@
 
     </form>
 
-    <div class="row">
-        <div class="col-xs-12 text-left">
-
-            <p>Active?: {{isactive}}. </p>
-
-            <p>Details: {{details}}. </p>
-        </div>
-    </div>
-
-    <form class="zid">
-
         <div class="row">
             <div class="col-xs-12 text-left">
-                <p>Check Member</p>
+
+                <p>Active: {{isactive}}. </p>
+
+                <p>Details: {{details}}. </p>
+            </div>
+        </div>
+
+    <form class="memberCheck">
+        <div class="row">
+            <div class="col-xs-12 text-left">
+                <hr>
+                <p><strong>Check Member</strong></p>
                 <label for="member">ZID:</label>
 
                 <input name="member_zid" class="form-control"
                        type="text"
                        size="80"
                        value="{{zid}}"/>
-
-                <p>Member: <strong>{{member}}</strong> Acknowledger: <strong>{{acknowledger}}</strong></p>
             </div>
         </div>
 
@@ -77,7 +76,7 @@
                        aria-hidden="true">
                     </i>
                 </a>
-                <button class="tooltipped"
+                <button id="memberCheck" class="tooltipped"
                         data-toggle="tooltip"
                         data-placement="right"
                         title="Member Check">
@@ -85,27 +84,66 @@
                        aria-hidden="true">
                     </i>
                 </button>
+
             </div>
+        </div>
+    </form>
+
+        <div class="row">
+            <div class="col-xs-12 text-left">
+                <p>Member: <strong>{{member}}</strong></p>
+                <p>Acknowledger: <strong>{{acknowledger}}</strong></p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12 text-left">
+                <hr>
+            </div>
+        </div>
+
+    <form class="confirmZone">
+
+        <div class="row">
+
+            <div class="col-xs-4 text-left">
+                <h4>Confirm</h4>
+            </div>
+
+            <input name="zad" class="form-control"
+                   type="hidden"
+                   value="{{zad}}"/>
+
+            <div class="col-xs-4 text-center">
+                <button id="confirmZone" class="tooltipped"
+                        data-toggle="tooltip"
+                        data-placement="right"
+                        title="Confirm Zone">
+                    <i class="fa fa-check-circle fa-4x"
+                       aria-hidden="true">
+                    </i>
+                </button>
+            </div>
+            <div class="col-xs-4 text-left">
+                <p>&nbsp;</p>
+            </div>
+
         </div>
 
     </form>
 
+
+    <div class="row">
+        <div class="col-xs-12 text-left">
+            <hr>
+            <h4>General Information</h4>
+            <p>Zone contract version: {{version}} .</p>
+        </div>
+    </div>
+    <!-- This is only shown in the web browser version -->
     <div class="row">
         <div class="col-xs-12 text-center">
             <div id="reader" style="width:300px;height:250px"></div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-xs-12 text-left">
-            <p>Confirm the Zone has been processed by you</p>
-            <button id="confirm">Confirm</button>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-xs-12 text-left">
-            <p>Zone contract version: {{version}} .</p>
         </div>
     </div>
 

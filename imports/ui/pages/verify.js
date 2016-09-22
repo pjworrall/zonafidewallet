@@ -2,8 +2,8 @@
  * Created by pjworrall on 15/09/2016.
  */
 
-import { Template } from 'meteor/templating';
-import { ReactiveVar } from 'meteor/reactive-var';
+import {Template} from 'meteor/templating';
+import {ReactiveVar} from 'meteor/reactive-var';
 
 import './verify.html';
 
@@ -14,19 +14,19 @@ Template.verify.onCreated(function consoleOnCreated() {
 
     this.Zone = 'undefined';
 
-    this.version = new ReactiveVar("U/K");
+    this.version = new ReactiveVar("...");
 
-    this.isactive = new ReactiveVar("U/K");
+    this.isactive = new ReactiveVar("...");
 
-    this.details = new ReactiveVar("U/K");
+    this.details = new ReactiveVar("...");
 
     this.zid = new ReactiveVar('');
 
     this.zad = new ReactiveVar('');
 
-    this.member = new ReactiveVar("U/K");
+    this.member = new ReactiveVar("...");
 
-    this.acknowledger = new ReactiveVar("U/K");
+    this.acknowledger = new ReactiveVar("...");
 
 
 });
@@ -69,13 +69,13 @@ Template.verify.events({
 
         console.log('ZadQrScanner.events: called');
 
-        ZoneQRScanner.scan( function (error, result) {
+        ZoneQRScanner.scan(function (error, result) {
 
                 if (error) {
                     //todo: change to sAlert
                     alert("Scanning failed: " + error);
                 } else {
-                    if(!result.cancelled) {
+                    if (!result.cancelled) {
                         // todo: cancelled does not exist on browser scanner so how do we handle that?
                         template.zad.set(result.text);
                     }
@@ -97,13 +97,13 @@ Template.verify.events({
 
         $('#reader').empty();
 
-        ZoneQRScanner.scan( function (error, result) {
+        ZoneQRScanner.scan(function (error, result) {
 
                 if (error) {
                     //todo: change to sAlert
                     alert("Scanning failed: " + error);
                 } else {
-                    if(!result.cancelled) {
+                    if (!result.cancelled) {
                         // todo: cancelled does not exist on browser scanner so how do we handle that?
                         template.zid.set(result.text);
                     }
@@ -113,7 +113,7 @@ Template.verify.events({
 
     },
 
-    'submit .zad'(event, template) {
+    'submit .getZone'(event, template) {
 
         event.preventDefault();
 
@@ -136,14 +136,14 @@ Template.verify.events({
 
 
     },
-    
-    'submit .zid'(event, template) {
+
+    'submit .memberCheck'(event, template) {
 
         event.preventDefault();
 
         // todo: decided to just ignore if there is no zone already established
 
-        if(typeof template.Zone !== 'undefined') {
+        if (typeof template.Zone !== 'undefined') {
 
             var memberZid = event.target.member_zid.value;
 
@@ -160,47 +160,43 @@ Template.verify.events({
 
     },
 
-    'click #confirm'(event, template) {
+    'submit .confirmZone'(event, template) {
 
         event.preventDefault();
 
-        console.log("confirm()... ");
-
         // todo: ignore when no Zone instantiated
-        if(typeof template.Zone === 'undefined') {
-            return;
-        }
+        if (typeof template.Zone !== 'undefined') {
 
-        var zone = template.Zone.at(zad);
+            template.Zone.confirm(ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]), function (error, tranHash) {
+                if (error) {
+                    sAlert.error('Report to Zonafide: ' + error,
+                        {
+                            timeout: 'none',
+                            sAlertTitle: 'Zonafide Access Failure'
+                        });
+                } else {
+                    sAlert.info('A request to confirm has been made: ' + tranHash,
+                        {timeout: 'none', sAlertTitle: 'Confirm Requested'});
 
-        zone.confirm(ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]) , function (error, tranHash) {
-            if (error) {
-                sAlert.error('Report to Zonafide: ' + error,
-                    {
-                        timeout: 'none',
-                        sAlertTitle: 'Zonafide Access Failure'
+                    ZoneTransactionReceipt.check(tranHash, ZonafideWeb3.getInstance(), function (error, receipt) {
+                        if (error) {
+                            sAlert.info('Could not confirm Zone: ' + error.toString(),
+                                {
+                                    timeout: 'none',
+                                    sAlertTitle: 'Failed to  confirm Zone'
+                                });
+                        } else {
+                            sAlert.info('Confirmed Zone at block: ' + receipt.blockNumber,
+                                {
+                                    timeout: 'none',
+                                    sAlertTitle: 'Zone Confirmed'
+                                });
+                        }
                     });
-            } else {
-                sAlert.info('A request to confirm has been made: ' + tranHash,
-                    {timeout: 'none',  sAlertTitle: 'Confirm Requested'});
+                }
+            });
 
-                ZoneTransactionReceipt.check(tranHash, template.web3 , function (error, receipt) {
-                    if (error) {
-                        sAlert.info('Could not confirm Zone: ' + error.toString(),
-                            {
-                                timeout: 'none',
-                                sAlertTitle: 'Failed to  confirm Zone'
-                            });
-                    } else {
-                        sAlert.info('Confirmed Zone at block: ' + receipt.blockNumber,
-                            {
-                                timeout: 'none',
-                                sAlertTitle: 'Zone Confirmed'
-                            });
-                    }
-                });
-            }
-        });
+        }
     }
 
 });
