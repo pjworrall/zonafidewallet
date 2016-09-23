@@ -16,29 +16,43 @@
 
         <div class="row">
 
-            <div class="col-xs-6 text-left">
+            <div class="col-xs-4 text-left">
                 <form class="remove">
                     <input type="hidden" name="address" value="{{address}}">
                     <button><i class="fa fa-trash-o fa-4x" aria-hidden="true"></i></button>
                 </form>
             </div>
 
-            <div class="row">
-                <div class="col-xs-6 text-center">
-                    <form class="share">
-                        <!-- todo: shitty dup I know -->
-                        <input type="hidden" name="address" value="{{address}}">
-                        <button class="tooltipped"
-                                data-toggle="tooltip"
-                                data-placement="right"
-                                title="Social Share">
-                            <i class="fa fa-share-alt-square fa-4x"
-                               aria-hidden="true">
-                            </i>
-                        </button>
-                    </form>
-                </div>
+            <div class="col-xs-4 text-center">
+                <form class="shareWithAcknowledgers">
+                    <!-- todo: shitty dup I know -->
+                    <input type="hidden" name="address" value="{{address}}">
+                    <button class="tooltipped"
+                            data-toggle="tooltip"
+                            data-placement="right"
+                            title="Share with Acknowledger">
+                        <i class="fa fa-share-alt-square fa-4x"
+                           aria-hidden="true">
+                        </i>
+                    </button>
+                </form>
             </div>
+
+            <div class="col-xs-4 text-center">
+                <form class="shareWithRecipient">
+                    <!-- todo: shitty dup I know -->
+                    <input type="hidden" name="address" value="{{address}}">
+                    <button class="tooltipped"
+                            data-toggle="tooltip"
+                            data-placement="right"
+                            title="Share with Recipient">
+                        <i class="fa fa-share fa-4x"
+                           aria-hidden="true">
+                        </i>
+                    </button>
+                </form>
+            </div>
+
         </div>
 
 
