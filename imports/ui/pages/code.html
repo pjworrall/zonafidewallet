@@ -1,6 +1,7 @@
 <template name="code">
 
     <div class="row">
+
         <div class="col-xs-12 text-center">
 
             <h4>Share Zone Address{{#if name}} for {{name}} {{/if}}</h4>
@@ -11,13 +12,36 @@
                 </div>
             </div>
             <strong>{{address}}</strong>
-
-            <form class="remove">
-                <input type="hidden" name="address" value="{{address}}">
-                <button><i class="fa fa-trash-o fa-4x" aria-hidden="true"></i></button>
-            </form>
-
         </div>
+
+        <div class="row">
+
+            <div class="col-xs-6 text-left">
+                <form class="remove">
+                    <input type="hidden" name="address" value="{{address}}">
+                    <button><i class="fa fa-trash-o fa-4x" aria-hidden="true"></i></button>
+                </form>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-6 text-center">
+                    <form class="share">
+                        <!-- todo: shitty dup I know -->
+                        <input type="hidden" name="address" value="{{address}}">
+                        <button class="tooltipped"
+                                data-toggle="tooltip"
+                                data-placement="right"
+                                title="Social Share">
+                            <i class="fa fa-share-alt-square fa-4x"
+                               aria-hidden="true">
+                            </i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
     </div>
 
 </template>
