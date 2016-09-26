@@ -67,6 +67,44 @@ Template.members.events({
 
     },
 
+    // todo: this can be refactored out in some way. Duplicate in acknowledge.js .
+    'click #contactdb'(event, template) {
+
+        // Prevent default browser form submit
+        event.preventDefault();
+
+        // todo: this call out eventually need to be cognisant of the quirks for the different platforms
+
+        navigator.contacts.pickContact(function (contact) {
+
+            if(contact.ims) {
+                contact.ims.some( function(address) {
+                    if(address.value.startsWith("ZID:")) {
+                        var zid = address.value.split(":");
+                        template.zid.set(zid[1]);
+                        return true;
+                    }
+                });
+            } else {
+                sAlert.info("No ZID found",
+                    {
+                        timeout: 'none',
+                        sAlertIcon: 'fa fa-info-circle',
+                        sAlertTitle: 'Not found'
+                    });
+            }
+
+        }, function (err) {
+            sAlert.info("Error accessing contacts: " + err,
+                {
+                    timeout: 'none',
+                    sAlertIcon: 'fa fa-info-circle',
+                    sAlertTitle: 'Contacts error'
+                });
+        });
+
+    },
+
     'submit .add'(event, template) {
         // Prevent default browser form submit
         event.preventDefault();
