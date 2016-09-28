@@ -77,7 +77,7 @@ Template.members.events({
 
         navigator.contacts.pickContact(function (contact) {
 
-            if(contact.ims) {
+            if(contact.ims && contact.ims.length) {
                 contact.ims.some( function(address) {
                     if(address.value.startsWith("ZID:")) {
                         var zid = address.value.split(":");
