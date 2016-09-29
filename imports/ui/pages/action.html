@@ -8,48 +8,60 @@
                 <!-- todo: got to put proper form labels and stuff on this -->
 
 
-                    <input type="hidden" name="zad" value="{{address}}"/>
+                <input type="hidden" name="zad" value="{{address}}"/>
 
-                    <label for="zid">Zone ID of the recipient:</label>
+                <label for="zid">Zone ID of the recipient:</label>
 
-                    <!-- todo: name of var should be zid-->
-                    <input class="form-control"
-                           type="text"
-                           name="zid"
-                           size="80"
-                           value="{{zad}}"/>
+                <!-- todo: name of var should be zid-->
+                <input class="form-control"
+                       type="text"
+                       name="zid"
+                       size="80"
+                       value="{{zad}}"/>
 
-                </div>
             </div>
+        </div>
 
         <div class="row">
-            <div class="col-xs-12 text-center">
-                            <a id="qrscanner" href="#" class="tooltipped"
-                               data-toggle="tooltip"
-                               data-placement="right"
-                               title="Scan ZID">
-                                <i class="fa fa-qrcode fa-4x"
-                                   aria-hidden="true">
-                                </i>
-                            </a>
-                        </div>
-                    </div>
+            <div class="col-xs-6 text-center">
+                <a id="qrscanner" href="#" class="tooltipped"
+                   data-toggle="tooltip"
+                   data-placement="right"
+                   title="Scan ZID">
+                    <i class="fa fa-qrcode fa-4x"
+                       aria-hidden="true">
+                    </i>
+                </a>
+            </div>
+
+            <div class="col-xs-6 text-center">
+                <a id="contactdb" href="#" class="tooltipped"
+                   data-toggle="tooltip"
+                   data-placement="right"
+                   title="Contact">
+                    <i class="fa fa-book fa-4x"
+                       aria-hidden="true">
+                    </i>
+                </a>
+            </div>
+        </div>
+
 
         <div class="row">
             <div class="col-xs-12 text-left">
-                    <label for="action">Description:</label>
-                    <input class="form-control"
-                           type="text"
-                           name="action"
-                           size="80"
-                           placeholder="What do you want to do?.."/>
+                <label for="action">Description:</label>
+                <input class="form-control"
+                       type="text"
+                       name="action"
+                       size="80"
+                       placeholder="What do you want to do?.."/>
 
-                    <label for="reference">Reference:</label>
-                    <input class="form-control"
-                           type="text"
-                           name="reference"
-                           size="60"
-                           placeholder="eg. account number"/>
+                <label for="reference">Reference:</label>
+                <input class="form-control"
+                       type="text"
+                       name="reference"
+                       size="60"
+                       placeholder="eg. account number"/>
 
                 <div class="checkbox">
                     <label>
@@ -57,13 +69,13 @@
                     </label>
                 </div>
 
-                </div>
             </div>
+        </div>
 
         <div class="row">
             <div class="col-xs-12 text-center">
 
-                    <button><i class="fa fa-arrow-circle-o-right fa-4x" aria-hidden="true"></i></button>
+                <button><i class="fa fa-arrow-circle-o-right fa-4x" aria-hidden="true"></i></button>
             </div>
         </div>
     </form>

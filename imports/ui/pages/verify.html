@@ -1,47 +1,47 @@
-<template name="verify">
-
-    <div class="row">
-        <div class="col-xs-12 text-left">
-            <h4>Verify A Zone</h4>
-        </div>
-    </div>
-
-    <form class="getZone">
+    <template name="verify">
 
         <div class="row">
             <div class="col-xs-12 text-left">
-
-                <label for="zad">Zone:</label>
-                <input name="zad" class="form-control"
-                       type="text"
-                       size="80"
-                       value="{{zad}}"/>
-
+                <h4>Verify A Zone</h4>
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-xs-12 text-center">
-                <a id="ZadQrScanner" href="#" class="tooltipped"
-                   data-toggle="tooltip"
-                   data-placement="right"
-                   title="Scan ZAD">
-                    <i class="fa fa-qrcode fa-4x"
-                       aria-hidden="true">
-                    </i>
-                </a>
-                <button class="tooltipped"
-                        data-toggle="tooltip"
-                        data-placement="right"
-                        title="Check Zone">
-                    <i class="fa fa-arrow-circle-o-right fa-4x"
-                       aria-hidden="true">
-                    </i>
-                </button>
-            </div>
-        </div>
+        <form class="getZone">
 
-    </form>
+            <div class="row">
+                <div class="col-xs-12 text-left">
+
+                    <label for="zad">Zone:</label>
+                    <input name="zad" class="form-control"
+                           type="text"
+                           size="80"
+                           value="{{zad}}"/>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <a id="ZadQrScanner" href="#" class="tooltipped"
+                       data-toggle="tooltip"
+                       data-placement="right"
+                       title="Scan ZAD">
+                        <i class="fa fa-qrcode fa-4x"
+                           aria-hidden="true">
+                        </i>
+                    </a>
+                    <button class="tooltipped"
+                            data-toggle="tooltip"
+                            data-placement="right"
+                            title="Check Zone">
+                        <i class="fa fa-arrow-circle-o-right fa-4x"
+                           aria-hidden="true">
+                        </i>
+                    </button>
+                </div>
+            </div>
+
+        </form>
 
         <div class="row">
             <div class="col-xs-12 text-left">
@@ -52,44 +52,57 @@
             </div>
         </div>
 
-    <form class="memberCheck">
-        <div class="row">
-            <div class="col-xs-12 text-left">
-                <hr>
-                <p><strong>Check Member</strong></p>
-                <label for="member">ZID:</label>
+        <form class="memberCheck">
 
-                <input name="member_zid" class="form-control"
-                       type="text"
-                       size="80"
-                       value="{{zid}}"/>
+            <div class="row">
+                <div class="col-xs-12 text-left">
+                    <hr>
+                    <h4>Check Member</h4>
+                    <label for="member">ZID:</label>
+
+                    <input name="member_zid" class="form-control"
+                           type="text"
+                           size="80"
+                           value="{{zid}}"/>
+                </div>
             </div>
-        </div>
 
-        <div class="row">
-            <div class="col-xs-12 text-center">
-                <a id="ZidQrScanner" href="#" class="tooltipped"
-                   data-toggle="tooltip"
-                   data-placement="right"
-                   title="Scan ZID">
-                    <i class="fa fa-qrcode fa-4x"
-                       aria-hidden="true">
-                    </i>
-                </a>
-                <button id="memberCheck" class="tooltipped"
-                        data-toggle="tooltip"
-                        data-placement="right"
-                        title="Member Check">
-                    <i class="fa fa-arrow-circle-o-right fa-4x"
-                       aria-hidden="true">
-                    </i>
-                </button>
-
+            <div class="row">
+                <div class="col-xs-4 text-center">
+                    <a id="ZidQrScanner" href="#" class="tooltipped"
+                       data-toggle="tooltip"
+                       data-placement="right"
+                       title="Scan ZID">
+                        <i class="fa fa-qrcode fa-4x"
+                           aria-hidden="true">
+                        </i>
+                    </a>
+                </div>
+                <div class="col-xs-4 text-center">
+                    <a id="contactdb" href="#" class="tooltipped"
+                       data-toggle="tooltip"
+                       data-placement="right"
+                       title="Contact">
+                        <i class="fa fa-book fa-4x"
+                           aria-hidden="true">
+                        </i>
+                    </a>
+                </div>
+                <div class="col-xs-4 text-center">
+                    <button id="memberCheck" class="tooltipped"
+                            data-toggle="tooltip"
+                            data-placement="right"
+                            title="Member Check">
+                        <i class="fa fa-arrow-circle-o-right fa-4x"
+                           aria-hidden="true">
+                        </i>
+                    </button>
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
 
         <div class="row">
+            <br>
             <div class="col-xs-12 text-left">
                 <p>Member: <strong>{{member}}</strong></p>
                 <p>Acknowledger: <strong>{{acknowledger}}</strong></p>
@@ -102,49 +115,51 @@
             </div>
         </div>
 
-    <form class="confirmZone">
+        <form class="confirmZone">
+
+            <div class="row">
+
+                <div class="col-xs-4 text-left">
+                    <h4>Confirm</h4>
+                </div>
+
+                <input name="zad" class="form-control"
+                       type="hidden"
+                       value="{{zad}}"/>
+
+                <div class="col-xs-4 text-center">
+                    <button id="confirmZone" class="tooltipped"
+                            data-toggle="tooltip"
+                            data-placement="right"
+                            title="Confirm Zone">
+                        <i class="fa fa-check-circle fa-4x"
+                           aria-hidden="true">
+                        </i>
+                    </button>
+                </div>
+                <div class="col-xs-4 text-left">
+                    <p>&nbsp;</p>
+                </div>
+
+            </div>
+
+        </form>
+
 
         <div class="row">
-
-            <div class="col-xs-4 text-left">
-                <h4>Confirm</h4>
+            <div class="col-xs-12 text-left">
+                <hr>
+                <h4>General Information</h4>
+                <p>Zone contract version: {{version}} .</p>
             </div>
-
-            <input name="zad" class="form-control"
-                   type="hidden"
-                   value="{{zad}}"/>
-
-            <div class="col-xs-4 text-center">
-                <button id="confirmZone" class="tooltipped"
-                        data-toggle="tooltip"
-                        data-placement="right"
-                        title="Confirm Zone">
-                    <i class="fa fa-check-circle fa-4x"
-                       aria-hidden="true">
-                    </i>
-                </button>
-            </div>
-            <div class="col-xs-4 text-left">
-                <p>&nbsp;</p>
-            </div>
-
         </div>
 
-    </form>
 
+            <!-- This is only shown in the web browser version -->
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <div id="reader" style="width:300px;height:250px"></div>
+                </div>
+            </div>
 
-    <div class="row">
-        <div class="col-xs-12 text-left">
-            <hr>
-            <h4>General Information</h4>
-            <p>Zone contract version: {{version}} .</p>
-        </div>
-    </div>
-    <!-- This is only shown in the web browser version -->
-    <div class="row">
-        <div class="col-xs-12 text-center">
-            <div id="reader" style="width:300px;height:250px"></div>
-        </div>
-    </div>
-
-</template>
+        </template>

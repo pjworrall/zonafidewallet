@@ -12,7 +12,7 @@ Template.verify.onCreated(function consoleOnCreated() {
 
     this.ZoneFactory = ZonafideWeb3.getFactory();
 
-    this.Zone = 'undefined';
+    this.Zone = undefined;
 
     this.version = new ReactiveVar("...");
 
@@ -33,9 +33,6 @@ Template.verify.onCreated(function consoleOnCreated() {
 
 Template.verify.helpers({
 
-    counter() {
-        return Template.instance().counter.get();
-    },
     version() {
         return Template.instance().version.get();
     },
@@ -112,6 +109,43 @@ Template.verify.events({
         );
 
     },
+    // todo: this can be refactored out in some way. Duplication!!
+    'click #contactdb'(event, template) {
+
+        // Prevent default browser form submit
+        event.preventDefault();
+
+        // todo: this call out eventually need to be cognisant of the quirks for the different platforms
+
+        navigator.contacts.pickContact(function (contact) {
+
+            if(contact.ims && contact.ims.length) {
+                contact.ims.some( function(address) {
+                    if(address.value.startsWith("ZID:")) {
+                        var zid = address.value.split(":");
+                        template.zid.set(zid[1]);
+                        return true;
+                    }
+                });
+            } else {
+                sAlert.info("No ZID found",
+                    {
+                        timeout: 'none',
+                        sAlertIcon: 'fa fa-info-circle',
+                        sAlertTitle: 'Not found'
+                    });
+            }
+
+        }, function (err) {
+            sAlert.info("Error accessing contacts: " + err,
+                {
+                    timeout: 'none',
+                    sAlertIcon: 'fa fa-info-circle',
+                    sAlertTitle: 'Contacts error'
+                });
+        });
+
+    },
 
     'submit .getZone'(event, template) {
 
@@ -120,8 +154,6 @@ Template.verify.events({
         template.version.set("TBD");
 
         var zad = event.target.zad.value;
-
-        console.log("zad: " + zad);
 
         template.Zone = template.ZoneFactory.at(zad);
 
@@ -143,7 +175,7 @@ Template.verify.events({
 
         // todo: decided to just ignore if there is no zone already established
 
-        if (typeof template.Zone !== 'undefined') {
+        if (template.Zone) {
 
             var memberZid = event.target.member_zid.value;
 
@@ -156,6 +188,9 @@ Template.verify.events({
             var acknowledger = template.Zone.isAcknowledger(memberZid) ? "Yes" : "No";
 
             template.acknowledger.set(acknowledger);
+        } else {
+            sAlert.info("Provide a Zone first",
+                {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'No Zone'});
         }
 
     },
@@ -165,7 +200,7 @@ Template.verify.events({
         event.preventDefault();
 
         // todo: ignore when no Zone instantiated
-        if (typeof template.Zone !== 'undefined') {
+        if (template.Zone) {
 
             template.Zone.confirm(ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]), function (error, tranHash) {
                 if (error) {
@@ -196,6 +231,9 @@ Template.verify.events({
                 }
             });
 
+        } else {
+            sAlert.info("Provide a Zone first",
+                {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'No Zone'});
         }
     }
 

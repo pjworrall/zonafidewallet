@@ -18,6 +18,8 @@ Template.action.onCreated(function () {
     // todo: what do we do if this call does not work ? Should be using exceptions
     this.Zone = ZonafideWeb3.getFactory();
 
+    //todo: I think this should be ZID right?
+
     this.zad = new ReactiveVar('');
 
 });
@@ -66,6 +68,42 @@ Template.action.events({
                 }
             }, $('#reader')
         );
+    }, // todo: this can be refactored out in some way. Duplication!!
+    'click #contactdb'(event, template) {
+
+        // Prevent default browser form submit
+        event.preventDefault();
+
+        // todo: this call out eventually need to be cognisant of the quirks for the different platforms
+
+        navigator.contacts.pickContact(function (contact) {
+
+            if(contact.ims && contact.ims.length) {
+                contact.ims.some( function(address) {
+                    if(address.value.startsWith("ZID:")) {
+                        var zid = address.value.split(":");
+                        template.zad.set(zid[1]);
+                        return true;
+                    }
+                });
+            } else {
+                sAlert.info("No ZID found",
+                    {
+                        timeout: 'none',
+                        sAlertIcon: 'fa fa-info-circle',
+                        sAlertTitle: 'Not found'
+                    });
+            }
+
+        }, function (err) {
+            sAlert.info("Error accessing contacts: " + err,
+                {
+                    timeout: 'none',
+                    sAlertIcon: 'fa fa-info-circle',
+                    sAlertTitle: 'Contacts error'
+                });
+        });
+
     },
 
     'submit .edit'(event, template) {
