@@ -90,8 +90,9 @@ Template.list.events({
                         }
 
                     } else {
-                        // todo: alert, geth call failed
-                        console.log('geth callback error: ' + error);
+                        console.log("geth report error: " + error);
+                        sAlert.info('if not, report: ' + error,
+                            {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Password wrong, WiFi down or low credit?'});
                     }
                 });
         }
