@@ -46,8 +46,13 @@ Template.list.events({
 
         } else {
 
-            var name = prompt("Short name for zone","ten characters");
+            var name = prompt("Short name for activity");
+
             if (name === null || name.match(/^ *$/) !== null) {
+
+                sAlert.info("Provide a name for the activity",
+                    {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Name required'});
+
                 return;
             } else {
                 // get rid of any unnecessary spaces
