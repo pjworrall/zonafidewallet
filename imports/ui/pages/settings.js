@@ -22,6 +22,8 @@ Template.settings.onCreated(function () {
 
     this.balance.set("N/A");
 
+    this.recipient = new ReactiveVar('');
+
 });
 
 Template.settings.helpers({
@@ -38,11 +40,76 @@ Template.settings.helpers({
         } else {
             return ZonafideEnvironment.Node;
         }
+    },
+
+    recipient() {
+        return  Template.instance().recipient.get();
     }
 
 });
 
 Template.settings.events({
+
+    // todo: please let this be the last time I cut and paste this before refactoring!!!
+    'click #qrscanner'(event, template) {
+
+        // Prevent default browser form submit
+        event.preventDefault();
+
+        console.log('qrscanner.events: called');
+
+        ZoneQRScanner.scan( function (error, result) {
+
+                if (error) {
+                    //todo: change to sAlert
+                    alert("Scanning failed: " + error);
+                } else {
+                    if(!result.cancelled) {
+                        // todo: cancelled does not exist on browser scanner so how do we handle that?
+                        template.recipient.set(result.text);
+                    }
+                }
+            }, $('#reader')
+        );
+    },
+
+    // todo: this can be refactored out in some way. Duplication!!
+    'click #contactdb'(event, template) {
+
+        // Prevent default browser form submit
+        event.preventDefault();
+
+        // todo: this call out eventually need to be cognisant of the quirks for the different platforms
+
+        navigator.contacts.pickContact(function (contact) {
+
+            if(contact.ims && contact.ims.length) {
+                contact.ims.some( function(address) {
+                    if(address.value.startsWith("ZID:")) {
+                        var zid = address.value.split(":");
+                        template.recipient.set(zid[1]);
+                        return true;
+                    }
+                });
+            } else {
+                sAlert.info("No ZID found",
+                    {
+                        timeout: 'none',
+                        sAlertIcon: 'fa fa-info-circle',
+                        sAlertTitle: 'Not found'
+                    });
+            }
+
+        }, function (err) {
+            sAlert.info("Error accessing contacts: " + err,
+                {
+                    timeout: 'none',
+                    sAlertIcon: 'fa fa-info-circle',
+                    sAlertTitle: 'Contacts error'
+                });
+        });
+
+    },
 
     'submit .setNode'(event) {
         // Prevent default browser form submit
@@ -66,6 +133,7 @@ Template.settings.events({
         ZonafideWeb3.reset();
 
     },
+
     'click #getBalance'(event) {
 
         event.preventDefault();
@@ -95,11 +163,15 @@ Template.settings.events({
         })
     },
 
-    'submit .transferEth'() {
+    'submit .transferEth'(event) {
 
         event.preventDefault();
 
         var password = prompt('Provide a session Password', 'Password');
+
+        // todo: should check this is a valid address
+        var recipient = event.target.recipient.value;
+        var amount = event.target.amount.value;
 
         lightwallet.keystore.deriveKeyFromPassword(password, function (err, pwDerivedKey) {
 
@@ -115,10 +187,8 @@ Template.settings.events({
 
                 var count = w3.eth.getTransactionCount(address);
 
-                // need to get these from the form
-                // todo: should really identify a framework for field validation
-                var recipient = '0xf76216c08976e36aa276580efa818ffc9235cefa';
-                var amount =  '0x' + '1000000000000';
+                // todo: general strategy needed for hex prefix's, but add it deliberately here
+                amount =  '0x' + amount;
 
                 // todo: got to get a solution for managing the gas properties across the app
                 var txData = {
@@ -129,11 +199,7 @@ Template.settings.events({
                     "value": amount,
                 };
 
-                console.log("txData: " + JSON.stringify(txData));
-
                 var tx = new Transaction(txData);
-
-                console.log("tx: " + JSON.stringify(tx));
 
                 var rawTx = tx.serialize().toString('hex');
 

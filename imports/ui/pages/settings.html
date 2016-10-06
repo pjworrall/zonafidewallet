@@ -1,5 +1,10 @@
 <template name="settings">
 
+    <div class="row">
+        <div class="col-xs-12 text-left">
+            <h4>Settings</h4>
+        </div>
+    </div>
 
     <div class="row">
         <div class="col-xs-12 text-left">
@@ -58,10 +63,46 @@
                            type="text"
                            name="recipient"
                            size="80"
+                           value="{{recipient}}"
                            aria-describedby="basic-addon1"/>
                 </div>
             </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6 text-center">
+                <a id="qrscanner" href="#" class="tooltipped"
+                   data-toggle="tooltip"
+                   data-placement="right"
+                   title="Scan ZID">
+                    <i class="fa fa-qrcode fa-4x"
+                       aria-hidden="true">
+                    </i>
+                </a>
+            </div>
 
+            <div class="col-xs-6 text-center">
+                <a id="contactdb" href="#" class="tooltipped"
+                   data-toggle="tooltip"
+                   data-placement="right"
+                   title="Contact">
+                    <i class="fa fa-book fa-4x"
+                       aria-hidden="true">
+                    </i>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 text-left">
+                <div class="input-group">
+                    <label for="amount">Amount:</label>
+                    <input class="form-control"
+                           type="text"
+                           name="amount"
+                           size="80"
+                           value="1000000000000"
+                           aria-describedby="basic-addon1"/>
+                </div>
+            </div>
         </div>
         <div class="row">
             <div class="col-xs-12 text-center">
@@ -71,5 +112,10 @@
             </div>
         </div>
     </form>
+    <div class="row">
+        <div class="col-xs-12 text-center">
+            <div id="reader" style="width:300px;height:250px"></div>
+        </div>
+    </div>
 
 </template>
