@@ -1,51 +1,51 @@
 <template name="unlock">
 
-            {{#if unlocked}}
+    {{#if unlocked}}
 
-                <div class="row">
-                    <div class="col-xs-12 text-left">
-                        <br>
-                        <div>Unlocked ZID: <strong>{{zid}}</strong></div>
-                        <br>
+        <div class="row">
+            <div class="col-xs-12 text-left">
+                <br>
+                <div>Unlocked Address: <strong>{{zid}}</strong></div>
+                <br>
+            </div>
+        </div>
+
+    {{else}}
+
+        <form class="unlock">
+            <div class="row">
+                <div class="col-xs-12 text-left">
+                    <h4>Unlock</h4>
+                    <div class="input-group">
+                        <input class="form-control"
+                               type="text"
+                               name="seed"
+                               size="80"
+                               placeholder="Key Passphrase"
+                               aria-describedby="basic-addon1"/>
                     </div>
                 </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <button>
+                        <i class="fa fa-arrow-circle-o-right fa-4x" aria-hidden="true"></i>
+                    </button>
+                    &nbsp;
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 text-left">
+                    <p>This passphrase unlocks your Key. It is so important that
+                        you will need to provide a Session Password to protect it when the App is running.</p>
+                    <p> You can use a different Session Password everytime you start the App. Do not leave your App
+                        running for long periods of
+                        time and if you forget the Session Password just restart and provide another one.</p>
+                </div>
+            </div>
+        </form>
 
-            {{else}}
-
-                <form class="unlock">
-                    <div class="row">
-                        <div class="col-xs-12 text-left">
-                            <h4>Unlock ZID</h4>
-                            <div class="input-group">
-                                <input class="form-control"
-                                       type="text"
-                                       name="seed"
-                                       size="80"
-                                       placeholder="Passphrase..."
-                                       aria-describedby="basic-addon1"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12 text-center">
-                            <button>
-                                <i class="fa fa-arrow-circle-o-right fa-4x" aria-hidden="true"></i>
-                            </button>&nbsp;
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12 text-left">
-                            <p>This passphrase secures all your Zonafide activities. It is so important that while this App is running
-                            you will need to assign a password that you will be asked to verify everytime you do something with it. This password exists
-                                for the lifetime of the App but you can use a different one everytime you restart it.</p>
-                        </div>
-                        <div class="col-xs-12 text-left">
-                            <p>Remember that the passphrase remains the same and <strong>must be kept secret!</strong></p>
-                        </div>
-                    </div>
-                </form>
-
-            {{/if}}
+    {{/if}}
 
 
 </template>

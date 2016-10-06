@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-xs-12 text-center">
 
-                <h4>Share Zonafide ID</h4>
+                <h4>Share Your Address</h4>
                 <br>
                 <strong>{{zid}}</strong>
                 <div class="panel panel-default">
@@ -37,18 +37,16 @@
     {{else}}
         <div class="row">
             <div class="col-xs-12 text-left">
-                <h4>Create a Zonafide ID</h4>
-                <p>A ZID is something you create and control. It is stored on your device only.</p>
-                <p>If you already have a ZID unlock it with <i class="fa fa-unlock fa-2x" aria-hidden="true"></i> above.
+                <h4>Create a Key for Zonafide</h4>
+                <p>A Key is something you create and control. It is used on your device only. A passphrase
+                    will be provided to use the Key.
+                    The Key will provide a public Address that you share with other Zonafide users to protect yours and other peoples Activities..</p>
+
+                <p> Don't forget the passphrase. Write it down offline or keep it safe in a password manager. If you lose
+                    the passphrase any Zones created previously will be unusable. You will have to create a new Key
+                    and share its public Address with your contacts.</p>
+                <p>If you already have that passphrase use it to unlock the Key above ( <i class="fa fa-unlock" aria-hidden="true"></i> ).
                 </p>
-                <br>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12 text-left">
-                <p> Don't forget the passphrase and passwords you use with your ZID. If you lose
-                    them any Zones created previously will be unusable and you will need to share a new ZID
-                    with your contacts.</p>
             </div>
         </div>
 
@@ -62,11 +60,10 @@
                             {{passphrase}}
                         </div>
                     </div>
-                    <p>You must remember the phrase above so write it down or save it in a password manager. You will
-                        need it to create Zones and prove they are yours. Keep it secure.</p>
-                    <p>Each time you start Zonafide you also need to provide a short password just for use while the App
+                    <p>Remember this passphrase. Keep it secure.</p>
+                    <p>Each time you start Zonafide you also need to provide a short Session Password just for use while the App
                         is running. This
-                        secures you passphrase while in use in the App. Provide one now to proceed to use Zonafide.
+                        secures the passphrase while in use. Provide one now to proceed to use Zonafide.
                     </p>
 
                     <form class="store">
@@ -84,7 +81,7 @@
         {{else}}
             <div class="row">
                 <div class="col-xs-12 text-left">
-                    <p>We need to gather some randomness. At the moment this is provided by you as random text.</p>
+                    <p>To create your Key we need to gather some randomness. At the moment this is provided by you as random text.</p>
                     <form class="seed">
                         <div class="input-group">
                             <input class="form-control"
