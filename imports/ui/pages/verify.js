@@ -204,10 +204,10 @@ Template.verify.events({
 
             template.Zone.confirm(ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]), function (error, tranHash) {
                 if (error) {
-                    sAlert.error('Report to Zonafide: ' + error,
+                    sAlert.error('Report error: ' + error,
                         {
                             timeout: 'none',
-                            sAlertTitle: 'Zonafide Access Failure'
+                            sAlertTitle: 'Network Access Failure'
                         });
                 } else {
                     sAlert.info('A request to confirm has been made: ' + tranHash,

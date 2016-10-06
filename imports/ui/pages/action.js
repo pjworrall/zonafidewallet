@@ -87,7 +87,7 @@ Template.action.events({
                     }
                 });
             } else {
-                sAlert.info("No ZID found",
+                sAlert.info("No Zonafide Address found",
                     {
                         timeout: 'none',
                         sAlertIcon: 'fa fa-info-circle',
@@ -166,11 +166,11 @@ Template.action.events({
                 console.log("error: " + error + ", obj: " + tranHash);
 
                 if (error) {
-                    sAlert.error('Report to Zonafide: ' + error,
+                    sAlert.error('Report error: ' + error,
                         {
                             timeout: 'none',
                             sAlertIcon: 'fa fa-exclamation-circle',
-                            sAlertTitle: 'Zonafide Access Failure'
+                            sAlertTitle: 'Zonafide Network Failure'
 
                         });
                 } else {

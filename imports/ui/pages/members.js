@@ -86,7 +86,7 @@ Template.members.events({
                     }
                 });
             } else {
-                sAlert.info("No ZID found",
+                sAlert.info("No Zonafide Address found",
                     {
                         timeout: 'none',
                         sAlertIcon: 'fa fa-info-circle',
@@ -124,20 +124,20 @@ Template.members.events({
 
             function (error, tranHash) {
                 if (error) {
-                    sAlert.error('Report to Zonafide: ' + error,
+                    sAlert.error('Report error: ' + error,
                         {
                             timeout: 'none',
                             sAlertIcon: 'fa fa-exclamation-circle',
-                            sAlertTitle: 'Zonafide Access Failure'
+                            sAlertTitle: 'Network Access Failure'
                         });
                 } else {
 
-                    sAlert.info('A request to add a member has been made: ' + tranHash,
+                    sAlert.info('A request to add a Member has been made: ' + tranHash,
                         {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Member Requested'});
 
                     ZoneTransactionReceipt.check(tranHash, ZonafideWeb3.getInstance(), function (error, receipt) {
                         if (error) {
-                            sAlert.info('Could not add member to Zone: ' + error.toString(),
+                            sAlert.info('Could not add Member to Zone: ' + error.toString(),
                                 {
                                     timeout: 'none',
                                     sAlertIcon: 'fa fa-info-circle',

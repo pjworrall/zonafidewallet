@@ -92,7 +92,7 @@ Template.settings.events({
                     }
                 });
             } else {
-                sAlert.info("No ZID found",
+                sAlert.info("No Zonafide Address found",
                     {
                         timeout: 'none',
                         sAlertIcon: 'fa fa-info-circle',
@@ -115,8 +115,6 @@ Template.settings.events({
         // Prevent default browser form submit
         event.preventDefault();
 
-        console.log(".setNode called...");
-
         const server = event.target.server.value;
 
         // todo: should check "server" is a valid url
@@ -138,8 +136,6 @@ Template.settings.events({
 
         event.preventDefault();
 
-        console.log(".getBalance called...");
-
         try {
 
             var balance = ZonafideWeb3.getBalance();
@@ -156,10 +152,10 @@ Template.settings.events({
 
     'click #getSeed'() {
 
-        var password = prompt('Enter password to show your seed. Do not let anyone else see your seed.', 'Password');
+        var password = prompt('Enter password to show your Key Passphrase. Do not let anyone else see the Passphrase.', 'Password');
 
         lightwallet.keystore.deriveKeyFromPassword(password, function (err, pwDerivedKey) {
-            alert('Your seed is: "' + ZidStore.get().getSeed(pwDerivedKey) + '". Please write it down.')
+            alert('Your Key Passphrase is: "' + ZidStore.get().getSeed(pwDerivedKey) + '". Please write it down.')
         })
     },
 
@@ -167,7 +163,7 @@ Template.settings.events({
 
         event.preventDefault();
 
-        var password = prompt('Provide a session Password', 'Password');
+        var password = prompt('Provide a Session Password', 'Password');
 
         // todo: should check this is a valid address
         var recipient = event.target.recipient.value;
@@ -176,7 +172,7 @@ Template.settings.events({
         lightwallet.keystore.deriveKeyFromPassword(password, function (err, pwDerivedKey) {
 
             if (err) {
-                sAlert.error('Failed to derive key from password..dev issue', {timeout: 'none'});
+                sAlert.error('Failed to derive Key from password..dev issue', {timeout: 'none'});
             } else {
 
                 // todo: problem - hooked web3 provider nonce conflict arises here. hw3p keeps track of nonce values as well.

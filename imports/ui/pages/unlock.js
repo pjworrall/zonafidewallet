@@ -37,12 +37,12 @@ Template.unlock.events({
         const target = event.target;
         const seed = target.seed.value;
 
-        var password = prompt('Provide a session Password', 'Password');
+        var password = prompt('Provide a Session Password', 'Password');
 
         lightwallet.keystore.deriveKeyFromPassword(password, function (err, pwDerivedKey) {
 
             if (err) {
-                sAlert.error('Failed to derive key from password..dev issue', {timeout: 'none'});
+                sAlert.error('Failed to derive Key from password..dev issue', {timeout: 'none'});
             } else {
 
                 try {
@@ -68,7 +68,7 @@ Template.unlock.events({
                     Router.go("list");
 
                 } catch(err) {
-                    sAlert.error('Was not able to obtain keystore, is passphrase correct?', {timeout: 'none'});
+                    sAlert.error('Was not able to obtain Key, is Passphrase correct?', {timeout: 'none'});
                 }
 
             }

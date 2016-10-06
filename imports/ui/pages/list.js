@@ -46,11 +46,11 @@ Template.list.events({
 
         } else {
 
-            var name = prompt("Short name for activity");
+            var name = prompt("Short name for Activity");
 
             if (name === null || name.match(/^ *$/) !== null) {
 
-                sAlert.info("Provide a name for the activity",
+                sAlert.info("Provide a name for the Activity",
                     {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Name required'});
 
                 return;
