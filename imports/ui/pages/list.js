@@ -1,12 +1,12 @@
 /**
  * Created by pjworrall on 03/05/2016.
  */
-import { Template } from 'meteor/templating';
-import { ReactiveVar } from 'meteor/reactive-var';
+import {Template} from 'meteor/templating';
+import {ReactiveVar} from 'meteor/reactive-var';
 
 import './list.html';
 
-Template.list.onRendered(function() {
+Template.list.onRendered(function () {
     $('.tooltipped').tooltip();
 });
 
@@ -20,7 +20,9 @@ Template.list.onCreated(function () {
 Template.list.helpers({
 
     zads() {
-        return ZidUserLocalData.find({}, {
+        return ZidUserLocalData.find({
+            zid: ZidStore.get().getAddresses()[0]
+        }, {
             sort: {created: -1}
         });
     }
@@ -37,7 +39,9 @@ Template.list.events({
 
         // if there are already five Zones let the user no that is the current limit
 
-        var count = ZidUserLocalData.find().count();
+        var count = ZidUserLocalData.find({
+                zid: ZidStore.get().getAddresses()[0]
+            }).count();
 
         if (count >= 5) {
             sAlert.info('Currently only five records of Zones can be remembered',
@@ -74,6 +78,7 @@ Template.list.events({
                                 + contract.transactionHash);
 
                             ZidUserLocalData.insert({
+                                zid: ZidStore.get().getAddresses()[0],
                                 created: new Date(),
                                 address: contract.address,
                                 state: ZoneState.NEW,
@@ -92,7 +97,11 @@ Template.list.events({
                     } else {
                         console.log("geth report error: " + error);
                         sAlert.info('if not, report: ' + error,
-                            {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Password wrong, WiFi down or low credit?'});
+                            {
+                                timeout: 'none',
+                                sAlertIcon: 'fa fa-info-circle',
+                                sAlertTitle: 'Password wrong, WiFi down or low credit?'
+                            });
                     }
                 });
         }

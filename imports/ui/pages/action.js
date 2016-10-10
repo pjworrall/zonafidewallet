@@ -187,7 +187,7 @@ Template.action.events({
                                     sAlertTitle: 'Failed to Action Zone'
                                 });
                         } else {
-                            // watchout, using address property and not record id
+                            // todo: watchout, using address property and not record id
                             ZidUserLocalData.update({address : zad},{$set:{state : ZoneState.ACTIONED}});
 
                             sAlert.info('Zone actioned at block: ' + receipt.blockNumber,
