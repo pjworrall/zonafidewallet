@@ -9,6 +9,7 @@
     "bitcore-mnemonic": "git+https://github.com/pjworrall/bitcore-mnemonic.git",
     "bootstrap-sass": "^3.3.6",
     "build": "^0.1.4",
+    "cordova-plugin-compat": "^1.0.0",
     "elliptic": "^3.1.0",
     "eth-lightwallet": "git+https://github.com/pjworrall/eth-lightwallet.git",
     "ethereumjs-tx": "^1.1.1",
