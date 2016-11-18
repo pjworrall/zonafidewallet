@@ -7,7 +7,7 @@ import './lock.html';
 Template.lock.events({
 
 
-    'submit .lock'(event) {
+    'click #lock'(event) {
 
         // Prevent default browser form submit
         event.preventDefault();

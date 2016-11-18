@@ -10,10 +10,6 @@ import '../../api/html5-qrcode/jsqrcode-combined.min.js';
 
 import './members.html';
 
-Template.members.onRendered(function () {
-    $('.tooltipped').tooltip();
-});
-
 Template.members.onCreated(function () {
     // todo: what do we do if this call does not work ? Should be using exceptions
     this.Zone = ZonafideWeb3.getFactory();
@@ -51,13 +47,13 @@ Template.members.events({
 
         console.log('qrscanner.events: called');
 
-        ZoneQRScanner.scan( function (error, result) {
+        ZoneQRScanner.scan(function (error, result) {
 
                 if (error) {
                     //todo: change to sAlert
                     alert("Scanning failed: " + error);
                 } else {
-                    if(!result.cancelled) {
+                    if (!result.cancelled) {
                         // todo: cancelled does not exist on browser scanner so how do we handle that?
                         template.zid.set(result.text);
                     }
@@ -77,9 +73,9 @@ Template.members.events({
 
         navigator.contacts.pickContact(function (contact) {
 
-            if(contact.ims && contact.ims.length) {
-                contact.ims.some( function(address) {
-                    if(address.value.startsWith("ZID:")) {
+            if (contact.ims && contact.ims.length) {
+                contact.ims.some(function (address) {
+                    if (address.value.startsWith("ZID:")) {
                         var zid = address.value.split(":");
                         template.zid.set(zid[1]);
                         return true;
@@ -105,58 +101,67 @@ Template.members.events({
 
     },
 
-    'submit .add'(event, template) {
+    'click #do'(event, template) {
         // Prevent default browser form submit
         event.preventDefault();
 
-        const zad = event.target.zad.value;
-        const zid = event.target.zid.value;
+        const zad = $(template.find('input[name=zad]')).val();
+        const zid = $(template.find('input[name=zid]')).val();
 
-        var Zone = template.Zone;
+        if (zid === null || zid.match(/^ *$/) !== null) {
 
-        var zone = Zone.at(zad);
+            sAlert.info("No member address provided",
+                {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Address required'});
+            return;
 
-        // todo: quorum set hard at 1 for now
-        const quorum = 1;
+        } else {
 
-        zone.setMembers([zid], quorum,
-            ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]),
+            var Zone = template.Zone;
 
-            function (error, tranHash) {
-                if (error) {
-                    sAlert.error('Report error: ' + error,
-                        {
-                            timeout: 'none',
-                            sAlertIcon: 'fa fa-exclamation-circle',
-                            sAlertTitle: 'Network Access Failure'
+            var zone = Zone.at(zad);
+
+            // todo: quorum set hard at 1 for now
+            const quorum = 1;
+
+            zone.setMembers([zid], quorum,
+                ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]),
+
+                function (error, tranHash) {
+                    if (error) {
+                        sAlert.error('Report error: ' + error,
+                            {
+                                timeout: 'none',
+                                sAlertIcon: 'fa fa-exclamation-circle',
+                                sAlertTitle: 'Network Access Failure'
+                            });
+                    } else {
+
+                        sAlert.info('A request to add a Member has been made: ' + tranHash,
+                            {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Member Requested'});
+
+                        ZoneTransactionReceipt.check(tranHash, ZonafideWeb3.getInstance(), function (error, receipt) {
+                            if (error) {
+                                sAlert.info('Could not add Member to Zone: ' + error.toString(),
+                                    {
+                                        timeout: 'none',
+                                        sAlertIcon: 'fa fa-info-circle',
+                                        sAlertTitle: 'Failed to Add Member'
+                                    });
+                            } else {
+                                // careful here..using address property rather that unique id of record, should be same impact
+                                ZidUserLocalData.update({address: zad}, {$set: {state: ZoneState.MEMBERS}});
+
+                                sAlert.info('Member added to Zone at block: ' + receipt.blockNumber,
+                                    {
+                                        timeout: 'none',
+                                        sAlertIcon: 'fa fa-info-circle',
+                                        sAlertTitle: 'Member Added'
+                                    });
+                            }
                         });
-                } else {
-
-                    sAlert.info('A request to add a Member has been made: ' + tranHash,
-                        {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Member Requested'});
-
-                    ZoneTransactionReceipt.check(tranHash, ZonafideWeb3.getInstance(), function (error, receipt) {
-                        if (error) {
-                            sAlert.info('Could not add Member to Zone: ' + error.toString(),
-                                {
-                                    timeout: 'none',
-                                    sAlertIcon: 'fa fa-info-circle',
-                                    sAlertTitle: 'Failed to Add Member'
-                                });
-                        } else {
-                            // careful here..using address property rather that unique id of record, should be same impact
-                            ZidUserLocalData.update({address: zad}, {$set: {state: ZoneState.MEMBERS}});
-
-                            sAlert.info('Member added to Zone at block: ' + receipt.blockNumber,
-                                {
-                                    timeout: 'none',
-                                    sAlertIcon: 'fa fa-info-circle',
-                                    sAlertTitle: 'Member Added'
-                                });
-                        }
-                    });
-                }
-            });
+                    }
+                });
+        }
 
     }
 

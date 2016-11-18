@@ -2,58 +2,54 @@
 
     <div class="row">
         <div class="col-xs-12 text-left">
-            <h4>Add Zone Members {{#if name}} for {{name}} {{/if}}</h4>
+            <h4>Add members to: {{name}} </h4>
 
             <form class="add">
                 <input type="hidden" value="{{address}}" name="zad"/>
                 <div class="input-group">
-                    <label for="zid">ZID:</label>
+                    <label for="zid">Address:</label>
                     <input class="form-control"
                            type="text"
                            name="zid"
                            size="80"
-                           value="{{zid}}"
-                           aria-describedby="basic-addon1"/>
-                    <p>&nbsp;</p>
+                           value="{{zid}}"/>
                 </div>
-
-                <div class="row">
-                    <div class="col-xs-4 text-center">
-                        <a id="qrscanner" href="#" class="tooltipped"
-                           data-toggle="tooltip"
-                           data-placement="right"
-                           title="Scan ZID">
-                            <i class="fa fa-qrcode fa-4x"
-                               aria-hidden="true">
-                            </i>
-                        </a>
-                    </div>
-
-                    <div class="col-xs-4 text-center">
-                        <a id="contactdb" href="#" class="tooltipped"
-                           data-toggle="tooltip"
-                           data-placement="right"
-                           title="Contact">
-                            <i class="fa fa-book fa-4x"
-                               aria-hidden="true">
-                            </i>
-                        </a>
-                    </div>
-                    <div class="col-xs-4 text-center">
-                        <button>
-                            <i class="fa fa-arrow-circle-o-right fa-4x" aria-hidden="true"></i>
-                        </button>&nbsp;
-                    </div>
-
-                </div>
-
             </form>
-            <div class="row">
-                <div class="col-xs-12 text-center">
-                    <div id="reader" style="width:300px;height:250px"></div>
-                </div>
-            </div>
         </div>
     </div>
+
+    <div class="row">
+
+        <div class="col-xs-12" align="center">
+
+                <div class="btn-group" role="group" aria-label="...">
+
+                    <button type="button" class="btn btn-default">
+                        <a id="qrscanner" href="#">
+                            <i class="fa fa-qrcode" aria-hidden="true"></i>
+                        </a>
+                    </button>
+
+                    <button type="button" class="btn btn-default">
+                        <a id="contactdb" href="#">
+                            <i class="fa fa-book" aria-hidden="true"></i>
+                        </a>
+                    </button>
+
+                </div>
+
+                <div class="btn-group" role="group" aria-label="...">
+                    <button type="button" class="btn btn-default">
+                        <a id="do" href="#">
+                            <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
+                        </a>
+                    </button>
+                </div>
+
+        </div>
+
+    </div>
+
+    {{>qrreader}}
 
 </template>

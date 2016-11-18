@@ -20,3 +20,7 @@ import './about.js';
 import './verify.js';
 import './menu.js';
 import './404.js';
+
+import './components/submit.html';
+import './components/scan.html';
+import './components/qrreader.html';

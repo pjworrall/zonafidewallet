@@ -15,26 +15,22 @@ Template.code.onRendered(function () {
         text: Template.instance().data.address
     });
 
-    $('.tooltipped').tooltip();
-
 });
 
 Template.code.events({
 
-    'submit .remove'(event) {
+    'click #delete'(event) {
 
         // Prevent default browser form submit
         event.preventDefault();
 
         if (confirm('Are you sure?')) {
 
-            const address = event.target.address.value;
-
-            console.log("removing: " + address );
+            console.log("removing: " + Template.instance().data.address );
 
             //todo: small chance the zone might not exist but decided not to test because it is so unlikely
 
-            ZidUserLocalData.remove({address: address});
+            ZidUserLocalData.remove({address: Template.instance().data.address});
 
             Router.go("list");
 
@@ -42,18 +38,15 @@ Template.code.events({
 
     },
 
-    // todo: these will all go in a service component....eventually...
 
-    'submit .shareWithAcknowledger'(event) {
+    'click #share'(event) {
 
         // Prevent default browser form submit
         event.preventDefault();
 
-        const address = event.target.address.value;
-
         // this is the complete list of currently supported params you can pass to the plugin (all optional)
         var options = {
-            message: 'Secure a Zone for me. Please Acknowledge ' + address, // not supported on some apps (Facebook, Instagram)
+            message: 'Secure a Zone for me. Please Acknowledge ' + Template.instance().data.address, // not supported on some apps (Facebook, Instagram)
             subject: 'Zone Address for my Activity', // fi. for email
             //files: ['', ''], // an array of filenames either locally or remotely
             //todo: this should be to the explanation page for verifiers
@@ -73,16 +66,14 @@ Template.code.events({
         window.plugins.socialsharing.shareWithOptions(options, onSuccess, onError);
 
     },
-    'submit .shareWithRecipient'(event) {
+    'click #send'(event) {
 
         // Prevent default browser form submit
         event.preventDefault();
 
-        const address = event.target.address.value;
-
         // this is the complete list of currently supported params you can pass to the plugin (all optional)
         var options = {
-            message: 'Here is the Zone Address for my planned activity: ' + address, // not supported on some apps (Facebook, Instagram)
+            message: 'Here is the Zone Address for my planned activity: ' + Template.instance().data.address, // not supported on some apps (Facebook, Instagram)
             subject: 'Zone Address for my Activity', // fi. for email
             //files: ['', ''], // an array of filenames either locally or remotely
             //todo: this should be to the explanation page for verifiers

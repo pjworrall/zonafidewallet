@@ -9,10 +9,6 @@ import '../../api/html5-qrcode/jsqrcode-combined.min.js';
 
 import './acknowledge.html';
 
-Template.acknowledge.onRendered(function() {
-    $('.tooltipped').tooltip();
-});
-
 Template.acknowledge.onCreated(function () {
 
     this.zad = new ReactiveVar('');
@@ -57,13 +53,13 @@ Template.acknowledge.events({
 
     },
 
-    'submit .service'(event, template) {
+    'click #do'(event, template) {
         // Prevent default browser form submit
         event.preventDefault();
 
         console.log('acknowledge.events: called');
 
-        const zad = event.target.zad.value;
+        const zad = $(template.find('input[name=zad]')).val();
 
         // todo: should test ZAD for validity and reject if not valid!!!
 

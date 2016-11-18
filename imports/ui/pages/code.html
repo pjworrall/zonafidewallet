@@ -1,65 +1,42 @@
 <template name="code">
 
     <div class="row">
-
         <div class="col-xs-12 text-center">
-
-            <h4>Share {{#if name}}{{name}}{{/if}} Zone</h4>
+            <h4>Share activity: {{#if name}}{{name}}{{/if}}</h4>
             <br>
-            <strong>{{address}}</strong>
-            <div class="panel panel-default">
-                <div class="panel-body ">
-                    <div id="qrcode"></div>
-                </div>
-            </div>
+            <p>{{address}}</p>
+            <div id="qrcode" align="center"></div>
         </div>
-
-        <div class="row">
-
-            <div class="col-xs-4 text-left">
-                <form class="remove">
-                    <input type="hidden" name="address" value="{{address}}">
-                    <button class="tooltipped"
-                            data-toggle="tooltip"
-                            data-placement="right"
-                            title="Remove from Record">
-                        <i class="fa fa-trash-o fa-4x" aria-hidden="true"></i></button>
-                </form>
-            </div>
-
-            <div class="col-xs-4 text-center">
-                <form class="shareWithAcknowledger">
-                    <!-- todo: shitty dup I know -->
-                    <input type="hidden" name="address" value="{{address}}">
-                    <button class="tooltipped"
-                            data-toggle="tooltip"
-                            data-placement="right"
-                            title="Share with Acknowledger">
-                        <i class="fa fa-share-alt-square fa-4x"
-                           aria-hidden="true">
-                        </i>
-                    </button>
-                </form>
-            </div>
-
-            <div class="col-xs-4 text-center">
-                <form class="shareWithRecipient">
-                    <!-- todo: shitty dup I know -->
-                    <input type="hidden" name="address" value="{{address}}">
-                    <button class="tooltipped"
-                            data-toggle="tooltip"
-                            data-placement="left"
-                            title="Share with Recipient">
-                        <i class="fa fa-share fa-4x"
-                           aria-hidden="true">
-                        </i>
-                    </button>
-                </form>
-            </div>
-
-        </div>
-
-
     </div>
+
+    <form class="share">
+        <div class="row">
+            <div class="col-xs-12" align="center">
+
+                    <div class="btn-group" role="group" aria-label="...">
+                        <button type="button" class="btn btn-default">
+                            <a id="share" href="#">
+                                <i class="fa fa-share-alt-square" role="button" aria-hidden="true"></i>
+                            </a>
+                        </button>
+                        <button type="button" class="btn btn-default">
+                            <a id="send" href="#">
+                                <i class="fa fa-share" role="button" aria-hidden="true"></i>
+                            </a>
+                        </button>
+                    </div>
+
+                    <div class="btn-group" role="group" aria-label="...">
+                        <button type="button" class="btn btn-default">
+                            <a id="delete" href="#">
+                                <i class="fa fa-trash-o" role="button" aria-hidden="true"></i>
+                            </a>
+                        </button>
+
+                    </div>
+
+            </div>
+        </div>
+    </form>
 
 </template>

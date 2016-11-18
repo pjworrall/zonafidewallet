@@ -29,13 +29,12 @@ Template.unlock.events({
 
     // this unlocks a previously created KeyStore
 
-    'submit .unlock'(event) {
+    'click #unlock'(event,template) {
         // Prevent default browser form submit
         event.preventDefault();
 
         // Get value from form element
-        const target = event.target;
-        const seed = target.seed.value;
+        const seed = $(template.find('input[name=passphrase]')).val();
 
         var password = prompt('Provide a Session Password', 'Password');
 

@@ -1,5 +1,7 @@
 <template name="unlock">
 
+    <!-- todo: redesign for two views split in iron router -->
+
     {{#if unlocked}}
 
         <div class="row">
@@ -19,28 +21,33 @@
                     <div class="input-group">
                         <input class="form-control"
                                type="text"
-                               name="seed"
+                               name="passphrase"
                                size="80"
-                               placeholder="Key Passphrase"
-                               aria-describedby="basic-addon1"/>
+                               placeholder="Key Passphrase"/>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-12 text-center">
-                    <button>
-                        <i class="fa fa-arrow-circle-o-right fa-4x" aria-hidden="true"></i>
-                    </button>
-                    &nbsp;
+                <div class="col-xs-12 text-left">
+                    <div class="btn-group" role="group" aria-label="...">
+                        <button type="button" class="btn btn-default">
+                            <a id="unlock" href="#">
+                                <i class="fa fa-arrow-circle-o-right" role="button" aria-hidden="true"></i>
+                            </a>
+                        </button>
+                    </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-12 text-left">
-                    <p>This passphrase unlocks your Key. It is so important that
-                        you will need to provide a Session Password to protect it when the App is running.</p>
-                    <p> You can use a different Session Password everytime you start the App. Do not leave your App
-                        running for long periods of
-                        time and if you forget the Session Password just restart and provide another one.</p>
+                <div class="col-xs-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">This passphrase unlocks your Key</div>
+                        <div class="panel-body">
+                            It is so important that you will need to provide a Session Password to protect it when the App is running.
+                            You can use a different Session Password everytime you start the App. Do not leave your App
+                            running for long periods of time and if you forget the Session Password just restart and provide another one.
+                        </div>
+                    </div>
                 </div>
             </div>
         </form>

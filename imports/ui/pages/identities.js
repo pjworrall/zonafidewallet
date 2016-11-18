@@ -24,12 +24,14 @@ Template.identities.onCreated(function () {
 Template.identities.onRendered( function() {
     // this seems inconsistent with Meteor idiom
 
+    // todo: adding the 0x prefix here is a workaround
+    // until we understand what we are going to do with addresses
+
     if(Session.get('zid')) {
 
         $('#qrcode').qrcode({
             render: 'div',
-            size: 400,
-            text: Session.get('zid')
+            size: 400
         });
 
     }
@@ -39,7 +41,7 @@ Template.identities.onRendered( function() {
 Template.identities.helpers({
 
     zid() {
-        return Session.get('zid');
+        return '0x' + Session.get('zid');
     },
 
     seeded() {
