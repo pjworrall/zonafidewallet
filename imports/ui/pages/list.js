@@ -6,10 +6,6 @@ import {ReactiveVar} from 'meteor/reactive-var';
 
 import './list.html';
 
-Template.list.onRendered(function () {
-    $('.tooltipped').tooltip();
-});
-
 Template.list.onCreated(function () {
 
     // todo: what do we do if this call does not work ? Should be using exceptions
@@ -31,7 +27,7 @@ Template.list.helpers({
 
 Template.list.events({
 
-    'dblclick .create a'(event, template) {
+    'click .create a'(event, template) {
         // Prevent default browser form submit
         event.preventDefault();
 
@@ -50,17 +46,19 @@ Template.list.events({
 
         } else {
 
-            var name = prompt("Short name for Activity");
+            var name = $(template.find('input[name=name]')).val();
 
             if (name === null || name.match(/^ *$/) !== null) {
 
                 sAlert.info("Provide a name for the Activity",
                     {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Name required'});
-
                 return;
+
             } else {
                 // get rid of any unnecessary spaces
                 name = name.trim();
+                // reset the form
+                $(template.find('input[name=name]')).val("");
             }
 
             var Zone = template.Zone;

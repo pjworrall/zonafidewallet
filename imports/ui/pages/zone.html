@@ -1,28 +1,19 @@
 <template name="zone">
 
-        <form class="zone">
+    <form class="zone">
+        <input type="hidden" name="zad" value="{{_id}}"/>
 
-            <a  href="#"
-               class="tooltipped"
-               data-toggle="tooltip"
-               data-placement="left"
-               title="{{action}}"
-               aria-hidden="true">
+        <li class="list-group-item">
+            <a href="#" id="qrcode">{{name}}</a>
 
-                <i class="fa {{#if symbol}} {{symbol}} {{else}} fa-exclamation  {{/if}} fa-4x"></i>
+            <span class="badge">
+                <a href="#" aria-hidden="true">
+                    <i class="fa {{#if symbol}} {{symbol}} {{else}} fa-exclamation  {{/if}}"></i>
+                </a>
+            </span>
 
-            </a>
+        </li>
 
-            <input type="hidden" name="zad" value="{{_id}}"/>
+    </form>
 
-        </form>
-
-        <p><a href="#" id="qrcode" class="tooltipped"
-              data-toggle="tooltip"
-              data-placement="bottom"
-              title="Share with QR Code">{{#if name}}
-                                               {{name}}
-                                            {{else}}
-                                               {{address}}
-                                        {{/if}}</a></p>
 </template>

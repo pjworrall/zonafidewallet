@@ -28,11 +28,9 @@ Template.zone.helpers({
 
 Template.zone.events({
 
-    'dblclick .zone a'(event, template) {
+    'click .zone a'(event, template) {
         // Prevent default browser form submit
         event.preventDefault();
-
-        console.log('dbclick .zone: called');
 
         const id = $(template.find('input[name=zad]')).val();
         const record = ZidUserLocalData.findOne(id);
@@ -52,8 +50,6 @@ Template.zone.events({
 
         var quorum = zone.isQuorum(ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]));
         var confirmed = zone.isConfirmed(ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]));
-
-        console.log("ZAD state is: " + zad.state);
 
         if (confirmed) {
             ZidUserLocalData.update({_id: id}, {$set: {state: ZoneState.CONFIRMED}});

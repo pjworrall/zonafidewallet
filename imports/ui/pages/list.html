@@ -1,24 +1,41 @@
 <template name="list">
 
     <div class="row">
-        <div class="col-xs-12 text-center">
+        <div class="col-xs-12 text-left">
 
             <form class="create">
-                <a href="#" class="tooltipped"
-                        data-toggle="tooltip"
-                        data-placement="left"
-                        title="Create a Zone">
-                    <i class="tooltipped fa fa-plus fa-4x"
-                       aria-hidden="true">
-                    </i>
-                </a>
+                <div class="input-group">
+                    <input class="form-control"
+                           type="text"
+                           name="name"
+                           size="20"
+                           placeholder="Activity name.."/>
 
+                    <span class="input-group-addon">
+                            <a href="#">
+                                <i class="fa fa-plus"
+                                   aria-hidden="true">
+                                </i>
+                            </a>
+                    </span>
+                </div>
             </form>
-            <h4>Activities</h4>
-            {{#each zads}}
-                {{> zone }}<br>
-            {{/each}}
 
         </div>
+
+        <div class="col-xs-12 text-left">
+
+            <div class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading">Activities</div>
+                <!-- Table -->
+                <ul class="list-group">
+                    {{#each zads}}
+                        {{> zone }}
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
+
     </div>
 </template>
