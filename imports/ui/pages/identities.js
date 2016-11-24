@@ -66,7 +66,7 @@ Template.identities.events({
         const target = event.target;
         const extraEntropy = target.entropy.value;
 
-        var passphrase = lightwallet.keystore.generateRandomSeed(extraEntropy);
+        let passphrase = lightwallet.keystore.generateRandomSeed(extraEntropy);
         Template.instance().passphrase.set(passphrase);
         Template.instance().seeded.set(true);
 
@@ -79,7 +79,7 @@ Template.identities.events({
         const target = event.target;
         const password = target.password.value;
 
-        var passphrase = Template.instance().passphrase.get();
+        let passphrase = Template.instance().passphrase.get();
 
         lightwallet.keystore.deriveKeyFromPassword(password, function (err, pwDerivedKey) {
 
@@ -111,7 +111,7 @@ Template.identities.events({
         });
 
     },
-    'submit .share'(event) {
+    'click #id'(event) {
 
         // Prevent default browser form submit
         event.preventDefault();
@@ -119,7 +119,7 @@ Template.identities.events({
         // todo: this will all go in a service component....eventually...
 
         // this is the complete list of currently supported params you can pass to the plugin (all optional)
-        var options = {
+        let options = {
             message: 'Get in the Zone with me. My Zonafide ID is ' + Session.get('zid'), // not supported on some apps (Facebook, Instagram)
             subject: 'My Zonafide ID', // fi. for email
             //files: ['', ''], // an array of filenames either locally or remotely
@@ -127,12 +127,12 @@ Template.identities.events({
             chooserTitle: 'Pick an app' // Android only, you can override the default share sheet title
         };
 
-        var onSuccess = function(result) {
+        let onSuccess = function(result) {
             console.log("Share completed? " + result.completed); // On Android apps mostly return false even while it's true
             console.log("Shared to app: " + result.app); // On Android result.app is currently empty. On iOS it's empty when sharing is cancelled (result.completed=false)
         };
 
-        var onError = function(msg) {
+        let onError = function(msg) {
             console.log("Sharing failed with message: " + msg);
         };
 

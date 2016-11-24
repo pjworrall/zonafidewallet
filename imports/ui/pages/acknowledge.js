@@ -13,6 +13,7 @@ import  { ZonafideWeb3 } from '/imports/startup/client/web3.js';
 import  { ZoneQRScanner } from '/imports/startup/client/qrscanner.js';
 import  { ZonafideEnvironment } from '/imports/startup/client/ethereum.js';
 import  { ZoneTransactionReceipt } from '/imports/startup/client/receipt.js';
+import  { ZidStore } from '/imports/startup/client/globals.js';
 
 Template.acknowledge.onCreated(function () {
 

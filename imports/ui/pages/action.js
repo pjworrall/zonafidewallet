@@ -16,39 +16,21 @@ import  { ZidStore, ZidUserLocalData, ZidUserLocalPersonalData, ZoneState } from
 
 import './action.html';
 
-Template.action.onRendered(function () {
-    $('.tooltipped').tooltip();
-});
-
 Template.action.onCreated(function () {
 
     // todo: what do we do if this call does not work ? Should be using exceptions
-    this.Zone = ZonafideWeb3.getFactory();
-
-    //todo: I think this should be ZID right?
-
-    this.zad = new ReactiveVar('');
+    this.ZoneFactory = ZonafideWeb3.getFactory();
 
 });
 
 Template.action.helpers({
 
-    address() {
-
-        var zone = ZidUserLocalData.findOne(
-            Template.instance().data._id);
-
-        return  zone.address;
-    },
     name() {
 
         var zone = ZidUserLocalData.findOne(
             Template.instance().data._id);
 
         return zone.name;
-    },
-    zad() {
-        return  Template.instance().zad.get();
     }
 
 });
@@ -70,7 +52,7 @@ Template.action.events({
                 } else {
                     if(!result.cancelled) {
                         // todo: cancelled does not exist on browser scanner so how do we handle that?
-                        template.zad.set(result.text);
+                        $(template.find('input[name=zid]')).val(result.text);
                     }
                 }
             }, $('#reader')
@@ -89,7 +71,7 @@ Template.action.events({
                 contact.ims.some( function(address) {
                     if(address.value.startsWith("ZID:")) {
                         var zid = address.value.split(":");
-                        template.zad.set(zid[1]);
+                        $(template.find('input[name=zid]')).val(zid[1]);
                         return true;
                     }
                 });
@@ -113,31 +95,27 @@ Template.action.events({
 
     },
 
-    'submit .edit'(event, template) {
+    'click #do'(event, template) {
         // Prevent default browser form submit
         event.preventDefault();
 
-        console.log('edit.events: performing edit event');
+        console.log('click #do: actioning Zone');
 
-        var Zone = template.Zone;
-        var KeyStore = template.KeyStore;
+        let zoneRecord = ZidUserLocalData.findOne(
+            template.data._id);
 
-        // this has to be the setting of details
-        // collect key form values and put then into an object
-        // get the counterpart ready for use with
-
-        const zad = event.target.zad.value;
-        const zid = event.target.zid.value;
+        const zad = zoneRecord.address;
+        const zid = $(template.find('input[name=zid]')).val()
 
         /*
          todo: this has to be encrypted with the counter party ZID
          */
-        var description = {
-            action: event.target.action.value,
-            reference: event.target.reference.value
+        let description = {
+            action: $(template.find('input[name=action]')).val(),
+            reference: $(template.find('input[name=reference]')).val()
         };
 
-        const includePersonalDetails = event.target.details.checked;
+        const includePersonalDetails = $(template.find('input[name=details]')).val();
 
         console.log("includePersonalDetails: " + includePersonalDetails);
 
@@ -163,7 +141,7 @@ Template.action.events({
             }
         }
 
-        var zone = Zone.at(zad);
+        let zone = template.ZoneFactory.at(zad);
 
         zone.action(JSON.stringify(description), zid,
             ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]),
