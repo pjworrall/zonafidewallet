@@ -1,18 +1,22 @@
 <template name="zone">
 
     <form class="zone">
+
         <input type="hidden" name="zad" value="{{_id}}"/>
 
-        <li class="list-group-item">
-            <a href="#" id="qrcode">{{name}}</a>
+        <div class="media">
+            <div class="media-left">
+                <a href="#" aria-hidden="true">
+                    <i class="fa {{#if symbol}} {{symbol}} {{else}} fa-exclamation  {{/if}} fa-3x"></i>
+                </a>
+            </div>
 
-            <a href="#" aria-hidden="true">
-                <span class="badge">
-                        <i class="fa {{#if symbol}} {{symbol}} {{else}} fa-exclamation  {{/if}}"></i>
-                </span>
-            </a>
+            <div class="media-body">
+                <strong> <a href="#" id="qrcode">{{name}}</a></strong>
+                <p>{{#if action}} {{action}} {{else}} No description for this Activity state. {{/if}}</p>
+            </div>
 
-        </li>
+        </div>
 
     </form>
 
