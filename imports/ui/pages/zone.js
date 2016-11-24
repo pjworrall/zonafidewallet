@@ -6,6 +6,9 @@ import { Template } from 'meteor/templating';
 
 import './zone.html';
 
+import  { ZonafideWeb3 } from '/imports/startup/client/web3.js';
+import  { ZonafideEnvironment } from '/imports/startup/client/ethereum.js';
+import  { ZidStore, ZidUserLocalData, ZoneStateAction, ZoneState , ZoneStateSymbol } from '/imports/startup/client/globals.js';
 
 Template.zone.onCreated(function () {
     // todo: what do we do if this call does not work ? Should be using exceptions

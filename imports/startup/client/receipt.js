@@ -10,7 +10,7 @@
  *
  **/
 
-ZoneTransactionReceipt = (function () {
+let ZoneTransactionReceipt = (function () {
 
     return {
 
@@ -84,3 +84,5 @@ ZoneTransactionReceipt = (function () {
         }
     }
 })();
+
+export { ZoneTransactionReceipt };

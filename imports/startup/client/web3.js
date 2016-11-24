@@ -14,7 +14,12 @@
 import HookedWeb3Provider from 'hooked-web3-provider';
 import Web3 from 'web3';
 
-ZonafideWeb3 = (function () {
+import  { ZonafideEnvironment } from '/imports/startup/client/ethereum.js';
+import  { ZidStore, ZonafideDappData } from '/imports/startup/client/globals.js';
+
+
+
+let ZonafideWeb3 = (function () {
     var web3;
     var provider;
 
@@ -74,3 +79,5 @@ ZonafideWeb3 = (function () {
     }
 
 })();
+
+export {  ZonafideWeb3 };

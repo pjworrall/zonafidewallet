@@ -7,40 +7,31 @@ import {ReactiveVar} from 'meteor/reactive-var';
 
 import './verify.html';
 
+import  {ZonafideWeb3} from '/imports/startup/client/web3.js';
+import  {ZoneQRScanner} from '/imports/startup/client/qrscanner.js';
+import  {ZonafideEnvironment} from '/imports/startup/client/ethereum.js';
+import  {ZoneTransactionReceipt} from '/imports/startup/client/receipt.js';
+import  {ZidStore} from '/imports/startup/client/globals.js';
+
 
 Template.verify.onCreated(function consoleOnCreated() {
 
     this.ZoneFactory = ZonafideWeb3.getFactory();
 
-    this.Zone = undefined;
+    this.Zone = new ReactiveVar();
 
-    this.version = new ReactiveVar("...");
-
-    this.isactive = new ReactiveVar("...");
-
-    this.details = new ReactiveVar("...");
-
-    this.zid = new ReactiveVar('');
-
-    this.zad = new ReactiveVar('');
-
-    this.member = new ReactiveVar("...");
-
-    this.acknowledger = new ReactiveVar("...");
+    this.zid = new ReactiveVar();
+    this.zad = new ReactiveVar();
+    this.member = new ReactiveVar();
+    this.acknowledger = new ReactiveVar();
 
 
 });
 
 Template.verify.helpers({
 
-    version() {
-        return Template.instance().version.get();
-    },
-    isactive() {
-        return Template.instance().isactive.get();
-    },
-    details() {
-        return Template.instance().details.get();
+    zone() {
+        return Template.instance().Zone.get();
     },
     member() {
         return Template.instance().member.get();
@@ -119,9 +110,9 @@ Template.verify.events({
 
         navigator.contacts.pickContact(function (contact) {
 
-            if(contact.ims && contact.ims.length) {
-                contact.ims.some( function(address) {
-                    if(address.value.startsWith("ZID:")) {
+            if (contact.ims && contact.ims.length) {
+                contact.ims.some(function (address) {
+                    if (address.value.startsWith("ZID:")) {
                         var zid = address.value.split(":");
                         template.zid.set(zid[1]);
                         return true;
@@ -147,47 +138,51 @@ Template.verify.events({
 
     },
 
-    'submit .getZone'(event, template) {
+    'click #read'(event, template) {
 
         event.preventDefault();
 
-        template.version.set("TBD");
+        //todo: what if zone not found or there is an error?
 
-        var zad = event.target.zad.value;
+        const zad = $(template.find('input[name=zad]')).val();
 
-        template.Zone = template.ZoneFactory.at(zad);
+        console.log("reading Zone..." + zad);
 
-        // todo: what if we don't get the zone dummy!
+        template.Zone.set(template.ZoneFactory.at(zad));
 
-        var isactive = template.Zone.isActive() ? "Yes" : "No";
-        template.isactive.set(isactive);
+        console.log("zone attributes: " + template.active + " , " + template.description );
 
-        var details = template.Zone.whatIsActive() || "No content yet";
+        //reset any reactive vars for the previous Zone
 
-        template.details.set(details);
-
+        let v;
+        template.member.set(v);
+        template.acknowledger.set(v);
+        template.zid.set(v);
 
     },
 
-    'submit .memberCheck'(event, template) {
+    'click #checkMember'(event, template) {
 
         event.preventDefault();
 
         // todo: decided to just ignore if there is no zone already established
 
-        if (template.Zone) {
+        let zone = template.Zone.get();
 
-            var memberZid = event.target.member_zid.value;
+        if (zone) {
+
+            let memberZid = $(template.find('input[name=member_zid]')).val();
 
             console.log("member_zid: " + memberZid);
 
-            var member = template.Zone.isMember(memberZid) ? "Yes" : "No";
+            let member = zone.isMember(memberZid);
 
             template.member.set(member);
 
-            var acknowledger = template.Zone.isAcknowledger(memberZid) ? "Yes" : "No";
+            let acknowledger = zone.isAcknowledger(memberZid);
 
             template.acknowledger.set(acknowledger);
+
         } else {
             sAlert.info("Provide a Zone first",
                 {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'No Zone'});
@@ -195,14 +190,17 @@ Template.verify.events({
 
     },
 
-    'submit .confirmZone'(event, template) {
+    'click #confirm'(event, template) {
 
         event.preventDefault();
 
         // todo: ignore when no Zone instantiated
-        if (template.Zone) {
 
-            template.Zone.confirm(ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]), function (error, tranHash) {
+        let zone = template.Zone.get();
+
+        if (zone) {
+
+            zone.confirm(ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]), function (error, tranHash) {
                 if (error) {
                     sAlert.error('Report error: ' + error,
                         {

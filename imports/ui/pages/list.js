@@ -2,7 +2,10 @@
  * Created by pjworrall on 03/05/2016.
  */
 import {Template} from 'meteor/templating';
-import {ReactiveVar} from 'meteor/reactive-var';
+
+import  { ZonafideWeb3 } from '/imports/startup/client/web3.js';
+import  { ZonafideEnvironment } from '/imports/startup/client/ethereum.js';
+import  { ZidStore, ZidUserLocalData, ZoneState } from '/imports/startup/client/globals.js';
 
 import './list.html';
 

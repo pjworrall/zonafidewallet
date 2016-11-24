@@ -4,6 +4,8 @@
 
 import './lock.html';
 
+import  { ZidStore } from '/imports/startup/client/globals.js';
+
 Template.lock.events({
 
 

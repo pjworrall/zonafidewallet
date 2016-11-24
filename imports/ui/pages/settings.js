@@ -8,6 +8,12 @@ import lightwallet from 'eth-lightwallet';
 
 import Transaction from 'ethereumjs-tx';
 
+import  { ZonafideWeb3 } from '/imports/startup/client/web3.js';
+import  { ZoneQRScanner } from '/imports/startup/client/qrscanner.js';
+import  { ZonafideEnvironment } from '/imports/startup/client/ethereum.js';
+import  { ZoneTransactionReceipt } from '/imports/startup/client/receipt.js';
+import  { ZonafideDappData, ZidStore, NumberWithCommas } from '/imports/startup/client/globals.js';
+
 import './settings.html';
 
 Template.settings.onRendered(function () {

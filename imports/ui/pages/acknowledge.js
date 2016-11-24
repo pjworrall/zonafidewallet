@@ -4,10 +4,15 @@
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 
-import '../../api/html5-qrcode/html5-qrcode.min.js';
-import '../../api/html5-qrcode/jsqrcode-combined.min.js';
+import '/imports/api/html5-qrcode/html5-qrcode.min.js';
+import '/imports/api/html5-qrcode/jsqrcode-combined.min.js';
 
 import './acknowledge.html';
+
+import  { ZonafideWeb3 } from '/imports/startup/client/web3.js';
+import  { ZoneQRScanner } from '/imports/startup/client/qrscanner.js';
+import  { ZonafideEnvironment } from '/imports/startup/client/ethereum.js';
+import  { ZoneTransactionReceipt } from '/imports/startup/client/receipt.js';
 
 Template.acknowledge.onCreated(function () {
 

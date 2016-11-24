@@ -8,28 +8,32 @@
                        type="text"
                        name="familyName"
                        size="60"
-                       placeholder="{{#unless address.familyName}}Family name...{{else}} {{address.familyName}} {{/unless}}"/>
+                       placeholder="{{#unless
+                               address.familyName}}Family name...{{else}} {{address.familyName}} {{/unless}}"/>
 
                 <label for="firstName">First names:</label>
                 <input class="form-control"
                        type="text"
                        name="firstName"
                        size="60"
-                       placeholder="{{#unless address.firstName}}First names...{{else}} {{address.firstName}} {{/unless}}"/>
+                       placeholder="{{#unless
+                               address.firstName}}First names...{{else}} {{address.firstName}} {{/unless}}"/>
 
                 <label for="houseId">House name or number:</label>
                 <input class="form-control"
                        type="text"
                        name="houseId"
                        size="40"
-                       placeholder="{{#unless address.houseId}}Number or name...{{else}} {{address.houseId}} {{/unless}}"/>
+                       placeholder="{{#unless
+                               address.houseId}}Number or name...{{else}} {{address.houseId}} {{/unless}}"/>
 
                 <label for="streetAddress">First line of address:</label>
                 <input class="form-control"
                        type="text"
                        name="streetAddress"
                        size="80"
-                       placeholder="{{#unless address.streetAddress}}Street address...{{else}} {{address.streetAddress}} {{/unless}}"/>
+                       placeholder="{{#unless
+                               address.streetAddress}}Street address...{{else}} {{address.streetAddress}} {{/unless}}"/>
 
                 <label for="postCode">Post or Zip code:</label>
                 <input class="form-control"
@@ -41,17 +45,23 @@
         </div>
 
         <div class="row">
-            <div class="col-xs-6 text-center">
-                <br>
-                <button id="save"><i class="fa fa-floppy-o fa-4x" aria-hidden="true"></i></button>
-                <br>
-            </div>
-            <div class="col-xs-6 text-center">
-                <br>
 
-                <button id="remove"><i class="fa fa-trash-o fa-4x" aria-hidden="true"></i></button>
-                <br>
+            <div class="col-xs-12 text-center">
+
+                <button type="button" class="btn btn-default">
+                    <a id="save" href="#">
+                        <i class="fa fa-floppy-o" aria-hidden="true"></i>
+                    </a>
+                </button>
+
+                <button type="button" class="btn btn-default">
+                    <a id="remove" href="#">
+                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                    </a>
+                </button>
+
             </div>
+
         </div>
 
     </form>

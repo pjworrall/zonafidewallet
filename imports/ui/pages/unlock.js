@@ -6,7 +6,7 @@ import { Template } from 'meteor/templating';
 import { Session } from 'meteor/session';
 
 // todo : not sure this is needed
-import '../../startup/client/globals.js';
+import  { ZidStore } from '/imports/startup/client/globals.js';
 
 import './unlock.html';
 

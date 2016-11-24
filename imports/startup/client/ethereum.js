@@ -4,7 +4,7 @@
  * Contract version: v7
  */
 
-ZonafideEnvironment = function () {
+let ZonafideEnvironment = function () {
 
     return {
         caller: function (_from) {
@@ -145,3 +145,5 @@ ZonafideEnvironment = function () {
     }
 
 }();
+
+export { ZonafideEnvironment };

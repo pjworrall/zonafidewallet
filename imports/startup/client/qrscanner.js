@@ -8,7 +8,7 @@
  *
  **/
 
-ZoneQRScanner = (function () {
+let ZoneQRScanner = (function () {
 
     return {
 
@@ -55,3 +55,5 @@ ZoneQRScanner = (function () {
         }
     }
 })();
+
+export { ZoneQRScanner } ;

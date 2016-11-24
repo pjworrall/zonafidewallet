@@ -11,8 +11,8 @@ Session.set('lock', true);
 Session.set('zid', false);
 
 
-// a function to share the ether-lightwallet across the app
-ZidStore = {
+// a function to share the ether-lightwallet across the appl
+let ZidStore = {
 
     set: function (keystore) {
         this.keystore = keystore;
@@ -24,16 +24,16 @@ ZidStore = {
 };
 
 // the client side collections to store the state
-ZidUserLocalData = new Mongo.Collection('ZidUserLocalData', {connection: null});
+let ZidUserLocalData = new Mongo.Collection('ZidUserLocalData', {connection: null});
 
-ZidUserLocalPersonalData = new Mongo.Collection('ZidUserLocalPersonalData', {connection: null});
+let ZidUserLocalPersonalData = new Mongo.Collection('ZidUserLocalPersonalData', {connection: null});
 
-ZonafideDappData = new Mongo.Collection('ZonafideDappData', {connection: null});
+let ZonafideDappData = new Mongo.Collection('ZonafideDappData', {connection: null});
 
 // jeffm:local-persist used to persist the collection to browser store
 
 // todo: need to revisit these parameters
-ZidUserLocalDataObserver = new LocalPersist(ZidUserLocalData, 'ZidUserLocalDataObserver',
+let ZidUserLocalDataObserver = new LocalPersist(ZidUserLocalData, 'ZidUserLocalDataObserver',
     {                                     // options are optional!
         maxDocuments: 5,                   // maximum number of line items in cart
         storageFull: function (col, doc) {  // function to handle maximum being exceeded
@@ -42,7 +42,7 @@ ZidUserLocalDataObserver = new LocalPersist(ZidUserLocalData, 'ZidUserLocalDataO
         }
     });
 
-ZidUserLocalPersonalDataObserver = new LocalPersist(ZidUserLocalPersonalData, 'ZidUserLocalPersonalDataObserver',
+let ZidUserLocalPersonalDataObserver = new LocalPersist(ZidUserLocalPersonalData, 'ZidUserLocalPersonalDataObserver',
     {                                     // options are optional!
         maxDocuments: 1,                  // max number of docs to store
         storageFull: function (col, doc) {  // function to handle maximum being exceeded
@@ -51,7 +51,7 @@ ZidUserLocalPersonalDataObserver = new LocalPersist(ZidUserLocalPersonalData, 'Z
         }
     });
 
-ZonafideDappDataObserver = new LocalPersist(ZonafideDappData, 'ZonafideDappDataObserver',
+let ZonafideDappDataObserver = new LocalPersist(ZonafideDappData, 'ZonafideDappDataObserver',
     {                                     // options are optional!
         maxDocuments: 1,                  // max number of docs to store
         storageFull: function (col, doc) {  // function to handle maximum being exceeded
@@ -61,7 +61,7 @@ ZonafideDappDataObserver = new LocalPersist(ZonafideDappData, 'ZonafideDappDataO
     });
 
 // this needs to be abstracted into a locale admin
-ZoneStateAction = {
+let ZoneStateAction = {
     0: "Add members..",
     1: "Wait on acknowledgements..",
     2: "Proceed to action..",
@@ -71,7 +71,7 @@ ZoneStateAction = {
     6: "Unknown state..just abandon."
 };
 
-ZoneStateSymbol = {
+let ZoneStateSymbol = {
     0: "fa fa-plus-circle",
     1: "fa fa-circle-o-notch",
     2: "fa fa-circle-o",
@@ -82,7 +82,7 @@ ZoneStateSymbol = {
 };
 
 
-ZoneState = {
+let ZoneState = {
     NEW: 0,
     MEMBERS: 1,
     ACKNOWLEDGED: 2,
@@ -94,7 +94,7 @@ ZoneState = {
 
 // TODO: NOTE: !! current not used for QR Code rendering but here for reference
 
-QRCodeOptions = {
+let QRCodeOptions = {
     // render method: 'canvas', 'image' or 'div'
     render: 'div',
 
@@ -147,11 +147,22 @@ QRCodeOptions = {
 };
 
 // http://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
-NumberWithCommas = function () {
+let NumberWithCommas = function () {
     return {
         convert: function numberWithCommas(x) {
-                        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                }
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
     }
 }();
 
+
+export {
+    ZidStore,
+    ZidUserLocalData,
+    ZidUserLocalPersonalData,
+    ZonafideDappData,
+    ZoneStateAction,
+    NumberWithCommas,
+    ZoneStateSymbol,
+    ZoneState
+};

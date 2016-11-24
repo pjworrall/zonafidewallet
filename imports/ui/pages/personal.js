@@ -3,10 +3,10 @@
  */
 
 import { Template } from 'meteor/templating';
-//import { ReactiveVar } from 'meteor/reactive-var';
-
 
 import './personal.html';
+
+import  { ZidUserLocalPersonalData } from '/imports/startup/client/globals.js';
 
 Template.personal.onCreated(function () {
     // this should restore from the local store any current details
@@ -21,16 +21,24 @@ Template.personal.helpers({
 
 Template.personal.events({
 
-    'submit .form'(event) {
+    'click #save'(event,template) {
         // Prevent default browser form submit
         event.preventDefault();
 
+        console.log("saving personal details");
+
+        const firstName = $(template.find('input[name=firstName]')).val();
+        const familyName = $(template.find('input[name=familyName]')).val();
+        const houseId = $(template.find('input[name=houseId]')).val();
+        const streetAddress = $(template.find('input[name=streetAddress]')).val();
+        const postCode = $(template.find('input[name=postCode]')).val();
+
         const details = {
-            firstName: event.target.firstName.value,
-            familyName: event.target.familyName.value,
-            houseId: event.target.houseId.value,
-            streetAddress: event.target.streetAddress.value,
-            postCode: event.target.postCode.value
+            firstName: firstName,
+            familyName: familyName,
+            houseId: houseId,
+            streetAddress: streetAddress,
+            postCode: postCode
         };
 
         // todo: maybe needs a try catch
@@ -38,9 +46,11 @@ Template.personal.events({
 
     },
 
-    'click .form #remove'(event, template) {
+    'click #remove'(event, template) {
         // Prevent default browser form submit
         event.preventDefault();
+
+        console.log("removing personal details");
 
         // removing everything for now as there should only be one
         ZidUserLocalPersonalData.remove({});

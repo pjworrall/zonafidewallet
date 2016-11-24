@@ -7,6 +7,13 @@ import { ReactiveVar } from 'meteor/reactive-var';
 import '../../api/html5-qrcode/html5-qrcode.min.js';
 import '../../api/html5-qrcode/jsqrcode-combined.min.js';
 
+import  { ZonafideWeb3 } from '/imports/startup/client/web3.js';
+import  { ZoneQRScanner } from '/imports/startup/client/qrscanner.js';
+import  { ZonafideEnvironment } from '/imports/startup/client/ethereum.js';
+import  { ZoneTransactionReceipt } from '/imports/startup/client/receipt.js';
+import  { ZidStore, ZidUserLocalData, ZidUserLocalPersonalData, ZoneState } from '/imports/startup/client/globals.js';
+
+
 import './action.html';
 
 Template.action.onRendered(function () {
