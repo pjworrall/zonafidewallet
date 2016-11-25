@@ -8,24 +8,25 @@ import './zone.html';
 
 import  { ZonafideWeb3 } from '/imports/startup/client/web3.js';
 import  { ZonafideEnvironment } from '/imports/startup/client/ethereum.js';
-import  { ZidStore, ZidUserLocalData, ZoneStateAction, ZoneState , ZoneStateSymbol } from '/imports/startup/client/globals.js';
+import  { ZidStore, ZidUserLocalData, ZoneStateAction, ZoneState , ZoneStateSymbol, ZoneStateColor } from '/imports/startup/client/globals.js';
 
 Template.zone.onCreated(function () {
     // todo: what do we do if this call does not work ? Should be using exceptions
-    this.Zone = ZonafideWeb3.getFactory();
+    this.ZoneFactory = ZonafideWeb3.getFactory();
+    this.ZoneRecord = ZidUserLocalData.findOne(this.data._id); //Template.instance().data._id)
+
 });
 
 Template.zone.helpers({
     action() {
-        var zone = ZidUserLocalData.findOne(
-            Template.instance().data._id);
-        return ZoneStateAction[zone.state];
+        return ZoneStateAction[Template.instance().ZoneRecord.state];
     },
 
     symbol() {
-        var zone = ZidUserLocalData.findOne(
-            Template.instance().data._id);
-        return ZoneStateSymbol[zone.state];
+        return ZoneStateSymbol[Template.instance().ZoneRecord.state];
+    },
+    color() {
+        return ZoneStateColor[Template.instance().ZoneRecord.state];
     }
 });
 
@@ -39,9 +40,7 @@ Template.zone.events({
         const record = ZidUserLocalData.findOne(id);
         const zad = record.address;
 
-        var Zone = template.Zone;
-
-        var zone = Zone.at(zad);
+        let zone = template.ZoneFactory.at(zad);
 
         /*
 
@@ -51,8 +50,8 @@ Template.zone.events({
 
          */
 
-        var quorum = zone.isQuorum(ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]));
-        var confirmed = zone.isConfirmed(ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]));
+        let quorum = zone.isQuorum(ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]));
+        let confirmed = zone.isConfirmed(ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]));
 
         if (confirmed) {
             ZidUserLocalData.update({_id: id}, {$set: {state: ZoneState.CONFIRMED}});

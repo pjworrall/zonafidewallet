@@ -119,7 +119,7 @@ Template.action.events({
 
         console.log("includePersonalDetails: " + includePersonalDetails);
 
-        if (includePersonalDetails) {
+        if (includePersonalDetails === 'on') {
 
             var pd = ZidUserLocalPersonalData.findOne();
 

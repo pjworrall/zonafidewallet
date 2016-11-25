@@ -111,7 +111,7 @@ Template.identities.events({
         });
 
     },
-    'click #id'(event) {
+    'click #share'(event) {
 
         // Prevent default browser form submit
         event.preventDefault();

@@ -4,6 +4,7 @@
 
 import { Template } from 'meteor/templating';
 //import { QRCode } from 'meteor/steeve:jquery-qrcode';
+import  { ZidUserLocalData } from '/imports/startup/client/globals.js';
 
 import './code.html';
 

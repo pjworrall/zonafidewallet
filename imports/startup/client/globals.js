@@ -62,7 +62,7 @@ let ZonafideDappDataObserver = new LocalPersist(ZonafideDappData, 'ZonafideDappD
 
 // this needs to be abstracted into a locale admin
 let ZoneStateAction = {
-    0: "Add the people you want to Acknowledge that this Activity is genuine.",
+    0: "Add people that you want to Acknowledge that this Activity is genuine.",
     1: "Share the Activity with those you want to Acknowledge it.",
     2: "Declare the party that the Activity will be with and provide brief details.",
     3: "Share the Activity with the other party and use it to prove it and you are genuine.",
@@ -73,12 +73,22 @@ let ZoneStateAction = {
 
 let ZoneStateSymbol = {
     0: "fa fa-plus-circle",
-    1: "fa fa-circle-o-notch",
-    2: "fa fa-circle-o",
+    1: "fa fa-circle-o",
+    2: "fa fa-dot-circle-o",
     3: "fa fa-check-circle-o",
     4: "fa fa-check-circle",
     5: "fa fa-pause-circle",
     6: "fa fa-question-circle"
+};
+
+let ZoneStateColor = {
+    0: "#FFCE00",
+    1: "#007849",
+    2: "#0375B4",
+    3: "#FC4A1A",
+    4: "#262228",
+    5: "#4f4f4f",
+    6: "#94618E"
 };
 
 
@@ -164,5 +174,6 @@ export {
     ZoneStateAction,
     NumberWithCommas,
     ZoneStateSymbol,
+    ZoneStateColor,
     ZoneState
 };
