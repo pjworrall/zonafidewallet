@@ -41,7 +41,13 @@ Template.identities.onRendered( function() {
 Template.identities.helpers({
 
     zid() {
-        return '0x' + Session.get('zid');
+
+        if(!Session.get('zid')) {
+            return Session.get('zid');
+        } else {
+            return '0x' + Session.get('zid');
+        }
+
     },
 
     seeded() {
