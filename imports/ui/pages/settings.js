@@ -16,9 +16,6 @@ import  { ZonafideDappData, ZidStore, NumberWithCommas } from '/imports/startup/
 
 import './settings.html';
 
-Template.settings.onRendered(function () {
-    $('.tooltipped').tooltip();
-});
 
 Template.settings.onCreated(function () {
 
@@ -39,7 +36,7 @@ Template.settings.helpers({
 
     server() {
 
-        var settings = ZonafideDappData.findOne({document: "settings"});
+        let settings = ZonafideDappData.findOne({document: "settings"});
 
         if (settings && settings.server) {
             return settings.server;
@@ -117,11 +114,16 @@ Template.settings.events({
 
     },
 
-    'submit .setNode'(event) {
+    'click .js-node'(event,template) {
+
         // Prevent default browser form submit
         event.preventDefault();
 
-        const server = event.target.server.value;
+        console.log("click .js-node");
+
+        const server = template.$('input[name=server]').val();
+
+        console.log("server: %s", server);
 
         // todo: should check "server" is a valid url
 
@@ -138,15 +140,18 @@ Template.settings.events({
 
     },
 
-    'click #getBalance'(event) {
+    'click .js-balance'(event) {
 
         event.preventDefault();
+        event.stopPropagation();
+
+        console.log("click .js-balance");
 
         try {
 
-            var balance = ZonafideWeb3.getBalance();
+            let balance = ZonafideWeb3.getBalance();
 
-            var round = Math.round(balance).toString();
+            let round = Math.round(balance).toString();
 
             Template.instance().balance.set(NumberWithCommas.convert(round));
 
@@ -156,24 +161,34 @@ Template.settings.events({
         }
     },
 
-    'click #getSeed'() {
+    'click .js-seed'(event) {
 
-        var password = prompt('Enter password to show your Key Passphrase. Do not let anyone else see the Passphrase.', 'Password');
+        event.preventDefault();
+        event.stopPropagation();
+
+        console.log("click .js-seed");
+
+        let password = prompt('Enter password to show your Key Passphrase. Do not let anyone else see the Passphrase.', 'Password');
 
         lightwallet.keystore.deriveKeyFromPassword(password, function (err, pwDerivedKey) {
             alert('Your Key Passphrase is: "' + ZidStore.get().getSeed(pwDerivedKey) + '". Please write it down.')
         })
     },
 
-    'submit .transferEth'(event) {
+    //todo: tha above handlers were all changed to work on iOS. Did not change the form but might find it has the same problems
+    //todo: fix when addressing the currency units and stuff here
+
+    'submit .transfer #do'(event) {
 
         event.preventDefault();
 
-        var password = prompt('Provide a Session Password', 'Password');
+        console.log("submit .transfer");
+
+        let password = prompt('Provide a Session Password', 'Password');
 
         // todo: should check this is a valid address
-        var recipient = event.target.recipient.value;
-        var amount = event.target.amount.value;
+        let recipient = event.target.recipient.value;
+        let amount = event.target.amount.value;
 
         lightwallet.keystore.deriveKeyFromPassword(password, function (err, pwDerivedKey) {
 
@@ -183,17 +198,17 @@ Template.settings.events({
 
                 // todo: problem - hooked web3 provider nonce conflict arises here. hw3p keeps track of nonce values as well.
 
-                var w3 = ZonafideWeb3.getInstance();
+                let w3 = ZonafideWeb3.getInstance();
 
-                var address = ZidStore.get().getAddresses()[0];
+                let address = ZidStore.get().getAddresses()[0];
 
-                var count = w3.eth.getTransactionCount(address);
+                let count = w3.eth.getTransactionCount(address);
 
                 // todo: general strategy needed for hex prefix's, but add it deliberately here
                 amount =  '0x' + amount;
 
                 // todo: got to get a solution for managing the gas properties across the app
-                var txData = {
+                let txData = {
                     "nonce": count,
                     "gasLimit" : "0x2fefd8",
                     "gasPrice" : "0xba43b7400",
@@ -201,11 +216,11 @@ Template.settings.events({
                     "value": amount,
                 };
 
-                var tx = new Transaction(txData);
+                let tx = new Transaction(txData);
 
-                var rawTx = tx.serialize().toString('hex');
+                let rawTx = tx.serialize().toString('hex');
 
-                var signedTx = lightwallet.signing.signTx(ZidStore.get(),
+                let signedTx = lightwallet.signing.signTx(ZidStore.get(),
                     pwDerivedKey,
                     rawTx,
                     address
