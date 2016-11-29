@@ -36,12 +36,12 @@ Template.acknowledge.helpers({
 Template.acknowledge.events({
 
     // todo: this can be refactored out in some way. Duplicate in acknowledge.js .
-    'click #qrscanner'(event, template) {
+    'click .js-qrscanner'(event, template) {
 
         // Prevent default browser form submit
         event.preventDefault();
 
-        console.log('qrscanner.events: called');
+        console.log('click .js-qrscanner');
 
         ZoneQRScanner.scan( function (error, result) {
 
@@ -59,19 +59,19 @@ Template.acknowledge.events({
 
     },
 
-    'click #do'(event, template) {
+    'click .js-acknowledge'(event, template) {
         // Prevent default browser form submit
         event.preventDefault();
 
-        console.log('acknowledge.events: called');
+        console.log('click .js-acknowledge');
 
         const zad = $(template.find('input[name=zad]')).val();
 
         // todo: should test ZAD for validity and reject if not valid!!!
 
-        var Zone = template.Zone;
+        let Zone = template.Zone;
 
-        var zone = Zone.at(zad);
+        let zone = Zone.at(zad);
 
         zone.setAcknowledgement(
             ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]),
