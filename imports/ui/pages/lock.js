@@ -9,7 +9,7 @@ import  { ZidStore } from '/imports/startup/client/globals.js';
 Template.lock.events({
 
 
-    'click #lock'(event) {
+    'click .js-lock'(event) {
 
         // Prevent default browser form submit
         event.preventDefault();

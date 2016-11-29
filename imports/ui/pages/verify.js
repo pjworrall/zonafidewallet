@@ -50,7 +50,7 @@ Template.verify.helpers({
 Template.verify.events({
 
     // todo: this can be refactored out in some way. Duplicate in acknowledge.js .
-    'click #ZadQrScanner'(event, template) {
+    'click .js-ZadQrScanner'(event, template) {
 
         // Prevent default browser form submit
         event.preventDefault();
@@ -74,7 +74,7 @@ Template.verify.events({
     },
 
     // todo: this can be refactored out in some way. Duplicate in acknowledge.js .
-    'click #ZidQrScanner'(event, template) {
+    'click .js-ZidQrScanner'(event, template) {
 
         // Prevent default browser form submit
         event.preventDefault();
@@ -101,7 +101,7 @@ Template.verify.events({
 
     },
     // todo: this can be refactored out in some way. Duplication!!
-    'click #contactdb'(event, template) {
+    'click .js-contactdb'(event, template) {
 
         // Prevent default browser form submit
         event.preventDefault();
@@ -138,7 +138,7 @@ Template.verify.events({
 
     },
 
-    'click #read'(event, template) {
+    'click .js-read'(event, template) {
 
         event.preventDefault();
 
@@ -161,7 +161,7 @@ Template.verify.events({
 
     },
 
-    'click #checkMember'(event, template) {
+    'click .js-checkMember'(event, template) {
 
         event.preventDefault();
 
@@ -190,7 +190,7 @@ Template.verify.events({
 
     },
 
-    'click #confirm'(event, template) {
+    'click .js-confirm'(event, template) {
 
         event.preventDefault();
 

@@ -2,7 +2,14 @@
     <form class="form">
         <div class="row">
             <div class="col-xs-12 text-left">
-                <h4>Personal Data</h4>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Personal Information</h3>
+                    </div>
+                    <div class="panel-body">
+                        Your address is commonly required. If you record it here you can save time when you action your Activities.
+                    </div>
+                </div>
                 <label for="familyName">Family name:</label>
                 <input class="form-control"
                        type="text"
@@ -47,19 +54,13 @@
         <div class="row">
 
             <div class="col-xs-12 text-center">
-
-                <button type="button" class="btn btn-default">
-                    <a id="save" href="#">
+                <button type="button" class="js-save btn btn-default">
                         <i class="fa fa-floppy-o" aria-hidden="true"></i>
-                    </a>
                 </button>
 
-                <button type="button" class="btn btn-default">
-                    <a id="remove" href="#">
+                <button type="button" class="js-remove btn btn-default">
                         <i class="fa fa-trash-o" aria-hidden="true"></i>
-                    </a>
                 </button>
-
             </div>
 
         </div>

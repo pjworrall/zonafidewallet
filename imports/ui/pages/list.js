@@ -30,26 +30,24 @@ Template.list.helpers({
 
 Template.list.events({
 
-    'click .create a'(event, template) {
+    'click .js-create'(event, template) {
         // Prevent default browser form submit
         event.preventDefault();
 
-        console.log('list.events: performing create event');
+        console.log('click .js-create');
 
         // if there are already five Zones let the user no that is the current limit
 
-        var count = ZidUserLocalData.find({
+        let count = ZidUserLocalData.find({
                 zid: ZidStore.get().getAddresses()[0]
             }).count();
 
         if (count >= 5) {
             sAlert.info('Currently only five records of Zones can be remembered',
                 {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Zone Record Limit'});
-            return;
-
         } else {
 
-            var name = $(template.find('input[name=name]')).val();
+            let name = template.$('input[name=name]').val();
 
             if (name === null || name.match(/^ *$/) !== null) {
 
@@ -60,8 +58,6 @@ Template.list.events({
             } else {
                 // get rid of any unnecessary spaces
                 name = name.trim();
-                // reset the form
-                $(template.find('input[name=name]')).val("");
             }
 
             var Zone = template.Zone;

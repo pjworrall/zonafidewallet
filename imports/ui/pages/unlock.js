@@ -27,16 +27,18 @@ Template.unlock.helpers({
 
 Template.unlock.events({
 
-    // this unlocks a previously created KeyStore
-
-    'click #unlock'(event,template) {
+    'click .js-unlock'(event,template) {
         // Prevent default browser form submit
         event.preventDefault();
 
-        // Get value from form element
-        const seed = $(template.find('input[name=passphrase]')).val();
+        console.log("click .js-unlock");
 
-        var password = prompt('Provide a Session Password', 'Password');
+        // Get value from form element
+        const seed = template.$('textarea').val();
+
+        console.log(passphrase);
+
+        let password = prompt('Provide a Session Password', 'Password');
 
         lightwallet.keystore.deriveKeyFromPassword(password, function (err, pwDerivedKey) {
 
@@ -45,7 +47,7 @@ Template.unlock.events({
             } else {
 
                 try {
-                    var Keystore = new lightwallet.keystore(
+                    let Keystore = new lightwallet.keystore(
                         seed,
                         pwDerivedKey);
 

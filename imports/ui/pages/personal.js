@@ -21,17 +21,17 @@ Template.personal.helpers({
 
 Template.personal.events({
 
-    'click #save'(event,template) {
+    'click .js-save'(event,template) {
         // Prevent default browser form submit
         event.preventDefault();
 
         console.log("saving personal details");
 
-        const firstName = $(template.find('input[name=firstName]')).val();
-        const familyName = $(template.find('input[name=familyName]')).val();
-        const houseId = $(template.find('input[name=houseId]')).val();
-        const streetAddress = $(template.find('input[name=streetAddress]')).val();
-        const postCode = $(template.find('input[name=postCode]')).val();
+        const firstName = template.$('input[name=firstName]').val();
+        const familyName = template.$('input[name=familyName]').val();
+        const houseId = template.$('input[name=houseId]').val();
+        const streetAddress = template.$('input[name=streetAddress]').val();
+        const postCode = template.$('input[name=postCode]').val();
 
         const details = {
             firstName: firstName,
@@ -46,7 +46,7 @@ Template.personal.events({
 
     },
 
-    'click #remove'(event, template) {
+    'click .js-remove'(event, template) {
         // Prevent default browser form submit
         event.preventDefault();
 

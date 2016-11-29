@@ -10,3 +10,12 @@ Template.home.onCreated(function () {
     console.log("running onCreated..");
 
 });
+
+Template.home.events({
+
+    'click .js-about'() {
+        Router.go("about");
+    }
+
+});
+

@@ -27,14 +27,14 @@ Template.members.onCreated(function () {
 Template.members.helpers({
     address() {
 
-        var zone = ZidUserLocalData.findOne(
+        let zone = ZidUserLocalData.findOne(
             Template.instance().data._id);
 
         return zone.address;
     },
     name() {
 
-        var zone = ZidUserLocalData.findOne(
+        let zone = ZidUserLocalData.findOne(
             Template.instance().data._id);
 
         return zone.name;
@@ -46,12 +46,12 @@ Template.members.helpers({
 
 Template.members.events({
 
-    'click #qrscanner'(event, template) {
+    'click .js-qrscanner'(event, template) {
 
         // Prevent default browser form submit
         event.preventDefault();
 
-        console.log('qrscanner.events: called');
+        console.log('click .js-qrscanner');
 
         ZoneQRScanner.scan(function (error, result) {
 
@@ -70,7 +70,7 @@ Template.members.events({
     },
 
     // todo: this can be refactored out in some way. Duplicate in acknowledge.js .
-    'click #contactdb'(event, template) {
+    'click .js-contactdb'(event, template) {
 
         // Prevent default browser form submit
         event.preventDefault();
@@ -107,24 +107,21 @@ Template.members.events({
 
     },
 
-    'click #do'(event, template) {
+    'click .js-acknowledgers'(event, template) {
         // Prevent default browser form submit
         event.preventDefault();
 
-        const zad = $(template.find('input[name=zad]')).val();
-        const zid = $(template.find('input[name=zid]')).val();
+        const zad = template.$('input[name=zad]').val();
+        const zid = template.$('input[name=zid]').val();
 
         if (zid === null || zid.match(/^ *$/) !== null) {
-
             sAlert.info("No member address provided",
                 {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Address required'});
-            return;
-
         } else {
 
-            var Zone = template.Zone;
+            let Zone = template.Zone;
 
-            var zone = Zone.at(zad);
+            let zone = Zone.at(zad);
 
             // todo: quorum set hard at 1 for now
             const quorum = 1;

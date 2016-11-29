@@ -117,7 +117,7 @@ Template.identities.events({
         });
 
     },
-    'click #share'(event) {
+    'click .js-share'(event) {
 
         // Prevent default browser form submit
         event.preventDefault();

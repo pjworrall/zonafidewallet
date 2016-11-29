@@ -32,11 +32,12 @@ Template.zone.helpers({
 
 Template.zone.events({
 
-    'click .zone a'(event, template) {
+    'click .js-members'(event, template) {
         // Prevent default browser form submit
         event.preventDefault();
 
-        const id = $(template.find('input[name=zad]')).val();
+        // todo: confused to what is going on fron zad - id - record.address? clarify.
+        const id = template.$('input[name=zad]').val();
         const record = ZidUserLocalData.findOne(id);
         const zad = record.address;
 
@@ -79,11 +80,11 @@ Template.zone.events({
 
     },
 
-    'click #qrcode'(event, template) {
+    'click .js-qrcode'(event, template) {
 
        event.preventDefault();
 
-        const id = $(template.find('input[name=zad]')).val();
+        const id = template.$('input[name=zad]').val();
         const record = ZidUserLocalData.findOne(id);
 
         console.log( "address: " + record.address + ", name: " + record.name );

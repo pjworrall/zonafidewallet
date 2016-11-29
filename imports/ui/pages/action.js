@@ -37,12 +37,12 @@ Template.action.helpers({
 
 Template.action.events({
 
-    'click #qrscanner'(event, template) {
+    'click .js-qrscanner'(event, template) {
 
         // Prevent default browser form submit
         event.preventDefault();
 
-        console.log('qrscanner.events: called');
+        console.log('click .qrscanner');
 
         ZoneQRScanner.scan( function (error, result) {
 
@@ -52,13 +52,13 @@ Template.action.events({
                 } else {
                     if(!result.cancelled) {
                         // todo: cancelled does not exist on browser scanner so how do we handle that?
-                        $(template.find('input[name=zid]')).val(result.text);
+                        template.$('input[name=zid]').val(result.text);
                     }
                 }
             }, $('#reader')
         );
     }, // todo: this can be refactored out in some way. Duplication!!
-    'click #contactdb'(event, template) {
+    'click .js-contactdb'(event, template) {
 
         // Prevent default browser form submit
         event.preventDefault();
@@ -70,8 +70,8 @@ Template.action.events({
             if(contact.ims && contact.ims.length) {
                 contact.ims.some( function(address) {
                     if(address.value.startsWith("ZID:")) {
-                        var zid = address.value.split(":");
-                        $(template.find('input[name=zid]')).val(zid[1]);
+                        let zid = address.value.split(":");
+                        template.$('input[name=zid]').val(zid[1]);
                         return true;
                     }
                 });
@@ -95,33 +95,33 @@ Template.action.events({
 
     },
 
-    'click #do'(event, template) {
+    'click .js-action'(event, template) {
         // Prevent default browser form submit
         event.preventDefault();
 
-        console.log('click #do: actioning Zone');
+        console.log('click .js-action');
 
         let zoneRecord = ZidUserLocalData.findOne(
             template.data._id);
 
         const zad = zoneRecord.address;
-        const zid = $(template.find('input[name=zid]')).val()
+        const zid =  template.$('input[name=zid]').val();
 
         /*
          todo: this has to be encrypted with the counter party ZID
          */
         let description = {
-            action: $(template.find('input[name=action]')).val(),
-            reference: $(template.find('input[name=reference]')).val()
+            action: template.$('input[name=action]').val(),
+            reference: template.$('input[name=reference]').val()
         };
 
-        const includePersonalDetails = $(template.find('input[name=details]')).val();
+        const includePersonalDetails = template.$('input[name=details]').val();
 
         console.log("includePersonalDetails: " + includePersonalDetails);
 
         if (includePersonalDetails === 'on') {
 
-            var pd = ZidUserLocalPersonalData.findOne();
+            let pd = ZidUserLocalPersonalData.findOne();
 
             // todo: this should only run if pd is not null or undefined
             if (pd) {
