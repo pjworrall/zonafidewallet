@@ -54,12 +54,12 @@ Template.settings.helpers({
 Template.settings.events({
 
     // todo: please let this be the last time I cut and paste this before refactoring!!!
-    'click #qrscanner'(event, template) {
+    'click .js-qrscanner'(event, template) {
 
         // Prevent default browser form submit
         event.preventDefault();
 
-        console.log('qrscanner.events: called');
+        console.log('click .js-qrscanner');
 
         ZoneQRScanner.scan( function (error, result) {
 
@@ -77,10 +77,12 @@ Template.settings.events({
     },
 
     // todo: this can be refactored out in some way. Duplication!!
-    'click #contactdb'(event, template) {
+    'click .js-contactdb'(event, template) {
 
         // Prevent default browser form submit
         event.preventDefault();
+
+        console.log('click .js-contactdb');
 
         // todo: this call out eventually need to be cognisant of the quirks for the different platforms
 
@@ -178,17 +180,17 @@ Template.settings.events({
     //todo: tha above handlers were all changed to work on iOS. Did not change the form but might find it has the same problems
     //todo: fix when addressing the currency units and stuff here
 
-    'submit .transfer #do'(event) {
+    'click .js-transfer'(event, template) {
 
         event.preventDefault();
 
-        console.log("submit .transfer");
+        console.log("click .js-transfer");
 
         let password = prompt('Provide a Session Password', 'Password');
 
         // todo: should check this is a valid address
-        let recipient = event.target.recipient.value;
-        let amount = event.target.amount.value;
+        let recipient =  template.$('input[name=recipient]').val();
+        let amount = template.$('input[name=amount]').val();
 
         lightwallet.keystore.deriveKeyFromPassword(password, function (err, pwDerivedKey) {
 
