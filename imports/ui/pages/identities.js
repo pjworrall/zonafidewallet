@@ -31,7 +31,8 @@ Template.identities.onRendered( function() {
 
         $('#qrcode').qrcode({
             render: 'div',
-            size: 400
+            size: 400,
+            text: '0x' + Session.get('zid')
         });
 
     }

@@ -150,7 +150,7 @@ Template.verify.events({
 
         template.Zone.set(template.ZoneFactory.at(zad));
 
-        console.log("zone attributes: " + template.active + " , " + template.description );
+        console.log("zone attributes: " + template.Zone.get().isActive() + " , " + template.Zone.get().whatIsActive() );
 
         //reset any reactive vars for the previous Zone
 

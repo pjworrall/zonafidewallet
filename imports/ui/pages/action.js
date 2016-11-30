@@ -115,15 +115,15 @@ Template.action.events({
             reference: template.$('input[name=reference]').val()
         };
 
-        const includePersonalDetails = template.$('input[name=details]').val();
+        const includePersonalDetails = template.$('input[name=details]').is(':checked');
 
         console.log("includePersonalDetails: " + includePersonalDetails);
 
-        if (includePersonalDetails === 'on') {
+        if (includePersonalDetails) {
 
             let pd = ZidUserLocalPersonalData.findOne();
 
-            // todo: this should only run if pd is not null or undefined
+            // todo:  this should not run if pd is null or undefined
             if (pd) {
                 description = {
                     action: description.action,
