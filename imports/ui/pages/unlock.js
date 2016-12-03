@@ -27,6 +27,12 @@ Template.unlock.helpers({
 
 Template.unlock.events({
 
+
+    'click .js-about'(){
+        event.preventDefault();
+        Router.go("about");
+    },
+
     'click .js-unlock'(event,template) {
         // Prevent default browser form submit
         event.preventDefault();

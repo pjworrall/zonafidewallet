@@ -13,16 +13,16 @@ Router.configure({
         if( route === '/' || route === '/about' || route === '/identities') {
             this.next();
         } else if (!Session.get("unlocked")) {
-                this.render('unlock');
+                this.render('/');
         } else {
             this.next();
         }
     }
 });
 
-Router.route('/', {name: 'home'});
+Router.route('/', {name: 'unlock'});
 
-Router.route('/unlock', {name: 'unlock'});
+//Router.route('/unlock', {name: 'unlock'});
 
 Router.route('/lock', {name: 'lock'});
 
