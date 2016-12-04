@@ -28,7 +28,7 @@ Template.unlock.helpers({
 Template.unlock.events({
 
 
-    'click .js-about'(){
+    'click .js-about'(event){
         event.preventDefault();
         Router.go("about");
     },
