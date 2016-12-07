@@ -8,7 +8,7 @@ import { ReactiveVar } from 'meteor/reactive-var';
 import lightwallet from 'eth-lightwallet';
 
 // todo : not sure this is needed
-import '../../startup/client/globals.js';
+import  { ZidStore } from '/imports/startup/client/globals.js';
 
 import './identities.html';
 
@@ -78,13 +78,12 @@ Template.identities.events({
         Template.instance().seeded.set(true);
 
     },
-    'submit .store'(event) {
+    'click .js-create'(event,template) {
 
         // Prevent default browser form submit
         event.preventDefault();
 
-        const target = event.target;
-        const password = target.password.value;
+        const password = template.$('input[name=password]').val();
 
         let passphrase = Template.instance().passphrase.get();
 
@@ -92,7 +91,7 @@ Template.identities.events({
 
             if (!err) {
 
-                keyStore = new lightwallet.keystore(
+                let keyStore = new lightwallet.keystore(
                     passphrase,
                     pwDerivedKey);
 
