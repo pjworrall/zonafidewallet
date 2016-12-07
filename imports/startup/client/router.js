@@ -13,7 +13,7 @@ Router.configure({
         if( route === '/' || route === '/about' || route === '/identities') {
             this.next();
         } else if (!Session.get("unlocked")) {
-                this.render('/');
+                this.render('/unlock');
         } else {
             this.next();
         }

@@ -14,9 +14,14 @@ Template.lock.events({
         // Prevent default browser form submit
         event.preventDefault();
 
+        // Iron Router will notice these variable are not set and route accordingly
+        // No need to route here
+
         // todo: hate this is two steps but no time to find a better way
         ZidStore.set('undefined');
-        Session.set("unlocked",false);
+        // todo: should look into invalidating the whole Meteor session
+        Session.set('unlocked',false);
+        Session.set('zid',false);
 
 
     }
