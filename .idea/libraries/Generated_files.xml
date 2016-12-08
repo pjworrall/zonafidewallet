@@ -342,7 +342,6 @@
         <item url="file://$PROJECT_DIR$/node_modules/pkginfo/lib/pkginfo-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/pkginfo/examples/all-properties-compiled.js" />
         <item url="file://$PROJECT_DIR$/mobile-config-compiled.js" />
-        <item url="file://$PROJECT_DIR$/mobile-config-compiled.js" />
         <item url="file://$PROJECT_DIR$/imports/startup/client/ethereum-compiled.js" />
         <item url="file://$PROJECT_DIR$/imports/startup/client/receipt-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/stack-trace/lib/stack-trace-compiled.js" />
@@ -3874,7 +3873,6 @@
       <root url="file://$PROJECT_DIR$/node_modules/pkginfo/examples/array-argument-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/pkginfo/lib/pkginfo-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/pkginfo/examples/all-properties-compiled.js" />
-      <root url="file://$PROJECT_DIR$/mobile-config-compiled.js" />
       <root url="file://$PROJECT_DIR$/mobile-config-compiled.js" />
       <root url="file://$PROJECT_DIR$/imports/startup/client/ethereum-compiled.js" />
       <root url="file://$PROJECT_DIR$/imports/startup/client/receipt-compiled.js" />
