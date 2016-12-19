@@ -17,7 +17,7 @@ let ZonafideEnvironment = function () {
         },
         'Gas': 3000000,
         'GasPrice': 18000000010,
-        'Node': 'http://localhost:1166',
+        'Node': 'http://zonafide.net:3090',
         'abi': [{
             "constant": true,
             "inputs": [],
