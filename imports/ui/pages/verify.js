@@ -45,6 +45,20 @@ Template.verify.helpers({
     zad() {
         return Template.instance().zad.get();
     }
+    ,
+    isActive() {
+        return Template.instance().
+        Zone.get().isActive({
+            from: ZidStore.get().getAddresses()[0]
+        });
+    },
+    whatIsActive() {
+        return Template.instance().
+            Zone.get().whatIsActive({
+                    from: ZidStore.get().getAddresses()[0]
+                } );
+    }
+
 });
 
 Template.verify.events({
@@ -150,7 +164,11 @@ Template.verify.events({
 
         template.Zone.set(template.ZoneFactory.at(zad));
 
-        console.log("zone attributes: " + template.Zone.get().isActive() + " , " + template.Zone.get().whatIsActive() );
+        console.log("EEeeeeeeebygummmmmm");
+
+        console.log("zone attributes: " +
+            template.Zone.get().isActive( { from: ZidStore.get().getAddresses()[0] }) + " , " +
+            template.Zone.get().whatIsActive({ from: ZidStore.get().getAddresses()[0] }));
 
         //reset any reactive vars for the previous Zone
 
@@ -175,11 +193,15 @@ Template.verify.events({
 
             console.log("member_zid: " + memberZid);
 
-            let member = zone.isMember(memberZid);
+            let member = zone.isMember(memberZid, {
+                from: ZidStore.get().getAddresses()[0]
+            });
 
             template.member.set(member);
 
-            let acknowledger = zone.isAcknowledger(memberZid);
+            let acknowledger = zone.isAcknowledger(memberZid, {
+                from: ZidStore.get().getAddresses()[0]
+            });
 
             template.acknowledger.set(acknowledger);
 

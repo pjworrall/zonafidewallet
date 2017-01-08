@@ -1,10 +1,31 @@
 <template name="confirm">
 
-        <div class="row">
-            <div class="col-xs-12 text-left">
-                    <p>This page will help manage the communication of the zone and the confirmation that
-                    a Service Provider has verified it.</p>
+    <div class="row">
+        <div class="col-xs-12 text-left">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Activity Details</h3>
+                </div>
+                <div class="panel-body">
+                    {{#if name}}{{name}}{{/if}}
+                </div>
             </div>
         </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 text-left">
+            <p>
+                <ul>
+                    <li>Acknowledgers</li>
+                    <li>Number that have Acknowledged</li>
+                    <li>Active: {{#if status}}{{status}} {{else}} N/A {{/if}}</li>
+                    <li>Recipient:  {{#if serviceProvider}}{{serviceProvider}} {{else}} N/A {{/if}}</li>
+                    <li>Activity Detail: {{#if details}}{{details}} {{else}} N/A {{/if}} </li>
+                    <li>Confirmed - {{#if confirmed}}{{confirmed}} {{else}} Unconfirmed {{/if}}</li>
+                </ul>
+            </p>
+        </div>
+    </div>
 
 </template>
