@@ -160,11 +160,7 @@ Template.verify.events({
 
         const zad = $(template.find('input[name=zad]')).val();
 
-        console.log("reading Zone..." + zad);
-
         template.Zone.set(template.ZoneFactory.at(zad));
-
-        console.log("EEeeeeeeebygummmmmm");
 
         console.log("zone attributes: " +
             template.Zone.get().isActive( { from: ZidStore.get().getAddresses()[0] }) + " , " +
