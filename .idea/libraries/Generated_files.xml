@@ -345,6 +345,7 @@
         <item url="file://$PROJECT_DIR$/imports/startup/client/ethereum-compiled.js" />
         <item url="file://$PROJECT_DIR$/imports/startup/client/receipt-compiled.js" />
         <item url="file://$PROJECT_DIR$/imports/ui/pages/about-compiled.js" />
+        <item url="file://$PROJECT_DIR$/imports/ui/pages/details-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/stack-trace/lib/stack-trace-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/colors/tests/basic-test-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/colors/examples/normal-usage-compiled.js" />
@@ -3877,6 +3878,7 @@
       <root url="file://$PROJECT_DIR$/imports/startup/client/ethereum-compiled.js" />
       <root url="file://$PROJECT_DIR$/imports/startup/client/receipt-compiled.js" />
       <root url="file://$PROJECT_DIR$/imports/ui/pages/about-compiled.js" />
+      <root url="file://$PROJECT_DIR$/imports/ui/pages/details-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/stack-trace/lib/stack-trace-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/colors/tests/basic-test-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/colors/examples/normal-usage-compiled.js" />

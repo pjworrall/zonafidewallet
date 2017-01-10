@@ -28,9 +28,9 @@ Router.route('/lock', {name: 'lock'});
 
 Router.route('/list', {name: 'list'});
 
-Router.route('/code/:address/name/:name',
+Router.route('/details/:_id',
     {
-        name: 'code',
+        name: 'details',
         data: function() { return this.params }
     });
 

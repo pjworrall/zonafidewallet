@@ -1,0 +1,71 @@
+<template name="details">
+
+    <div class="row">
+        <div class="col-xs-12 text-center">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"> {{#if name}}{{name}}{{/if}} </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 text-center">
+            <div class="panel panel-default">
+                <div id="qrcode" align="center"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-xs-12" align="center">
+            <form class="share">
+                <div class="btn-group" role="group" aria-label="...">
+                    <button type="button" class="js-share btn btn-default">
+                        <i class="fa fa-share-alt-square" role="button" aria-hidden="true"></i>
+                    </button>
+                    <button type="button" class="js-send btn btn-default">
+                        <i class="fa fa-share" role="button" aria-hidden="true"></i>
+                    </button>
+                </div>
+
+                <div class="btn-group" role="group" aria-label="...">
+                    <button type="button" class="js-delete btn btn-default">
+                        <i class="fa fa-trash-o" role="button" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <br>
+
+    <div class="row">
+        <div class="col-xs-12" align="center">
+            <div class="panel panel-default">
+
+                <div class="panel-heading">Activity Details</div>
+                <strong>Address:</strong><br>
+                <p>{{address}}</p>
+                <strong>State:</strong><br>
+                <p> (eg Waiting on Acknowledgment)</p>
+                <strong>Acknowledgers:</strong><br>
+                <p></p>
+                <strong>Acknowledged:</strong><br>
+                <p></p>
+                <strong>Active:</strong><br>
+                <p>{{#if status}} <i class="fa fa-check"></i> {{else}} No {{/if}}</p>
+                <strong>Verifier:</strong><br>
+                <p>{{#if serviceProvider}}{{serviceProvider}} {{else}} N/A {{/if}}</p>
+                <strong>Instruction:</strong><br>
+                <p>{{#if details}}{{details}} {{else}} N/A {{/if}}</p>
+                <strong>Confirmed:</strong><br>
+                <p>{{#if confirmed}}  <i class="fa fa-check"></i> {{else}} No {{/if}}</p>
+
+            </div>
+        </div>
+    </div>
+
+</template>

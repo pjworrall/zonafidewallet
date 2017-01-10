@@ -32,7 +32,7 @@ Template.zone.helpers({
 
 Template.zone.events({
 
-    'click .js-members'(event, template) {
+    'click .js-action'(event, template) {
         // Prevent default browser form submit
         event.preventDefault();
 
@@ -80,16 +80,13 @@ Template.zone.events({
 
     },
 
-    'click .js-qrcode'(event, template) {
+    'click .js-details'(event, template) {
 
        event.preventDefault();
 
         const id = template.$('input[name=zad]').val();
-        const record = ZidUserLocalData.findOne(id);
 
-        console.log( "address: " + record.address + ", name: " + record.name );
-
-        Router.go("code", { 'address': record.address, 'name': record.name });
+        Router.go("details", { _id: id } );
 
     }
 

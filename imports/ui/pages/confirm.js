@@ -3,13 +3,13 @@
  */
 
 
-import { Template } from 'meteor/templating';
-import { ReactiveVar } from 'meteor/reactive-var';
+import {Template} from 'meteor/templating';
+import {ReactiveVar} from 'meteor/reactive-var';
 
 import './confirm.html';
 
-import  { ZonafideWeb3 } from '/imports/startup/client/web3.js';
-import  { ZidUserLocalData } from '/imports/startup/client/globals.js';
+import  {ZonafideWeb3} from '/imports/startup/client/web3.js';
+import  {ZidUserLocalData, ZidStore} from '/imports/startup/client/globals.js';
 
 Template.confirm.onCreated(function () {
 
@@ -24,15 +24,21 @@ Template.confirm.onCreated(function () {
     // todo: and if we don't get a contract back from the call?
     this.zone = this.ZoneFactory.at(record.address);
 
-    this.status = this.zone.isActive();
+    this.status = this.zone.isActive({
+        from: ZidStore.get().getAddresses()[0]
+    });
 
-    this.confirmed = this.zone.isConfirmed();
+    this.confirmed = this.zone.isConfirmed({
+        from: ZidStore.get().getAddresses()[0]
+    });
 
-    this.details = this.zone.whatIsActive();
+    this.details = this.zone.whatIsActive({
+        from: ZidStore.get().getAddresses()[0]
+    });
 
     // todo: this should be a privileged method call if that is possible
     //this.serviceProvider = this.zone.serviceProvider;
-    this.serviceProvider =false;
+    this.serviceProvider = false;
 
 
 });
