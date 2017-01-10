@@ -56,7 +56,7 @@ Template.zone.events({
 
         if (confirmed) {
             ZidUserLocalData.update({_id: id}, {$set: {state: ZoneState.CONFIRMED}});
-            Router.go("confirm", {_id: id});
+            Router.go("details", {_id: id});
         } else if (record.state == ZoneState.ACTIONED) {
             Router.go("confirm", {_id: id});
         } else if (quorum) {

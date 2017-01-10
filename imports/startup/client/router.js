@@ -46,12 +46,6 @@ Router.route('/members/:_id',
         data: function() { return this.params }
     });
 
-Router.route('/confirm/:_id',
-    {
-        name: 'confirm',
-        data: function() { return this.params }
-    });
-
 Router.route('/acknowledge', {name: 'acknowledge'});
 
 Router.route('/identities', {name: 'identities'});
