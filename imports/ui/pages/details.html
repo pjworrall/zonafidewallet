@@ -49,16 +49,16 @@
                 <div class="panel-heading">Activity Details</div>
                 <strong>Address:</strong><br>
                 <p>{{address}}</p>
-                <strong>State:</strong><br>
-                <p> (eg Waiting on Acknowledgment)</p>
+                <strong>Next Step:</strong><br>
+                <p>TBD (eg Waiting on Acknowledgments)</p>
                 <strong>Acknowledgers:</strong><br>
-                <p></p>
+                <p>{{members}}</p>
                 <strong>Acknowledged:</strong><br>
-                <p></p>
+                <p>{{acknowledgers}}</p>
                 <strong>Active:</strong><br>
                 <p>{{#if status}} <i class="fa fa-check"></i> {{else}} No {{/if}}</p>
                 <strong>Verifier:</strong><br>
-                <p>{{#if serviceProvider}}{{serviceProvider}} {{else}} N/A {{/if}}</p>
+                <p>{{#if verifier}}{{verifier}} {{else}} N/A {{/if}}</p>
                 <strong>Instruction:</strong><br>
                 <p>{{#if details}}{{details}} {{else}} N/A {{/if}}</p>
                 <strong>Confirmed:</strong><br>
