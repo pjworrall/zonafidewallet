@@ -62,10 +62,10 @@ let ZonafideDappDataObserver = new LocalPersist(ZonafideDappData, 'ZonafideDappD
 
 // this needs to be abstracted into a locale admin
 let ZoneStateAction = {
-    0: "Add people that you want to Acknowledge this Activity as genuine.",
-    1: "Share the Activity with those you want to Acknowledge it.",
-    2: "Declare the party that the Activity will be with and provide brief details.",
-    3: "Share the Activity with the other party and use it to prove it and you are genuine.",
+    0: "Add people to Acknowledge this Activity as genuine.",
+    1: "Share Activity and ask for Acknowledgements.",
+    2: "Declare the party this Activity is with and provide brief details.",
+    3: "Share the Activity with the other party. They will Verify and Confirm.",
     4: "This Activity has been Confirmed by the other party and is now obsolete.",
     5: "????..",
     6: "Unknown state..just abandon."

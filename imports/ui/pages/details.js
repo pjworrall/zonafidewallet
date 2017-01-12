@@ -4,7 +4,7 @@
 
 import {Template} from 'meteor/templating';
 //import { QRCode } from 'meteor/steeve:jquery-qrcode';
-import  {ZidUserLocalData, ZidStore} from '/imports/startup/client/globals.js';
+import  {ZidUserLocalData, ZidStore, ZoneStateAction, ZoneStateSymbol, ZoneStateColor} from '/imports/startup/client/globals.js';
 import  {ZonafideWeb3} from '/imports/startup/client/web3.js';
 
 import './details.html';
@@ -18,8 +18,8 @@ Template.details.onCreated(function () {
         Template.instance().data._id);
 
     this.name = record.name;
-
     this.address = record.address;
+    this.state = record.state;
 
     // todo: and if we don't get a contract back from the call?
     this.zone = this.ZoneFactory.at(record.address);
@@ -69,10 +69,6 @@ Template.details.helpers({
         return Template.instance().name;
     },
 
-    status() {
-        return Template.instance().status;
-    },
-
     details() {
         return JSON.stringify(Template.instance().details);
     },
@@ -110,6 +106,18 @@ Template.details.helpers({
             return "N/A";
         }
 
+    },
+
+    action() {
+        return ZoneStateAction[Template.instance().state];
+    },
+
+    symbol() {
+        return ZoneStateSymbol[Template.instance().state];
+    },
+
+    color() {
+        return ZoneStateColor[Template.instance().state];
     }
 
 });
@@ -143,7 +151,7 @@ Template.details.events({
         event.preventDefault();
 
         // this is the complete list of currently supported params you can pass to the plugin (all optional)
-        var options = {
+        let options = {
             message: 'Secure a Zone for me. Please Acknowledge ' + template.address, // not supported on some apps (Facebook, Instagram)
             subject: 'Zone Address for my Activity', // fi. for email
             //files: ['', ''], // an array of filenames either locally or remotely
@@ -152,12 +160,12 @@ Template.details.events({
             chooserTitle: 'Pick an app' // Android only, you can override the default share sheet title
         };
 
-        var onSuccess = function (result) {
+        let onSuccess = function (result) {
             console.log("Share completed? " + result.completed); // On Android apps mostly return false even while it's true
             console.log("Shared to app: " + result.app); // On Android result.app is currently empty. On iOS it's empty when sharing is cancelled (result.completed=false)
         };
 
-        var onError = function (msg) {
+        let onError = function (msg) {
             console.log("Sharing failed with message: " + msg);
         };
 
