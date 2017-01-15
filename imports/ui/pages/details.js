@@ -70,7 +70,7 @@ Template.details.helpers({
     },
 
     details() {
-        return JSON.stringify(Template.instance().details);
+        return Template.instance().details;
     },
 
     confirmed() {
