@@ -1,3 +1,5 @@
+/* These are for the FAB */
+
 .float-button {
 
     background-color: #f4b51e;
@@ -29,3 +31,10 @@
     margin-top: -20px;
     color: white;
 }
+
+/* this is for jquery validator*/
+
+input.error{
+    background-color: rgb(203, 203, 203);
+}
+

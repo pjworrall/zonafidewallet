@@ -100,6 +100,7 @@
         <item url="file://$USER_HOME$/.meteor/packages/iron_location/1.0.11/web.browser/lib/location.js" />
         <item url="file://$USER_HOME$/.meteor/packages/iron_location/1.0.11/web.browser/lib/utils.js" />
         <item url="file://$USER_HOME$/.meteor/packages/modules-runtime/0.7.7/web.browser/.npm/package/node_modules/install/install.js" />
+        <item url="file://$USER_HOME$/.meteor/packages/themeteorchef_jquery-validation/1.14.0/web.browser/packages/themeteorchef_jquery-validation.js" />
         <item url="file://$USER_HOME$/.meteor/packages/caching-html-compiler/1.0.7/web.browser/caching-html-compiler.js" />
         <item url="file://$USER_HOME$/.meteor/packages/callback-hook/1.0.10/web.browser/hook.js" />
         <item url="file://$USER_HOME$/.meteor/packages/check/1.2.4/web.browser/match.js" />
@@ -277,6 +278,7 @@
       <root url="file://$USER_HOME$/.meteor/packages/iron_location/1.0.11/web.browser/lib/location.js" />
       <root url="file://$USER_HOME$/.meteor/packages/iron_location/1.0.11/web.browser/lib/utils.js" />
       <root url="file://$USER_HOME$/.meteor/packages/modules-runtime/0.7.7/web.browser/.npm/package/node_modules/install/install.js" />
+      <root url="file://$USER_HOME$/.meteor/packages/themeteorchef_jquery-validation/1.14.0/web.browser/packages/themeteorchef_jquery-validation.js" />
       <root url="file://$USER_HOME$/.meteor/packages/caching-html-compiler/1.0.7/web.browser/caching-html-compiler.js" />
       <root url="file://$USER_HOME$/.meteor/packages/callback-hook/1.0.10/web.browser/hook.js" />
       <root url="file://$USER_HOME$/.meteor/packages/check/1.2.4/web.browser/match.js" />

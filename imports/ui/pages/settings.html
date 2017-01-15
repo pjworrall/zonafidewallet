@@ -2,13 +2,29 @@
 
     <div class="row">
         <div class="col-xs-12 text-left">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Settings</h3>
+            <!-- Modal HTML -->
+            <div id="ModalContainer" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">{{modalTitle}}</h4>
+                        </div>
+                        <div class="modal-body text-center">
+                            <!-- The container is for the ProgressBar output-->
+                            <!-- <div class="text-center" id="container"></div> -->
+                            <p>{{modalMessage}}</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button id="modelCancel" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+
     <form class="node">
         <div class="row">
             <div class="col-xs-8 text-left">
@@ -22,6 +38,7 @@
                            value="{{server}}"
                            aria-describedby="basic-addon1"/>
                 </div>
+
                 <hr>
             </div>
             <div class="col-xs-4 text-right">

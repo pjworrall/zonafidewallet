@@ -21,6 +21,9 @@ Template.settings.onCreated(function () {
 
     this.balance = new ReactiveVar();
 
+    this.modalTitle = new ReactiveVar();
+    this.modalMessage = new ReactiveVar();
+
     //this.balance.set(ZonafideWeb3.getBalance());
 
     this.balance.set("N/A");
@@ -28,6 +31,25 @@ Template.settings.onCreated(function () {
     this.recipient = new ReactiveVar('');
 
 });
+
+Template.settings.onRendered(function(){
+
+    $('.node').validate({
+        rules: {
+            server: {
+                required: true,
+                url: true
+            }
+        },
+        messages: {
+            server: {
+                required: "You must enter a web address",
+                url: "Address is not a valid URL"
+            }
+        }
+    });
+});
+
 
 Template.settings.helpers({
     balance() {
@@ -47,6 +69,14 @@ Template.settings.helpers({
 
     recipient() {
         return  Template.instance().recipient.get();
+    },
+
+    modalMessage() {
+        return Template.instance().modalMessage.get();
+    },
+
+    modalTitle() {
+        return Template.instance().modalTitle.get();
     }
 
 });
@@ -127,8 +157,6 @@ Template.settings.events({
 
         console.log("server: %s", server);
 
-        // todo: should check "server" is a valid url
-
         ZonafideDappData.update({document: "settings"},
             {
                 document: "settings",
@@ -139,6 +167,36 @@ Template.settings.events({
         );
 
         ZonafideWeb3.reset();
+
+        console.log("Testing Ethereum Node at " + server + " is responding...") ;
+
+        let promise = new Promise(function(resolve, reject) {
+
+            template.modalTitle.set("Checking Access Point");
+
+            template.modalMessage.set("Please wait while we check the Access Point....");
+
+            $("#modalCancel").disabled = true;
+
+            $("#ModalContainer").modal('show');
+
+            let web3 = ZonafideWeb3.getInstance();
+
+            $("#modalCancel").disabled = false;
+
+            if (web3.net.listening) {
+                resolve("connection listening");
+            }
+            else {
+                reject(Error("connection not listening"));
+            }
+        });
+
+        promise.then(function() {
+            template.modalMessage.set("Connected");
+        }, function(error) {
+            template.modalMessage.set("Unable to connect: " + error );
+        });
 
     },
 
@@ -163,7 +221,7 @@ Template.settings.events({
         }
     },
 
-    'click .js-seed'(event) {
+    'click .js-seed'(event,template) {
 
         event.preventDefault();
         event.stopPropagation();
@@ -173,7 +231,9 @@ Template.settings.events({
         let password = prompt('Enter password to show your Key Passphrase. Do not let anyone else see the Passphrase.', 'Password');
 
         lightwallet.keystore.deriveKeyFromPassword(password, function (err, pwDerivedKey) {
-            alert('Your Key Passphrase is: "' + ZidStore.get().getSeed(pwDerivedKey) + '". Please write it down.')
+            template.modalTitle.set("Key Passphrase");
+            template.modalMessage.set(ZidStore.get().getSeed(pwDerivedKey));
+            $("#ModalContainer").modal('show');
         })
     },
 
