@@ -8,11 +8,11 @@ import lightwallet from 'eth-lightwallet';
 
 import Transaction from 'ethereumjs-tx';
 
-import  { ZonafideWeb3 } from '/imports/startup/client/web3.js';
-import  { ZoneQRScanner } from '/imports/startup/client/qrscanner.js';
-import  { ZonafideEnvironment } from '/imports/startup/client/ethereum.js';
-import  { ZoneTransactionReceipt } from '/imports/startup/client/receipt.js';
-import  { ZonafideDappData, ZidStore, NumberWithCommas } from '/imports/startup/client/globals.js';
+import  {ZonafideWeb3} from '/imports/startup/client/web3.js';
+import  {ZoneQRScanner} from '/imports/startup/client/qrscanner.js';
+import  {ZonafideEnvironment} from '/imports/startup/client/ethereum.js';
+import  {ZoneTransactionReceipt} from '/imports/startup/client/receipt.js';
+import  {ZonafideDappData, ZidStore, NumberWithCommas} from '/imports/startup/client/globals.js';
 
 import './settings.html';
 
@@ -32,7 +32,7 @@ Template.settings.onCreated(function () {
 
 });
 
-Template.settings.onRendered(function(){
+Template.settings.onRendered(function () {
 
     $('.node').validate({
         rules: {
@@ -68,7 +68,7 @@ Template.settings.helpers({
     },
 
     recipient() {
-        return  Template.instance().recipient.get();
+        return Template.instance().recipient.get();
     },
 
     modalMessage() {
@@ -91,13 +91,13 @@ Template.settings.events({
 
         console.log('click .js-qrscanner');
 
-        ZoneQRScanner.scan( function (error, result) {
+        ZoneQRScanner.scan(function (error, result) {
 
                 if (error) {
                     //todo: change to sAlert
                     alert("Scanning failed: " + error);
                 } else {
-                    if(!result.cancelled) {
+                    if (!result.cancelled) {
                         // todo: cancelled does not exist on browser scanner so how do we handle that?
                         template.recipient.set(result.text);
                     }
@@ -118,9 +118,9 @@ Template.settings.events({
 
         navigator.contacts.pickContact(function (contact) {
 
-            if(contact.ims && contact.ims.length) {
-                contact.ims.some( function(address) {
-                    if(address.value.startsWith("ZID:")) {
+            if (contact.ims && contact.ims.length) {
+                contact.ims.some(function (address) {
+                    if (address.value.startsWith("ZID:")) {
                         var zid = address.value.split(":");
                         template.recipient.set(zid[1]);
                         return true;
@@ -146,7 +146,7 @@ Template.settings.events({
 
     },
 
-    'click .js-node'(event,template) {
+    'click .js-node'(event, template) {
 
         // Prevent default browser form submit
         event.preventDefault();
@@ -165,23 +165,17 @@ Template.settings.events({
             {upsert: true}
         );
 
-        ZonafideWeb3.reset();
+        ZonafideWeb3.reset(); ZonafideWeb3.getInstance();
 
-        let web3 = ZonafideWeb3.getInstance();
-
-        try {
-            if(web3.net.listening)  {
-                template.modalMessage.set("Access confirmed.");
-            } else {
-                template.modalMessage.set("Not in service.");
-             }
-        }catch (error){
-            template.modalMessage.set("Not accessible: " + error);
+        if (ZonafideWeb3.isAlive()) {
+            template.modalMessage.set("Access confirmed.");
+        } else {
+            template.modalMessage.set("Not accessible.");
         }
 
         // it appears I can only show modals at the end of a function
         template.modalTitle.set("Network Access Point.");
-        $("#ModalContainer").modal( 'show' );
+        $("#ModalContainer").modal('show');
 
     },
 
@@ -206,7 +200,7 @@ Template.settings.events({
         }
     },
 
-    'click .js-seed'(event,template) {
+    'click .js-seed'(event, template) {
 
         event.preventDefault();
         event.stopPropagation();
@@ -234,7 +228,7 @@ Template.settings.events({
         let password = prompt('Provide a Session Password', 'Password');
 
         // todo: should check this is a valid address
-        let recipient =  template.$('input[name=recipient]').val();
+        let recipient = template.$('input[name=recipient]').val();
         let amount = template.$('input[name=amount]').val();
 
         lightwallet.keystore.deriveKeyFromPassword(password, function (err, pwDerivedKey) {
@@ -252,13 +246,13 @@ Template.settings.events({
                 let count = w3.eth.getTransactionCount(address);
 
                 // todo: general strategy needed for hex prefix's, but add it deliberately here
-                amount =  '0x' + amount;
+                amount = '0x' + amount;
 
                 // todo: got to get a solution for managing the gas properties across the app
                 let txData = {
                     "nonce": count,
-                    "gasLimit" : "0x2fefd8",
-                    "gasPrice" : "0xba43b7400",
+                    "gasLimit": "0x2fefd8",
+                    "gasPrice": "0xba43b7400",
                     "to": recipient,
                     "value": amount,
                 };

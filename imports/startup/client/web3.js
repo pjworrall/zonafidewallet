@@ -14,21 +14,22 @@
 import HookedWeb3Provider from 'hooked-web3-provider';
 import Web3 from 'web3';
 
-import  { ZonafideEnvironment } from '/imports/startup/client/ethereum.js';
-import  { ZidStore, ZonafideDappData } from '/imports/startup/client/globals.js';
-
+import  {ZonafideEnvironment} from '/imports/startup/client/ethereum.js';
+import  {ZidStore, ZonafideDappData} from '/imports/startup/client/globals.js';
 
 
 let ZonafideWeb3 = (function () {
-    var web3;
-    var provider;
+    let web3;
+    let provider;
+    let status = false;
+    let cached = false;
 
     function createInstance() {
 
         web3 = new Web3();
 
-        var node;
-        var settings = ZonafideDappData.findOne({document: "settings"});
+        let node;
+        let settings = ZonafideDappData.findOne({document: "settings"});
 
         if (settings && settings.server) {
             node = settings.server;
@@ -36,11 +37,11 @@ let ZonafideWeb3 = (function () {
             node = ZonafideEnvironment.Node;
         }
 
-        provider =ZidStore.get();
+        provider = ZidStore.get();
 
         if (typeof provider != 'undefined') {
 
-            var web3Provider = new HookedWeb3Provider({
+            let web3Provider = new HookedWeb3Provider({
                 host: node,
                 transaction_signer: provider
             });
@@ -57,27 +58,44 @@ let ZonafideWeb3 = (function () {
     }
 
     return {
-        getInstance: function() {
+        getInstance: function () {
             // todo: try/catch/throw?
             if (!web3) {
                 web3 = createInstance();
             }
             return web3;
         },
-        getFactory: function() {
+        getFactory: function () {
             return this.getInstance().eth.contract(ZonafideEnvironment.abi);
         },
-        getBalance: function() {
+        getBalance: function () {
 
-            var balance = this.getInstance().eth.getBalance(provider.getAddresses()[0]);
+            let balance = this.getInstance().eth.getBalance(provider.getAddresses()[0]);
 
-            return this.getInstance().fromWei(balance,'finney');
+            return this.getInstance().fromWei(balance, 'finney');
         },
-        reset: function() {
-                web3 = undefined;
+        isAlive: function () {
+
+            if (cached) {
+                return status;
+            } else {
+                try {
+                    status = this.getInstance().net.listening;
+                } catch (error) {
+                    status = false;
+                    console.log(ZonafideEnvironment.Node + " inaccessible.");
+                }
+                cached = true;
+            }
+
+            return status;
+        },
+        reset: function () {
+            web3 = undefined;
+            cached = false;
         }
     }
 
 })();
 
-export {  ZonafideWeb3 };
+export {ZonafideWeb3};

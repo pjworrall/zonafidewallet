@@ -1,4 +1,6 @@
-import { Router } from 'meteor/iron:router';
+import {Router} from 'meteor/iron:router';
+
+import  {ZonafideWeb3} from '/imports/startup/client/web3.js';
 
 import '../../ui/pages';
 
@@ -10,10 +12,10 @@ Router.configure({
         var route = Router.current().route.path();
 
         // these can be public
-        if( route === '/' || route === '/about' || route === '/identities') {
+        if (route === '/' || route === '/about' || route === '/identities') {
             this.next();
         } else if (!Session.get("unlocked")) {
-                this.render('/unlock');
+            this.render('/unlock');
         } else {
             this.next();
         }
@@ -31,19 +33,43 @@ Router.route('/list', {name: 'list'});
 Router.route('/details/:_id',
     {
         name: 'details',
-        data: function() { return this.params }
+        data: function () {
+            return this.params
+        },
+
+        onBeforeAction: function () {
+            console.log("Checking web3 connection...");
+
+            try {
+                if(ZonafideWeb3.isAlive()) {
+                    console.log("all ok, on we go...");
+                    this.render();
+                } else {
+                    console.log("connection reported it is not in service");
+                    this.render("error");
+                }
+            } catch(error) {
+                console.log("Network access point was inaccessible.");
+                this.render("error");
+            }
+
+        }
     });
 
 Router.route('/action/:_id',
     {
         name: 'action',
-        data: function() { return this.params }
+        data: function () {
+            return this.params
+        }
     });
 
 Router.route('/members/:_id',
     {
         name: 'members',
-        data: function() { return this.params }
+        data: function () {
+            return this.params
+        }
     });
 
 Router.route('/acknowledge', {name: 'acknowledge'});
