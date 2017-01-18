@@ -150,12 +150,11 @@ Template.settings.events({
 
         // Prevent default browser form submit
         event.preventDefault();
+        event.stopPropagation();
 
         console.log("click .js-node");
 
         const server = template.$('input[name=server]').val();
-
-        console.log("server: %s", server);
 
         ZonafideDappData.update({document: "settings"},
             {
@@ -168,35 +167,21 @@ Template.settings.events({
 
         ZonafideWeb3.reset();
 
-        console.log("Testing Ethereum Node at " + server + " is responding...") ;
+        let web3 = ZonafideWeb3.getInstance();
 
-        let promise = new Promise(function(resolve, reject) {
+        try {
+            if(web3.net.listening)  {
+                template.modalMessage.set("Access confirmed.");
+            } else {
+                template.modalMessage.set("Not in service.");
+             }
+        }catch (error){
+            template.modalMessage.set("Not accessible: " + error);
+        }
 
-            template.modalTitle.set("Checking Access Point");
-
-            template.modalMessage.set("Please wait while we check the Access Point....");
-
-            $("#modalCancel").disabled = true;
-
-            $("#ModalContainer").modal('show');
-
-            let web3 = ZonafideWeb3.getInstance();
-
-            $("#modalCancel").disabled = false;
-
-            if (web3.net.listening) {
-                resolve("connection listening");
-            }
-            else {
-                reject(Error("connection not listening"));
-            }
-        });
-
-        promise.then(function() {
-            template.modalMessage.set("Connected");
-        }, function(error) {
-            template.modalMessage.set("Unable to connect: " + error );
-        });
+        // it appears I can only show modals at the end of a function
+        template.modalTitle
+        $("#ModalContainer").modal( 'show' );
 
     },
 
