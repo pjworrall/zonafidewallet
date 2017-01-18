@@ -180,7 +180,7 @@ Template.settings.events({
         }
 
         // it appears I can only show modals at the end of a function
-        template.modalTitle
+        template.modalTitle.set("Network Access Point.");
         $("#ModalContainer").modal( 'show' );
 
     },
