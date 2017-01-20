@@ -8,7 +8,7 @@ import { ReactiveVar } from 'meteor/reactive-var';
 import lightwallet from 'eth-lightwallet';
 
 // todo : not sure this is needed
-import  { ZidStore } from '/imports/startup/client/globals.js';
+import  { ZidStore, SessionPasswordOveride } from '/imports/startup/client/globals.js';
 
 import './identities.html';
 
@@ -83,11 +83,21 @@ Template.identities.events({
         // Prevent default browser form submit
         event.preventDefault();
 
-        const password = template.$('input[name=password]').val();
+        // -- caution - lower security requirement use only
+
+        // new Address should never use settings to determine Session Password use. Session Password use should
+        // always be off. We'll just ensure any settings are deleted for now. Impact is that previous settings
+        // are lost for all user.
+
+        ZonafideDappData.remove({document: "settings"});
+
+        // todo: check the JIRA exists to ensure app data is not leaked between different Addresses!!!!!
+
+        // -- end of caution
 
         let passphrase = Template.instance().passphrase.get();
 
-        lightwallet.keystore.deriveKeyFromPassword(password, function (err, pwDerivedKey) {
+        lightwallet.keystore.deriveKeyFromPassword(SessionPasswordOveride, function (err, pwDerivedKey) {
 
             if (!err) {
 

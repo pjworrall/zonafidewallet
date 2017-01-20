@@ -10,6 +10,25 @@
 Session.set('lock', true);
 Session.set('zid', false);
 
+// caution. over riding some security. for low security requirement environments only
+let PasswordProvider = function (callback) {
+
+    let settings = ZonafideDappData.findOne({document: "settings"});
+
+    let pw;
+    if(settings && settings.sessionPassword ) {
+        pw = prompt("Provide a Session Password");
+    } else {
+        pw = SessionPasswordOveride;
+    }
+
+    callback(null, pw);
+};
+// -- end caution
+
+// for lower security requirements, session password override, use with caution
+let SessionPasswordOveride = "caution";
+
 
 // a function to share the ether-lightwallet across the appl
 let ZidStore = {
@@ -167,6 +186,8 @@ let NumberWithCommas = function () {
 
 
 export {
+    PasswordProvider,
+    SessionPasswordOveride,
     ZidStore,
     ZidUserLocalData,
     ZidUserLocalPersonalData,

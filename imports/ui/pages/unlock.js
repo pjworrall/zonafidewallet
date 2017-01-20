@@ -7,6 +7,7 @@ import { Session } from 'meteor/session';
 
 // todo : not sure this is needed
 import  { ZidStore } from '/imports/startup/client/globals.js';
+import  {ZonafideDappData , PasswordProvider , SessionPasswordOveride } from '/imports/startup/client/globals.js';
 
 import './unlock.html';
 
@@ -44,7 +45,19 @@ Template.unlock.events({
 
         console.log(passphrase);
 
-        let password = prompt('Provide a Session Password', 'Password');
+
+        // caution. over riding some security. for low security requirement environments only
+
+        let settings = ZonafideDappData.findOne({document: "settings"});
+
+        let password;
+        if(settings && settings.sessionPassword ) {
+            password = prompt("Provide a Session Password");
+        } else {
+            password = SessionPasswordOveride;
+        }
+
+        // -- end caution
 
         lightwallet.keystore.deriveKeyFromPassword(password, function (err, pwDerivedKey) {
 
@@ -57,9 +70,9 @@ Template.unlock.events({
                         seed,
                         pwDerivedKey);
 
-                    // It seems every time we unlock we need to generate the address again.
-                    // I would have thought the generation in the identity creation would be enough.
                     Keystore.generateNewAddress(pwDerivedKey, 1);
+
+                    Keystore.passwordProvider = PasswordProvider;
 
                     // put the keystore into a global
                     ZidStore.set(Keystore);
