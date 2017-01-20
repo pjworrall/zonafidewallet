@@ -19,10 +19,21 @@ import './settings.html';
 
 Template.settings.onCreated(function () {
 
+    this.settings = ZonafideDappData.findOne({document: "settings"});
+
+    if(this.settings  && this.settings.sessionPassword ) {
+        this.sessionPassword = new ReactiveVar(this.settings.sessionPassword);
+    } else {
+        this.sessionPassword = new ReactiveVar(false);
+    }
+
+
     this.balance = new ReactiveVar();
 
     this.modalTitle = new ReactiveVar();
     this.modalMessage = new ReactiveVar();
+
+
 
     //this.balance.set(ZonafideWeb3.getBalance());
 
@@ -30,9 +41,13 @@ Template.settings.onCreated(function () {
 
     this.recipient = new ReactiveVar('');
 
+
+
 });
 
 Template.settings.onRendered(function () {
+
+    // I think this should be this.$() to be more accurate
 
     $('.node').validate({
         rules: {
@@ -58,7 +73,7 @@ Template.settings.helpers({
 
     server() {
 
-        let settings = ZonafideDappData.findOne({document: "settings"});
+        let settings =Template.instance().settings;
 
         if (settings && settings.server) {
             return settings.server;
@@ -77,6 +92,10 @@ Template.settings.helpers({
 
     modalTitle() {
         return Template.instance().modalTitle.get();
+    },
+
+    sessionPassword() {
+        return Template.instance().sessionPassword.get();
     }
 
 });
@@ -214,6 +233,30 @@ Template.settings.events({
             template.modalMessage.set(ZidStore.get().getSeed(pwDerivedKey));
             $("#ModalContainer").modal('show');
         })
+    },
+
+    'click .js-sessionPassword'(event,template) {
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        console.log("click .js-sessionPassword");
+
+        // toggle a Global variable for use of session password
+
+        template.sessionPassword.set(!template.sessionPassword.get());
+
+        console.log("session password set: " + template.sessionPassword.get());
+
+        ZonafideDappData.update({document: "settings"},
+            { $set:
+                { sessionPassword: (template.sessionPassword.get()) }
+            },
+            // if document does not exist yet create it
+            { upsert: true }
+        );
+
+
     },
 
     //todo: tha above handlers were all changed to work on iOS. Did not change the form but might find it has the same problems
