@@ -46,9 +46,15 @@ Template.home.events({
 
         let settings = ZonafideDappData.findOne({document: "settings"});
 
-        let password;
+        let password = null;
         if(settings && settings.sessionPassword ) {
-            password = prompt("Provide a Session Password");
+            while(password === null || password.match(/^ *$/) !== null) {
+
+                password = prompt("Provide a Session Password");
+                sAlert.info("Password field empty",
+                    {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Password required'});
+            }
+
         } else {
             password = SessionPasswordOveride;
         }
