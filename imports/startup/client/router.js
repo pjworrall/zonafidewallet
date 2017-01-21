@@ -1,30 +1,30 @@
-import {Router} from 'meteor/iron:router';
+import { Router } from 'meteor/iron:router';
 
-import  {ZonafideWeb3} from '/imports/startup/client/web3.js';
+import  { ZidStore } from '/imports/startup/client/globals.js';
+import  { ZonafideWeb3 } from '/imports/startup/client/web3.js';
 
 import '../../ui/pages';
 
-Router.configure({
-    layoutTemplate: 'layout',
-    notFoundTemplate: '404',
-    onBeforeAction: function () {
-        // if the user has not unlocked their account, render the Unlock template
-        var route = Router.current().route.path();
 
-        // these can be public
-        if (route === '/' || route === '/about' || route === '/identities') {
-            this.next();
-        } else if (!Session.get("unlocked")) {
-            this.render('/unlock');
-        } else {
-            this.next();
-        }
+Iron.Router.hooks.ZonafideAccessControl = function () {
+
+     if( typeof ZidStore.get() === 'undefined' ) {
+        this.render('/home');
+    } else {
+        this.next();
     }
+};
+
+Router.onBeforeAction('ZonafideAccessControl', {
+    except: ['/', 'about', 'identities']
 });
 
-Router.route('/', {name: 'unlock'});
+Router.configure({
+    layoutTemplate: 'layout',
+    notFoundTemplate: '404'
+});
 
-//Router.route('/unlock', {name: 'unlock'});
+Router.route('/', {name: 'home'});
 
 Router.route('/lock', {name: 'lock'});
 

@@ -3,6 +3,9 @@
  */
 import { Template } from 'meteor/templating';
 import { Session } from 'meteor/session';
+import { ReactiveVar } from 'meteor/reactive-var';
+
+import  { ZidStore } from '/imports/startup/client/globals.js';
 
 import './menu.html';
 
@@ -22,8 +25,25 @@ Template.menu.onRendered(function () {
 
 Template.menu.helpers({
 
-    unlocked() {
-        return Session.get('unlocked');
+    keystore() {
+        return Session.get("keystore");
+    }
+
+});
+
+Template.menu.events({
+
+    'click .js-lock'(event) {
+
+        console.log("click .js-lock");
+
+        // Prevent default browser form submit
+        event.preventDefault();
+
+        ZidStore.destroy(Session);
+
+        Router.go("/");
+
     }
 
 });

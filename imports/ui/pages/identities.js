@@ -108,13 +108,7 @@ Template.identities.events({
                 // this seems to have to be done every time the keystore is instantiated.
                 keyStore.generateNewAddress(pwDerivedKey, 1);
 
-                console.log("new primary address: " + keyStore.getAddresses()[0] );
-
                 ZidStore.set(keyStore);
-
-                Session.set('zid',keyStore.getAddresses()[0]);
-
-                Session.set('unlocked',true);
 
                 Router.go("list");
 

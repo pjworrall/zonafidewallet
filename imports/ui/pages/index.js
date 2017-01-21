@@ -4,8 +4,6 @@
 
 
 import './home.js';
-import './unlock.js';
-import './lock.js';
 import './members.js';
 import './action.js';
 import './identities.js';

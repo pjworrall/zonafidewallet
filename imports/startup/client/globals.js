@@ -33,12 +33,16 @@ let SessionPasswordOveride = "caution";
 // a function to share the ether-lightwallet across the appl
 let ZidStore = {
 
-    set: function (keystore) {
-        this.keystore = keystore;
+    set: function (keystore,session) {
+        session.set("keystore", this.keystore = keystore);
     },
 
     get: function () {
         return this.keystore;
+    },
+
+    destroy: function(session) {
+        session.set("keystore", this.keystore = undefined);
     }
 };
 
