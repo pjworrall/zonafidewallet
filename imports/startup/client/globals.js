@@ -17,11 +17,7 @@ let PasswordProvider = function (callback) {
 
     let password = null;
     if(settings && settings.sessionPassword ) {
-        while (password === null || password.match(/^ *$/) !== null) {
             password = prompt("Provide the Session Password");
-            sAlert.info("Password field empty",
-                {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Password required'});
-        }
     } else {
         password = SessionPasswordOveride;
     }

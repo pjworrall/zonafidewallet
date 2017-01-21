@@ -12,7 +12,7 @@ import  {ZonafideWeb3} from '/imports/startup/client/web3.js';
 import  {ZoneQRScanner} from '/imports/startup/client/qrscanner.js';
 import  {ZonafideEnvironment} from '/imports/startup/client/ethereum.js';
 import  {ZoneTransactionReceipt} from '/imports/startup/client/receipt.js';
-import  {ZonafideDappData, ZidStore, NumberWithCommas} from '/imports/startup/client/globals.js';
+import  {SessionPasswordOveride, ZonafideDappData, ZidStore, NumberWithCommas} from '/imports/startup/client/globals.js';
 
 import './settings.html';
 
@@ -226,7 +226,15 @@ Template.settings.events({
 
         console.log("click .js-seed");
 
-        let password = prompt('Enter password to show your Key Passphrase. Do not let anyone else see the Passphrase.', 'Password');
+        let settings = ZonafideDappData.findOne({document: "settings"});
+
+        // duplicate code here. this whole password prompting thing has to be improved at soem point
+        let password = null;
+        if(settings && settings.sessionPassword ) {
+                password = prompt('Enter password to show your Key Passphrase. Do not let anyone else see the Passphrase.');
+        } else {
+            password = SessionPasswordOveride;
+        }
 
         lightwallet.keystore.deriveKeyFromPassword(password, function (err, pwDerivedKey) {
             template.modalTitle.set("Key Passphrase");
@@ -255,6 +263,9 @@ Template.settings.events({
             // if document does not exist yet create it
             { upsert: true }
         );
+
+        // force a restart. Because of bug where Keystore appears to get knickers in a twist
+        location.reload(true);
 
 
     },

@@ -37,10 +37,7 @@ Template.home.events({
         console.log("click .js-unlock");
 
         // Get value from form element
-        const seed = template.$('textarea').val();
-
-        console.log(passphrase);
-
+        const seed = template.$('input[name=passphrase]').val();
 
         // caution. over riding some security. for low security requirement environments only
 
@@ -48,13 +45,7 @@ Template.home.events({
 
         let password = null;
         if(settings && settings.sessionPassword ) {
-            while(password === null || password.match(/^ *$/) !== null) {
-
                 password = prompt("Provide a Session Password");
-                sAlert.info("Password field empty",
-                    {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Password required'});
-            }
-
         } else {
             password = SessionPasswordOveride;
         }

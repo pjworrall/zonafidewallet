@@ -42,7 +42,11 @@ Template.menu.events({
 
         ZidStore.destroy(Session);
 
-        Router.go("/");
+        // Some strange with the keystore object means instead of routing we hard reload the application
+        // which wipes everything so we start from scratch: that gets around the bug.
+        //Router.go("/");
+
+        location.reload(true);
 
     }
 
