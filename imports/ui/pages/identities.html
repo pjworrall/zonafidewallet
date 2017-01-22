@@ -1,33 +1,5 @@
 <template name="identities">
 
-    <!-- todo: this needs re-designing into two views routed at the iron router stage-->
-
-
-    {{#if zid}}
-
-        <div class="row">
-            <div class="col-xs-12 text-center">
-
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Share Your Address</h3>
-                    </div>
-                </div>
-                <p>{{zid}}</p>
-                <div id="qrcode" align="center"></div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-xs-12" align="center">
-                <button type="button" class="js-share btn btn-default">
-                    <i class="fa fa-share-alt-square" role="button" aria-hidden="true"></i>
-                </button>
-            </div>
-        </div>
-
-    {{else}}
-
         <!-- this needs better styling and user experience -->
         <div class="row">
             <div class="col-xs-12 text-left">
@@ -83,6 +55,6 @@
                 </div>
             </div>
         {{/if}}
-    {{/if}}
+
 
 </template>

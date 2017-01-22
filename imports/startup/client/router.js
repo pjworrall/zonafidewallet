@@ -72,6 +72,8 @@ Router.route('/members/:_id',
         }
     });
 
+Router.route('/address', {name: 'address'});
+
 Router.route('/acknowledge', {name: 'acknowledge'});
 
 Router.route('/identities', {name: 'identities'});
