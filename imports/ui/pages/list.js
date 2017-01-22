@@ -60,9 +60,7 @@ Template.list.events({
                 name = name.trim();
             }
 
-            var Zone = template.Zone;
-
-            console.log("address: " + ZidStore.get().getAddresses()[0]);
+            let Zone = template.Zone;
 
             Zone.new(ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]),
                 function (error, contract) {
@@ -97,10 +95,12 @@ Template.list.events({
                             {
                                 timeout: 'none',
                                 sAlertIcon: 'fa fa-info-circle',
-                                sAlertTitle: 'Password wrong, WiFi down or low credit?'
+                                sAlertTitle: 'Session password wrong, WiFi down or low credit?'
                             });
                     }
                 });
+
+            template.$('input[name=name]').val('');
         }
     }
 
