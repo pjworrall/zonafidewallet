@@ -11,7 +11,7 @@ import './address.html';
 Template.address.helpers({
 
     zid() {
-        return ZidStore.get().getAddresses()[0];
+        return "0x" + ZidStore.get().getAddresses()[0];
     }
 
 });
@@ -27,7 +27,7 @@ Template.address.onRendered( function() {
         $('#qrcode').qrcode({
             render: 'div',
             size: 400,
-            text: '0x' + Session.get('zid')
+            text: '0x' + ZidStore.get().getAddresses()[0]
         });
 
     }
@@ -45,7 +45,7 @@ Template.address.events({
 
         // this is the complete list of currently supported params you can pass to the plugin (all optional)
         let options = {
-            message: 'Get in the Zone with me. My Zonafide ID is ' + ZidStore.get().getAddresses()[0], // not supported on some apps (Facebook, Instagram)
+            message: 'Get in the Zone with me. My Zonafide ID is ' + "0x" + ZidStore.get().getAddresses()[0], // not supported on some apps (Facebook, Instagram)
             subject: 'My Zonafide ID', // fi. for email
             //files: ['', ''], // an array of filenames either locally or remotely
             url: 'https://www.zonafide.net',
