@@ -1,30 +1,61 @@
 <template name="settings">
 
-    <div class="row">
-        <div class="col-xs-12 text-left">
-            <!-- Modal HTML -->
-            <div id="ModalContainer" class="modal fade">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <h4 class="modal-title">{{modalTitle}}</h4>
-                        </div>
-                        <div class="modal-body text-center">
-                            <!-- The container is for the ProgressBar output-->
-                            <!-- <div class="text-center" id="container"></div> -->
-                            <p>{{modalMessage}}</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button id="modelCancel" type="button" class="btn btn-default" data-dismiss="modal">Close
-                            </button>
-                        </div>
-                    </div>
+    <form class="transfer">
+
+        <div class="row">
+            <div class="col-xs-12 text-left">
+                <h4>Send someone credit, pass the  <i class="fa fa-heart" aria-hidden="true"></i> </h4>
+                <label for="recipient">Address:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">0x</span>
+                    <input class="form-control"
+                           type="text"
+                           name="recipient"
+                           size="80"
+                           value="{{recipient}}"/>
                 </div>
             </div>
         </div>
-    </div>
+        <div class="row">
+            <div class="col-xs-12 text-left">
+                <div class="btn-group" role="group" aria-label="...">
+                    <button type="button" class="js-qrscanner btn btn-default">
+                        <i class="fa fa-qrcode" aria-hidden="true"></i>
+                    </button>
+                    <button type="button" class="js-contactdb btn btn-default">
+                        <i class="fa fa-book" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
 
+        <div class="row">
+            <div class="col-xs-12 text-left">
+                <label for="amount">Amount:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">ETH</span>
+                    <input class="form-control"
+                           type="text"
+                           name="amount"
+                           size="6"
+                           value="1.00"/>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 text-left">
+            <div class="row">
+                <button type="button" class="js-transfer btn btn-default">
+                    <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <div class="row">
+        <div class="col-xs-12 text-left">
+            <hr>
+        </div>
+    </div>
 
     <form class="node">
         <div class="row">
@@ -65,13 +96,14 @@
 
     <div class="row">
         <div class="col-xs-10 text-left">
-            <p>If this balance is Zero or too small to access the network you will need
-                to <a href="">buy ETH</a>. Caution: Don't maintain a balance bigger than you are happy to lose. It does not need to be more
-                than the cost of your favourite beverage! </p>
+            <p>Don't maintain a balance bigger than you are happy to lose. It does
+                not need to be more than the cost of your favourite beverage! </p>
+            <p>If the balance is insufficient to use the network you will need
+                to <a href="">buy ETH</a>. </p>
             <hr>
         </div>
         <div class="col-xs-2 text-left">
-                &nbsp;
+            &nbsp;
         </div>
     </div>
 
@@ -122,70 +154,11 @@
         </div>
     </div>
 
-    <form class="transfer">
 
-        <div class="row">
-            <div class="col-xs-12 text-left">
-                <h4>Send Credit</h4>
-                <label for="recipient">Address:</label>
-                <div class="input-group">
-                    <input class="form-control"
-                           type="text"
-                           name="recipient"
-                           size="80"
-                           value="{{recipient}}"/>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12" align="center">
-                <div class="btn-group" role="group" aria-label="...">
-
-                    <button type="button" class="js-qrscanner btn btn-default">
-                        <i class="fa fa-qrcode" aria-hidden="true"></i>
-                    </button>
-
-                    <button type="button" class="js-contactdb btn btn-default">
-                        <i class="fa fa-book" aria-hidden="true"></i>
-                    </button>
-
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-xs-12 text-left">
-                <label for="amount">Amount:</label>
-                <div class="input-group">
-                    <span class="input-group-addon">ETH</span>
-                    <input class="form-control"
-                           type="text"
-                           name="amount"
-                           size="10"
-                           value="1.00"/>
-                </div>
-            </div>
-        </div>
-        <div class="col-xs-12 text-center">
-            <div class="row">
-                <button type="button" class="js-transfer btn btn-default">
-                    <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
-                </button>
-            </div>
-        </div>
-    </form>
-
-
-    <div class="row">
-        <div class="col-xs-12 text-left">
-            <hr>
-        </div>
-    </div>
-
-    <form class="balance">
+    <form class="price">
         <div class="row">
             <div class="col-xs-8 text-left">
-                <strong>Gas Price:</strong> ETH {{gasPrice}}
+                <strong>Gas Price:</strong> {{#if gasPrice}} ETH {{gasPrice}} {{/if}}
             </div>
             <div class="col-xs-4 text-right">
                 <button type="button" class="js-pricing btn btn-default">
@@ -194,6 +167,32 @@
             </div>
         </div>
     </form>
+
+    <div class="row">
+        <div class="col-xs-12 text-left">
+            <!-- Modal HTML -->
+            <div id="ModalContainer" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">{{modalTitle}}</h4>
+                        </div>
+                        <div class="modal-body text-center">
+                            <!-- The container is for the ProgressBar output-->
+                            <!-- <div class="text-center" id="container"></div> -->
+                            <p>{{modalMessage}}</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button id="modelCancel" type="button" class="btn btn-default" data-dismiss="modal">Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <div class="row">
         <div class="col-xs-12 text-center">

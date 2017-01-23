@@ -8,8 +8,6 @@ import lightwallet from 'eth-lightwallet';
 
 import Transaction from 'ethereumjs-tx';
 
-import BigNumber from 'bignumber.js';
-
 import  {ZonafideWeb3} from '/imports/startup/client/web3.js';
 import  {ZoneQRScanner} from '/imports/startup/client/qrscanner.js';
 import  {ZonafideEnvironment} from '/imports/startup/client/ethereum.js';
@@ -63,6 +61,32 @@ Template.settings.onRendered(function () {
             server: {
                 required: "You must enter a web address",
                 url: "Address is not a valid URL"
+            }
+        }
+    });
+    // todo: this needs to be improved to have a proper validator for ethereum addresses
+    $('.transfer').validate({
+        rules: {
+            recipient: {
+                required: true,
+                minlength: 42,
+                maxlength: 42
+            },
+            amount: {
+                required: true,
+                number: true,
+                range: [0.001, 10]
+            }
+        },
+        messages: {
+            recipient: {
+                required: "You must enter a recipient Address",
+                minlength: "Appears too short for a valid Address",
+                maxlength: "Appears to long for a valid Address"
+            },
+            amount: {
+                required: "You must enter an amount",
+                range: "Must be between 0.001 and 10 ETH (for your security)"
             }
         }
     });
@@ -234,7 +258,7 @@ Template.settings.events({
         // duplicate code here. this whole password prompting thing has to be improved at soem point
         let password = null;
         if(settings && settings.sessionPassword ) {
-                password = prompt('Enter password to show your Key Passphrase. Do not let anyone else see the Passphrase.');
+                password = prompt('Enter password to show your Key. Do not let anyone else see the Key.');
         } else {
             password = SessionPasswordOveride;
         }
@@ -375,6 +399,9 @@ Template.settings.events({
                                         sAlertIcon: 'fa fa-info-circle',
                                         sAlertTitle: 'Transfer completed'
                                     });
+                                // clear the form
+                                template.$('input[name=recipient]').val("");
+                                template.$('input[name=amount]').val("");
                             }
                         });
                     }
