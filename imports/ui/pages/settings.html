@@ -4,7 +4,8 @@
 
         <div class="row">
             <div class="col-xs-12 text-left">
-                <h4>Send someone credit, pass the  <i class="fa fa-heart" aria-hidden="true"></i> </h4>
+                <p><strong>Share some credit</strong></p>
+
                 <label for="recipient">Address:</label>
                 <div class="input-group">
                     <span class="input-group-addon">0x</span>
@@ -14,6 +15,7 @@
                            size="80"
                            value="{{recipient}}"/>
                 </div>
+                <br>
             </div>
         </div>
         <div class="row">
@@ -26,6 +28,7 @@
                         <i class="fa fa-book" aria-hidden="true"></i>
                     </button>
                 </div>
+                <br>
             </div>
         </div>
 
@@ -44,12 +47,40 @@
         </div>
         <div class="col-xs-12 text-left">
             <div class="row">
+                <br>
                 <button type="button" class="js-transfer btn btn-default">
                     <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
                 </button>
             </div>
         </div>
     </form>
+
+    <div class="row">
+        <div class="col-xs-12 text-left">
+            <hr>
+        </div>
+    </div>
+
+    <form class="balance">
+        <div class="row">
+            <div class="col-xs-8 text-left">
+                <strong>Current balance:</strong> {{balance}} ETH
+            </div>
+            <div class="col-xs-4 text-right">
+                <button type="button" class="js-balance btn btn-default">
+                    <i class="fa fa-refresh" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <div class="row">
+        <div class="col-xs-12 text-left">
+            <p>You don't need to maintain a balance any bigger than required for a cup of coffee.</p>
+            <p>If the balance is insufficient to to create Activities you will need
+                to <a href="">buy ETH</a>. </p>
+        </div>
+    </div>
 
     <div class="row">
         <div class="col-xs-12 text-left">
@@ -81,31 +112,6 @@
         </div>
     </form>
 
-    <form class="balance">
-        <div class="row">
-            <div class="col-xs-8 text-left">
-                <strong>Current balance:</strong> {{balance}} ETH
-            </div>
-            <div class="col-xs-4 text-right">
-                <button type="button" class="js-balance btn btn-default">
-                    <i class="fa fa-refresh" aria-hidden="true"></i>
-                </button>
-            </div>
-        </div>
-    </form>
-
-    <div class="row">
-        <div class="col-xs-10 text-left">
-            <p>Don't maintain a balance bigger than you are happy to lose. It does
-                not need to be more than the cost of your favourite beverage! </p>
-            <p>If the balance is insufficient to use the network you will need
-                to <a href="">buy ETH</a>. </p>
-            <hr>
-        </div>
-        <div class="col-xs-2 text-left">
-            &nbsp;
-        </div>
-    </div>
 
     <div class="row">
         <div class="col-xs-12 text-left">
