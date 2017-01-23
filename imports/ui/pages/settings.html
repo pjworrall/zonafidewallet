@@ -16,7 +16,8 @@
                             <p>{{modalMessage}}</p>
                         </div>
                         <div class="modal-footer">
-                            <button id="modelCancel" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button id="modelCancel" type="button" class="btn btn-default" data-dismiss="modal">Close
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -52,7 +53,7 @@
     <form class="balance">
         <div class="row">
             <div class="col-xs-8 text-left">
-                <strong>Current balance:</strong> {{balance}} Finney
+                <strong>Current balance:</strong> {{balance}} ETH
             </div>
             <div class="col-xs-4 text-right">
                 <button type="button" class="js-balance btn btn-default">
@@ -63,9 +64,19 @@
     </form>
 
     <div class="row">
-        <div class="col-xs-12 text-left">
+        <div class="col-xs-10 text-left">
             <p>If this balance is Zero or too small to access the network you will need
-                to <a href="">buy Eth</a>.</p>
+                to <a href="">buy ETH</a>. Caution: Don't maintain a balance bigger than you are happy to lose. It does not need to be more
+                than the cost of your favourite beverage! </p>
+            <hr>
+        </div>
+        <div class="col-xs-2 text-left">
+                &nbsp;
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 text-left">
             <hr>
         </div>
     </div>
@@ -73,7 +84,7 @@
     <form class="seed">
         <div class="row">
             <div class="col-xs-8 text-left">
-                <strong>Passphrase Reminder:</strong>
+                <strong>Key Reminder:</strong>
             </div>
             <div class="col-xs-4 text-right">
                 <button type="button" class="js-seed btn btn-default">
@@ -93,7 +104,8 @@
         <div class="row">
             <div class="col-xs-8 text-left">
                 <strong>Session Password:</strong>
-                <p>Increased protection for your passphrase while the application is running. Restart after changing this setting.</p>
+                <p>Increased protection for your Key while the application is running. Restart after changing this
+                    setting.</p>
             </div>
             <div class="col-xs-4 text-right">
                 <button type="button" class="js-sessionPassword btn btn-default">
@@ -114,15 +126,14 @@
 
         <div class="row">
             <div class="col-xs-12 text-left">
+                <h4>Send Credit</h4>
+                <label for="recipient">Address:</label>
                 <div class="input-group">
-                    <h4>Send Credit</h4>
-                    <label for="recipient">Address:</label>
                     <input class="form-control"
                            type="text"
                            name="recipient"
                            size="80"
-                           value="{{recipient}}"
-                           aria-describedby="basic-addon1"/>
+                           value="{{recipient}}"/>
                 </div>
             </div>
         </div>
@@ -144,14 +155,14 @@
 
         <div class="row">
             <div class="col-xs-12 text-left">
+                <label for="amount">Amount:</label>
                 <div class="input-group">
-                    <label for="amount">Amount:</label>
+                    <span class="input-group-addon">ETH</span>
                     <input class="form-control"
                            type="text"
                            name="amount"
-                           size="80"
-                           value="1000000000000"
-                           aria-describedby="basic-addon1"/>
+                           size="10"
+                           value="1.00"/>
                 </div>
             </div>
         </div>
@@ -159,6 +170,26 @@
             <div class="row">
                 <button type="button" class="js-transfer btn btn-default">
                     <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </form>
+
+
+    <div class="row">
+        <div class="col-xs-12 text-left">
+            <hr>
+        </div>
+    </div>
+
+    <form class="balance">
+        <div class="row">
+            <div class="col-xs-8 text-left">
+                <strong>Gas Price:</strong> ETH {{gasPrice}}
+            </div>
+            <div class="col-xs-4 text-right">
+                <button type="button" class="js-pricing btn btn-default">
+                    <i class="fa fa-refresh" aria-hidden="true"></i>
                 </button>
             </div>
         </div>

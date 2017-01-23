@@ -37,7 +37,7 @@ Template.home.events({
         console.log("click .js-unlock");
 
         // Get value from form element
-        const seed = template.$('input[name=passphrase]').val();
+        const seed = template.$('input[name=key]').val();
 
         // caution. over riding some security. for low security requirement environments only
 
@@ -75,7 +75,7 @@ Template.home.events({
                     Router.go("list");
 
                 } catch(err) {
-                    sAlert.error('Was not able to obtain Key, is Passphrase correct?', {timeout: 'none'});
+                    sAlert.error('Was not able to obtain Key, is Key correct?', {timeout: 'none'});
                 }
 
             }

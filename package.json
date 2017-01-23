@@ -5,6 +5,7 @@
     "start": "meteor run"
   },
   "dependencies": {
+    "bignumber.js": "^4.0.0",
     "bitcore-lib": "^0.13.19",
     "bitcore-mnemonic": "git+https://github.com/pjworrall/bitcore-mnemonic.git",
     "bootbox": "^4.4.0",

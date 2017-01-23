@@ -72,7 +72,11 @@ let ZonafideWeb3 = (function () {
 
             let balance = this.getInstance().eth.getBalance(provider.getAddresses()[0]);
 
-            return this.getInstance().fromWei(balance, 'finney');
+            return this.getInstance().fromWei(balance, 'ether');
+        },
+        getGasPrice: function () {
+            let price = this.getInstance().eth.gasPrice;
+            return this.getInstance().fromWei(price, 'ether');
         },
         isAlive: function () {
 

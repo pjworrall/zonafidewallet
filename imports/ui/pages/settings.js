@@ -8,11 +8,13 @@ import lightwallet from 'eth-lightwallet';
 
 import Transaction from 'ethereumjs-tx';
 
+import BigNumber from 'bignumber.js';
+
 import  {ZonafideWeb3} from '/imports/startup/client/web3.js';
 import  {ZoneQRScanner} from '/imports/startup/client/qrscanner.js';
 import  {ZonafideEnvironment} from '/imports/startup/client/ethereum.js';
 import  {ZoneTransactionReceipt} from '/imports/startup/client/receipt.js';
-import  {SessionPasswordOveride, ZonafideDappData, ZidStore, NumberWithCommas} from '/imports/startup/client/globals.js';
+import  {SessionPasswordOveride, ZonafideDappData, ZidStore} from '/imports/startup/client/globals.js';
 
 import './settings.html';
 
@@ -33,6 +35,7 @@ Template.settings.onCreated(function () {
     this.modalTitle = new ReactiveVar();
     this.modalMessage = new ReactiveVar();
 
+    this.gasPrice = new ReactiveVar();
 
 
     //this.balance.set(ZonafideWeb3.getBalance());
@@ -96,6 +99,9 @@ Template.settings.helpers({
 
     sessionPassword() {
         return Template.instance().sessionPassword.get();
+    },
+    gasPrice() {
+        return Template.instance().gasPrice.get();
     }
 
 });
@@ -207,11 +213,8 @@ Template.settings.events({
 
         try {
 
-            let balance = ZonafideWeb3.getBalance();
-
-            let round = Math.round(balance).toString();
-
-            Template.instance().balance.set(NumberWithCommas.convert(round));
+            let balance = ZonafideWeb3.getBalance().toFixed(2).toString();
+            Template.instance().balance.set(balance);
 
         } catch (error) {
             sAlert.error(error.toString(),
@@ -279,41 +282,67 @@ Template.settings.events({
 
         console.log("click .js-transfer");
 
-        let password = prompt('Provide a Session Password', 'Password');
+        // todo: should check this is a valid number!
+        let amount = template.$('input[name=amount]').val();
+
+        // if amount is greater than 10 ETH stop
+        let maxAmountInEth = 10;
+        if ( amount > maxAmountInEth ) {
+             sAlert.error('Transfers restricted to ETH 10.00 maximum for your security.', {timeout: 'none'});
+        return;
+        }
 
         // todo: should check this is a valid address
         let recipient = template.$('input[name=recipient]').val();
-        let amount = template.$('input[name=amount]').val();
+
+        // todo: problem - hooked web3 provider nonce conflict arises here. hw3p keeps track of nonce values as well.
+        let address = ZidStore.get().getAddresses()[0];
+
+        let count = ZonafideWeb3.getInstance().eth.getTransactionCount(address);
+        let amountInWei = ZonafideWeb3.getInstance().toWei(amount, 'ether');
+
+        console.log("Transfer: " + "Nonce: " + count + ", to: " + recipient
+             + ", value: ETH " + amount
+             + "( WEI: " + amountInWei
+            + " )" + " typeof " +
+            typeof amountInWei);
+
+        // todo: got to get a solution for managing the gas properties across the app
+        // determining he Number() function was required on amountInWei hurt big time!!
+        let txData = {
+            "nonce": count,
+            "gasLimit": "0x2fefd8",
+            "gasPrice": "0xba43b7400",
+            "to": recipient,
+            "value": Number(amountInWei),
+        };
+
+        let tx = new Transaction(txData);
+
+        let rawTx = tx.serialize().toString('hex');
+
+        // caution. over riding some security. for low security requirement environments only
+
+        let settings = ZonafideDappData.findOne({document: "settings"});
+
+        let password = null;
+        if (settings && settings.sessionPassword) {
+            password = prompt("Provide the Session Password");
+        } else {
+            password = SessionPasswordOveride;
+        }
+
+        // -- end caution
+
+        console.log("signing and submitting transaction...");
+
+        // todo: the api ideology on this eth-lightwallet is so weird. Providing a password again here seems obsolete. but hey..it does what I want.
 
         lightwallet.keystore.deriveKeyFromPassword(password, function (err, pwDerivedKey) {
 
             if (err) {
-                sAlert.error('Failed to derive Key from password..dev issue', {timeout: 'none'});
+                sAlert.error('Failed to derive Key from password..dev issue: ' + err, {timeout: 'none'});
             } else {
-
-                // todo: problem - hooked web3 provider nonce conflict arises here. hw3p keeps track of nonce values as well.
-
-                let w3 = ZonafideWeb3.getInstance();
-
-                let address = ZidStore.get().getAddresses()[0];
-
-                let count = w3.eth.getTransactionCount(address);
-
-                // todo: general strategy needed for hex prefix's, but add it deliberately here
-                amount = '0x' + amount;
-
-                // todo: got to get a solution for managing the gas properties across the app
-                let txData = {
-                    "nonce": count,
-                    "gasLimit": "0x2fefd8",
-                    "gasPrice": "0xba43b7400",
-                    "to": recipient,
-                    "value": amount,
-                };
-
-                let tx = new Transaction(txData);
-
-                let rawTx = tx.serialize().toString('hex');
 
                 let signedTx = lightwallet.signing.signTx(ZidStore.get(),
                     pwDerivedKey,
@@ -321,14 +350,14 @@ Template.settings.events({
                     address
                 );
 
-                w3.eth.sendRawTransaction(signedTx, function (txError, tranHash) {
+                ZonafideWeb3.getInstance().eth.sendRawTransaction(signedTx, function (txError, tranHash) {
                     if (txError) {
                         sAlert.info("Network reported: " + txError,
                             {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Transaction Failed'});
 
                     } else {
 
-                        sAlert.info('A request to transfer ' + amount + ' has been made: ' + tranHash,
+                        sAlert.info('A request to transfer ETH ' + amount + ' has been made: ' + tranHash,
                             {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Transfer request made'});
 
                         ZoneTransactionReceipt.check(tranHash, ZonafideWeb3.getInstance(), function (rctError, receipt) {
@@ -348,15 +377,29 @@ Template.settings.events({
                                     });
                             }
                         });
-
                     }
                 });
-
             }
-
         });
+    },
 
+    'click .js-pricing'(event) {
 
+        event.preventDefault();
+        event.stopPropagation();
+
+        console.log("click .js-pricing");
+
+        try {
+
+            let price = ZonafideWeb3.getGasPrice().toFixed(2).toString();
+
+            Template.instance().gasPrice.set(price);
+
+        } catch (error) {
+            sAlert.error(error.toString(),
+                {timeout: 'none', sAlertIcon: 'fa fa-exclamation-circle', sAlertTitle: 'Could not retrieve gas price'});
+        }
     }
 
 

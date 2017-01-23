@@ -3538,6 +3538,8 @@
       <root url="file://$PROJECT_DIR$/imports/ui/pages/confirm-compiled.js" />
       <root url="file://$PROJECT_DIR$/imports/ui/pages/unlock-compiled.js" />
       <root url="file://$PROJECT_DIR$/imports/ui/pages/lock-compiled.js" />
+      <root url="file://$PROJECT_DIR$/node_modules/bignumber.js/bignumber-compiled.js" />
+      <root url="file://$PROJECT_DIR$/node_modules/bignumber.js/bignumber.min-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/uglify-js/test/unit/compress/expected/issue10-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/uglify-js/test/unit/compress/expected/mangle-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/uglify-js/test/unit/compress/expected/issue9-compiled.js" />
