@@ -74,7 +74,7 @@ Template.zone.events({
             Router.go("members", {_id: id});
         } else {
             // todo: we are going to need a locale capability to support multiple languages
-            sAlert.info("Did not recognise the state the Zone was in to determine what view to present.",
+            sAlert.info("Did not recognise the state the Activity was in to determine what view to present.",
                 {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Developer Issue'});
         }
 

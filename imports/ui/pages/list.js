@@ -43,8 +43,8 @@ Template.list.events({
             }).count();
 
         if (count >= 5) {
-            sAlert.info('Currently only five records of Zones can be remembered',
-                {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Zone Record Limit'});
+            sAlert.info('Currently only five records of Activities can be recorded',
+                {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Activity Record Limit'});
         } else {
 
             let name = template.$('input[name=name]').val();
@@ -83,10 +83,10 @@ Template.list.events({
                             // todo: got to refactor out the parameters here and across all alerts currently
                             // todo: I mean. shouldn't using the info method provide appropriate symbol?
                             sAlert.info(contract.address,
-                                {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Zone established'});
+                                {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Activity established'});
                         } else {
-                            sAlert.info('A Zone is being registered: ' + contract.transactionHash,
-                                {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Zone requested'});
+                            sAlert.info('An Activity is being registered: ' + contract.transactionHash,
+                                {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Activity requested'});
                         }
 
                     } else {

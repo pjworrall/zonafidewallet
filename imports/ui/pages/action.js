@@ -160,26 +160,26 @@ Template.action.events({
                         });
                 } else {
 
-                    sAlert.info('A request to action a Zone has been made: ' + tranHash,
-                        {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Zone Action Requested'});
+                    sAlert.info('A request to action an Activity has been made: ' + tranHash,
+                        {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Activity Requested'});
 
                     ZoneTransactionReceipt.check(tranHash, ZonafideWeb3.getInstance(), function (error, receipt) {
                         if (error) {
-                            sAlert.info('Could not action Zone: ' + error.toString(),
+                            sAlert.info('Could not action an Activity: ' + error.toString(),
                                 {
                                     timeout: 'none',
                                     sAlertIcon: 'fa fa-info-circle',
-                                    sAlertTitle: 'Failed to Action Zone'
+                                    sAlertTitle: 'Failed to Action an Activity'
                                 });
                         } else {
                             // todo: watchout, using address property and not record id
                             ZidUserLocalData.update({address : zad},{$set:{state : ZoneState.ACTIONED}});
 
-                            sAlert.info('Zone actioned at block: ' + receipt.blockNumber,
+                            sAlert.info('Activity in block: ' + receipt.blockNumber,
                                 {
                                     timeout: 'none',
                                     sAlertIcon: 'fa fa-info-circle',
-                                    sAlertTitle: 'Zone Actioned'
+                                    sAlertTitle: 'Activity Actioned'
                                 });
                         }
                     });

@@ -152,8 +152,8 @@ Template.details.events({
 
         // this is the complete list of currently supported params you can pass to the plugin (all optional)
         let options = {
-            message: 'Secure a Zone for me. Please Acknowledge ' + template.address, // not supported on some apps (Facebook, Instagram)
-            subject: 'Zone Address for my Activity', // fi. for email
+            message: 'Secure an Activity for me. Please Acknowledge ' + template.address, // not supported on some apps (Facebook, Instagram)
+            subject: 'Address for my Activity', // fi. for email
             //files: ['', ''], // an array of filenames either locally or remotely
             //todo: this should be to the explanation page for verifiers
             url: 'https://www.zonafide.net',
@@ -179,8 +179,8 @@ Template.details.events({
 
         // this is the complete list of currently supported params you can pass to the plugin (all optional)
         let options = {
-            message: 'Here is the Zone Address for my planned activity: ' + template.address, // not supported on some apps (Facebook, Instagram)
-            subject: 'Zone Address for my Activity', // fi. for email
+            message: 'Here is the Address for my planned activity: ' + template.address, // not supported on some apps (Facebook, Instagram)
+            subject: 'Address for my Activity', // fi. for email
             //files: ['', ''], // an array of filenames either locally or remotely
             //todo: this should be to the explanation page for verifiers
             url: 'https://www.zonafide.net',

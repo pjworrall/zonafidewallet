@@ -144,7 +144,7 @@ Template.members.events({
 
                         ZoneTransactionReceipt.check(tranHash, ZonafideWeb3.getInstance(), function (error, receipt) {
                             if (error) {
-                                sAlert.info('Could not add Member to Zone: ' + error.toString(),
+                                sAlert.info('Could not add Acknowledger to Activity: ' + error.toString(),
                                     {
                                         timeout: 'none',
                                         sAlertIcon: 'fa fa-info-circle',
@@ -154,7 +154,7 @@ Template.members.events({
                                 // careful here..using address property rather that unique id of record, should be same impact
                                 ZidUserLocalData.update({address: zad}, {$set: {state: ZoneState.MEMBERS}});
 
-                                sAlert.info('Member added to Zone at block: ' + receipt.blockNumber,
+                                sAlert.info('Acknowledger added to Activity at block: ' + receipt.blockNumber,
                                     {
                                         timeout: 'none',
                                         sAlertIcon: 'fa fa-info-circle',

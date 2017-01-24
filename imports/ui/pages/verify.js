@@ -202,8 +202,8 @@ Template.verify.events({
             template.acknowledger.set(acknowledger);
 
         } else {
-            sAlert.info("Provide a Zone first",
-                {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'No Zone'});
+            sAlert.info("Provide an Activity first",
+                {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'No Activity'});
         }
 
     },
@@ -231,16 +231,16 @@ Template.verify.events({
 
                     ZoneTransactionReceipt.check(tranHash, ZonafideWeb3.getInstance(), function (error, receipt) {
                         if (error) {
-                            sAlert.info('Could not confirm Zone: ' + error.toString(),
+                            sAlert.info('Could not confirm Activity: ' + error.toString(),
                                 {
                                     timeout: 'none',
-                                    sAlertTitle: 'Failed to  confirm Zone'
+                                    sAlertTitle: 'Failed to confirm Activity'
                                 });
                         } else {
-                            sAlert.info('Confirmed Zone at block: ' + receipt.blockNumber,
+                            sAlert.info('Confirmed Activity at block: ' + receipt.blockNumber,
                                 {
                                     timeout: 'none',
-                                    sAlertTitle: 'Zone Confirmed'
+                                    sAlertTitle: 'Activity Confirmed'
                                 });
                         }
                     });
@@ -248,8 +248,8 @@ Template.verify.events({
             });
 
         } else {
-            sAlert.info("Provide a Zone first",
-                {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'No Zone'});
+            sAlert.info("Provide an Activity first",
+                {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'No Activity'});
         }
     }
 

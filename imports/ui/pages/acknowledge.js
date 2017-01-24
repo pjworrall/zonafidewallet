@@ -82,23 +82,23 @@ Template.acknowledge.events({
                     sAlert.error('Report to Zonafide: ' + error,
                         {timeout: 'none', sAlertIcon: 'fa fa-exclamation-circle', sAlertTitle: 'Zonafide Access Failure'});
                 } else {
-                    sAlert.info('A request to acknowledge Zone ' + zad + 'has been made: ' + tranHash,
+                    sAlert.info('A request to acknowledge an Activity ' + zad + 'has been made: ' + tranHash,
                         {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Acknowledgment request made'});
 
                     ZoneTransactionReceipt.check(tranHash, ZonafideWeb3.getInstance(), function (error, receipt) {
                         if (error) {
-                            sAlert.info('Could not acknowledge Zone: ' + error.toString(),
+                            sAlert.info('Could not acknowledge Activity: ' + error.toString(),
                                 {
                                     timeout: 'none',
                                     sAlertIcon: 'fa fa-info-circle',
-                                    sAlertTitle: 'Failed to Acknowledge Zone'
+                                    sAlertTitle: 'Failed to Acknowledge Activity'
                                 });
                         } else {
-                            sAlert.info('A request to acknowledge Zone ' + zad + 'has been made at block ' + receipt.blockNumber,
+                            sAlert.info('A request to acknowledge an Activity ' + zad + 'has been made at block ' + receipt.blockNumber,
                                 {
                                     timeout: 'none',
                                     sAlertIcon: 'fa fa-info-circle',
-                                    sAlertTitle: 'Zone Acknowledged'
+                                    sAlertTitle: 'Activity Acknowledged'
                                 });
                         }
                     });
