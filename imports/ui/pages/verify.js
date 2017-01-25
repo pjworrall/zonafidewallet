@@ -13,6 +13,8 @@ import  {ZonafideEnvironment} from '/imports/startup/client/ethereum.js';
 import  {ZoneTransactionReceipt} from '/imports/startup/client/receipt.js';
 import  {ZidStore} from '/imports/startup/client/globals.js';
 
+import  {AddressRules} from '/imports/startup/client/validation.js';
+
 
 Template.verify.onCreated(function consoleOnCreated() {
 
@@ -26,6 +28,18 @@ Template.verify.onCreated(function consoleOnCreated() {
     this.acknowledger = new ReactiveVar();
 
 
+});
+
+Template.verify.onRendered(function () {
+
+    this.$('.zone').validate({
+        rules: {
+            zad: AddressRules.rules
+        },
+        messages: {
+            zad: AddressRules.messages
+        }
+    });
 });
 
 Template.verify.helpers({

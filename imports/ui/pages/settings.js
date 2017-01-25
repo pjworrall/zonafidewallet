@@ -14,6 +14,8 @@ import  {ZonafideEnvironment} from '/imports/startup/client/ethereum.js';
 import  {ZoneTransactionReceipt} from '/imports/startup/client/receipt.js';
 import  {SessionPasswordOveride, ZonafideDappData, ZidStore} from '/imports/startup/client/globals.js';
 
+import  {AddressRules} from '/imports/startup/client/validation.js';
+
 import './settings.html';
 
 
@@ -50,7 +52,7 @@ Template.settings.onRendered(function () {
 
     // I think this should be this.$() to be more accurate
 
-    $('.node').validate({
+    this.$('.node').validate({
         rules: {
             server: {
                 required: true,
@@ -65,13 +67,9 @@ Template.settings.onRendered(function () {
         }
     });
     // todo: this needs to be improved to have a proper validator for ethereum addresses
-    $('.transfer').validate({
+    this.$('.transfer').validate({
         rules: {
-            recipient: {
-                required: true,
-                minlength: 42,
-                maxlength: 42
-            },
+            recipient: AddressRules.rules,
             amount: {
                 required: true,
                 number: true,
@@ -79,11 +77,7 @@ Template.settings.onRendered(function () {
             }
         },
         messages: {
-            recipient: {
-                required: "You must enter a recipient Address",
-                minlength: "Appears too short for a valid Address",
-                maxlength: "Appears to long for a valid Address"
-            },
+            recipient: AddressRules.messages,
             amount: {
                 required: "You must enter an amount",
                 range: "Must be between 0.001 and 10 ETH (for your security)"

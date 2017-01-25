@@ -15,6 +15,8 @@ import  { ZonafideEnvironment } from '/imports/startup/client/ethereum.js';
 import  { ZoneTransactionReceipt } from '/imports/startup/client/receipt.js';
 import  { ZidStore } from '/imports/startup/client/globals.js';
 
+import  {AddressRules} from '/imports/startup/client/validation.js';
+
 Template.acknowledge.onCreated(function () {
 
     this.zad = new ReactiveVar('');
@@ -22,6 +24,18 @@ Template.acknowledge.onCreated(function () {
     // todo: what do we do if this call does not work ? Should be using exceptions
     this.Zone = ZonafideWeb3.getFactory();
 
+});
+
+Template.acknowledge.onRendered(function () {
+
+    this.$('.zone').validate({
+        rules: {
+            zad: AddressRules.rules
+        },
+        messages: {
+            zad: AddressRules.messages
+        }
+    });
 });
 
 

@@ -13,6 +13,7 @@ import  { ZonafideEnvironment } from '/imports/startup/client/ethereum.js';
 import  { ZoneTransactionReceipt } from '/imports/startup/client/receipt.js';
 import  { ZidStore, ZidUserLocalData, ZidUserLocalPersonalData, ZoneState } from '/imports/startup/client/globals.js';
 
+import  {AddressRules} from '/imports/startup/client/validation.js';
 
 import './action.html';
 
@@ -23,11 +24,23 @@ Template.action.onCreated(function () {
 
 });
 
+Template.action.onRendered(function () {
+
+    this.$('.action').validate({
+        rules: {
+            zid: AddressRules.rules
+        },
+        messages: {
+            zid: AddressRules.messages
+        }
+    });
+});
+
 Template.action.helpers({
 
     name() {
 
-        var zone = ZidUserLocalData.findOne(
+        let zone = ZidUserLocalData.findOne(
             Template.instance().data._id);
 
         return zone.name;
