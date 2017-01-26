@@ -9,11 +9,7 @@
 
 jQuery.validator.addMethod("hex", function(value, element) {
 
-    let reg = /^0x[0-9A-F]{42}$/i;
-
-    //let reg = /0x5db8d0b3b76cf25e533c299b6a323ecbc3a51424/;
-
-    console.log("validator - value: " + value + ", hex?:  " + reg.test(value) );
+    let reg = /^0x[0-9A-F]{40}$/i;
 
     return this.optional(element) || reg.test(value) ;
 
