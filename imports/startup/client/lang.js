@@ -10,7 +10,7 @@ let i18n = new Polyglot();
 i18n.extend({
     "details.js-share.message": "Please Acknowledge this planned Activity: %{address} .",
     "details.js-share.subject": "Please Acknowledge my Activity.",
-    "details.js-share.url": "Learn more at https://www.zonafide.net/a",             //todo: this should be to the explanation page for acknowledgerd
+    "details.js-share.url": "Learn more at https://www.zonafide.net/a ."             //todo: this should be to the explanation page for acknowledgerd
 
 });
 
@@ -18,7 +18,14 @@ i18n.extend({
 i18n.extend({
     "details.js-send.message": "Please Verify this planned Activity: %{address} .",
     "details.js-send.subject": "Please Verify my Activity.",
-    "details.js-send.url": "Learn more at https://www.zonafide.net/v",             //todo: this should be to the explanation page for verifier
+    "details.js-send.url": "Learn more at https://www.zonafide.net/v ."             //todo: this should be to the explanation page for verifier
+});
+
+// content for social share of user Address
+i18n.extend({
+    "address.js-share.message": "Join my trusted zone. My Zonafide Address is %{address} ." ,
+    "address.js-share.subject": "Get in the Zone",
+    "address.js-share.url": "Learn more at https://www.zonafide.net/z ."             //todo: this should be to the explanation page for people in trusted zones
 });
 
 // social share general text

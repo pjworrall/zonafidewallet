@@ -6,6 +6,8 @@ import {Template} from 'meteor/templating';
 
 import  {ZidStore} from '/imports/startup/client/globals.js';
 
+import  {i18n} from '/imports/startup/client/lang.js';
+
 import './address.html';
 
 Template.address.helpers({
@@ -41,17 +43,18 @@ Template.address.events({
         // Prevent default browser form submit
         event.preventDefault();
 
-        // todo: this will all go in a service component....eventually...
-
         // this is the complete list of currently supported params you can pass to the plugin (all optional)
         let options = {
-            message: 'Get in the Zone with me. My Zonafide ID is ' + "0x" + ZidStore.get().getAddresses()[0], // not supported on some apps (Facebook, Instagram)
-            subject: 'My Zonafide ID', // fi. for email
+
+            message: i18n.t("address.js-share.message",{ address: ("0x" + ZidStore.get().getAddresses()[0] ) } ), // not supported on some apps (Facebook, Instagram)
+            subject: i18n.t("address.js-share.subject"), // fi. for email
             //files: ['', ''], // an array of filenames either locally or remotely
-            url: 'https://www.zonafide.net',
-            chooserTitle: 'Pick an app' // Android only, you can override the default share sheet title
+            url: i18n.t("address.js-share.url"),
+            chooserTitle: i18n.t("social.share.title") // Android only, you can override the default share sheet title
+
         };
 
+        // todo: tidy up!
         let onSuccess = function(result) {
             console.log("Share completed? " + result.completed); // On Android apps mostly return false even while it's true
             console.log("Shared to app: " + result.app); // On Android result.app is currently empty. On iOS it's empty when sharing is cancelled (result.completed=false)
