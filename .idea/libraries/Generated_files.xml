@@ -120,9 +120,7 @@
         <item url="file://$PROJECT_DIR$/node_modules/eth-lightwallet/lib/keystore-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/eth-lightwallet/lib/encryption-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/eth-lightwallet/lib/upgrade-compiled.js" />
-        <item url="file://$PROJECT_DIR$/node_modules/bignumber.js/bignumber-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/eth-lightwallet/lib/signing-compiled.js" />
-        <item url="file://$PROJECT_DIR$/node_modules/bignumber.js/bignumber.min-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/emitter/browser/index-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/emitter/src/index-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/emitter/test/test-compiled.js" />
@@ -337,6 +335,7 @@
         <item url="file://$PROJECT_DIR$/node_modules/pkginfo/examples/array-argument-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/pkginfo/lib/pkginfo-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/pkginfo/examples/all-properties-compiled.js" />
+        <item url="file://$PROJECT_DIR$/imports/startup/client/validation-compiled.js" />
         <item url="file://$PROJECT_DIR$/imports/ui/pages/address-compiled.js" />
         <item url="file://$PROJECT_DIR$/imports/startup/client/ethereum-compiled.js" />
         <item url="file://$PROJECT_DIR$/imports/startup/client/receipt-compiled.js" />
@@ -457,6 +456,7 @@
         <item url="file://$PROJECT_DIR$/node_modules/uglify-js/test/unit/compress/expected/issue29-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/uglify-js/test/unit/compress/expected/issue28-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/uglify-js/test/unit/compress/expected/issue30-compiled.js" />
+        <item url="file://$PROJECT_DIR$/imports/startup/client/lang-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/uglify-js/test/unit/compress/expected/issue27-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/uglify-js/test/unit/compress/expected/issue25-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/uglify-js/test/unit/compress/expected/issue20-compiled.js" />
@@ -3540,6 +3540,8 @@
       <root url="file://$PROJECT_DIR$/imports/ui/pages/lock-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/bignumber.js/bignumber-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/bignumber.js/bignumber.min-compiled.js" />
+      <root url="file://$PROJECT_DIR$/node_modules/bignumber.js/bignumber-compiled.js" />
+      <root url="file://$PROJECT_DIR$/node_modules/bignumber.js/bignumber.min-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/uglify-js/test/unit/compress/expected/issue10-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/uglify-js/test/unit/compress/expected/mangle-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/uglify-js/test/unit/compress/expected/issue9-compiled.js" />
@@ -3658,9 +3660,7 @@
       <root url="file://$PROJECT_DIR$/node_modules/eth-lightwallet/lib/keystore-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/eth-lightwallet/lib/encryption-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/eth-lightwallet/lib/upgrade-compiled.js" />
-      <root url="file://$PROJECT_DIR$/node_modules/bignumber.js/bignumber-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/eth-lightwallet/lib/signing-compiled.js" />
-      <root url="file://$PROJECT_DIR$/node_modules/bignumber.js/bignumber.min-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/emitter/browser/index-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/emitter/src/index-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/emitter/test/test-compiled.js" />
@@ -3876,6 +3876,7 @@
       <root url="file://$PROJECT_DIR$/node_modules/pkginfo/examples/array-argument-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/pkginfo/lib/pkginfo-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/pkginfo/examples/all-properties-compiled.js" />
+      <root url="file://$PROJECT_DIR$/imports/startup/client/validation-compiled.js" />
       <root url="file://$PROJECT_DIR$/imports/ui/pages/address-compiled.js" />
       <root url="file://$PROJECT_DIR$/imports/startup/client/ethereum-compiled.js" />
       <root url="file://$PROJECT_DIR$/imports/startup/client/receipt-compiled.js" />
@@ -3996,6 +3997,7 @@
       <root url="file://$PROJECT_DIR$/node_modules/uglify-js/test/unit/compress/expected/issue29-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/uglify-js/test/unit/compress/expected/issue28-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/uglify-js/test/unit/compress/expected/issue30-compiled.js" />
+      <root url="file://$PROJECT_DIR$/imports/startup/client/lang-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/uglify-js/test/unit/compress/expected/issue27-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/uglify-js/test/unit/compress/expected/issue25-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/uglify-js/test/unit/compress/expected/issue20-compiled.js" />

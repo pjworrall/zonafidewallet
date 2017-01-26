@@ -6,6 +6,7 @@ import {Template} from 'meteor/templating';
 //import { QRCode } from 'meteor/steeve:jquery-qrcode';
 import  {ZidUserLocalData, ZidStore, ZoneStateAction, ZoneStateSymbol, ZoneStateColor} from '/imports/startup/client/globals.js';
 import  {ZonafideWeb3} from '/imports/startup/client/web3.js';
+import  {i18n} from '/imports/startup/client/lang.js';
 
 import './details.html';
 
@@ -152,14 +153,14 @@ Template.details.events({
 
         // this is the complete list of currently supported params you can pass to the plugin (all optional)
         let options = {
-            message: 'Secure an Activity for me. Please Acknowledge ' + template.address, // not supported on some apps (Facebook, Instagram)
-            subject: 'Address for my Activity', // fi. for email
+            message: i18n.t("details.js-share.message",{ address: template.address} ), // not supported on some apps (Facebook, Instagram)
+            subject: i18n.t("details.js-share.subject"), // fi. for email
             //files: ['', ''], // an array of filenames either locally or remotely
-            //todo: this should be to the explanation page for verifiers
-            url: 'https://www.zonafide.net',
-            chooserTitle: 'Pick an app' // Android only, you can override the default share sheet title
+            url: i18n.t("details.js-share.url"),
+            chooserTitle: i18n.t("social.share.title") // Android only, you can override the default share sheet title
         };
 
+        // todo: need to improve this
         let onSuccess = function (result) {
             console.log("Share completed? " + result.completed); // On Android apps mostly return false even while it's true
             console.log("Shared to app: " + result.app); // On Android result.app is currently empty. On iOS it's empty when sharing is cancelled (result.completed=false)
@@ -179,14 +180,15 @@ Template.details.events({
 
         // this is the complete list of currently supported params you can pass to the plugin (all optional)
         let options = {
-            message: 'Here is the Address for my planned activity: ' + template.address, // not supported on some apps (Facebook, Instagram)
-            subject: 'Address for my Activity', // fi. for email
+            message:  i18n.t("details.js-send.message",{ address: template.address} ), // not supported on some apps (Facebook, Instagram)
+            subject: i18n.t("details.js-send.subject"), // fi. for email
             //files: ['', ''], // an array of filenames either locally or remotely
             //todo: this should be to the explanation page for verifiers
-            url: 'https://www.zonafide.net',
-            chooserTitle: 'Pick an app' // Android only, you can override the default share sheet title
+            url: i18n.t("social.share.title"),
+            chooserTitle: i18n.t("social.share.title") // Android only, you can override the default share sheet title
         };
 
+        // todo: needs tidying up
         let onSuccess = function (result) {
             console.log("Share completed? " + result.completed); // On Android apps mostly return false even while it's true
             console.log("Shared to app: " + result.app); // On Android result.app is currently empty. On iOS it's empty when sharing is cancelled (result.completed=false)
