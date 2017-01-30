@@ -52,7 +52,7 @@ Template.settings.onRendered(function () {
 
     // I think this should be this.$() to be more accurate
 
-    this.$('.node').validate({
+    this.$('.js-node').validate({
         rules: {
             server: {
                 required: true,
@@ -67,7 +67,7 @@ Template.settings.onRendered(function () {
         }
     });
     // todo: this needs to be improved to have a proper validator for ethereum addresses
-    this.$('.transfer').validate({
+    this.$('.js-transfer').validate({
         rules: {
             recipient: AddressRules.rules,
             amount: {
@@ -189,7 +189,7 @@ Template.settings.events({
 
     },
 
-    'click .js-node'(event, template) {
+    'submit .js-node'(event, template) {
 
         // Prevent default browser form submit
         event.preventDefault();
@@ -294,7 +294,7 @@ Template.settings.events({
     //todo: tha above handlers were all changed to work on iOS. Did not change the form but might find it has the same problems
     //todo: fix when addressing the currency units and stuff here
 
-    'click .js-transfer'(event, template) {
+    'submit .js-transfer'(event, template) {
 
         event.preventDefault();
 
