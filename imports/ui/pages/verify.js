@@ -32,7 +32,7 @@ Template.verify.onCreated(function consoleOnCreated() {
 
 Template.verify.onRendered(function () {
 
-    this.$('.zone').validate({
+    this.$('.js-read').validate({
         rules: {
             zad: AddressRules.rules
         },
@@ -41,7 +41,7 @@ Template.verify.onRendered(function () {
         }
     });
 
-    this.$('.check').validate({
+    this.$('.js-check').validate({
         rules: {
             zid: AddressRules.rules
         },
@@ -176,7 +176,7 @@ Template.verify.events({
 
     },
 
-    'click .js-read'(event, template) {
+    'submit .js-read'(event, template) {
 
         event.preventDefault();
 
@@ -199,7 +199,7 @@ Template.verify.events({
 
     },
 
-    'click .js-check'(event, template) {
+    'submit .js-check'(event, template) {
 
         event.preventDefault();
 
