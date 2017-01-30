@@ -28,7 +28,7 @@ Template.acknowledge.onCreated(function () {
 
 Template.acknowledge.onRendered(function () {
 
-    this.$('.zone').validate({
+    this.$('.js-acknowledge').validate({
         rules: {
             zad: AddressRules.rules
         },
@@ -73,7 +73,7 @@ Template.acknowledge.events({
 
     },
 
-    'click .js-acknowledge'(event, template) {
+    'submit .js-acknowledge'(event, template) {
         // Prevent default browser form submit
         event.preventDefault();
 
