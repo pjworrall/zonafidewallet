@@ -157,7 +157,7 @@ Template.details.events({
             subject: i18n.t("details.js-share.subject"), // fi. for email
             //files: ['', ''], // an array of filenames either locally or remotely
             url: i18n.t("details.js-share.url"),
-            chooserTitle: i18n.t("social.share.title") // Android only, you can override the default share sheet title
+            chooserTitle: i18n.t("details.js-share.title") // Android only, you can override the default share sheet title
         };
 
         // todo: need to improve this
@@ -185,7 +185,7 @@ Template.details.events({
             //files: ['', ''], // an array of filenames either locally or remotely
             //todo: this should be to the explanation page for verifiers
             url: i18n.t("social.share.title"),
-            chooserTitle: i18n.t("social.share.title") // Android only, you can override the default share sheet title
+            chooserTitle: i18n.t("details.js-send.title") // Android only, you can override the default share sheet title
         };
 
         // todo: needs tidying up

@@ -50,7 +50,7 @@ Template.address.events({
             subject: i18n.t("address.js-share.subject"), // fi. for email
             //files: ['', ''], // an array of filenames either locally or remotely
             url: i18n.t("address.js-share.url"),
-            chooserTitle: i18n.t("social.share.title") // Android only, you can override the default share sheet title
+            chooserTitle: i18n.t("address.js-share.title") // Android only, you can override the default share sheet title
 
         };
 
