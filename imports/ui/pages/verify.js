@@ -199,9 +199,11 @@ Template.verify.events({
 
     },
 
-    'click .js-checkMember'(event, template) {
+    'click .js-check'(event, template) {
 
         event.preventDefault();
+
+        console.log("click .js-check");
 
         // todo: decided to just ignore if there is no zone already established
 
@@ -209,9 +211,9 @@ Template.verify.events({
 
         if (zone) {
 
-            let memberZid = $(template.find('input[name=member_zid]')).val();
+            let memberZid = $(template.find('input[name=zid]')).val();
 
-            console.log("member_zid: " + memberZid);
+            console.log("zid: " + memberZid);
 
             let member = zone.isMember(memberZid, {
                 from: ZidStore.get().getAddresses()[0]
