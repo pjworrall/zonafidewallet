@@ -40,6 +40,16 @@ Template.verify.onRendered(function () {
             zad: AddressRules.messages
         }
     });
+
+    this.$('.check').validate({
+        rules: {
+            zid: AddressRules.rules
+        },
+        messages: {
+            zid: AddressRules.messages
+        }
+    });
+
 });
 
 Template.verify.helpers({
