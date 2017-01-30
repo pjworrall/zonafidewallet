@@ -9,6 +9,7 @@ import '../../api/html5-qrcode/html5-qrcode.min.js';
 import '../../api/html5-qrcode/jsqrcode-combined.min.js';
 
 import  { ZonafideWeb3 } from '/imports/startup/client/web3.js';
+import  { AddressRules } from '/imports/startup/client/validation.js';
 import  { ZoneQRScanner } from '/imports/startup/client/qrscanner.js';
 import  { ZonafideEnvironment } from '/imports/startup/client/ethereum.js';
 import  { ZoneTransactionReceipt } from '/imports/startup/client/receipt.js';
@@ -21,6 +22,19 @@ Template.members.onCreated(function () {
     this.Zone = ZonafideWeb3.getFactory();
 
     this.zid = new ReactiveVar('');
+
+});
+
+Template.members.onRendered(function () {
+
+    this.$('.add').validate({
+        rules: {
+            zid: AddressRules.rules,
+        },
+        messages: {
+            zid: AddressRules.messages,
+        }
+    });
 
 });
 
@@ -110,6 +124,8 @@ Template.members.events({
     'click .js-acknowledgers'(event, template) {
         // Prevent default browser form submit
         event.preventDefault();
+
+        console.log("click .js-acknowledgers");
 
         const zad = template.$('input[name=zad]').val();
         const zid = template.$('input[name=zid]').val();
