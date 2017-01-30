@@ -26,7 +26,7 @@ Template.action.onCreated(function () {
 
 Template.action.onRendered(function () {
 
-    this.$('.action').validate({
+    this.$('.js-action').validate({
         rules: {
             zid: AddressRules.rules
         },
@@ -108,7 +108,7 @@ Template.action.events({
 
     },
 
-    'click .js-action'(event, template) {
+    'submit .js-action'(event, template) {
         // Prevent default browser form submit
         event.preventDefault();
 
