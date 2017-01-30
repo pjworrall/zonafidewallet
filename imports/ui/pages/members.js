@@ -121,7 +121,7 @@ Template.members.events({
 
     },
 
-    'click .js-acknowledgers'(event, template) {
+    'submit .add'(event, template) {
         // Prevent default browser form submit
         event.preventDefault();
 
