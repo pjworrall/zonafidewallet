@@ -131,7 +131,7 @@ Template.members.events({
         const zid = template.$('input[name=zid]').val();
 
         if (zid === null || zid.match(/^ *$/) !== null) {
-            sAlert.info("No member address provided",
+            sAlert.info("No Acknowledger address provided",
                 {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Address required'});
         } else {
 
@@ -155,8 +155,8 @@ Template.members.events({
                             });
                     } else {
 
-                        sAlert.info('A request to add a Member has been made: ' + tranHash,
-                            {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Member Requested'});
+                        sAlert.info('A request to add an Acknowledger has been made: ' + tranHash,
+                            {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Acknowledger Requested'});
 
                         ZoneTransactionReceipt.check(tranHash, ZonafideWeb3.getInstance(), function (error, receipt) {
                             if (error) {
@@ -164,7 +164,7 @@ Template.members.events({
                                     {
                                         timeout: 'none',
                                         sAlertIcon: 'fa fa-info-circle',
-                                        sAlertTitle: 'Failed to Add Member'
+                                        sAlertTitle: 'Failed to Add Acknoweldger'
                                     });
                             } else {
                                 // careful here..using address property rather that unique id of record, should be same impact
@@ -174,7 +174,7 @@ Template.members.events({
                                     {
                                         timeout: 'none',
                                         sAlertIcon: 'fa fa-info-circle',
-                                        sAlertTitle: 'Member Added'
+                                        sAlertTitle: 'Acknowledger Added'
                                     });
                             }
                         });
