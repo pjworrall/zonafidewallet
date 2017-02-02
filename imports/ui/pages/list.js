@@ -67,10 +67,6 @@ Template.list.events({
                     if (!error) {
 
                         if (typeof contract.address != 'undefined') {
-                            console.log('Confirmed. address: '
-                                + contract.address
-                                + ' transactionHash: '
-                                + contract.transactionHash);
 
                             ZidUserLocalData.insert({
                                 zid: ZidStore.get().getAddresses()[0],
@@ -83,10 +79,10 @@ Template.list.events({
                             // todo: got to refactor out the parameters here and across all alerts currently
                             // todo: I mean. shouldn't using the info method provide appropriate symbol?
                             sAlert.info(contract.address,
-                                {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Activity established'});
+                                {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Activity ' + name + ' established'});
                         } else {
                             sAlert.info('An Activity is being registered: ' + contract.transactionHash,
-                                {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Activity requested'});
+                                {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Activity ' + name + ' requested'});
                         }
 
                     } else {
