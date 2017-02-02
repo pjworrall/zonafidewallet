@@ -6,6 +6,7 @@ import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 
 import lightwallet from 'eth-lightwallet';
+import  {Identities} from '/imports/startup/client/validation.js';
 
 import  { ZidStore, SessionPasswordOveride, ZonafideDappData } from '/imports/startup/client/globals.js';
 
@@ -13,11 +14,21 @@ import './identities.html';
 
 Template.identities.onCreated(function () {
 
-    console.log('.identities.onCreated: setting reactive vars');
-
     this.seeded = new ReactiveVar(false);
-    this.passphrase = new ReactiveVar();
+    this.mnemonic = new ReactiveVar();
 
+});
+
+Template.identities.onRendered(function () {
+
+    this.$('.js-seed').validate({
+        rules: {
+            entropy: Identities.rules
+        },
+        messages: {
+            entropy: Identities.messages
+        }
+    });
 });
 
 Template.identities.helpers({
@@ -26,8 +37,8 @@ Template.identities.helpers({
         return Template.instance().seeded.get();
     },
 
-    passphrase() {
-        return Template.instance().passphrase.get();
+    mnemonic() {
+        return Template.instance().mnemonic.get();
     }
 
 });
@@ -36,7 +47,7 @@ Template.identities.helpers({
 Template.identities.events({
 
     // todo: need to provide a better solution for C-PRNG
-    'submit .seed'(event) {
+    'submit .js-seed'(event) {
 
         // Prevent default browser form submit
         event.preventDefault();
@@ -44,8 +55,8 @@ Template.identities.events({
         const target = event.target;
         const extraEntropy = target.entropy.value;
 
-        let passphrase = lightwallet.keystore.generateRandomSeed(extraEntropy);
-        Template.instance().passphrase.set(passphrase);
+        let mnemonic = lightwallet.keystore.generateRandomSeed(extraEntropy);
+        Template.instance().mnemonic.set(mnemonic);
         Template.instance().seeded.set(true);
 
     },
@@ -53,6 +64,8 @@ Template.identities.events({
 
         // Prevent default browser form submit
         event.preventDefault();
+
+        console.log("click .js-create");
 
         // -- caution - lower security requirement use only
 
@@ -66,27 +79,27 @@ Template.identities.events({
 
         // -- end of caution
 
-        let passphrase = Template.instance().passphrase.get();
+        let mnemonic = Template.instance().mnemonic.get();
 
         lightwallet.keystore.deriveKeyFromPassword(SessionPasswordOveride, function (err, pwDerivedKey) {
 
             if (!err) {
 
                 let keyStore = new lightwallet.keystore(
-                    passphrase,
+                    mnemonic,
                     pwDerivedKey);
 
                 // this seems to have to be done every time the keystore is instantiated.
                 keyStore.generateNewAddress(pwDerivedKey, 1);
 
-                ZidStore.set(keyStore);
+                ZidStore.set(keyStore,Session);
 
                 Router.go("list");
 
 
             } else {
                 // todo: how to handle errors
-                console.log("ERROR > .identities.events" + err);
+                console.log("Error instantiating new keystore from new key mnemonic" + err);
             }
 
         });

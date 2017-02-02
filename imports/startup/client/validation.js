@@ -36,7 +36,22 @@ let AddressRules = {
     }
 };
 
+/* For the forms elements around Address creation */
+
+let Identities = {
+    rules: {
+        required: true,
+        minlength: 80
+    },
+
+    message: {
+        required: "You must provide some random characters",
+        minlength: "More characters required",
+    }
+};
+
 
 export {
-    AddressRules
+    AddressRules,
+    Identities
 };
