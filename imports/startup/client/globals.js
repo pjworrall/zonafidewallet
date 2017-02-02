@@ -2,6 +2,8 @@
  * Created by pjworrall on 04/05/2016.
  */
 
+// update with deployments
+let AppVersion = "0.2.3.7f56e15e";
 
 // all this needs to migrate into a function avoid global namespace clashes!!!
 
@@ -190,6 +192,7 @@ let NumberWithCommas = function () {
 
 
 export {
+    AppVersion,
     PasswordProvider,
     SessionPasswordOveride,
     ZidStore,
