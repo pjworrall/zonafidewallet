@@ -8,7 +8,7 @@ import { ReactiveVar } from 'meteor/reactive-var';
 import lightwallet from 'eth-lightwallet';
 import  {Identities} from '/imports/startup/client/validation.js';
 
-import  { ZidStore, SessionPasswordOveride, ZonafideDappData } from '/imports/startup/client/globals.js';
+import  { ZidStore, SessionPasswordOveride, ZonafideDappData, PasswordProvider } from '/imports/startup/client/globals.js';
 
 import './identities.html';
 
@@ -69,11 +69,16 @@ Template.identities.events({
 
         // -- caution - lower security requirement use only
 
-        // new Address should never use settings to determine Session Password use. Session Password use should
-        // always be off. We'll just ensure any settings are deleted for now. Impact is that previous settings
-        // are lost for all user.
+        // new Address always get Session Password turned off. There is a problem here that
+        // it will turn it off for others until we have Address isolated configuration settings
 
-        ZonafideDappData.remove({document: "settings"});
+        ZonafideDappData.update({document: "settings"},
+            { $set:
+                { sessionPassword: (false) }
+            },
+            // if document does not exist yet create it
+            { upsert: true }
+        );
 
         // todo: check the JIRA exists to ensure app data is not leaked between different Addresses!!!!!
 
@@ -92,10 +97,11 @@ Template.identities.events({
                 // this seems to have to be done every time the keystore is instantiated.
                 keyStore.generateNewAddress(pwDerivedKey, 1);
 
+                keyStore.passwordProvider = PasswordProvider;
+
                 ZidStore.set(keyStore,Session);
 
                 Router.go("list");
-
 
             } else {
                 // todo: how to handle errors
