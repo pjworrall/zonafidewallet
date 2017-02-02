@@ -81,6 +81,12 @@ Template.verify.helpers({
             Zone.get().whatIsActive({
                     from: ZidStore.get().getAddresses()[0]
                 } );
+    },
+    isConfirmed() {
+        return Template.instance().
+        Zone.get().isConfirmed({
+            from: ZidStore.get().getAddresses()[0]
+        });
     }
 
 });
@@ -118,6 +124,11 @@ Template.verify.events({
         event.preventDefault();
 
         console.log('ZidQrScanner.events: called');
+
+        //empty any previous zone details. clear elements and Zone
+        //template.Zone.set();
+        // template.$('input[name=zad]').val('');
+        // template.$('input[name=zid]').val('');
 
         // empty any previous reader for web qr scanning reset
 

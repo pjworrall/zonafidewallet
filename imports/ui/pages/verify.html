@@ -2,14 +2,11 @@
 
     <div class="row">
         <div class="col-xs-12 text-left">
-
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">Verify An Activity</h3>
                 </div>
-
             </div>
-
         </div>
     </div>
 
@@ -17,26 +14,26 @@
 
         <div class="row">
             <div class="col-xs-12 text-left">
-
                 <label for="zad">Address:</label>
                 <input name="zad" class="form-control"
                        type="text"
                        size="80"
                        value="{{zad}}"/>
-
+                <br>
             </div>
         </div>
 
         <div class="row">
             <div class="col-xs-12 text-center">
+                <div class="btn-group" role="group" aria-label="...">
+                    <button type="button" class="js-ZadQrScanner btn btn-default">
+                        <i class="fa fa-qrcode" role="button" aria-hidden="true"></i>
+                    </button>
 
-                <button type="button" class="js-ZadQrScanner btn btn-default">
-                    <i class="fa fa-qrcode" role="button" aria-hidden="true"></i>
-                </button>
-
-                <button type="submit" class="btn btn-default">
-                    <i class="fa fa-arrow-circle-o-right" role="button" aria-hidden="true"></i>
-                </button>
+                    <button type="submit" class="btn btn-default">
+                        <i class="fa fa-arrow-circle-o-right" role="button" aria-hidden="true"></i>
+                    </button>
+                </div>
 
             </div>
 
@@ -44,28 +41,35 @@
 
     </form>
 
-    <div class="row">
-        <div class="col-xs-12 text-left">
-            {{#if zone}}
+
+
+    <div class="detail" style="{{#unless zone}}display: none{{/unless}}">
+
+        <div class="row">
+            <div class="col-xs-12 text-left">
+                <hr>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12 text-left">
                 {{#if isActive}}
                     <div class="panel panel-default">
                         <div class="panel-heading">Description</div>
                         <div class="panel-body">
-                            {{whatIsActive}}
+                            <p>{{whatIsActive}}</p>
                         </div>
                     </div>
                 {{else}}
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            Not active.
+                            <p>Not active.</p>
                         </div>
                     </div>
                 {{/if}}
-            {{/if}}
+            </div>
         </div>
-    </div>
 
-    <div class="detail" style="{{#unless zone}}display: none{{/unless}}">
 
         <form class="js-check">
 
@@ -79,23 +83,19 @@
                            type="text"
                            size="80"
                            value="{{zid}}"/>
+                    <br>
                 </div>
             </div>
 
             <div class="row">
-
                 <div class="col-xs-12" align="center">
-
                     <div class="btn-group" role="group" aria-label="...">
-
                         <button type="button" class="js-ZidQrScanner btn btn-default">
                             <i class="fa fa-qrcode" aria-hidden="true"></i>
                         </button>
-
                         <button type="button" class="js-contactdb btn btn-default">
                             <i class="fa fa-book" aria-hidden="true"></i>
                         </button>
-
                     </div>
 
                     <div class="btn-group" role="group" aria-label="...">
@@ -103,16 +103,13 @@
                             <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
                         </button>
                     </div>
-
                 </div>
-
             </div>
-
         </form>
 
         <div class="row">
             <div class="col-xs-12 text-left">
-               &nbsp;
+                <hr>
             </div>
         </div>
 
@@ -122,10 +119,10 @@
                 {{#if member}}
                     <div class="panel panel-default">
                         <p>
-                        Acknowledger
-                        {{#if acknowledger}}
-                            and the Activity is Acknowledged [ <i class="fa fa-shield" aria-hidden="true"></i> ]
-                        {{/if}}
+                            Acknowledger
+                            {{#if acknowledger}}
+                                and the Activity is Acknowledged [ <i class="fa fa-shield" aria-hidden="true"></i> ]
+                            {{/if}}
                         </p>
                     </div>
                 {{/if}}
@@ -138,24 +135,28 @@
             </div>
         </div>
 
-
-        <div class="row">
-
-            <div class="col-xs-4 text-left">
-                <h4>Confirm</h4>
+        {{#if isConfirmed}}
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <h4>Confirmed</h4>
+                    <br>
+                    <i class="fa fa-check-circle fa-2x" aria-hidden="true"></i>
+                </div>
             </div>
-
-            <div class="col-xs-4 text-center">
-                <button type="button" class="js-confirm btn btn-default">
-                    <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
-                </button>
+        {{else}}
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <h4>Confirm</h4>
+                </div>
             </div>
-
-            <div class="col-xs-4 text-left">
-                <p>&nbsp;</p>
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <button type="button" class="js-confirm btn btn-default">
+                        <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
+                    </button>
+                </div>
             </div>
-
-        </div>
+        {{/if}}
 
     </div>
 
