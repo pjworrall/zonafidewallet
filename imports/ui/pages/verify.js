@@ -25,7 +25,6 @@ Template.verify.onCreated(function consoleOnCreated() {
     this.zid = new ReactiveVar();
     this.zad = new ReactiveVar();
     this.member = new ReactiveVar();
-    this.acknowledger = new ReactiveVar();
 
 
 });
@@ -71,22 +70,34 @@ Template.verify.helpers({
     }
     ,
     isActive() {
-        return Template.instance().
-        Zone.get().isActive({
-            from: ZidStore.get().getAddresses()[0]
-        });
+
+        let zone = Template.instance().Zone.get();
+
+        if(zone) {
+            return zone.isActive({
+                from: ZidStore.get().getAddresses()[0]
+            });
+        }
+
     },
     whatIsActive() {
-        return Template.instance().
-            Zone.get().whatIsActive({
-                    from: ZidStore.get().getAddresses()[0]
-                } );
+
+        let zone = Template.instance().Zone.get();
+
+        if(zone) {
+            return zone.whatIsActive({
+                from: ZidStore.get().getAddresses()[0]
+            });
+        }
     },
     isConfirmed() {
-        return Template.instance().
-        Zone.get().isConfirmed({
-            from: ZidStore.get().getAddresses()[0]
-        });
+        let zone = Template.instance().Zone.get();
+
+        if(zone) {
+            return zone.isConfirmed({
+                from: ZidStore.get().getAddresses()[0]
+            });
+        }
     }
 
 });
@@ -162,7 +173,7 @@ Template.verify.events({
             if (contact.ims && contact.ims.length) {
                 contact.ims.some(function (address) {
                     if (address.value.startsWith("ZID:")) {
-                        var zid = address.value.split(":");
+                        let zid = address.value.split(":");
                         template.zid.set(zid[1]);
                         return true;
                     }
@@ -216,8 +227,6 @@ Template.verify.events({
 
         console.log("click .js-check");
 
-        // todo: decided to just ignore if there is no zone already established
-
         let zone = template.Zone.get();
 
         if (zone) {
@@ -226,17 +235,21 @@ Template.verify.events({
 
             console.log("zid: " + memberZid);
 
-            let member = zone.isMember(memberZid, {
+            let member = {
+                isMember: false,
+                isAcknowledger: false,
+            };
+
+
+            member.isMember = zone.isMember(memberZid, {
+                from: ZidStore.get().getAddresses()[0]
+            });
+
+            member.isAcknowledger = zone.isAcknowledger(memberZid, {
                 from: ZidStore.get().getAddresses()[0]
             });
 
             template.member.set(member);
-
-            let acknowledger = zone.isAcknowledger(memberZid, {
-                from: ZidStore.get().getAddresses()[0]
-            });
-
-            template.acknowledger.set(acknowledger);
 
         } else {
             sAlert.info("Provide an Activity first",

@@ -42,7 +42,6 @@
     </form>
 
 
-
     <div class="detail" style="{{#unless zone}}display: none{{/unless}}">
 
         <div class="row">
@@ -113,19 +112,17 @@
             </div>
         </div>
 
-
         <div class="row">
             <div class="col-xs-12 text-center">
-                {{#if member}}
-                    <div class="panel panel-default">
+                <div class="panel panel-default">
                         <p>
-                            Acknowledger
-                            {{#if acknowledger}}
-                                and the Activity is Acknowledged [ <i class="fa fa-shield" aria-hidden="true"></i> ]
-                            {{/if}}
+                            Acknowledger:
+                                <strong>{{#if member.isMember}} Yes {{else}} No {{/if}} </strong>
+                            [ <i class="fa fa-shield" aria-hidden="true"></i> ]
+                                <br>
+                            Acknowledged: <strong>{{#if member.isAcknowledger}} Yes {{else}} No {{/if}} </strong>
                         </p>
-                    </div>
-                {{/if}}
+                </div>
             </div>
         </div>
 

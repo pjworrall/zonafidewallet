@@ -37,7 +37,7 @@ i18n.extend({
 
 // form validations
 i18n.extend({
-    "validators.address.owner": "Cannot be Activity owner",
+    "validators.address.owner": "Cannot be your Address",
     "validators.address.required": "You must enter a recipient Address",
     "validators.address.minlength": "Too short for a valid Address",
     "validators.address.maxlength": "Too long for a valid Address",
