@@ -9,8 +9,10 @@ App.info({
     author: 'Paul Worrall, Interition Limited',
     email: 'info@zonafide.net',
     website: 'http://zonafide.net',
-    version: '0.2.2'
+    version: '0.2.3.b901edce8f'
 });
+
+App.accessRule('*');
 
 App.icons({
     "iphone_2x": "resources/icons/iphone_2x.png", // 120x120
