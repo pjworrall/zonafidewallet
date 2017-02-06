@@ -35,6 +35,15 @@ i18n.extend({
     "social.share.title": "Share your Activity",
 });
 
+// form validations
+i18n.extend({
+    "validators.address.owner": "Cannot be Activity owner",
+    "validators.address.required": "You must enter a recipient Address",
+    "validators.address.minlength": "Too short for a valid Address",
+    "validators.address.maxlength": "Too long for a valid Address",
+    "validators.address.address": "Not a valid Address",
+});
+
 
 export {
     i18n

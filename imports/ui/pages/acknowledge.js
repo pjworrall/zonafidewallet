@@ -81,8 +81,6 @@ Template.acknowledge.events({
 
         const zad = $(template.find('input[name=zad]')).val();
 
-        // todo: should test ZAD for validity and reject if not valid!!!
-
         let Zone = template.Zone;
 
         let zone = Zone.at(zad);
