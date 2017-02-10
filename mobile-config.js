@@ -9,7 +9,7 @@ App.info({
     author: 'Paul Worrall, Interition Limited',
     email: 'info@zonafide.net',
     website: 'http://zonafide.net',
-    version: '0.2.3.b901edce8f'
+    version: '0.2.4'
 });
 
 App.accessRule('*');
