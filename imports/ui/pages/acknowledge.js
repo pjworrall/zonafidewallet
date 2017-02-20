@@ -1,19 +1,19 @@
 /**
  * Created by pjworrall on 03/05/2016.
  */
-import { Template } from 'meteor/templating';
-import { ReactiveVar } from 'meteor/reactive-var';
+import {Template} from 'meteor/templating';
+import {ReactiveVar} from 'meteor/reactive-var';
 
 import '/imports/api/html5-qrcode/html5-qrcode.min.js';
 import '/imports/api/html5-qrcode/jsqrcode-combined.min.js';
 
 import './acknowledge.html';
 
-import  { ZonafideWeb3 } from '/imports/startup/client/web3.js';
-import  { ZoneQRScanner } from '/imports/startup/client/qrscanner.js';
-import  { ZonafideEnvironment } from '/imports/startup/client/ethereum.js';
-import  { ZoneTransactionReceipt } from '/imports/startup/client/receipt.js';
-import  { ZidStore } from '/imports/startup/client/globals.js';
+import  {ZonafideWeb3} from '/imports/startup/client/web3.js';
+import  {ZoneQRScanner} from '/imports/startup/client/qrscanner.js';
+import  {ZonafideEnvironment} from '/imports/startup/client/ethereum.js';
+import  {ZoneTransactionReceipt} from '/imports/startup/client/receipt.js';
+import  {ZidStore} from '/imports/startup/client/globals.js';
 
 import  {AddressRules} from '/imports/startup/client/validation.js';
 
@@ -22,7 +22,7 @@ Template.acknowledge.onCreated(function () {
     this.zad = new ReactiveVar('');
 
     // todo: what do we do if this call does not work ? Should be using exceptions
-    this.Zone = ZonafideWeb3.getFactory();
+    this.ZoneFactory = ZonafideWeb3.getFactory();
 
 });
 
@@ -42,7 +42,7 @@ Template.acknowledge.onRendered(function () {
 Template.acknowledge.helpers({
 
     zad() {
-        return  Template.instance().zad.get();
+        return Template.instance().zad.get();
     }
 
 });
@@ -57,13 +57,13 @@ Template.acknowledge.events({
 
         console.log('click .js-qrscanner');
 
-        ZoneQRScanner.scan( function (error, result) {
+        ZoneQRScanner.scan(function (error, result) {
 
                 if (error) {
                     //todo: change to sAlert
                     alert("Scanning failed: " + error);
                 } else {
-                    if(!result.cancelled) {
+                    if (!result.cancelled) {
                         // todo: cancelled does not exist on browser scanner so how do we handle that?
                         template.zad.set(result.text);
                     }
@@ -81,9 +81,24 @@ Template.acknowledge.events({
 
         const zad = $(template.find('input[name=zad]')).val();
 
-        let Zone = template.Zone;
+        let factory = template.ZoneFactory;
 
-        let zone = Zone.at(zad);
+        if("0x" === factory.eth.getCode(zad)) {
+            sAlert.info('Is Activity Address correct?',
+                {timeout: 'none', sAlertIcon: 'fa fa-exclamation-circle', sAlertTitle: 'Not an Activity'});
+            return;
+        }
+
+        // todo: what will this actually catch? what circumstances cause a throw?
+        let zone; try {
+            zone = factory.at(zad);
+        } catch (error) {
+            sAlert.info('Activity inaccessible: ' + error,
+                {timeout: 'none', sAlertIcon: 'fa fa-exclamation-circle', sAlertTitle: 'Activity inaccessible'});
+            return;
+        }
+
+        // todo: should maybe check we are a valid acknoweldger before marching on with setting an ack
 
         zone.setAcknowledgement(
             ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]),
@@ -92,7 +107,11 @@ Template.acknowledge.events({
 
                 if (error) {
                     sAlert.error('Report to Zonafide: ' + error,
-                        {timeout: 'none', sAlertIcon: 'fa fa-exclamation-circle', sAlertTitle: 'Zonafide Access Failure'});
+                        {
+                            timeout: 'none',
+                            sAlertIcon: 'fa fa-exclamation-circle',
+                            sAlertTitle: 'Zonafide Access Failure'
+                        });
                 } else {
                     sAlert.info('A request to acknowledge an Activity ' + zad + 'has been made: ' + tranHash,
                         {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Acknowledgment request made'});

@@ -206,11 +206,15 @@ Template.verify.events({
 
         const zad = $(template.find('input[name=zad]')).val();
 
-        template.Zone.set(template.ZoneFactory.at(zad));
+        // todo: this reoccurs. needs refactoring.
+        if("0x" === template.ZoneFactory.eth.getCode(zad)) {
+            sAlert.info('Is Activity Address correct?',
+                {timeout: 'none', sAlertIcon: 'fa fa-exclamation-circle', sAlertTitle: 'Not an Activity'});
+            return;
+        }
 
-        console.log("zone attributes: " +
-            template.Zone.get().isActive( { from: ZidStore.get().getAddresses()[0] }) + " , " +
-            template.Zone.get().whatIsActive({ from: ZidStore.get().getAddresses()[0] }));
+        // todo: should maybe have a try catch
+        template.Zone.set(template.ZoneFactory.at(zad));
 
         //reset any reactive vars for the previous Zone
 
