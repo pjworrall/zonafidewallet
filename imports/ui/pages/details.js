@@ -5,6 +5,8 @@
 import {Template} from 'meteor/templating';
 //import { QRCode } from 'meteor/steeve:jquery-qrcode';
 import  {ZidUserLocalData, ZidStore, ZoneStateAction, ZoneStateSymbol, ZoneStateColor} from '/imports/startup/client/globals.js';
+import  { ZoneTransactionReceipt } from '/imports/startup/client/receipt.js';
+import  { ZonafideEnvironment } from '/imports/startup/client/ethereum.js';
 import  {ZonafideWeb3} from '/imports/startup/client/web3.js';
 import  {i18n} from '/imports/startup/client/lang.js';
 
@@ -134,10 +136,45 @@ Template.details.events({
 
             console.log("removing: " + Template.instance().address);
 
-            //todo: small chance the zone might not exist but decided not to test because it is so unlikely
-            //todo: maybe should be data._id not we have it?
+            template.zone.kill( ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]),
 
-            ZidUserLocalData.remove({address: template.address});
+                function (error, tranHash) {
+                    if (error) {
+                        sAlert.error('Report error: ' + error,
+                            {
+                                timeout: 'none',
+                                sAlertIcon: 'fa fa-exclamation-circle',
+                                sAlertTitle: 'Network Access Failure'
+                            });
+                    } else {
+
+                        sAlert.info('A request to delete the Activity has been made: ' + tranHash,
+                            {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Deletion Requested'});
+
+                        ZoneTransactionReceipt.check(tranHash, ZonafideWeb3.getInstance(), function (error, receipt) {
+                            if (error) {
+                                sAlert.info('Could not delete the Activity: ' + error.toString(),
+                                    {
+                                        timeout: 'none',
+                                        sAlertIcon: 'fa fa-info-circle',
+                                        sAlertTitle: 'Failed to delete the Activity'
+                                    });
+                            } else {
+                                //todo: small chance the zone might not exist but decided not to test because it is so unlikely
+                                //todo: maybe should be data._id not we have it?
+
+                                ZidUserLocalData.remove({address: template.address});
+
+                                sAlert.info('Activity deleted at block: ' + receipt.blockNumber,
+                                    {
+                                        timeout: 'none',
+                                        sAlertIcon: 'fa fa-info-circle',
+                                        sAlertTitle: 'Activity deleted'
+                                    });
+                            }
+                        });
+                    }
+                });
 
             Router.go("list");
 
