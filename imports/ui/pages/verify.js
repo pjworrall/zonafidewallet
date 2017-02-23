@@ -214,14 +214,22 @@ Template.verify.events({
         }
 
         // todo: should maybe have a try catch
-        template.Zone.set(template.ZoneFactory.at(zad));
+        let zone = template.ZoneFactory.at(zad);
 
-        //reset any reactive vars for the previous Zone
+        // check this user is the validator
+        if(!zone.amIVerifier(ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]))) {
+            sAlert.info('Activity does not have you as the Verifier',
+                {timeout: 'none', sAlertIcon: 'fa fa-exclamation-circle', sAlertTitle: 'Not Verifier'});
+        } else {
+            template.Zone.set(zone);
 
-        let v;
-        template.member.set(v);
-        template.acknowledger.set(v);
-        template.zid.set(v);
+            //reset any reactive vars for the previous Zone
+
+            let v;
+            template.member.set(v);
+            template.acknowledger.set(v);
+            template.zid.set(v);
+        }
 
     },
 

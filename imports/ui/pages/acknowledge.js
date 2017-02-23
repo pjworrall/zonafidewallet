@@ -98,6 +98,12 @@ Template.acknowledge.events({
             return;
         }
 
+        if(!zone.amIAnAcknowledger(ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]))) {
+            sAlert.info('Activity does not have you as an Acknowledger',
+                {timeout: 'none', sAlertIcon: 'fa fa-exclamation-circle', sAlertTitle: 'Not Acknowledger'});
+            return;
+        }
+
         // todo: should maybe check we are a valid acknoweldger before marching on with setting an ack
 
         zone.setAcknowledgement(
