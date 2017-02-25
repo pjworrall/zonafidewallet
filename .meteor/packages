@@ -27,3 +27,6 @@ juliancwirko:s-alert-jelly
 steeve:jquery-qrcode
 shell-server
 themeteorchef:jquery-validation
+practicalmeteor:mocha
+dispatch:mocha-phantomjs
+practicalmeteor:chai
