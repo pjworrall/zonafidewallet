@@ -1,1 +1,7 @@
+.project
+.settings
+.idea
+build
+*-compiled.js
+*-compiled.js.map
 node_modules/
