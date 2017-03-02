@@ -1,6 +1,7 @@
 <template name="home">
 
     <form class="unlock">
+
         <div class="row">
             <div class="col-xs-12 text-center">
                 <label for="key">Key:</label><br>
@@ -8,52 +9,70 @@
             </div>
         </div>
         <div class="row">
+            <p></p>
+        </div>
+        <div class="row">
             <div class="col-xs-12 text-center">
-
                 <button type="button" class="js-about btn btn-default">
                     <i class="fa fa-question-circle-o" aria-hidden="true"></i>
                 </button>
-
                 <button type="button" class="js-unlock btn btn-default">
                     <i class="fa fa-key" role="button" aria-hidden="true"></i>
                 </button>
-
             </div>
         </div>
-        <!-- todo: provide a (?) helper to display this on request-->
-        <!--
         <div class="row">
-            <div class="col-xs-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading">This passphrase secures your Activities</div>
-                    <div class="panel-body">
-                        <p>
-                            Take every precaution to protect this passphrase. Contrary to conventional password
-                            advice write it down and store it
-                            somewhere physically and digitally inaccessible.
-                        </p>
-                        <p>
-                            If you do store it on your device put it in a password manager or other tool that
-                            encrypts
-                            data.
-                        </p>
-                        <p>Zonafide should be used for Activities at the most risk. As these are not too often the
-                            extra care
-                            needed when using this App should not be a burden.</p>
-                        <p>
-                            The passphrase is so important that you need to provide a Session Password to protect it
-                            while the App is running.
-                            You can use a different one every time you start the App. If you forget it just restart
-                            the App and provide
-                            another one.
-                        </p>
-                        <p>Do not leave your App running for long periods of time.</p>
-                    </div>
-                </div>
-            </div>
-
+            <p><br></p>
         </div>
-         -->
+        <div class="row">
+            <div class="col-xs-12 text-center">
+                <h4>Assure Activities are Genuine</h4>
+                <p class="lead">Zonafide<span class="standardtm">&reg;</span> enables people to work together to stop
+                    fraud. You can
+                    send an assurance that an Activity is genuinely being carried out by you. Just like sharing messages
+                    or pictures you're sharing trust.
+                </p>
+                <p class="lead">A GrownApp for Grown Up things!<span class="standardtm">&trade;</span></p>
+                <br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6 text-center">
+                <a href="/identities" class="btn btn-primary">
+                    New Key
+                </a>
+            </div>
+            <div class="col-xs-6 text-center">
+
+                <form class="share">
+                    <button type="button" class="js-share btn btn-primary">
+                        Work Together
+                    </button>
+                </form>
+            </div>
+        </div>
     </form>
+
+    <div class="row">
+        <div class="col-xs-12 text-center">
+            <br>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 text-center">
+            <br>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 text-center">
+            <p>
+                www.zonafide.net
+                <br>
+            </p>
+            <p> <small>version: {{appVersion}} / {{contractVersion}}</small><br></p>
+        </div>
+    </div>
 
 </template>

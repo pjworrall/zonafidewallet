@@ -38,3 +38,7 @@ input.error{
     background-color: rgb(203, 203, 203);
 }
 
+.standardtm {
+    font-size: 50%;
+    vertical-align: top;
+}

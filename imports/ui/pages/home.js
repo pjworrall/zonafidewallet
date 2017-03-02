@@ -5,15 +5,23 @@
 import { Template } from 'meteor/templating';
 import { Session } from 'meteor/session';
 
-// todo : not sure this is needed
-import  {ZidStore, ZonafideDappData , PasswordProvider , SessionPasswordOveride } from '/imports/startup/client/globals.js';
-
+import  {ZidStore, ZonafideDappData, AppVersion , PasswordProvider , SessionPasswordOveride } from '/imports/startup/client/globals.js';
+import  { ZonafideEnvironment } from '/imports/startup/client/ethereum.js';
+import  {i18n} from '/imports/startup/client/lang.js';
 import './home.html';
 
 import lightwallet from 'eth-lightwallet';
 
 
 Template.home.helpers({
+
+    contractVersion() {
+        return ZonafideEnvironment.ContractVersion;
+    },
+
+    appVersion() {
+        return  AppVersion;
+    },
 
     zid() {
 
@@ -28,6 +36,33 @@ Template.home.events({
     'click .js-about'(event){
         event.preventDefault();
         Router.go("about");
+    },
+    'click .js-share'(event, template) {
+
+        // Prevent default browser form submit
+        event.preventDefault();
+
+        // this is the complete list of currently supported params you can pass to the plugin (all optional)
+        let options = {
+            message: i18n.t("home.js-share.message",{ address: template.address} ), // not supported on some apps (Facebook, Instagram)
+            subject: i18n.t("home.js-share.subject"), // fi. for email
+            //files: ['', ''], // an array of filenames either locally or remotely
+            url: i18n.t("home.js-share.url"),
+            chooserTitle: i18n.t("home.js-share.title") // Android only, you can override the default share sheet title
+        };
+
+        // todo: need to improve this
+        let onSuccess = function (result) {
+            console.log("Share completed? " + result.completed); // On Android apps mostly return false even while it's true
+            console.log("Shared to app: " + result.app); // On Android result.app is currently empty. On iOS it's empty when sharing is cancelled (result.completed=false)
+        };
+
+        let onError = function (msg) {
+            console.log("Sharing failed with message: " + msg);
+        };
+
+        window.plugins.socialsharing.shareWithOptions(options, onSuccess, onError);
+
     },
 
     'click .js-unlock'(event,template) {
