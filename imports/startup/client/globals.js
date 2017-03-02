@@ -3,7 +3,7 @@
  */
 
 // update with deployments
-let AppVersion = "0.2.4.x";
+let AppVersion = "0.2.5";
 
 // all this needs to migrate into a function avoid global namespace clashes!!!
 
