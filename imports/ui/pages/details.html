@@ -59,8 +59,10 @@
                 <p>{{#if status}} <i class="fa fa-check"></i> {{else}} No {{/if}}</p>
                 <strong>Verifier:</strong><br>
                 <p>{{#if verifier}}{{verifier}} {{else}} N/A {{/if}}</p>
-                <strong>Instruction:</strong><br>
-                <p>{{#if details}}{{details}} {{else}} N/A {{/if}}</p>
+                <strong>Instruction Hash:</strong><br>
+                <p>{{#if hash}}{{hash}} {{else}} N/A {{/if}}</p>
+                <strong>Instruction Doc: {{#if hashCheck}}  <i class="fa fa-check"></i> {{else}}  <i class="fa fa-crosshairs"></i> {{/if}}</strong><br>
+                <p>{{#if description}}{{description}} {{else}} N/A {{/if}}</p>
                 <strong>Confirmed:</strong><br>
                 <p>{{#if confirmed}}  <i class="fa fa-check"></i> {{else}} No {{/if}}</p>
 

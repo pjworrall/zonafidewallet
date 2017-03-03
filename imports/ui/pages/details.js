@@ -24,6 +24,9 @@ Template.details.onCreated(function () {
     this.address = record.address;
     this.state = record.state;
 
+    // todo: this needs to be broken down to evaluate the object and present the properties properly
+    this.description = JSON.stringify(record.description);
+
     // todo: and if we don't get a contract back from the call?
     this.zone = this.ZoneFactory.at(record.address);
 
@@ -35,7 +38,7 @@ Template.details.onCreated(function () {
         from: ZidStore.get().getAddresses()[0]
     });
 
-    this.details = this.zone.whatIsActive({
+    this.hash = this.zone.whatIsActive({
         from: ZidStore.get().getAddresses()[0]
     });
 
@@ -50,6 +53,10 @@ Template.details.onCreated(function () {
     this.verifier = this.zone.getVerifier({
         from: ZidStore.get().getAddresses()[0]
     });
+
+    console.log("z/details: description:" + this.description + ", hash: " + this.hash );
+
+    this.hashCheck = ( ZonafideWeb3.getInstance().sha3(this.description) === this.hash );
 
 });
 
@@ -71,11 +78,15 @@ Template.details.helpers({
     name() {
         return Template.instance().name;
     },
-
-    details() {
-        return Template.instance().details;
+    hash() {
+        return Template.instance().hash;
     },
-
+    description() {
+        return Template.instance().description;
+    },
+    hashCheck() {
+        return Template.instance().hashCheck;
+    },
     confirmed() {
         return Template.instance().confirmed;
     },

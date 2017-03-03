@@ -157,12 +157,11 @@ Template.action.events({
         let zone = template.ZoneFactory.at(zad);
 
         // got to hash the description
+        let hash = ZonafideWeb3.getInstance().sha3(JSON.stringify(description));
 
-        let hash = ZonafideWeb3.getInstance().sha3(
-                JSON.stringify(description)
-            );
+        let _bool = ( hash ===  ZonafideWeb3.getInstance().sha3(JSON.stringify(description))) ;
 
-        console.log("hashing: " + JSON.stringify(description) + ", to: " + hash);
+        console.log("z/action: description:" + JSON.stringify(description) + ", hash: " + hash + ", match: " + _bool );
 
         zone.action(hash, zid,
             ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]),
