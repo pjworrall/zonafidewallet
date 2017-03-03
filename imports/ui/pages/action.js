@@ -1,17 +1,17 @@
 /**
  * Created by pjworrall on 03/05/2016.
  */
-import { Template } from 'meteor/templating';
-import { ReactiveVar } from 'meteor/reactive-var';
+import {Template} from 'meteor/templating';
+import {ReactiveVar} from 'meteor/reactive-var';
 
 import '../../api/html5-qrcode/html5-qrcode.min.js';
 import '../../api/html5-qrcode/jsqrcode-combined.min.js';
 
-import  { ZonafideWeb3 } from '/imports/startup/client/web3.js';
-import  { ZoneQRScanner } from '/imports/startup/client/qrscanner.js';
-import  { ZonafideEnvironment } from '/imports/startup/client/ethereum.js';
-import  { ZoneTransactionReceipt } from '/imports/startup/client/receipt.js';
-import  { ZidStore, ZidUserLocalData, ZidUserLocalPersonalData, ZoneState } from '/imports/startup/client/globals.js';
+import  {ZonafideWeb3} from '/imports/startup/client/web3.js';
+import  {ZoneQRScanner} from '/imports/startup/client/qrscanner.js';
+import  {ZonafideEnvironment} from '/imports/startup/client/ethereum.js';
+import  {ZoneTransactionReceipt} from '/imports/startup/client/receipt.js';
+import  {ZidStore, ZidUserLocalData, ZidUserLocalPersonalData, ZoneState} from '/imports/startup/client/globals.js';
 
 import  {AddressRules} from '/imports/startup/client/validation.js';
 
@@ -57,13 +57,13 @@ Template.action.events({
 
         console.log('click .qrscanner');
 
-        ZoneQRScanner.scan( function (error, result) {
+        ZoneQRScanner.scan(function (error, result) {
 
                 if (error) {
                     //todo: change to sAlert
                     alert("Scanning failed: " + error);
                 } else {
-                    if(!result.cancelled) {
+                    if (!result.cancelled) {
                         // todo: cancelled does not exist on browser scanner so how do we handle that?
                         template.$('input[name=zid]').val(result.text);
                     }
@@ -80,9 +80,9 @@ Template.action.events({
 
         navigator.contacts.pickContact(function (contact) {
 
-            if(contact.ims && contact.ims.length) {
-                contact.ims.some( function(address) {
-                    if(address.value.startsWith("ZID:")) {
+            if (contact.ims && contact.ims.length) {
+                contact.ims.some(function (address) {
+                    if (address.value.startsWith("ZID:")) {
                         let zid = address.value.split(":");
                         template.$('input[name=zid]').val(zid[1]);
                         return true;
@@ -118,7 +118,7 @@ Template.action.events({
             template.data._id);
 
         const zad = zoneRecord.address;
-        const zid =  template.$('input[name=zid]').val();
+        const zid = template.$('input[name=zid]').val();
 
         /*
          todo: this has to be encrypted with the counter party ZID
@@ -156,7 +156,15 @@ Template.action.events({
 
         let zone = template.ZoneFactory.at(zad);
 
-        zone.action(JSON.stringify(description), zid,
+        // got to hash the description
+
+        let hash = ZonafideWeb3.getInstance().sha3(
+                JSON.stringify(description)
+            );
+
+        console.log("hashing: " + JSON.stringify(description) + ", to: " + hash);
+
+        zone.action(hash, zid,
             ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]),
             function (error, tranHash) {
                 //todo: this is not handling errors like 'not a BigNumber' , do we need a try catch somewhere?
@@ -186,10 +194,11 @@ Template.action.events({
                                 });
                         } else {
                             // todo: watchout, using address property and not record id
-                            ZidUserLocalData.update({address : zad},
-                                {$set:{
-                                    state : ZoneState.ACTIONED,
-                                    description: description
+                            ZidUserLocalData.update({address: zad},
+                                {
+                                    $set: {
+                                        state: ZoneState.ACTIONED,
+                                        description: description
                                     }
                                 }
                             );
