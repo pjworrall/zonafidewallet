@@ -186,7 +186,13 @@ Template.action.events({
                                 });
                         } else {
                             // todo: watchout, using address property and not record id
-                            ZidUserLocalData.update({address : zad},{$set:{state : ZoneState.ACTIONED}});
+                            ZidUserLocalData.update({address : zad},
+                                {$set:{
+                                    state : ZoneState.ACTIONED,
+                                    description: description
+                                    }
+                                }
+                            );
 
                             sAlert.info('Activity in block: ' + receipt.blockNumber,
                                 {
