@@ -16,7 +16,7 @@ i18n.extend({
 
 // content of social share of Activity to Verifier
 i18n.extend({
-    "details.js-send.message": "Please Verify this Activity: %{address} .",
+    "details.js-send.message": "Verify Activity: %{address}, %{instruction}",
     "details.js-send.subject": "Please Verify my Activity.",
     "details.js-send.url": "Learn more at https://www.zonafide.net/v .",             //todo: this should be to the explanation page for verifier
     "details.js-send.title": "Share with Verifier"

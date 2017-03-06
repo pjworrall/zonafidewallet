@@ -228,7 +228,10 @@ Template.details.events({
 
         // this is the complete list of currently supported params you can pass to the plugin (all optional)
         let options = {
-            message:  i18n.t("details.js-send.message",{ address: template.address} ), // not supported on some apps (Facebook, Instagram)
+            message:  i18n.t(
+                "details.js-send.message",
+                { address: template.address, instruction: template.sfDescription }
+                ), // not supported on some apps (Facebook, Instagram)
             subject: i18n.t("details.js-send.subject"), // fi. for email
             //files: ['', ''], // an array of filenames either locally or remotely
             url: i18n.t("details.js-send.url"),
