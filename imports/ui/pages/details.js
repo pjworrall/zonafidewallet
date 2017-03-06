@@ -25,7 +25,7 @@ Template.details.onCreated(function () {
     this.state = record.state;
 
     // todo: this needs to be broken down to evaluate the object and present the properties properly
-    this.description = JSON.stringify(record.description);
+    this.sfDescription = JSON.stringify(record.description);
 
     // todo: and if we don't get a contract back from the call?
     this.zone = this.ZoneFactory.at(record.address);
@@ -54,9 +54,9 @@ Template.details.onCreated(function () {
         from: ZidStore.get().getAddresses()[0]
     });
 
-    console.log("z/details: description:" + this.description + ", hash: " + this.hash );
+    console.log("z/details: sfDescription:" + this.sfDescription + ", hash: " + this.hash );
 
-    this.hashCheck = ( ZonafideWeb3.getInstance().sha3(this.description) === this.hash );
+    this.hashCheck = ( ZonafideWeb3.getInstance().sha3(this.sfDescription) === this.hash );
 
 });
 
@@ -82,7 +82,7 @@ Template.details.helpers({
         return Template.instance().hash;
     },
     description() {
-        return Template.instance().description;
+        return Template.instance().sfDescription;
     },
     hashCheck() {
         return Template.instance().hashCheck;

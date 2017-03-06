@@ -25,7 +25,7 @@ Template.verify.onCreated(function consoleOnCreated() {
     this.zid = new ReactiveVar();
     this.zad = new ReactiveVar();
     this.member = new ReactiveVar();
-
+    this.hashCheck = new ReactiveVar();
 
 });
 
@@ -58,9 +58,6 @@ Template.verify.helpers({
     },
     member() {
         return Template.instance().member.get();
-    },
-    acknowledger() {
-        return Template.instance().acknowledger.get();
     },
     zid() {
         return Template.instance().zid.get();
@@ -98,6 +95,9 @@ Template.verify.helpers({
                 from: ZidStore.get().getAddresses()[0]
             });
         }
+    },
+    hashCheck() {
+        return Template.instance().hashCheck.get();
     }
 
 });
@@ -227,7 +227,6 @@ Template.verify.events({
 
             let v;
             template.member.set(v);
-            template.acknowledger.set(v);
             template.zid.set(v);
         }
 
@@ -313,6 +312,35 @@ Template.verify.events({
             sAlert.info("Provide an Activity first",
                 {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'No Activity'});
         }
+    },
+
+    'submit .js-hash'(event, template) {
+
+        event.preventDefault();
+
+        console.log("submit .js-hash");
+
+        let sfDescription = $(template.find('textarea[name=sfDescription]')).val();
+
+        let zone = template.Zone.get();
+
+        if (zone) {
+            let inputHash = ZonafideWeb3.getInstance().sha3(sfDescription);
+            let contractHash = zone.whatIsActive({
+                from: ZidStore.get().getAddresses()[0]
+            });
+
+            if(inputHash === contractHash) {
+                template.hashCheck.set(true);
+            } else {
+                template.hashCheck.set(false)
+            }
+
+        } else {
+            sAlert.info("Provide an Activity first",
+                {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'No Activity'});
+        }
+
     }
 
 });

@@ -159,8 +159,8 @@ Template.action.events({
         // got to hash the description
         let hash = ZonafideWeb3.getInstance().sha3(JSON.stringify(description));
 
+        // todo: remove these debug lines
         let _bool = ( hash ===  ZonafideWeb3.getInstance().sha3(JSON.stringify(description))) ;
-
         console.log("z/action: description:" + JSON.stringify(description) + ", hash: " + hash + ", match: " + _bool );
 
         zone.action(hash, zid,
