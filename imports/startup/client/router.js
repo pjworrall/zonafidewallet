@@ -9,14 +9,14 @@ import '../../ui/pages';
 Iron.Router.hooks.ZonafideAccessControl = function () {
 
      if( typeof ZidStore.get() === 'undefined' ) {
-        this.render('/home');
+        this.redirect('/home');
     } else {
         this.next();
     }
 };
 
 Router.onBeforeAction('ZonafideAccessControl', {
-    except: ['/', 'about', 'identities']
+    except: ['/','home' ,'about', 'identities']
 });
 
 Router.configure({
@@ -24,7 +24,11 @@ Router.configure({
     notFoundTemplate: '404'
 });
 
-Router.route('/', {name: 'home'});
+Router.route('/', function () {
+    this.render('/home');
+});
+
+Router.route('/home', {name: 'home'});
 
 Router.route('/lock', {name: 'lock'});
 
