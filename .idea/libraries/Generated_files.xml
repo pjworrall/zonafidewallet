@@ -277,16 +277,16 @@
         <item url="file://$PROJECT_DIR$/node_modules/hooked-web3-provider/node_modules/web3/bower/crypto-js/aes-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/hooked-web3-provider/node_modules/web3/lib/solidity/dynamicbytes-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/hooked-web3-provider/node_modules/web3/lib/solidity/formatters-compiled.js" />
-        <item url="file://$PROJECT_DIR$/node_modules/hooked-web3-provider/node_modules/web3/lib/solidity/string-compiled.js" />
         <item url="file://$PROJECT_DIR$/imports/startup/client/web3.test-compiled.js" />
+        <item url="file://$PROJECT_DIR$/node_modules/hooked-web3-provider/node_modules/web3/lib/solidity/string-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/hooked-web3-provider/node_modules/web3/lib/solidity/address-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/hooked-web3-provider/node_modules/web3/lib/solidity/coder-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/hooked-web3-provider/node_modules/web3/lib/solidity/ureal-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/hooked-web3-provider/node_modules/web3/lib/solidity/bytes-compiled.js" />
         <item url="file://$PROJECT_DIR$/imports/ui/pages/verify-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/hooked-web3-provider/node_modules/web3/lib/solidity/param-compiled.js" />
-        <item url="file://$PROJECT_DIR$/node_modules/hooked-web3-provider/node_modules/web3/lib/solidity/uint-compiled.js" />
         <item url="file://$PROJECT_DIR$/imports/startup/client/monitor.test-compiled.js" />
+        <item url="file://$PROJECT_DIR$/node_modules/hooked-web3-provider/node_modules/web3/lib/solidity/uint-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/hooked-web3-provider/node_modules/web3/lib/solidity/type-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/hooked-web3-provider/node_modules/web3/lib/solidity/bool-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/hooked-web3-provider/node_modules/web3/lib/solidity/real-compiled.js" />
@@ -336,6 +336,7 @@
         <item url="file://$PROJECT_DIR$/node_modules/pkginfo/examples/array-argument-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/pkginfo/lib/pkginfo-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/pkginfo/examples/all-properties-compiled.js" />
+        <item url="file://$PROJECT_DIR$/mobile-config-compiled.js" />
         <item url="file://$PROJECT_DIR$/client/a-alerts-compiled-compiled.js" />
         <item url="file://$PROJECT_DIR$/server/main-compiled-compiled.js" />
         <item url="file://$PROJECT_DIR$/imports/startup/client/validation-compiled.js" />
@@ -406,6 +407,7 @@
         <item url="file://$PROJECT_DIR$/node_modules/js-yaml/lib/js-yaml/constructor-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/js-yaml/test/issues/issue-19-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/js-yaml/lib/js-yaml/scanner-compiled.js" />
+        <item url="file://$PROJECT_DIR$/mobile-config-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/js-yaml/test/issues/issue-17-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/js-yaml/test/issues/issue-9-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/js-yaml/lib/js-yaml-compiled.js" />
@@ -3534,7 +3536,6 @@
       <root url="file://$PROJECT_DIR$/imports/ui/pages/acknowledge-compiled-compiled.js" />
       <root url="file://$PROJECT_DIR$/imports/startup/client/router-compiled-compiled.js" />
       <root url="file://$PROJECT_DIR$/imports/ui/pages/components/zadinput-compiled.js" />
-      <root url="file://$PROJECT_DIR$/mobile-config-compiled.js" />
       <root url="file://$PROJECT_DIR$/imports/ui/pages/code-compiled.js" />
       <root url="file://$PROJECT_DIR$/imports/ui/pages/confirm-compiled.js" />
       <root url="file://$PROJECT_DIR$/imports/ui/pages/code-compiled.js" />
@@ -3826,16 +3827,16 @@
       <root url="file://$PROJECT_DIR$/node_modules/hooked-web3-provider/node_modules/web3/bower/crypto-js/aes-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/hooked-web3-provider/node_modules/web3/lib/solidity/dynamicbytes-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/hooked-web3-provider/node_modules/web3/lib/solidity/formatters-compiled.js" />
-      <root url="file://$PROJECT_DIR$/node_modules/hooked-web3-provider/node_modules/web3/lib/solidity/string-compiled.js" />
       <root url="file://$PROJECT_DIR$/imports/startup/client/web3.test-compiled.js" />
+      <root url="file://$PROJECT_DIR$/node_modules/hooked-web3-provider/node_modules/web3/lib/solidity/string-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/hooked-web3-provider/node_modules/web3/lib/solidity/address-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/hooked-web3-provider/node_modules/web3/lib/solidity/coder-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/hooked-web3-provider/node_modules/web3/lib/solidity/ureal-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/hooked-web3-provider/node_modules/web3/lib/solidity/bytes-compiled.js" />
       <root url="file://$PROJECT_DIR$/imports/ui/pages/verify-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/hooked-web3-provider/node_modules/web3/lib/solidity/param-compiled.js" />
-      <root url="file://$PROJECT_DIR$/node_modules/hooked-web3-provider/node_modules/web3/lib/solidity/uint-compiled.js" />
       <root url="file://$PROJECT_DIR$/imports/startup/client/monitor.test-compiled.js" />
+      <root url="file://$PROJECT_DIR$/node_modules/hooked-web3-provider/node_modules/web3/lib/solidity/uint-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/hooked-web3-provider/node_modules/web3/lib/solidity/type-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/hooked-web3-provider/node_modules/web3/lib/solidity/bool-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/hooked-web3-provider/node_modules/web3/lib/solidity/real-compiled.js" />
@@ -3885,6 +3886,7 @@
       <root url="file://$PROJECT_DIR$/node_modules/pkginfo/examples/array-argument-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/pkginfo/lib/pkginfo-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/pkginfo/examples/all-properties-compiled.js" />
+      <root url="file://$PROJECT_DIR$/mobile-config-compiled.js" />
       <root url="file://$PROJECT_DIR$/client/a-alerts-compiled-compiled.js" />
       <root url="file://$PROJECT_DIR$/server/main-compiled-compiled.js" />
       <root url="file://$PROJECT_DIR$/imports/startup/client/validation-compiled.js" />
@@ -3955,6 +3957,7 @@
       <root url="file://$PROJECT_DIR$/node_modules/js-yaml/lib/js-yaml/constructor-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/js-yaml/test/issues/issue-19-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/js-yaml/lib/js-yaml/scanner-compiled.js" />
+      <root url="file://$PROJECT_DIR$/mobile-config-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/js-yaml/test/issues/issue-17-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/js-yaml/test/issues/issue-9-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/js-yaml/lib/js-yaml-compiled.js" />

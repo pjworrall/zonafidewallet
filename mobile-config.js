@@ -5,11 +5,11 @@
 App.info({
     id: 'net.interition.zonafide',
     name: 'Zonafide',
-    description: 'Zonafide: work together to stop fraud',
+    description: 'Zonafide: work together to prevent fraud',
     author: 'Paul Worrall, Interition Limited',
     email: 'info@zonafide.net',
     website: 'http://zonafide.net',
-    version: '0.2.5.X'
+    version: '0.2.5.2'
 });
 
 App.accessRule('*');

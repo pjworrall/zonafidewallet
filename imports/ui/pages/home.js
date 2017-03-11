@@ -32,11 +32,6 @@ Template.home.helpers({
 
 Template.home.events({
 
-
-    'click .js-about'(event){
-        event.preventDefault();
-        Router.go("about");
-    },
     'click .js-share'(event, template) {
 
         // Prevent default browser form submit
