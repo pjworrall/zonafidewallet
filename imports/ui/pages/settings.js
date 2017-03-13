@@ -314,12 +314,12 @@ Template.settings.events({
         let recipient = template.$('input[name=recipient]').val();
 
         // todo: problem - hooked web3 provider nonce conflict arises here. hw3p keeps track of nonce values as well.
-        let address = ZidStore.get().getAddresses()[0];
+        let address = "0x" + ZidStore.get().getAddresses()[0];
 
         let count = ZonafideWeb3.getInstance().eth.getTransactionCount(address);
         let amountInWei = ZonafideWeb3.getInstance().toWei(amount, 'ether');
 
-        console.log("Transfer: " + "Nonce: " + count + ", to: " + recipient
+        console.log("from: " + address + ", nonce: " + count + ", to: " + recipient
              + ", value: ETH " + amount
              + "( WEI: " + amountInWei
             + " )" + " typeof " +
