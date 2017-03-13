@@ -304,6 +304,7 @@ Template.settings.events({
         let amount = template.$('input[name=amount]').val();
 
         // if amount is greater than 10 ETH stop
+        // todo: this should move to validator
         let maxAmountInEth = 10;
         if ( amount > maxAmountInEth ) {
              sAlert.error('Transfers restricted to ETH 10.00 maximum for your security.', {timeout: 'none'});
@@ -317,9 +318,10 @@ Template.settings.events({
         let address = "0x" + ZidStore.get().getAddresses()[0];
 
         let count = ZonafideWeb3.getInstance().eth.getTransactionCount(address);
+
         let amountInWei = ZonafideWeb3.getInstance().toWei(amount, 'ether');
 
-        console.log("from: " + address + ", nonce: " + count + ", to: " + recipient
+        console.log("z/ from: " + address + ", nonce: " + count + ", to: " + recipient
              + ", value: ETH " + amount
              + "( WEI: " + amountInWei
             + " )" + " typeof " +
@@ -328,16 +330,16 @@ Template.settings.events({
         // todo: got to get a solution for managing the gas properties across the app
         // determining he Number() function was required on amountInWei hurt big time!!
         let txData = {
-            "nonce": count,
+            "nonce": "0x" + count,
             "gasLimit": "0x2fefd8",
-            "gasPrice": "0xba43b7400",
+            "gasPrice": "0x20000000000",
             "to": recipient,
-            "value": Number(amountInWei),
+            "value":  Number(amountInWei),
         };
 
         let tx = new Transaction(txData);
 
-        let rawTx = tx.serialize().toString('hex');
+        let rawTx = "0x" + tx.serialize().toString('hex');
 
         // caution. over riding some security. for low security requirement environments only
 
@@ -351,8 +353,6 @@ Template.settings.events({
         }
 
         // -- end caution
-
-        console.log("signing and submitting transaction...");
 
         // todo: the api ideology on this eth-lightwallet is so weird. Providing a password again here seems obsolete. but hey..it does what I want.
 
@@ -368,7 +368,7 @@ Template.settings.events({
                     address
                 );
 
-                ZonafideWeb3.getInstance().eth.sendRawTransaction(signedTx, function (txError, tranHash) {
+                ZonafideWeb3.getInstance().eth.sendRawTransaction("0x" + signedTx, function (txError, tranHash) {
                     if (txError) {
                         sAlert.info("Network reported: " + txError,
                             {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Transaction Failed'});
