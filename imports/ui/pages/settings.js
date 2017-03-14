@@ -317,7 +317,8 @@ Template.settings.events({
         // todo: problem - hooked web3 provider nonce conflict arises here. hw3p keeps track of nonce values as well.
         let address = "0x" + ZidStore.get().getAddresses()[0];
 
-        let count = ZonafideWeb3.getInstance().eth.getTransactionCount(address);
+        let count = ZonafideWeb3.getInstance().eth.getTransactionCount(address) ;
+
 
         let amountInWei = ZonafideWeb3.getInstance().toWei(amount, 'ether');
 
@@ -330,7 +331,7 @@ Template.settings.events({
         // todo: got to get a solution for managing the gas properties across the app
         // determining he Number() function was required on amountInWei hurt big time!!
         let txData = {
-            "nonce": "0x" + count,
+            "nonce": count,
             "gasLimit": "0x2fefd8",
             "gasPrice": "0x20000000000",
             "to": recipient,
