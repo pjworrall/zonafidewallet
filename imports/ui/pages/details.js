@@ -7,8 +7,9 @@ import {Template} from 'meteor/templating';
 import  {ZidUserLocalData, ZidStore, ZoneStateAction, ZoneStateSymbol, ZoneStateColor} from '/imports/startup/client/globals.js';
 import  { ZoneTransactionReceipt } from '/imports/startup/client/receipt.js';
 import  { ZonafideEnvironment } from '/imports/startup/client/ethereum.js';
-import  {ZonafideWeb3} from '/imports/startup/client/web3.js';
-import  {i18n} from '/imports/startup/client/lang.js';
+import  { ZonafideWeb3 } from '/imports/startup/client/web3.js';
+import  { i18n } from '/imports/startup/client/lang.js';
+import { ZonafideMonitor } from '/imports/startup/client/monitor.js';
 
 import './details.html';
 
@@ -54,9 +55,17 @@ Template.details.onCreated(function () {
         from: ZidStore.get().getAddresses()[0]
     });
 
-    console.log("z/details: sfDescription:" + this.sfDescription + ", hash: " + this.hash );
-
     this.hashCheck = ( ZonafideWeb3.getInstance().sha3(this.sfDescription) === this.hash );
+
+    // event monitor first test use
+    // ZonafideMonitor.getInstance().startWatch( this.zone, function(error, result) {
+    //     if(!error) {
+    //         console.log("z/details: monitor watch callback result: " + result );
+    //     } else {
+    //         console.log("z/details: monitor watch callback error: " + error );
+    //     }
+    // });
+
 
 });
 
@@ -69,6 +78,17 @@ Template.details.onRendered(function () {
     });
 
 });
+
+// Template.details.onDestroyed(function () {
+//     ZonafideMonitor.getInstance().stopWatch( this.zone, function(error, result) {
+//         if(!error) {
+//             console.log("z/details: monitor stopWatch callback result: " + result );
+//         } else {
+//             console.log("z/details: monitor stopWatch callback error : " + error );
+//         }
+//     });
+// });
+
 
 Template.details.helpers({
 

@@ -9,11 +9,11 @@ import {ZonafideMonitor} from './monitor.js';
 
 describe('monitor', function () {
 
-    it('should be a function', function (done) {
+    it('should return a function for watch method', function (done) {
 
         let _monitor = ZonafideMonitor.getInstance();
 
-       chai.assert(typeof _monitor.monitor === 'function', "typeof did not report monitor was a function");
+       chai.assert(typeof _monitor.startWatch === 'function', "typeof did not report monitor was a function");
 
        done();
 

@@ -31,17 +31,23 @@ let ZonafideMonitor = (function ZonafideMonitor() {
         return {
 
             test: "test",
-            monitor: function (zone) {
-                console.log("start watching");
+            startWatch: function (zone, callback) {git stgit stat
+
+                console.log("z/monitor startWatch");
                 _events = zone.allEvents({fromBlock: 0, toBlock: 'latest'});
                 _events.watch(function (error,result) {
-                    console.log(">>>>>>>>>>>>>>>>>>>>  event fired: " + result);
+                    if(!error) {
+                        console.log("z/monitor event caught: " + result);
+                        callback(result);
+                    }
+
                 });
             },
 
-            stopMonitoring: function () {
-                console.log("stop watching");
+            stopWatch: function (zone, callback) {
+                console.log("z/monitor stopWatch");
                 _events.stopWatching();
+                callback(false,'stopped');
             }
         }
     }
