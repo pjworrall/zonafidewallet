@@ -46,7 +46,7 @@ i18n.extend({
 
 // home page social promotion
 i18n.extend({
-    "home.js-share.message": "Work together to stop fraud. Accept Zonafide Activities ",
+    "home.js-share.message": "Work together to prevent fraud. Accept Zonafide Activities ",
     "home.js-share.subject": "Protect my Activities from fraud.",
     "home.js-share.url": "@Zoneoftrust https://www.zonafide.net",
     "home.js-share.title": "Let Others Know"
