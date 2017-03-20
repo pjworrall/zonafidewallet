@@ -369,10 +369,15 @@ Template.settings.events({
                     address
                 );
 
+                let busyQ = Session.get('busy');
+                Session.set('busy', (busyQ + 1) );
+
                 ZonafideWeb3.getInstance().eth.sendRawTransaction("0x" + signedTx, function (txError, tranHash) {
                     if (txError) {
                         sAlert.info("Network reported: " + txError,
                             {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Transaction Failed'});
+
+                        Session.set('busy', Session.get('busy') - 1  );
 
                     } else {
 
@@ -387,6 +392,9 @@ Template.settings.events({
                                         sAlertIcon: 'fa fa-info-circle',
                                         sAlertTitle: 'Transfer failed'
                                     });
+
+                                Session.set('busy', Session.get('busy') - 1  );
+
                             } else {
                                 sAlert.info('Transfer recorded at blocknumber ' + receipt.blockNumber,
                                     {
@@ -397,6 +405,9 @@ Template.settings.events({
                                 // clear the form
                                 template.$('input[name=recipient]').val("");
                                 template.$('input[name=amount]').val("");
+
+                                Session.set('busy', Session.get('busy') - 1  );
+
                             }
                         });
                     }

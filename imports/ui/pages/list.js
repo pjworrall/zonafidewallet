@@ -60,6 +60,11 @@ Template.list.events({
                 name = name.trim();
             }
 
+            let busyQ = Session.get('busy');
+            Session.set('busy', (busyQ + 1) );
+
+            console.log("z/list busy was: "  + busyQ + ' now: ' +  Session.get('busy') );
+
             let Zone = template.Zone;
 
             Zone.new(ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]),
@@ -80,19 +85,23 @@ Template.list.events({
                             // todo: I mean. shouldn't using the info method provide appropriate symbol?
                             sAlert.info(contract.address,
                                 {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Activity ' + name + ' established'});
+
+                            Session.set('busy', Session.get('busy') - 1  );
+
                         } else {
                             sAlert.info('An Activity is being registered: ' + contract.transactionHash,
                                 {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Activity ' + name + ' requested'});
+
                         }
 
                     } else {
-                        console.log("geth report error: " + error);
                         sAlert.info('if not, report: ' + error,
                             {
                                 timeout: 'none',
                                 sAlertIcon: 'fa fa-info-circle',
                                 sAlertTitle: 'Session password wrong, WiFi down or low credit?'
                             });
+                        Session.set('busy', Session.get('busy') - 1  );
                     }
                 });
 

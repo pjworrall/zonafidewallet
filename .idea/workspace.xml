@@ -4,10 +4,16 @@
     <list default="true" id="22cef14b-748f-4bc9-b76d-9127bdde131c" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Generated_files.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Generated_files.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/pages/about.html" afterPath="$PROJECT_DIR$/imports/ui/pages/about.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/pages/home.html" afterPath="$PROJECT_DIR$/imports/ui/pages/home.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/pages/home.js" afterPath="$PROJECT_DIR$/imports/ui/pages/home.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobile-config.js" afterPath="$PROJECT_DIR$/mobile-config.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/startup/client/globals.js" afterPath="$PROJECT_DIR$/imports/startup/client/globals.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/pages/acknowledge.js" afterPath="$PROJECT_DIR$/imports/ui/pages/acknowledge.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/pages/action.js" afterPath="$PROJECT_DIR$/imports/ui/pages/action.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/pages/details.js" afterPath="$PROJECT_DIR$/imports/ui/pages/details.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/pages/list.js" afterPath="$PROJECT_DIR$/imports/ui/pages/list.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/pages/members.js" afterPath="$PROJECT_DIR$/imports/ui/pages/members.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/pages/menu.html" afterPath="$PROJECT_DIR$/imports/ui/pages/menu.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/pages/menu.js" afterPath="$PROJECT_DIR$/imports/ui/pages/menu.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/pages/settings.js" afterPath="$PROJECT_DIR$/imports/ui/pages/settings.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/pages/verify.js" afterPath="$PROJECT_DIR$/imports/ui/pages/verify.js" />
     </list>
     <ignored path="waters.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,32 +36,22 @@
     <favorites_list name="waters" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="home.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/imports/ui/pages/home.html">
+    <leaf>
+      <file leaf-file-name="list.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/imports/ui/pages/list.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="26" column="32" lean-forward="false" selection-start-line="26" selection-start-column="15" selection-end-line="26" selection-end-column="32" />
+            <state relative-caret-position="304">
+              <caret line="88" column="75" lean-forward="true" selection-start-line="88" selection-start-column="27" selection-end-line="88" selection-end-column="75" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="home.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/imports/ui/pages/home.js">
+      <file leaf-file-name="verify.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/imports/ui/pages/verify.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="about.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/imports/ui/pages/about.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="34" column="10" lean-forward="true" selection-start-line="34" selection-start-column="10" selection-end-line="34" selection-end-column="10" />
+            <state relative-caret-position="-190">
+              <caret line="303" column="0" lean-forward="false" selection-start-line="303" selection-start-column="0" selection-end-line="303" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -102,8 +98,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/imports/ui/pages/personal.html" />
-        <option value="$PROJECT_DIR$/imports/ui/pages/unlock.html" />
         <option value="$PROJECT_DIR$/imports/ui/pages/unlock.js" />
         <option value="$PROJECT_DIR$/imports/ui/pages/lock.js" />
         <option value="$PROJECT_DIR$/imports/ui/pages/confirm.js" />
@@ -111,7 +105,6 @@
         <option value="$PROJECT_DIR$/imports/ui/pages/code.html" />
         <option value="$PROJECT_DIR$/imports/ui/pages/zone.html" />
         <option value="$PROJECT_DIR$/imports/ui/pages/code.js" />
-        <option value="$PROJECT_DIR$/imports/startup/client/ethereum.js" />
         <option value="$PROJECT_DIR$/imports/ui/pages/Loading.html" />
         <option value="$PROJECT_DIR$/imports/ui/pages/loading.html" />
         <option value="$PROJECT_DIR$/imports/ui/pages/error.js" />
@@ -120,39 +113,42 @@
         <option value="$PROJECT_DIR$/imports/ui/pages/index.js" />
         <option value="$PROJECT_DIR$/imports/startup/client/web3.js" />
         <option value="$PROJECT_DIR$/imports/ui/pages/settings.html" />
-        <option value="$PROJECT_DIR$/imports/ui/pages/settings.js" />
         <option value="$PROJECT_DIR$/imports/ui/pages/address.js" />
         <option value="$PROJECT_DIR$/imports/ui/pages/identities.html" />
         <option value="$PROJECT_DIR$/imports/ui/pages/identities.js" />
-        <option value="$PROJECT_DIR$/imports/ui/pages/list.js" />
         <option value="$PROJECT_DIR$/imports/ui/pages/about.js" />
-        <option value="$PROJECT_DIR$/imports/ui/pages/members.js" />
-        <option value="$PROJECT_DIR$/imports/ui/pages/acknowledge.js" />
         <option value="$PROJECT_DIR$/imports/ui/pages/zone.js" />
         <option value="$PROJECT_DIR$/test/monitor.test.js" />
         <option value="$PROJECT_DIR$/imports/startup/client/web3.test.js" />
-        <option value="$PROJECT_DIR$/imports/startup/client/monitor.js" />
-        <option value="$PROJECT_DIR$/imports/startup/client/monitor.test.js" />
         <option value="$PROJECT_DIR$/client/stylesheets/website.css" />
         <option value="$PROJECT_DIR$/imports/ui/pages/action.html" />
         <option value="$PROJECT_DIR$/imports/ui/pages/members.html" />
         <option value="$PROJECT_DIR$/imports/ui/pages/acknowledge.html" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/imports/startup/client/validation.js" />
-        <option value="$PROJECT_DIR$/imports/ui/pages/action.js" />
-        <option value="$PROJECT_DIR$/imports/ui/pages/verify.js" />
-        <option value="$PROJECT_DIR$/cordova-build-override/platforms/android/build-extras.gradle" />
         <option value="$PROJECT_DIR$/imports/startup/client/lang.js" />
-        <option value="$PROJECT_DIR$/imports/ui/pages/details.js" />
         <option value="$PROJECT_DIR$/imports/ui/pages/details.html" />
         <option value="$PROJECT_DIR$/imports/ui/pages/verify.html" />
-        <option value="$PROJECT_DIR$/imports/ui/pages/menu.html" />
         <option value="$PROJECT_DIR$/imports/startup/client/router.js" />
-        <option value="$PROJECT_DIR$/imports/startup/client/globals.js" />
+        <option value="$PROJECT_DIR$/imports/ui/pages/home.js" />
+        <option value="$PROJECT_DIR$/imports/startup/client/ethereum.js" />
+        <option value="$PROJECT_DIR$/imports/ui/pages/about.html" />
+        <option value="$PROJECT_DIR$/cordova-build-override/platforms/android/build-extras.gradle" />
         <option value="$PROJECT_DIR$/mobile-config.js" />
         <option value="$PROJECT_DIR$/imports/ui/pages/home.html" />
-        <option value="$PROJECT_DIR$/imports/ui/pages/home.js" />
-        <option value="$PROJECT_DIR$/imports/ui/pages/about.html" />
+        <option value="$PROJECT_DIR$/imports/startup/client/monitor.test.js" />
+        <option value="$PROJECT_DIR$/imports/startup/client/monitor.js" />
+        <option value="$PROJECT_DIR$/imports/ui/pages/menu.html" />
+        <option value="$PROJECT_DIR$/imports/startup/client/busy.js" />
+        <option value="$PROJECT_DIR$/imports/startup/client/globals.js" />
+        <option value="$PROJECT_DIR$/imports/ui/pages/menu.js" />
+        <option value="$PROJECT_DIR$/imports/ui/pages/list.js" />
+        <option value="$PROJECT_DIR$/imports/ui/pages/acknowledge.js" />
+        <option value="$PROJECT_DIR$/imports/ui/pages/members.js" />
+        <option value="$PROJECT_DIR$/imports/ui/pages/action.js" />
+        <option value="$PROJECT_DIR$/imports/ui/pages/details.js" />
+        <option value="$PROJECT_DIR$/imports/ui/pages/settings.js" />
+        <option value="$PROJECT_DIR$/imports/ui/pages/verify.js" />
       </list>
     </option>
   </component>
@@ -172,10 +168,8 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="2" />
-    <option name="y" value="23" />
-    <option name="width" value="1433" />
-    <option name="height" value="873" />
+    <option name="width" value="1440" />
+    <option name="height" value="900" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -319,21 +313,22 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="893" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
     <property name="add_unversioned_files" value="true" />
+    <property name="FullScreen" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/imports/startup/client" />
+      <recent name="$PROJECT_DIR$/imports/ui/pages" />
+      <recent name="$PROJECT_DIR$/imports/ui/pages/components" />
+      <recent name="$PROJECT_DIR$/public" />
+      <recent name="$PROJECT_DIR$/client/stylesheets" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/imports/startup/client" />
       <recent name="$PROJECT_DIR$/resources/icons" />
       <recent name="$PROJECT_DIR$/imports" />
       <recent name="$PROJECT_DIR$/resources/splash" />
       <recent name="$PROJECT_DIR$/imports/ui/pages" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/imports/ui/pages" />
-      <recent name="$PROJECT_DIR$/imports/ui/pages/components" />
-      <recent name="$PROJECT_DIR$/public" />
-      <recent name="$PROJECT_DIR$/client/stylesheets" />
-      <recent name="$PROJECT_DIR$/client/layout" />
     </key>
   </component>
   <component name="RunManager" selected="Meteor.Waters">
@@ -502,7 +497,10 @@
       <workItem from="1488787533400" duration="960000" />
       <workItem from="1488789091363" duration="13170000" />
       <workItem from="1489065533323" duration="1642000" />
-      <workItem from="1489218793831" duration="12378000" />
+      <workItem from="1489218793831" duration="26544000" />
+      <workItem from="1489442842288" duration="4047000" />
+      <workItem from="1489999070729" duration="7446000" />
+      <workItem from="1490007810468" duration="5083000" />
     </task>
     <task id="LOCAL-00007" summary="BON-271: Basic member acknowledgement page and controller complete">
       <created>1462549216164</created>
@@ -851,7 +849,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="537208000" />
+    <option name="totallyTimeSpent" value="567950000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -863,25 +861,26 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="2" y="23" width="1433" height="873" extended-state="6" />
+    <frame x="0" y="0" width="1440" height="900" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14589235" sideWeight="0.4904762" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23608175" sideWeight="0.4904762" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30993378" sideWeight="0.48477158" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1977612" sideWeight="0.37843552" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3125828" sideWeight="0.43654823" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22060958" sideWeight="0.5095238" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34701988" sideWeight="0.59196615" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34577113" sideWeight="0.59196615" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2494244" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2887417" sideWeight="0.6215645" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.56840795" sideWeight="0.6215645" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22060958" sideWeight="0.5095238" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24686192" sideWeight="0.52219874" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.52680963" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.65033114" sideWeight="0.48212868" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
@@ -980,13 +979,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/imports/ui/pages/zone.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="48" lean-forward="true" selection-start-line="6" selection-start-column="23" selection-end-line="6" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/pages/loading.html" />
     <entry file="file://$PROJECT_DIR$/imports/ui/pages/404.html">
       <provider selected="true" editor-type-id="text-editor">
@@ -1051,20 +1043,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/pages/identities.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="36" lean-forward="true" selection-start-line="9" selection-start-column="36" selection-end-line="9" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/pages/list.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
-          <caret line="98" column="12" lean-forward="false" selection-start-line="98" selection-start-column="12" selection-end-line="98" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/pages/zone.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="261">
@@ -1079,23 +1057,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/imports/startup/client/ethereum.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2355">
-          <caret line="156" column="0" lean-forward="false" selection-start-line="156" selection-start-column="0" selection-end-line="156" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/imports/startup/client/web3.test.js" />
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/DHTML.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imports/startup/client/monitor.test.js" />
-    <entry file="file://$PROJECT_DIR$/imports/startup/client/monitor.js" />
     <entry file="file://$PROJECT_DIR$/.meteor/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1152,31 +1114,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/pages/settings.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3705">
-          <caret line="266" column="49" lean-forward="true" selection-start-line="266" selection-start-column="49" selection-end-line="266" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/pages/members.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="43" column="8" lean-forward="false" selection-start-line="43" selection-start-column="8" selection-end-line="44" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/pages/acknowledge.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="46">
           <caret line="16" column="16" lean-forward="false" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/pages/acknowledge.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1200">
-          <caret line="100" column="95" lean-forward="false" selection-start-line="100" selection-start-column="62" selection-end-line="100" selection-end-column="95" />
         </state>
       </provider>
     </entry>
@@ -1194,32 +1135,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/pages/action.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="199" column="64" lean-forward="false" selection-start-line="199" selection-start-column="53" selection-end-line="199" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/pages/verify.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2497">
-          <caret line="332" column="44" lean-forward="false" selection-start-line="332" selection-start-column="44" selection-end-line="332" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cordova-build-override/platforms/android/build-extras.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="1" lean-forward="true" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -1227,13 +1146,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="21" column="50" lean-forward="true" selection-start-line="21" selection-start-column="50" selection-end-line="21" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/pages/details.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="427">
-          <caret line="238" column="10" lean-forward="true" selection-start-line="238" selection-start-column="10" selection-end-line="238" selection-end-column="10" />
         </state>
       </provider>
     </entry>
@@ -1255,43 +1167,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding>
-            <element signature="e#49#68#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/pages/menu.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-231">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/pages/menu.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="126" lean-forward="true" selection-start-line="23" selection-start-column="126" selection-end-line="23" selection-end-column="126" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imports/startup/client/globals.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="26" lean-forward="true" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mobile-config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="10" lean-forward="false" selection-start-line="4" selection-start-column="10" selection-end-line="4" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1299,9 +1174,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-135">
           <caret line="10" column="50" lean-forward="false" selection-start-line="10" selection-start-column="50" selection-end-line="10" selection-end-column="50" />
-          <folding>
-            <element signature="e#0#44#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1309,22 +1181,149 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
           <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/pages/home.html">
+    <entry file="file://$PROJECT_DIR$/imports/ui/pages/identities.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="26" column="32" lean-forward="false" selection-start-line="26" selection-start-column="15" selection-end-line="26" selection-end-column="32" />
-          <folding />
+        <state relative-caret-position="-585">
+          <caret line="9" column="36" lean-forward="false" selection-start-line="9" selection-start-column="36" selection-end-line="9" selection-end-column="36" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/pages/about.html">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="42" column="16" lean-forward="false" selection-start-line="42" selection-start-column="16" selection-end-line="42" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cordova-build-override/platforms/android/build-extras.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="1" lean-forward="true" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobile-config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="19" lean-forward="false" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/pages/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="29" column="31" lean-forward="false" selection-start-line="29" selection-start-column="31" selection-end-line="29" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/DHTML.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="164">
+          <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/startup/client/monitor.test.js">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
-          <caret line="34" column="10" lean-forward="true" selection-start-line="34" selection-start-column="10" selection-end-line="34" selection-end-column="10" />
+          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/startup/client/monitor.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="43">
+          <caret line="33" column="51" lean-forward="false" selection-start-line="33" selection-start-column="51" selection-end-line="33" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/startup/client/ethereum.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="17" column="22" lean-forward="false" selection-start-line="17" selection-start-column="15" selection-end-line="17" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/startup/client/busy.js" />
+    <entry file="file://$PROJECT_DIR$/imports/ui/pages/menu.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/pages/details.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2370">
+          <caret line="215" column="29" lean-forward="true" selection-start-line="215" selection-start-column="29" selection-end-line="215" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/startup/client/globals.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="23" lean-forward="true" selection-start-line="13" selection-start-column="23" selection-end-line="13" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/pages/acknowledge.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="106" column="0" lean-forward="false" selection-start-line="106" selection-start-column="0" selection-end-line="107" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/pages/menu.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="31" column="35" lean-forward="true" selection-start-line="31" selection-start-column="35" selection-end-line="31" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/pages/members.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="175" column="31" lean-forward="false" selection-start-line="175" selection-start-column="31" selection-end-line="175" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/pages/settings.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="543">
+          <caret line="410" column="29" lean-forward="true" selection-start-line="410" selection-start-column="29" selection-end-line="410" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/pages/action.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="184" column="20" lean-forward="false" selection-start-line="184" selection-start-column="20" selection-end-line="184" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/pages/list.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="88" column="75" lean-forward="true" selection-start-line="88" selection-start-column="27" selection-end-line="88" selection-end-column="75" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/pages/verify.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-190">
+          <caret line="303" column="0" lean-forward="false" selection-start-line="303" selection-start-column="0" selection-end-line="303" selection-end-column="0" />
           <folding />
         </state>
       </provider>

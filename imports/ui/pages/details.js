@@ -9,7 +9,7 @@ import  { ZoneTransactionReceipt } from '/imports/startup/client/receipt.js';
 import  { ZonafideEnvironment } from '/imports/startup/client/ethereum.js';
 import  { ZonafideWeb3 } from '/imports/startup/client/web3.js';
 import  { i18n } from '/imports/startup/client/lang.js';
-import { ZonafideMonitor } from '/imports/startup/client/monitor.js';
+//import { ZonafideMonitor } from '/imports/startup/client/monitor.js';
 
 import './details.html';
 
@@ -167,6 +167,9 @@ Template.details.events({
 
             console.log("removing: " + Template.instance().address);
 
+            let busyQ = Session.get('busy');
+            Session.set('busy', (busyQ + 1) );
+
             template.zone.kill( ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]),
 
                 function (error, tranHash) {
@@ -177,6 +180,9 @@ Template.details.events({
                                 sAlertIcon: 'fa fa-exclamation-circle',
                                 sAlertTitle: 'Network Access Failure'
                             });
+
+                        Session.set('busy', Session.get('busy') - 1  );
+
                     } else {
 
                         sAlert.info('A request to delete the Activity has been made: ' + tranHash,
@@ -190,6 +196,9 @@ Template.details.events({
                                         sAlertIcon: 'fa fa-info-circle',
                                         sAlertTitle: 'Failed to delete the Activity'
                                     });
+
+                                Session.set('busy', Session.get('busy') - 1  );
+
                             } else {
                                 //todo: small chance the zone might not exist but decided not to test because it is so unlikely
                                 //todo: maybe should be data._id not we have it?
@@ -202,6 +211,8 @@ Template.details.events({
                                         sAlertIcon: 'fa fa-info-circle',
                                         sAlertTitle: 'Activity deleted'
                                     });
+
+                                Session.set('busy', Session.get('busy') - 1  );
                             }
                         });
                     }

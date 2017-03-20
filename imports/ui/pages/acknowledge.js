@@ -104,7 +104,10 @@ Template.acknowledge.events({
             return;
         }
 
-        // todo: should maybe check we are a valid acknoweldger before marching on with setting an ack
+        let busyQ = Session.get('busy');
+        Session.set('busy', (busyQ + 1) );
+
+        console.log("z/acknowledge busy was: "  + busyQ + ' now: ' +  Session.get('busy') );
 
         zone.setAcknowledgement(
             ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]),
@@ -118,6 +121,9 @@ Template.acknowledge.events({
                             sAlertIcon: 'fa fa-exclamation-circle',
                             sAlertTitle: 'Zonafide Access Failure'
                         });
+
+                    Session.set('busy',  Session.get('busy') - 1  );
+
                 } else {
                     sAlert.info('A request to acknowledge an Activity ' + zad + 'has been made: ' + tranHash,
                         {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Acknowledgment request made'});
@@ -130,13 +136,18 @@ Template.acknowledge.events({
                                     sAlertIcon: 'fa fa-info-circle',
                                     sAlertTitle: 'Failed to Acknowledge Activity'
                                 });
+
+                                Session.set('busy',  Session.get('busy') - 1  );
+
                         } else {
-                            sAlert.info('A request to acknowledge an Activity ' + zad + 'has been made at block ' + receipt.blockNumber,
+                            sAlert.info('Acknowledge an Activity ' + zad + ' at block ' + receipt.blockNumber,
                                 {
                                     timeout: 'none',
                                     sAlertIcon: 'fa fa-info-circle',
                                     sAlertTitle: 'Activity Acknowledged'
                                 });
+
+                            Session.set('busy',  Session.get('busy') - 1  );
                         }
                     });
 

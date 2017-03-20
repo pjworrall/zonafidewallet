@@ -11,6 +11,7 @@ let AppVersion = "0.2.X";
 // todo: check what the impact of being limited to a browser tab might mean to behaviour
 Session.set('lock', true);
 Session.set('zid', false);
+Session.set('busy', 0);
 
 // caution. over riding some security. for low security requirement environments only
 let PasswordProvider = function (callback) {

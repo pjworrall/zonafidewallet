@@ -142,6 +142,9 @@ Template.members.events({
             // todo: quorum set hard at 1 for now
             const quorum = 1;
 
+            let busyQ = Session.get('busy');
+            Session.set('busy', (busyQ + 1) );
+
             zone.setMembers([zid], quorum,
                 ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]),
 
@@ -153,6 +156,9 @@ Template.members.events({
                                 sAlertIcon: 'fa fa-exclamation-circle',
                                 sAlertTitle: 'Network Access Failure'
                             });
+
+                        Session.set('busy', Session.get('busy') - 1  );
+
                     } else {
 
                         sAlert.info('A request to add an Acknowledger has been made: ' + tranHash,
@@ -166,6 +172,9 @@ Template.members.events({
                                         sAlertIcon: 'fa fa-info-circle',
                                         sAlertTitle: 'Failed to Add Acknoweldger'
                                     });
+
+                                Session.set('busy', Session.get('busy') - 1  );
+
                             } else {
                                 // careful here..using address property rather that unique id of record, should be same impact
                                 ZidUserLocalData.update({address: zad}, {$set: {state: ZoneState.MEMBERS}});
@@ -176,6 +185,8 @@ Template.members.events({
                                         sAlertIcon: 'fa fa-info-circle',
                                         sAlertTitle: 'Acknowledger Added'
                                     });
+
+                                Session.set('busy', Session.get('busy') - 1  );
                             }
                         });
                     }

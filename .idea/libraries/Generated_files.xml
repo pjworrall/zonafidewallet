@@ -406,8 +406,8 @@
         <item url="file://$PROJECT_DIR$/node_modules/js-yaml/test/issues/issue-26-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/js-yaml/lib/js-yaml/constructor-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/js-yaml/test/issues/issue-19-compiled.js" />
+        <item url="file://$PROJECT_DIR$/imports/startup/client/busy-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/js-yaml/lib/js-yaml/scanner-compiled.js" />
-        <item url="file://$PROJECT_DIR$/mobile-config-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/js-yaml/test/issues/issue-17-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/js-yaml/test/issues/issue-9-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/js-yaml/lib/js-yaml-compiled.js" />
@@ -3552,6 +3552,7 @@
       <root url="file://$PROJECT_DIR$/server/main-compiled.js" />
       <root url="file://$PROJECT_DIR$/client/main-compiled.js" />
       <root url="file://$PROJECT_DIR$/client/a-alerts-compiled.js" />
+      <root url="file://$PROJECT_DIR$/mobile-config-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/uglify-js/test/unit/compress/expected/issue10-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/uglify-js/test/unit/compress/expected/mangle-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/uglify-js/test/unit/compress/expected/issue9-compiled.js" />
@@ -3956,8 +3957,8 @@
       <root url="file://$PROJECT_DIR$/node_modules/js-yaml/test/issues/issue-26-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/js-yaml/lib/js-yaml/constructor-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/js-yaml/test/issues/issue-19-compiled.js" />
+      <root url="file://$PROJECT_DIR$/imports/startup/client/busy-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/js-yaml/lib/js-yaml/scanner-compiled.js" />
-      <root url="file://$PROJECT_DIR$/mobile-config-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/js-yaml/test/issues/issue-17-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/js-yaml/test/issues/issue-9-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/js-yaml/lib/js-yaml-compiled.js" />

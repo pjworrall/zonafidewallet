@@ -163,6 +163,9 @@ Template.action.events({
         let _bool = ( hash ===  ZonafideWeb3.getInstance().sha3(JSON.stringify(description))) ;
         console.log("z/action: description:" + JSON.stringify(description) + ", hash: " + hash + ", match: " + _bool );
 
+        let busyQ = Session.get('busy');
+        Session.set('busy', (busyQ + 1) );
+
         zone.action(hash, zid,
             ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]),
             function (error, tranHash) {
@@ -178,6 +181,9 @@ Template.action.events({
                             sAlertTitle: 'Zonafide Network Failure'
 
                         });
+
+                    Session.set('busy', Session.get('busy') - 1  );
+
                 } else {
 
                     sAlert.info('A request to action an Activity has been made: ' + tranHash,
@@ -191,6 +197,9 @@ Template.action.events({
                                     sAlertIcon: 'fa fa-info-circle',
                                     sAlertTitle: 'Failed to Action an Activity'
                                 });
+
+                            Session.set('busy', Session.get('busy') - 1  );
+
                         } else {
                             // todo: watchout, using address property and not record id
                             ZidUserLocalData.update({address: zad},
@@ -208,6 +217,8 @@ Template.action.events({
                                     sAlertIcon: 'fa fa-info-circle',
                                     sAlertTitle: 'Activity Actioned'
                                 });
+
+                            Session.set('busy', Session.get('busy') - 1  );
                         }
                     });
 

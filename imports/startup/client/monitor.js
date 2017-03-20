@@ -31,8 +31,7 @@ let ZonafideMonitor = (function ZonafideMonitor() {
         return {
 
             test: "test",
-            startWatch: function (zone, callback) {git stgit stat
-
+            startWatch: function (zone, callback) {
                 console.log("z/monitor startWatch");
                 _events = zone.allEvents({fromBlock: 0, toBlock: 'latest'});
                 _events.watch(function (error,result) {

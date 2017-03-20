@@ -9,7 +9,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/list"><div class="zonafide-logo fa-2x"></div></a>
+
+                {{#if busy}}
+                    <a class="navbar-brand" href="/list"><i class="fa fa-gear fa-spin  fa-2x"></i></a>
+                    {{else}}
+                    <a class="navbar-brand" href="/list"><div class="zonafide-logo fa-2x"></div></a>
+                {{/if}}
+
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">

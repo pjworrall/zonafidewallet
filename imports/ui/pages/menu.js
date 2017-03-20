@@ -27,6 +27,9 @@ Template.menu.helpers({
 
     keystore() {
         return Session.get("keystore");
+    },
+    busy() {
+        return Session.get("busy");
     }
 
 });

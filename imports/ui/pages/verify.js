@@ -273,7 +273,8 @@ Template.verify.events({
 
         event.preventDefault();
 
-        // todo: ignore when no Zone instantiated
+        let busyQ = Session.get('busy');
+        Session.set('busy', (busyQ + 1) );
 
         let zone = template.Zone.get();
 
@@ -286,6 +287,9 @@ Template.verify.events({
                             timeout: 'none',
                             sAlertTitle: 'Network Access Failure'
                         });
+
+                    Session.set('busy', Session.get('busy') - 1  );
+
                 } else {
                     sAlert.info('A request to confirm has been made: ' + tranHash,
                         {timeout: 'none', sAlertTitle: 'Confirm Requested'});
@@ -297,12 +301,16 @@ Template.verify.events({
                                     timeout: 'none',
                                     sAlertTitle: 'Failed to confirm Activity'
                                 });
+
+                            Session.set('busy', Session.get('busy') - 1  );
                         } else {
                             sAlert.info('Confirmed Activity at block: ' + receipt.blockNumber,
                                 {
                                     timeout: 'none',
                                     sAlertTitle: 'Activity Confirmed'
                                 });
+
+                            Session.set('busy', Session.get('busy') - 1  );
                         }
                     });
                 }
