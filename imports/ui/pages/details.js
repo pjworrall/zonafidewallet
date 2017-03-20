@@ -4,12 +4,20 @@
 
 import {Template} from 'meteor/templating';
 //import { QRCode } from 'meteor/steeve:jquery-qrcode';
-import  {ZidUserLocalData, ZidStore, ZoneStateAction, ZoneStateSymbol, ZoneStateColor} from '/imports/startup/client/globals.js';
-import  { ZoneTransactionReceipt } from '/imports/startup/client/receipt.js';
-import  { ZonafideEnvironment } from '/imports/startup/client/ethereum.js';
-import  { ZonafideWeb3 } from '/imports/startup/client/web3.js';
-import  { i18n } from '/imports/startup/client/lang.js';
+import  {
+    ZidUserLocalData,
+    ZidStore,
+    ZoneStateAction,
+    ZoneStateSymbol,
+    ZoneStateColor
+} from '/imports/startup/client/globals.js';
+import  {ZoneTransactionReceipt} from '/imports/startup/client/receipt.js';
+import  {ZonafideEnvironment} from '/imports/startup/client/ethereum.js';
+import  {ZonafideWeb3} from '/imports/startup/client/web3.js';
+import  {i18n} from '/imports/startup/client/lang.js';
 //import { ZonafideMonitor } from '/imports/startup/client/monitor.js';
+
+import { ReactiveVar } from 'meteor/reactive-var';
 
 import './details.html';
 
@@ -54,6 +62,14 @@ Template.details.onCreated(function () {
     this.verifier = this.zone.getVerifier({
         from: ZidStore.get().getAddresses()[0]
     });
+
+    let chal = this.zone.getChallenge({
+        from: ZidStore.get().getAddresses()[0]
+    });
+
+    console.log("z/details onCreate zone.getChallenge(): " +  chal);
+
+    this.challenge = new ReactiveVar(chal);
 
     this.hashCheck = ( ZonafideWeb3.getInstance().sha3(this.sfDescription) === this.hash );
 
@@ -109,6 +125,9 @@ Template.details.helpers({
     },
     confirmed() {
         return Template.instance().confirmed;
+    },
+    challenge() {
+        return Template.instance().challenge.get();
     },
 
     // todo: this is currently only providing one member for MVP
@@ -168,9 +187,9 @@ Template.details.events({
             console.log("removing: " + Template.instance().address);
 
             let busyQ = Session.get('busy');
-            Session.set('busy', (busyQ + 1) );
+            Session.set('busy', (busyQ + 1));
 
-            template.zone.kill( ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]),
+            template.zone.kill(ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]),
 
                 function (error, tranHash) {
                     if (error) {
@@ -181,7 +200,7 @@ Template.details.events({
                                 sAlertTitle: 'Network Access Failure'
                             });
 
-                        Session.set('busy', Session.get('busy') - 1  );
+                        Session.set('busy', Session.get('busy') - 1);
 
                     } else {
 
@@ -197,7 +216,7 @@ Template.details.events({
                                         sAlertTitle: 'Failed to delete the Activity'
                                     });
 
-                                Session.set('busy', Session.get('busy') - 1  );
+                                Session.set('busy', Session.get('busy') - 1);
 
                             } else {
                                 //todo: small chance the zone might not exist but decided not to test because it is so unlikely
@@ -212,7 +231,7 @@ Template.details.events({
                                         sAlertTitle: 'Activity deleted'
                                     });
 
-                                Session.set('busy', Session.get('busy') - 1  );
+                                Session.set('busy', Session.get('busy') - 1);
                             }
                         });
                     }
@@ -224,6 +243,68 @@ Template.details.events({
 
     },
 
+    'click .js-challenge'(event, template) {
+
+        // Prevent default browser form submit
+        event.preventDefault();
+
+        let busyQ = Session.get('busy');
+        Session.set('busy', (busyQ + 1));
+
+        template.zone.setChallenge(ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]),
+
+            function (error, tranHash) {
+                if (error) {
+                    sAlert.error('Report error: ' + error,
+                        {
+                            timeout: 'none',
+                            sAlertIcon: 'fa fa-exclamation-circle',
+                            sAlertTitle: 'Network Access Failure'
+                        });
+
+                    Session.set('busy', Session.get('busy') - 1);
+
+                } else {
+
+                    sAlert.info('A request to respond to Challenge has been made: ' + tranHash,
+                        {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Challenge Requested'});
+
+                    ZoneTransactionReceipt.check(tranHash, ZonafideWeb3.getInstance(), function (error, receipt) {
+                        if (error) {
+                            sAlert.info('Could not set Challenge on Activity: ' + error.toString(),
+                                {
+                                    timeout: 'none',
+                                    sAlertIcon: 'fa fa-info-circle',
+                                    sAlertTitle: 'Failed to set Challenge'
+                                });
+
+                            Session.set('busy', Session.get('busy') - 1);
+
+                        } else {
+                            //todo: small chance the zone might not exist but decided not to test because it is so unlikely
+
+                            // get the challenge value here and set tha reactive var - challenge
+
+                            template.challenge.set(template.zone.getChallenge({
+                                from: ZidStore.get().getAddresses()[0]
+                            }));
+
+                            sAlert.info('Activity Challenge set at block: ' + receipt.blockNumber,
+                                {
+                                    timeout: 'none',
+                                    sAlertIcon: 'fa fa-info-circle',
+                                    sAlertTitle: 'Activity Challenged'
+                                });
+
+                            Session.set('busy', Session.get('busy') - 1);
+                        }
+                    });
+                }
+            });
+
+
+    },
+
 
     'click .js-share'(event, template) {
 
@@ -232,7 +313,7 @@ Template.details.events({
 
         // this is the complete list of currently supported params you can pass to the plugin (all optional)
         let options = {
-            message: i18n.t("details.js-share.message",{ address: template.address} ), // not supported on some apps (Facebook, Instagram)
+            message: i18n.t("details.js-share.message", {address: template.address}), // not supported on some apps (Facebook, Instagram)
             subject: i18n.t("details.js-share.subject"), // fi. for email
             //files: ['', ''], // an array of filenames either locally or remotely
             url: i18n.t("details.js-share.url"),
@@ -259,10 +340,10 @@ Template.details.events({
 
         // this is the complete list of currently supported params you can pass to the plugin (all optional)
         let options = {
-            message:  i18n.t(
+            message: i18n.t(
                 "details.js-send.message",
-                { address: template.address, instruction: template.sfDescription }
-                ), // not supported on some apps (Facebook, Instagram)
+                {address: template.address, instruction: template.sfDescription}
+            ), // not supported on some apps (Facebook, Instagram)
             subject: i18n.t("details.js-send.subject"), // fi. for email
             //files: ['', ''], // an array of filenames either locally or remotely
             url: i18n.t("details.js-send.url"),
