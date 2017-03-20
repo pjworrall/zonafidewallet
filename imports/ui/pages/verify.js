@@ -26,6 +26,7 @@ Template.verify.onCreated(function consoleOnCreated() {
     this.zad = new ReactiveVar();
     this.member = new ReactiveVar();
     this.hashCheck = new ReactiveVar();
+    this.challenge = new ReactiveVar();
 
 });
 
@@ -98,6 +99,9 @@ Template.verify.helpers({
     },
     hashCheck() {
         return Template.instance().hashCheck.get();
+    },
+    challenge() {
+        return Template.instance().challenge.get();
     }
 
 });
@@ -343,6 +347,29 @@ Template.verify.events({
             } else {
                 template.hashCheck.set(false)
             }
+
+        } else {
+            sAlert.info("Provide an Activity first",
+                {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'No Activity'});
+        }
+
+    },
+
+    'submit .js-challenge'(event, template) {
+
+        event.preventDefault();
+
+        console.log("submit .js-challenge");
+
+        let zone = template.Zone.get();
+
+        if (zone) {
+
+            let bool = zone.getChallenge({
+                from: ZidStore.get().getAddresses()[0]
+            });
+
+            template.challenge.set(bool);
 
         } else {
             sAlert.info("Provide an Activity first",
