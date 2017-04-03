@@ -2,13 +2,18 @@
  * Created by pjworrall on 03/05/2016.
  */
 
-import { Template } from 'meteor/templating';
-import { ReactiveVar } from 'meteor/reactive-var';
+import {Template} from 'meteor/templating';
+import {ReactiveVar} from 'meteor/reactive-var';
 
 import lightwallet from 'eth-lightwallet';
 import  {Identities} from '/imports/startup/client/validation.js';
 
-import  { ZidStore, SessionPasswordOveride, ZonafideDappData, PasswordProvider } from '/imports/startup/client/globals.js';
+import  {
+    ZidStore,
+    SessionPasswordOveride,
+    ZonafideDappData,
+    PasswordProvider
+} from '/imports/startup/client/globals.js';
 
 import './identities.html';
 
@@ -29,6 +34,16 @@ Template.identities.onRendered(function () {
             entropy: Identities.messages
         }
     });
+
+    // put a counter on the entropy input to help use know how many char entered
+    this.$('#entropy').on("keyup", function () {
+        if (this.value.length < 80) {
+            $("#counter").html((80 - this.value.length));
+        } else {
+            $("#counter").html("+ " + ((this.value.length) - 80) );
+        }
+    });
+
 });
 
 Template.identities.helpers({
@@ -60,7 +75,7 @@ Template.identities.events({
         Template.instance().seeded.set(true);
 
     },
-    'click .js-create'(event,template) {
+    'click .js-create'(event, template) {
 
         // Prevent default browser form submit
         event.preventDefault();
@@ -73,11 +88,11 @@ Template.identities.events({
         // it will turn it off for others until we have Address isolated configuration settings
 
         ZonafideDappData.update({document: "settings"},
-            { $set:
-                { sessionPassword: (false) }
+            {
+                $set: {sessionPassword: (false)}
             },
             // if document does not exist yet create it
-            { upsert: true }
+            {upsert: true}
         );
 
         // todo: check the JIRA exists to ensure app data is not leaked between different Addresses!!!!!
@@ -99,7 +114,7 @@ Template.identities.events({
 
                 keyStore.passwordProvider = PasswordProvider;
 
-                ZidStore.set(keyStore,Session);
+                ZidStore.set(keyStore, Session);
 
                 Router.go("list");
 
