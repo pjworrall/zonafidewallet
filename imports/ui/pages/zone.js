@@ -10,23 +10,26 @@ import  {ZonafideWeb3} from '/imports/startup/client/web3.js';
 import  {ZonafideEnvironment} from '/imports/startup/client/ethereum.js';
 import  {ZidStore, ZidUserLocalData, ZoneStateAttributes, ZoneState} from '/imports/startup/client/globals.js';
 
+import { ReactiveVar } from 'meteor/reactive-var';
+
 Template.zone.onCreated(function () {
     // todo: what do we do if this call does not work ? Should be using exceptions
     this.ZoneFactory = ZonafideWeb3.getFactory();
-    this.ZoneRecord = ZidUserLocalData.findOne(this.data._id); //Template.instance().data._id)
+
+    this.ZoneRecord = new ReactiveVar(ZidUserLocalData.findOne(this.data._id));
 
 });
 
 Template.zone.helpers({
     action() {
-        return ZoneStateAttributes[Template.instance().ZoneRecord.state].action;
+        return ZoneStateAttributes[Template.instance().ZoneRecord.get().state].action;
     },
 
     symbol() {
-        return ZoneStateAttributes[Template.instance().ZoneRecord.state].symbol;
+        return ZoneStateAttributes[Template.instance().ZoneRecord.get().state].symbol;
     },
     color() {
-        return ZoneStateAttributes[Template.instance().ZoneRecord.state].color;
+        return ZoneStateAttributes[Template.instance().ZoneRecord.get().state].color;
     }
 });
 
@@ -36,9 +39,9 @@ Template.zone.events({
         // Prevent default browser form submit
         event.preventDefault();
 
-        let zone = template.ZoneFactory.at(template.ZoneRecord.address);
+        let zone = template.ZoneFactory.at(template.ZoneRecord.get().address);
 
-        let id = template.ZoneRecord._id;
+        let id = template.ZoneRecord.get()._id;
 
         /*
          If the Activity is confirmed then set the state. If the Activity is waiting on Acknowledgements then
@@ -46,8 +49,10 @@ Template.zone.events({
          */
 
         if (zone.isConfirmed(ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]))) {
+
             ZidUserLocalData.update({_id: id}, {$set: {state: ZoneState.CONFIRMED}});
-        } else if (template.ZoneRecord.state === ZoneState.WAIT_ON_ACKNOWLEDGERS || template.ZoneRecord.state === ZoneState.ACKNOWLEDGERS ) {
+
+        } else if (template.ZoneRecord.get().state === ZoneState.WAIT_ON_ACKNOWLEDGERS || template.ZoneRecord.get().state === ZoneState.ACKNOWLEDGERS ) {
             if (zone.isQuorum(ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]))) {
                 ZidUserLocalData.update(
                     {_id: id},
@@ -56,13 +61,16 @@ Template.zone.events({
                             state: ZoneState.ACKNOWLEDGED
                         }
                     }
-                )
+                );
             }
         }
 
+        // refresh the ZoneRecord in case it changed since this template was created
+        template.ZoneRecord.set(ZidUserLocalData.findOne(id));
+
         let _p = {_id: id};
 
-        switch (template.ZoneRecord.state) {
+        switch (template.ZoneRecord.get().state) {
             case ZoneState.NEW:
                 Router.go("members", _p);
                 break;
@@ -96,7 +104,7 @@ Template.zone.events({
 
         event.preventDefault();
 
-        Router.go("details", {_id: template.ZoneRecord._id});
+        Router.go("details", {_id: template.ZoneRecord.get()._id});
 
     }
 
