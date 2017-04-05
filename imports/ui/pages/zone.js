@@ -2,13 +2,13 @@
  * Created by pjworrall on 11/05/2016.
  */
 
-import { Template } from 'meteor/templating';
+import {Template} from 'meteor/templating';
 
 import './zone.html';
 
-import  { ZonafideWeb3 } from '/imports/startup/client/web3.js';
-import  { ZonafideEnvironment } from '/imports/startup/client/ethereum.js';
-import  { ZidStore, ZidUserLocalData, ZoneStateAction, ZoneState , ZoneStateSymbol, ZoneStateColor } from '/imports/startup/client/globals.js';
+import  {ZonafideWeb3} from '/imports/startup/client/web3.js';
+import  {ZonafideEnvironment} from '/imports/startup/client/ethereum.js';
+import  {ZidStore, ZidUserLocalData, ZoneStateAttributes, ZoneState} from '/imports/startup/client/globals.js';
 
 Template.zone.onCreated(function () {
     // todo: what do we do if this call does not work ? Should be using exceptions
@@ -19,14 +19,14 @@ Template.zone.onCreated(function () {
 
 Template.zone.helpers({
     action() {
-        return ZoneStateAction[Template.instance().ZoneRecord.state];
+        return ZoneStateAttributes[Template.instance().ZoneRecord.state].action;
     },
 
     symbol() {
-        return ZoneStateSymbol[Template.instance().ZoneRecord.state];
+        return ZoneStateAttributes[Template.instance().ZoneRecord.state].symbol;
     },
     color() {
-        return ZoneStateColor[Template.instance().ZoneRecord.state];
+        return ZoneStateAttributes[Template.instance().ZoneRecord.state].color;
     }
 });
 
@@ -36,62 +36,67 @@ Template.zone.events({
         // Prevent default browser form submit
         event.preventDefault();
 
-        // todo: confused to what is going on fron zad - id - record.address? clarify.
-        const id = template.$('input[name=zad]').val();
-        const record = ZidUserLocalData.findOne(id);
-        const zad = record.address;
+        let zone = template.ZoneFactory.at(template.ZoneRecord.address);
 
-        let zone = template.ZoneFactory.at(zad);
+        let id = template.ZoneRecord._id;
 
         /*
-
-         todo: Currently the use of functions on the contract to determine state may cause
-         too many rpc calls. Consider using a flag so one call can be made to determine
-         all states.
-
+         If the Activity is confirmed then set the state. If the Activity is waiting on Acknowledgements then
+         check if quorum and set stat to Acknowledged.
          */
 
-        let quorum = zone.isQuorum(ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]));
-        let confirmed = zone.isConfirmed(ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]));
-
-        if (confirmed) {
+        if (zone.isConfirmed(ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]))) {
             ZidUserLocalData.update({_id: id}, {$set: {state: ZoneState.CONFIRMED}});
-            Router.go("details", {_id: id});
-        } else if (record.state == ZoneState.ACTIONED) {
-            Router.go("details", {_id: id});
-        } else if (quorum) {
-            /*
-                note:
-                This state check is agains Ethereum. So we set ACKNOWLEDGED here because the change
-                is outside the application
-              */
-            ZidUserLocalData.update({_id: id}, {$set: {state: ZoneState.ACKNOWLEDGED}});
-            Router.go("action", {_id: id});
-
-        } else if (record.state == ZoneState.NEW) {
-            // todo: query any members that do exist and pass through to view
-            Router.go("members", {_id: id});
-
-        } else if (record.state == ZoneState.MEMBERS) {
-            Router.go("share", {_id: id});
-        }else if (record.state == ZoneState.WAIT_ON_ACKNOWLEDGER) {
-            Router.go("share", {_id: id});
+        } else if (template.ZoneRecord.state === ZoneState.WAIT_ON_ACKNOWLEDGERS || template.ZoneRecord.state === ZoneState.ACKNOWLEDGERS ) {
+            if (zone.isQuorum(ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]))) {
+                ZidUserLocalData.update(
+                    {_id: id},
+                    {
+                        $set: {
+                            state: ZoneState.ACKNOWLEDGED
+                        }
+                    }
+                )
+            }
         }
-        else {
-            // todo: we are going to need a locale capability to support multiple languages
-            sAlert.info("Did not recognise the state the Activity was in to determine what view to present.",
-                {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Developer Issue'});
+
+        let _p = {_id: id};
+
+        switch (template.ZoneRecord.state) {
+            case ZoneState.NEW:
+                Router.go("members", _p);
+                break;
+            case ZoneState.ACKNOWLEDGERS:
+                Router.go("share", _p);
+                break;
+            case ZoneState.WAIT_ON_ACKNOWLEDGERS:
+                Router.go("share", _p);
+                break;
+            case ZoneState.ACKNOWLEDGED:
+                Router.go("action", _p);
+                break;
+            case ZoneState.ACTIONED:
+                Router.go("send", _p);
+                break;
+            case ZoneState.WAIT_ON_CONFIRM:
+                Router.go("send", _p);
+                break;
+            case ZoneState.CONFIRMED:
+                Router.go("details", _p);
+                break;
+            default:
+                sAlert.info("Did not recognise the state the Activity was in to determine what view to present.",
+                    {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Developer Issue'});
+
         }
 
     },
 
     'click .js-details'(event, template) {
 
-       event.preventDefault();
+        event.preventDefault();
 
-        const id = template.$('input[name=zad]').val();
-
-        Router.go("details", { _id: id } );
+        Router.go("details", {_id: template.ZoneRecord._id});
 
     }
 

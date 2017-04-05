@@ -16,6 +16,14 @@ i18n.extend({
 
 // content of social share of Activity to Verifier
 i18n.extend({
+    "send.js-send.message": "Verify Activity: %{address}, %{instruction}",
+    "send.js-send.subject": "Please Verify my Activity.",
+    "send.js-send.url": "Learn more at https://www.zonafide.net/v .",             //todo: this should be to the explanation page for verifier
+    "send.js-send.title": "Send to Verifier"
+});
+
+// content of social share of Activity to Verifier
+i18n.extend({
     "share.js-send.message": "Verify Activity: %{address}, %{instruction}",
     "share.js-send.subject": "Please Verify my Activity.",
     "share.js-send.url": "Learn more at https://www.zonafide.net/v .",             //todo: this should be to the explanation page for verifier

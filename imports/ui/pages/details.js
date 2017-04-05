@@ -7,9 +7,7 @@ import {Template} from 'meteor/templating';
 import  {
     ZidUserLocalData,
     ZidStore,
-    ZoneStateAction,
-    ZoneStateSymbol,
-    ZoneStateColor
+    ZoneStateAttributes
 } from '/imports/startup/client/globals.js';
 import  {ZoneTransactionReceipt} from '/imports/startup/client/receipt.js';
 import  {ZonafideEnvironment} from '/imports/startup/client/ethereum.js';
@@ -73,16 +71,6 @@ Template.details.onCreated(function () {
 
     this.hashCheck = ( ZonafideWeb3.getInstance().sha3(this.sfDescription) === this.hash );
 
-    // event monitor first test use
-    // ZonafideMonitor.getInstance().startWatch( this.zone, function(error, result) {
-    //     if(!error) {
-    //         console.log("z/details: monitor watch callback result: " + result );
-    //     } else {
-    //         console.log("z/details: monitor watch callback error: " + error );
-    //     }
-    // });
-
-
 });
 
 Template.details.onRendered(function () {
@@ -94,16 +82,6 @@ Template.details.onRendered(function () {
     });
 
 });
-
-// Template.details.onDestroyed(function () {
-//     ZonafideMonitor.getInstance().stopWatch( this.zone, function(error, result) {
-//         if(!error) {
-//             console.log("z/details: monitor stopWatch callback result: " + result );
-//         } else {
-//             console.log("z/details: monitor stopWatch callback error : " + error );
-//         }
-//     });
-// });
 
 
 Template.details.helpers({
@@ -162,15 +140,15 @@ Template.details.helpers({
     },
 
     action() {
-        return ZoneStateAction[Template.instance().state];
+        return ZoneStateAttributes[Template.instance().state].action;
     },
 
     symbol() {
-        return ZoneStateSymbol[Template.instance().state];
+        return ZoneStateAttributes[Template.instance().state].symbol;
     },
 
     color() {
-        return ZoneStateColor[Template.instance().state];
+        return ZoneStateAttributes[Template.instance().state].color;
     }
 
 });

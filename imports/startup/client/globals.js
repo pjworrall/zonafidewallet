@@ -21,8 +21,8 @@ let PasswordProvider = function (callback) {
     let settings = ZonafideDappData.findOne({document: "settings"});
 
     let password = null;
-    if(settings && settings.sessionPassword ) {
-            password = prompt("Provide the Session Password");
+    if (settings && settings.sessionPassword) {
+        password = prompt("Provide the Session Password");
     } else {
         password = SessionPasswordOveride;
     }
@@ -38,7 +38,7 @@ let SessionPasswordOveride = "caution";
 // a function to share the ether-lightwallet across the appl
 let ZidStore = {
 
-    set: function (keystore,session) {
+    set: function (keystore, session) {
         session.set("keystore", this.keystore = keystore);
     },
 
@@ -46,7 +46,7 @@ let ZidStore = {
         return this.keystore;
     },
 
-    destroy: function(session) {
+    destroy: function (session) {
         session.set("keystore", this.keystore = undefined);
     }
 };
@@ -88,109 +88,66 @@ let ZonafideDappDataObserver = new LocalPersist(ZonafideDappData, 'ZonafideDappD
         }
     });
 
-
-let ZoneStateAction = {
-    0: i18n.t("globals.acknowledgers"),
-    1: i18n.t("globals.share"),
-    2: i18n.t("globals.action"),
-    3: i18n.t("globals.send"),
-    4: i18n.t("globals.confirmed"),
-    5: i18n.t("globals.unknown"),
-    6: i18n.t("globals.abandon"),
-    7: i18n.t("globals.ack.outstanding"),
-    8: i18n.t("globals.conf.outstanding")
-};
-
-let ZoneStateSymbol = {
-    0: "fa fa-plus-circle",
-    1: "fa fa-circle-o",
-    2: "fa fa-dot-circle-o",
-    3: "fa fa-check-circle-o",
-    4: "fa fa-check-circle",
-    5: "fa fa-pause-circle",
-    6: "fa fa-question-circle",
-    7: "fa fa-pause-circle",
-    8: "fa fa-pause-circle"
-};
-
-let ZoneStateColor = {
-    0: "#FFCE00",
-    1: "#007849",
-    2: "#0375B4",
-    3: "#FC4A1A",
-    4: "#262228",
-    5: "#4f4f4f",
-    6: "#94618E",
-    7: "#727272",
-    8: "#727272"
-};
-
-
 let ZoneState = {
     NEW: 0,
-    MEMBERS: 1,
-    ACKNOWLEDGED: 2,
-    ACTIONED: 3,
-    CONFIRMED: 4,
-    PAUSE: 5,
-    UNKNOWN: 6,
-    WAIT_ON_ACKNOWLEDGER: 7,
-    WAIT_ON_CONFIRM: 8
+    ACKNOWLEDGERS: 1,
+    WAIT_ON_ACKNOWLEDGERS: 2,
+    ACKNOWLEDGED: 3,
+    ACTIONED: 4,
+    WAIT_ON_CONFIRM: 5,
+    CONFIRMED: 6,
+    PAUSE: 7,
+    UNKNOWN: 8
 };
 
-// TODO: NOTE: !! current not used for QR Code rendering but here for reference
 
-let QRCodeOptions = {
-    // render method: 'canvas', 'image' or 'div'
-    render: 'div',
-
-    // version range somewhere in 1 .. 40
-    minVersion: 1,
-    maxVersion: 40,
-
-    // error correction level: 'L', 'M', 'Q' or 'H'
-    ecLevel: 'L',
-
-    // offset in pixel if drawn onto existing canvas
-    left: 0,
-    top: 0,
-
-    // size in pixel
-    size: 200,
-
-    // code color or image element
-    fill: '#000',
-
-    // background color or image element, null for transparent background
-    background: null,
-
-    // content
-    text: 'no text',
-
-    // corner radius relative to module width: 0.0 .. 0.5
-    radius: 0,
-
-    // quiet zone in modules
-    quiet: 0,
-
-    // modes
-    // 0: normal
-    // 1: label strip
-    // 2: label box
-    // 3: image strip
-    // 4: image box
-    mode: 0,
-
-    mSize: 0.1,
-    mPosX: 0.5,
-    mPosY: 0.5,
-
-    label: 'no label',
-    fontname: 'sans',
-    fontcolor: '#000',
-
-    image: null
-};
+let ZoneStateAttributes = [
+    {
+        color: "#FFCE00",
+        symbol: "fa fa-plus-circle",
+        action: i18n.t("globals.acknowledgers")
+    },
+    {
+        color: "#007849",
+        symbol: "fa fa-circle-o",
+        action: i18n.t("globals.share")
+    },
+    {
+        color: "#727272",
+        symbol: "fa fa-pause-circle",
+        action: i18n.t("globals.ack.outstanding")
+    },
+    {
+        color: "#0375B4",
+        symbol: "fa fa-dot-circle-o",
+        action: i18n.t("globals.action")
+    },
+    {
+        color: "#FC4A1A",
+        symbol: "fa fa-check-circle-o",
+        action: i18n.t("globals.send")
+    },
+    {
+        color: "#727272",
+        symbol: "fa fa-pause-circle",
+        action: i18n.t("globals.conf.outstanding")
+    },
+    {
+        color: "#262228",
+        symbol: "fa fa-check-circle",
+        action: i18n.t("globals.confirmed")
+    },
+    {
+        color: "#727272",
+        symbol: "fa fa-pause-circle",
+        action: i18n.t("globals.unknown")
+    }, // unused
+    {
+        color: "#94618E",
+        symbol: "fa fa-question-circle",
+        action: i18n.t("globals.abandon")
+    }
+];
 
 // http://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
 let NumberWithCommas = function () {
@@ -210,9 +167,7 @@ export {
     ZidUserLocalData,
     ZidUserLocalPersonalData,
     ZonafideDappData,
-    ZoneStateAction,
+    ZoneStateAttributes,
     NumberWithCommas,
-    ZoneStateSymbol,
-    ZoneStateColor,
     ZoneState
 };

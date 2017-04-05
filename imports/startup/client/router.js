@@ -68,6 +68,14 @@ Router.route('/share/:_id',
         }
     });
 
+Router.route('/send/:_id',
+    {
+        name: 'send',
+        data: function () {
+            return this.params
+        }
+    });
+
 Router.route('/action/:_id',
     {
         name: 'action',

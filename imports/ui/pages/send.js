@@ -8,9 +8,9 @@ import  { ZonafideWeb3 } from '/imports/startup/client/web3.js';
 import  { ZidUserLocalData, ZoneState } from '/imports/startup/client/globals.js';
 import  {i18n} from '/imports/startup/client/lang.js';
 
-import './share.html';
+import './send.html';
 
-Template.share.onCreated(function () {
+Template.send.onCreated(function () {
 
     this.ZoneFactory = ZonafideWeb3.getFactory();
 
@@ -23,7 +23,7 @@ Template.share.onCreated(function () {
 
 });
 
-Template.share.onRendered(function () {
+Template.send.onRendered(function () {
 
     $('#qrcode').qrcode({
         render: 'div',
@@ -33,7 +33,7 @@ Template.share.onRendered(function () {
 
 });
 
-Template.share.helpers({
+Template.send.helpers({
 
     name() {
         return Template.instance().name;
@@ -42,34 +42,34 @@ Template.share.helpers({
         return Template.instance().address;
     },
     sent() {
-        return Template.instance().state === ZoneState.WAIT_ON_ACKNOWLEDGERS;
+        return Template.instance().state === ZoneState.WAIT_ON_CONFIRM;
     }
 
 });
 
-Template.share.events({
+Template.send.events({
 
-    'click .js-share'(event, template) {
+    'click .js-send'(event, template) {
 
         // Prevent default browser form submit
         event.preventDefault();
 
         // this is the complete list of currently supported params you can pass to the plugin (all optional)
         let options = {
-            message: i18n.t("share.js-share.message", {address: template.address}), // not supported on some apps (Facebook, Instagram)
-            subject: i18n.t("share.js-share.subject"), // fi. for email
+            message: i18n.t("send.js-send.message", {address: template.address}), // not supported on some apps (Facebook, Instagram)
+            subject: i18n.t("send.js-send.subject"), // fi. for email
             //files: ['', ''], // an array of filenames either locally or remotely
-            url: i18n.t("share.js-share.url"),
-            chooserTitle: i18n.t("share.js-share.title") // Android only, you can override the default share sheet title
+            url: i18n.t("send.js-send.url"),
+            chooserTitle: i18n.t("send.js-send.title") // Android only, you can override the default share sheet title
         };
 
         let onSuccess = function (result) {
-            console.log("z/ shared: "  + JSON.stringify(result));
-            ZidUserLocalData.update({_id: template.data._id}, {$set: {state: ZoneState.WAIT_ON_ACKNOWLEDGERS}});
+            console.log("z/ sent: "  + JSON.stringify(result));
+            ZidUserLocalData.update({_id: template.data._id}, {$set: {state: ZoneState.WAIT_ON_CONFIRM}});
         };
 
         let onError = function (msg) {
-            console.log("Sharing failed with message: " + msg);
+            console.log("Sending failed with message: " + msg);
         };
 
         window.plugins.socialsharing.shareWithOptions(options, onSuccess, onError);

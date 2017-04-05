@@ -177,7 +177,7 @@ Template.members.events({
 
                             } else {
                                 // careful here..using address property rather that unique id of record, should be same impact
-                                ZidUserLocalData.update({address: zad}, {$set: {state: ZoneState.MEMBERS}});
+                                ZidUserLocalData.update({address: zad}, {$set: {state: ZoneState.ACKNOWLEDGERS}});
 
                                 sAlert.info('Acknowledger added to Activity at block: ' + receipt.blockNumber,
                                     {
