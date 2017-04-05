@@ -8,6 +8,22 @@ let i18n = new Polyglot();
 
 // content for social share of Activity to Acknowledger
 i18n.extend({
+    "share.js-share.message": "Please Acknowledge this Activity: %{address} .",
+    "share.js-share.subject": "Please Acknowledge my Activity.",
+    "share.js-share.url": "Learn more at https://www.zonafide.net/a .",             //todo: this should be to the explanation page for acknowledgerd
+    "share.js-share.title": "Share with Acknowledger"
+});
+
+// content of social share of Activity to Verifier
+i18n.extend({
+    "share.js-send.message": "Verify Activity: %{address}, %{instruction}",
+    "share.js-send.subject": "Please Verify my Activity.",
+    "share.js-send.url": "Learn more at https://www.zonafide.net/v .",             //todo: this should be to the explanation page for verifier
+    "share.js-send.title": "Share with Verifier"
+});
+
+// content for social share of Activity to Acknowledger
+i18n.extend({
     "details.js-share.message": "Please Acknowledge this Activity: %{address} .",
     "details.js-share.subject": "Please Acknowledge my Activity.",
     "details.js-share.url": "Learn more at https://www.zonafide.net/a .",             //todo: this should be to the explanation page for acknowledgerd
@@ -50,6 +66,19 @@ i18n.extend({
     "home.js-share.subject": "Protect my Activities from fraud.",
     "home.js-share.url": "@Zoneoftrust https://www.zonafide.net",
     "home.js-share.title": "Let Others Know"
+});
+
+// Activity state strap lines
+i18n.extend({
+    "globals.acknowledgers": "Add people to Acknowledge this Activity as genuine",
+    "globals.share": "Share Activity and ask for Acknowledgements",
+    "globals.action": "Declare the party this Activity is with and provide brief details",
+    "globals.send": "Share the Activity with the other party. They will Verify and Confirm",
+    "globals.confirmed": "This Activity has been Confirmed by the other party and is now obsolete",
+    "globals.unknown": "????..",
+    "globals.abandon": "Unknown state..just abandon",
+    "globals.ack.outstanding": "Acknowledgement outstanding",
+    "globals.conf.outstanding": "Verifier confirmation outstanding"
 });
 
 

@@ -1,0 +1,57 @@
+<template name="share">
+
+    <div class="row">
+        <div class="col-xs-12 text-center">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Share with Acknowledgers</h3>
+                </div>
+                <div class="panel-body">
+                     {{#if name}}{{name}}{{/if}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 text-center">
+            <div class="panel panel-default">
+                <div id="qrcode" align="center"></div>
+                <p>{{address}}</p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-xs-12" align="center">
+            <form class="share">
+                <div class="btn-group" role="group" aria-label="...">
+                    <button type="button" class="js-share btn btn-default">
+                        <i class="fa fa-share-alt-square" role="button" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 text-center">
+           <br>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 text-center">
+            {{#if sent}}
+                <p>Looks like you shared the Activity with Acknowledgers already. Use the QRCode or Social Share button to send them a reminder.</p>
+            {{else}}
+                <p>Share the Activity with Acknowledgers using the QRCode or Social Share button.</p>
+                {{/if}}
+            <p>Once the Activity is Acknowledged you will be able to Action it.</p>
+
+        </div>
+    </div>
+
+
+</template>

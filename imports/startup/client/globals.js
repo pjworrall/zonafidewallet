@@ -2,6 +2,8 @@
  * Created by pjworrall on 04/05/2016.
  */
 
+import  {i18n} from '/imports/startup/client/lang.js';
+
 // update with deployments
 let AppVersion = "0.2.X";
 
@@ -86,15 +88,17 @@ let ZonafideDappDataObserver = new LocalPersist(ZonafideDappData, 'ZonafideDappD
         }
     });
 
-// this needs to be abstracted into a locale admin
+
 let ZoneStateAction = {
-    0: "Add people to Acknowledge this Activity as genuine.",
-    1: "Share Activity and ask for Acknowledgements.",
-    2: "Declare the party this Activity is with and provide brief details.",
-    3: "Share the Activity with the other party. They will Verify and Confirm.",
-    4: "This Activity has been Confirmed by the other party and is now obsolete.",
-    5: "????..",
-    6: "Unknown state..just abandon."
+    0: i18n.t("globals.acknowledgers"),
+    1: i18n.t("globals.share"),
+    2: i18n.t("globals.action"),
+    3: i18n.t("globals.send"),
+    4: i18n.t("globals.confirmed"),
+    5: i18n.t("globals.unknown"),
+    6: i18n.t("globals.abandon"),
+    7: i18n.t("globals.ack.outstanding"),
+    8: i18n.t("globals.conf.outstanding")
 };
 
 let ZoneStateSymbol = {
@@ -104,7 +108,9 @@ let ZoneStateSymbol = {
     3: "fa fa-check-circle-o",
     4: "fa fa-check-circle",
     5: "fa fa-pause-circle",
-    6: "fa fa-question-circle"
+    6: "fa fa-question-circle",
+    7: "fa fa-pause-circle",
+    8: "fa fa-pause-circle"
 };
 
 let ZoneStateColor = {
@@ -114,7 +120,9 @@ let ZoneStateColor = {
     3: "#FC4A1A",
     4: "#262228",
     5: "#4f4f4f",
-    6: "#94618E"
+    6: "#94618E",
+    7: "#727272",
+    8: "#727272"
 };
 
 
@@ -125,7 +133,9 @@ let ZoneState = {
     ACTIONED: 3,
     CONFIRMED: 4,
     PAUSE: 5,
-    UNKNOWN: 6
+    UNKNOWN: 6,
+    WAIT_ON_ACKNOWLEDGER: 7,
+    WAIT_ON_CONFIRM: 8
 };
 
 // TODO: NOTE: !! current not used for QR Code rendering but here for reference

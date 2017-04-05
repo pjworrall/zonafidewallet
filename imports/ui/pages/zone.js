@@ -69,10 +69,15 @@ Template.zone.events({
             Router.go("action", {_id: id});
 
         } else if (record.state == ZoneState.NEW) {
-
             // todo: query any members that do exist and pass through to view
             Router.go("members", {_id: id});
-        } else {
+
+        } else if (record.state == ZoneState.MEMBERS) {
+            Router.go("share", {_id: id});
+        }else if (record.state == ZoneState.WAIT_ON_ACKNOWLEDGER) {
+            Router.go("share", {_id: id});
+        }
+        else {
             // todo: we are going to need a locale capability to support multiple languages
             sAlert.info("Did not recognise the state the Activity was in to determine what view to present.",
                 {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Developer Issue'});
