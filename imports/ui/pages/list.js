@@ -86,7 +86,7 @@ Template.list.events({
                             name: name
                         });
 
-                        sAlert.info("Created activity: " + name, ZoneAlertContent.confirmed);
+                        sAlert.info("Created Activity: " + name, ZoneAlertContent.confirmed);
 
                         Session.set('busy', Session.get('busy') - 1);
 

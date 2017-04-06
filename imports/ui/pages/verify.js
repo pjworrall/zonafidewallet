@@ -284,7 +284,7 @@ Template.verify.events({
 
                             Session.set('busy', Session.get('busy') - 1  );
                         } else {
-                            sAlert.info('Confirmed Activity: ', ZoneAlertContent.confirmed);
+                            sAlert.info('Confirmed Activity', ZoneAlertContent.confirmed);
 
                             Session.set('busy', Session.get('busy') - 1  );
                         }

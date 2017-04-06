@@ -187,7 +187,7 @@ Template.action.events({
                                 }
                             );
 
-                            sAlert.info('Activity actioned', ZoneAlertContent.confirmed);
+                            sAlert.info('Activity Actioned', ZoneAlertContent.confirmed);
 
                             Session.set('busy', Session.get('busy') - 1  );
                         }
