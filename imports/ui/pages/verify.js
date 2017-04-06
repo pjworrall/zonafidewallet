@@ -276,7 +276,7 @@ Template.verify.events({
                     Session.set('busy', Session.get('busy') - 1  );
 
                 } else {
-                    sAlert.info('Request to confirm submitted: ', ZoneAlertContent.waiting);
+                    sAlert.info('Request to Confirm submitted: ', ZoneAlertContent.waiting);
 
                     ZoneTransactionReceipt.check(tranHash, ZonafideWeb3.getInstance(), function (error, receipt) {
                         if (error) {

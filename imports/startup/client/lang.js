@@ -48,8 +48,8 @@ i18n.extend({
 
 // content for social share of user Address
 i18n.extend({
-    "address.js-share.message": "Join my trusted zone. My Zonafide Address is %{address} ." ,
-    "address.js-share.subject": "Get in the Zone!",
+    "address.js-share.message": "Work together to prevent fraud. My Zonafide Address is %{address} ." ,
+    "address.js-share.subject": "Let's Work Together!",
     "address.js-share.url": "Learn more at https://www.zonafide.net/z .",             //todo: this should be to the explanation page for people in trusted zones
     "address.js-share.title": "Share your Address"
 });
