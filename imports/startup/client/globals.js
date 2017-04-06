@@ -5,7 +5,7 @@
 import  {i18n} from '/imports/startup/client/lang.js';
 
 // update with deployments
-let AppVersion = "0.2.7";
+let AppVersion = "0.2.7.X";
 
 // all this needs to migrate into a function avoid global namespace clashes!!!
 
@@ -159,6 +159,7 @@ let NumberWithCommas = function () {
 }();
 
 
+// this has to use i18n
 let ZoneAlertContent = {
 
     waiting: {
@@ -169,7 +170,7 @@ let ZoneAlertContent = {
     confirmed: {
         timeout: 'none',
         sAlertIcon: 'fa fa-info-circle',
-        sAlertTitle: 'Created on network'
+        sAlertTitle: 'Established on network'
     },
     inaccessible: {
         timeout: 'none',
@@ -180,6 +181,16 @@ let ZoneAlertContent = {
         timeout: 'none',
         sAlertIcon: 'fa fa-info-circle',
         sAlertTitle: 'Record limit'
+    },
+    not_found: {
+        timeout: 'none',
+        sAlertIcon: 'fa fa-info-circle',
+        sAlertTitle: 'Not found'
+    },
+    problem: {
+        timeout: 'none',
+        sAlertIcon: 'fa fa-info-circle',
+        sAlertTitle: 'Problem encountered'
     }
 
 };

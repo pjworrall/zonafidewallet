@@ -8,18 +8,20 @@ import {ReactiveVar} from 'meteor/reactive-var';
 import '../../api/html5-qrcode/html5-qrcode.min.js';
 import '../../api/html5-qrcode/jsqrcode-combined.min.js';
 
-import  { ZonafideWeb3 } from '/imports/startup/client/web3.js';
-import  { AddressRules } from '/imports/startup/client/validation.js';
-import  { ZoneQRScanner } from '/imports/startup/client/qrscanner.js';
-import  { ZonafideEnvironment } from '/imports/startup/client/ethereum.js';
-import  { ZoneTransactionReceipt } from '/imports/startup/client/receipt.js';
-import  { ZidStore, ZidUserLocalData, ZoneState } from '/imports/startup/client/globals.js';
+import  {ZonafideWeb3} from '/imports/startup/client/web3.js';
+import  {AddressRules} from '/imports/startup/client/validation.js';
+import  {ZoneQRScanner} from '/imports/startup/client/qrscanner.js';
+import  {ZonafideEnvironment} from '/imports/startup/client/ethereum.js';
+import  {ZoneTransactionReceipt} from '/imports/startup/client/receipt.js';
+import  {ZidStore, ZidUserLocalData, ZoneState, ZoneAlertContent} from '/imports/startup/client/globals.js';
 
 import './members.html';
 
 Template.members.onCreated(function () {
     // todo: what do we do if this call does not work ? Should be using exceptions
-    this.Zone = ZonafideWeb3.getFactory();
+    this.ZoneFactory = ZonafideWeb3.getFactory();
+
+    this.ZoneRecord = ZidUserLocalData.findOne(Template.instance().data._id);
 
     this.zid = new ReactiveVar('');
 
@@ -27,7 +29,7 @@ Template.members.onCreated(function () {
 
 Template.members.onRendered(function () {
 
-    this.$('.add').validate({
+    this.$('.js-add').validate({
         rules: {
             zid: AddressRules.rules,
         },
@@ -39,13 +41,6 @@ Template.members.onRendered(function () {
 });
 
 Template.members.helpers({
-    address() {
-
-        let zone = ZidUserLocalData.findOne(
-            Template.instance().data._id);
-
-        return zone.address;
-    },
     name() {
 
         let zone = ZidUserLocalData.findOne(
@@ -71,7 +66,7 @@ Template.members.events({
 
                 if (error) {
                     //todo: change to sAlert
-                    alert("Scanning failed: " + error);
+                    sAlert.info("Problem scanning: " + error, ZoneAlertContent.problem);
                 } else {
                     if (!result.cancelled) {
                         // todo: cancelled does not exist on browser scanner so how do we handle that?
@@ -102,96 +97,60 @@ Template.members.events({
                     }
                 });
             } else {
-                sAlert.info("No Zonafide Address found",
-                    {
-                        timeout: 'none',
-                        sAlertIcon: 'fa fa-info-circle',
-                        sAlertTitle: 'Not found'
-                    });
+                sAlert.info("No Zonafide Address found", ZoneAlertContent.not_found);
             }
 
-        }, function (err) {
-            sAlert.info("Error accessing contacts: " + err,
-                {
-                    timeout: 'none',
-                    sAlertIcon: 'fa fa-info-circle',
-                    sAlertTitle: 'Contacts error'
-                });
+        }, function (error) {
+            sAlert.info("Problem accessing contacts: " + error, ZoneAlertContent.problem);
         });
 
     },
 
-    'submit .add'(event, template) {
+    'submit .js-add'(event, template) {
         // Prevent default browser form submit
         event.preventDefault();
 
-        console.log("click .js-acknowledgers");
+        console.log("submit .js-add");
 
-        const zad = template.$('input[name=zad]').val();
         const zid = template.$('input[name=zid]').val();
 
-        if (zid === null || zid.match(/^ *$/) !== null) {
-            sAlert.info("No Acknowledger address provided",
-                {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Address required'});
-        } else {
+        let zone = template.ZoneFactory.at(template.ZoneRecord.address);
 
-            let Zone = template.Zone;
+        // todo: quorum set hard at 1 for now
+        const quorum = 1;
 
-            let zone = Zone.at(zad);
+        let busyQ = Session.get('busy');
+        Session.set('busy', (busyQ + 1));
 
-            // todo: quorum set hard at 1 for now
-            const quorum = 1;
+        zone.setMembers([zid], quorum,
+            ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]),
 
-            let busyQ = Session.get('busy');
-            Session.set('busy', (busyQ + 1) );
+            function (error, tranHash) {
+                if (error) {
+                    sAlert.info('Encountered error: ' + error, ZoneAlertContent.inaccessible);
+                    Session.set('busy', Session.get('busy') - 1);
+                } else {
+                    sAlert.info('Registering Acknowledger on Activity', ZoneAlertContent.waiting);
 
-            zone.setMembers([zid], quorum,
-                ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]),
+                    // todo: this is changing to monitoring events
+                    ZoneTransactionReceipt.check(tranHash, ZonafideWeb3.getInstance(), function (error, receipt) {
+                        if (error) {
+                            sAlert.info('Encountered error: ' + error.toString(),
+                                ZoneAlertContent.inaccessible);
 
-                function (error, tranHash) {
-                    if (error) {
-                        sAlert.error('Report error: ' + error,
-                            {
-                                timeout: 'none',
-                                sAlertIcon: 'fa fa-exclamation-circle',
-                                sAlertTitle: 'Network Access Failure'
-                            });
+                            Session.set('busy', Session.get('busy') - 1);
 
-                        Session.set('busy', Session.get('busy') - 1  );
+                        } else {
 
-                    } else {
+                            ZidUserLocalData.update({_id: template.ZoneRecord._id}, {$set: {state: ZoneState.ACKNOWLEDGERS}});
 
-                        sAlert.info('A request to add an Acknowledger has been made: ' + tranHash,
-                            {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Acknowledger Requested'});
+                            sAlert.info('Acknowledger added', ZoneAlertContent.confirmed);
 
-                        ZoneTransactionReceipt.check(tranHash, ZonafideWeb3.getInstance(), function (error, receipt) {
-                            if (error) {
-                                sAlert.info('Could not add Acknowledger to Activity: ' + error.toString(),
-                                    {
-                                        timeout: 'none',
-                                        sAlertIcon: 'fa fa-info-circle',
-                                        sAlertTitle: 'Failed to Add Acknoweldger'
-                                    });
-
-                                Session.set('busy', Session.get('busy') - 1  );
-
-                            } else {
-                                // careful here..using address property rather that unique id of record, should be same impact
-                                ZidUserLocalData.update({address: zad}, {$set: {state: ZoneState.ACKNOWLEDGERS}});
-
-                                sAlert.info('Acknowledger added to Activity at block: ' + receipt.blockNumber,
-                                    {
-                                        timeout: 'none',
-                                        sAlertIcon: 'fa fa-info-circle',
-                                        sAlertTitle: 'Acknowledger Added'
-                                    });
-
-                                Session.set('busy', Session.get('busy') - 1  );
-                            }
-                        });
-                    }
-                });
-        }
+                            Session.set('busy', Session.get('busy') - 1);
+                        }
+                    });
+                }
+            });
 
     }
 
