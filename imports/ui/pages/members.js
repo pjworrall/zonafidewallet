@@ -65,7 +65,6 @@ Template.members.events({
         ZoneQRScanner.scan(function (error, result) {
 
                 if (error) {
-                    //todo: change to sAlert
                     sAlert.info("Problem scanning: " + error, ZoneAlertContent.problem);
                 } else {
                     if (!result.cancelled) {

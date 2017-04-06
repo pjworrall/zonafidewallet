@@ -11,7 +11,7 @@ import  {ZonafideWeb3} from '/imports/startup/client/web3.js';
 import  {ZoneQRScanner} from '/imports/startup/client/qrscanner.js';
 import  {ZonafideEnvironment} from '/imports/startup/client/ethereum.js';
 import  {ZoneTransactionReceipt} from '/imports/startup/client/receipt.js';
-import  {ZidStore} from '/imports/startup/client/globals.js';
+import  {ZidStore, ZoneAlertContent } from '/imports/startup/client/globals.js';
 
 import  {AddressRules} from '/imports/startup/client/validation.js';
 
@@ -119,8 +119,7 @@ Template.verify.events({
         ZoneQRScanner.scan(function (error, result) {
 
                 if (error) {
-                    //todo: change to sAlert
-                    alert("Scanning failed: " + error);
+                    sAlert.info("Problem scanning: " + error, ZoneAlertContent.problem);
                 } else {
                     if (!result.cancelled) {
                         // todo: cancelled does not exist on browser scanner so how do we handle that?
@@ -140,20 +139,12 @@ Template.verify.events({
 
         console.log('ZidQrScanner.events: called');
 
-        //empty any previous zone details. clear elements and Zone
-        //template.Zone.set();
-        // template.$('input[name=zad]').val('');
-        // template.$('input[name=zid]').val('');
-
-        // empty any previous reader for web qr scanning reset
-
         $('#reader').empty();
 
         ZoneQRScanner.scan(function (error, result) {
 
                 if (error) {
-                    //todo: change to sAlert
-                    alert("Scanning failed: " + error);
+                    sAlert.info("Problem scanning: " + error, ZoneAlertContent.problem);
                 } else {
                     if (!result.cancelled) {
                         // todo: cancelled does not exist on browser scanner so how do we handle that?
@@ -183,21 +174,11 @@ Template.verify.events({
                     }
                 });
             } else {
-                sAlert.info("No ZID found",
-                    {
-                        timeout: 'none',
-                        sAlertIcon: 'fa fa-info-circle',
-                        sAlertTitle: 'Not found'
-                    });
+                sAlert.info("No Zonafide Address found", ZoneAlertContent.not_found);
             }
 
-        }, function (err) {
-            sAlert.info("Error accessing contacts: " + err,
-                {
-                    timeout: 'none',
-                    sAlertIcon: 'fa fa-info-circle',
-                    sAlertTitle: 'Contacts error'
-                });
+        }, function (error) {
+            sAlert.info("Problem accessing contacts: " + error, ZoneAlertContent.problem);
         });
 
     },
@@ -295,24 +276,15 @@ Template.verify.events({
                     Session.set('busy', Session.get('busy') - 1  );
 
                 } else {
-                    sAlert.info('A request to confirm has been made: ' + tranHash,
-                        {timeout: 'none', sAlertTitle: 'Confirm Requested'});
+                    sAlert.info('Request to confirm submitted: ', ZoneAlertContent.waiting);
 
                     ZoneTransactionReceipt.check(tranHash, ZonafideWeb3.getInstance(), function (error, receipt) {
                         if (error) {
-                            sAlert.info('Could not confirm Activity: ' + error.toString(),
-                                {
-                                    timeout: 'none',
-                                    sAlertTitle: 'Failed to confirm Activity'
-                                });
+                            sAlert.info('Encountered error: ' + error.toString(), ZoneAlertContent.inaccessible);
 
                             Session.set('busy', Session.get('busy') - 1  );
                         } else {
-                            sAlert.info('Confirmed Activity at block: ' + receipt.blockNumber,
-                                {
-                                    timeout: 'none',
-                                    sAlertTitle: 'Activity Confirmed'
-                                });
+                            sAlert.info('Confirmed Activity: ', ZoneAlertContent.confirmed);
 
                             Session.set('busy', Session.get('busy') - 1  );
                         }

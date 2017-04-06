@@ -11,7 +11,7 @@ import  {ZonafideWeb3} from '/imports/startup/client/web3.js';
 import  {ZoneQRScanner} from '/imports/startup/client/qrscanner.js';
 import  {ZonafideEnvironment} from '/imports/startup/client/ethereum.js';
 import  {ZoneTransactionReceipt} from '/imports/startup/client/receipt.js';
-import  {ZidStore, ZidUserLocalData, ZidUserLocalPersonalData, ZoneState} from '/imports/startup/client/globals.js';
+import  {ZidStore, ZidUserLocalData, ZidUserLocalPersonalData, ZoneState, ZoneAlertContent } from '/imports/startup/client/globals.js';
 
 import  {AddressRules} from '/imports/startup/client/validation.js';
 
@@ -60,8 +60,7 @@ Template.action.events({
         ZoneQRScanner.scan(function (error, result) {
 
                 if (error) {
-                    //todo: change to sAlert
-                    alert("Scanning failed: " + error);
+                    sAlert.info("Problem scanning: " + error, ZoneAlertContent.problem);
                 } else {
                     if (!result.cancelled) {
                         // todo: cancelled does not exist on browser scanner so how do we handle that?
@@ -70,7 +69,8 @@ Template.action.events({
                 }
             }, $('#reader')
         );
-    }, // todo: this can be refactored out in some way. Duplication!!
+    },
+
     'click .js-contactdb'(event, template) {
 
         // Prevent default browser form submit
@@ -89,21 +89,11 @@ Template.action.events({
                     }
                 });
             } else {
-                sAlert.info("No Zonafide Address found",
-                    {
-                        timeout: 'none',
-                        sAlertIcon: 'fa fa-info-circle',
-                        sAlertTitle: 'Not found'
-                    });
+                sAlert.info("No Zonafide Address found", ZoneAlertContent.not_found);
             }
 
-        }, function (err) {
-            sAlert.info("Error accessing contacts: " + err,
-                {
-                    timeout: 'none',
-                    sAlertIcon: 'fa fa-info-circle',
-                    sAlertTitle: 'Contacts error'
-                });
+        }, function (error) {
+            sAlert.info("Problem accessing contacts: " + error, ZoneAlertContent.problem);
         });
 
     },
@@ -129,8 +119,6 @@ Template.action.events({
         };
 
         const includePersonalDetails = template.$('input[name=details]').is(':checked');
-
-        console.log("includePersonalDetails: " + includePersonalDetails);
 
         if (includePersonalDetails) {
 
@@ -174,35 +162,23 @@ Template.action.events({
                 console.log("error: " + error + ", obj: " + tranHash);
 
                 if (error) {
-                    sAlert.error('Report error: ' + error,
-                        {
-                            timeout: 'none',
-                            sAlertIcon: 'fa fa-exclamation-circle',
-                            sAlertTitle: 'Zonafide Network Failure'
-
-                        });
+                    sAlert.info('Encountered error: ' + error, ZoneAlertContent.inaccessible);
 
                     Session.set('busy', Session.get('busy') - 1  );
 
                 } else {
 
-                    sAlert.info('A request to action an Activity has been made: ' + tranHash,
-                        {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Activity Requested'});
+                    sAlert.info('Actioning the Activity', ZoneAlertContent.waiting);
 
                     ZoneTransactionReceipt.check(tranHash, ZonafideWeb3.getInstance(), function (error, receipt) {
                         if (error) {
-                            sAlert.info('Could not action an Activity: ' + error.toString(),
-                                {
-                                    timeout: 'none',
-                                    sAlertIcon: 'fa fa-info-circle',
-                                    sAlertTitle: 'Failed to Action an Activity'
-                                });
+                            sAlert.info('Encountered error: ' + error.toString(), ZoneAlertContent.inaccessible);
 
                             Session.set('busy', Session.get('busy') - 1  );
 
                         } else {
                             // todo: watchout, using address property and not record id
-                            ZidUserLocalData.update({address: zad},
+                            ZidUserLocalData.update({_id: zoneRecord._id},
                                 {
                                     $set: {
                                         state: ZoneState.ACTIONED,
@@ -211,12 +187,7 @@ Template.action.events({
                                 }
                             );
 
-                            sAlert.info('Activity in block: ' + receipt.blockNumber,
-                                {
-                                    timeout: 'none',
-                                    sAlertIcon: 'fa fa-info-circle',
-                                    sAlertTitle: 'Activity Actioned'
-                                });
+                            sAlert.info('Activity actioned', ZoneAlertContent.confirmed);
 
                             Session.set('busy', Session.get('busy') - 1  );
                         }
