@@ -159,6 +159,31 @@ let NumberWithCommas = function () {
 }();
 
 
+let ZoneAlertContent = {
+
+    waiting: {
+        timeout: 'none',
+        sAlertIcon: 'fa fa-info-circle',
+        sAlertTitle: 'Waiting on network'
+    },
+    confirmed: {
+        timeout: 'none',
+        sAlertIcon: 'fa fa-info-circle',
+        sAlertTitle: 'Created on network'
+    },
+    inaccessible: {
+        timeout: 'none',
+        sAlertIcon: 'fa fa-info-circle',
+        sAlertTitle: 'WiFi down, low credit, wrong session password?'
+    },
+    max_records: {
+        timeout: 'none',
+        sAlertIcon: 'fa fa-info-circle',
+        sAlertTitle: 'Record limit'
+    }
+
+};
+
 export {
     AppVersion,
     PasswordProvider,
@@ -169,5 +194,9 @@ export {
     ZonafideDappData,
     ZoneStateAttributes,
     NumberWithCommas,
-    ZoneState
+    ZoneState,
+    ZoneAlertContent
 };
+
+
+

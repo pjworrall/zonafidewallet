@@ -3,9 +3,9 @@
  */
 import {Template} from 'meteor/templating';
 
-import  { ZonafideWeb3 } from '/imports/startup/client/web3.js';
-import  { ZonafideEnvironment } from '/imports/startup/client/ethereum.js';
-import  { ZidStore, ZidUserLocalData, ZoneState } from '/imports/startup/client/globals.js';
+import  {ZonafideWeb3} from '/imports/startup/client/web3.js';
+import  {ZonafideEnvironment} from '/imports/startup/client/ethereum.js';
+import  {ZidStore, ZidUserLocalData, ZoneState, ZoneAlertContent} from '/imports/startup/client/globals.js';
 
 import './list.html';
 
@@ -13,6 +13,23 @@ Template.list.onCreated(function () {
 
     // todo: what do we do if this call does not work ? Should be using exceptions
     this.Zone = ZonafideWeb3.getFactory();
+
+});
+
+Template.list.onRendered(function () {
+
+    this.$('.js-create').validate({
+        rules: {
+            name: {
+                required: true,
+            }
+        },
+        messages: {
+            name: {
+                required: "You must provide a name",
+            }
+        }
+    });
 
 });
 
@@ -30,7 +47,7 @@ Template.list.helpers({
 
 Template.list.events({
 
-    'click .js-create'(event, template) {
+    'submit .js-create'(event, template) {
         // Prevent default browser form submit
         event.preventDefault();
 
@@ -39,74 +56,53 @@ Template.list.events({
         // if there are already five Zones let the user no that is the current limit
 
         let count = ZidUserLocalData.find({
-                zid: ZidStore.get().getAddresses()[0]
-            }).count();
+            zid: ZidStore.get().getAddresses()[0]
+        }).count();
 
         if (count >= 5) {
-            sAlert.info('Currently only five records of Activities can be recorded',
-                {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Activity Record Limit'});
-        } else {
+            sAlert.info('Currently only five Activity records can be recorded', ZoneAlertContent.max_records);
+            return;
+        }
 
-            let name = template.$('input[name=name]').val();
+        let name = template.$('input[name=name]').val();
+        name = name.trim();
 
-            if (name === null || name.match(/^ *$/) !== null) {
+        let busyQ = Session.get('busy');
+        Session.set('busy', (busyQ + 1));
 
-                sAlert.info("Provide a name for the Activity",
-                    {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Name required'});
-                return;
+        let Zone = template.Zone;
 
-            } else {
-                // get rid of any unnecessary spaces
-                name = name.trim();
-            }
+        Zone.new(ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]),
+            function (error, contract) {
+                if (!error) {
 
-            let busyQ = Session.get('busy');
-            Session.set('busy', (busyQ + 1) );
+                    if (typeof contract.address != 'undefined') {
 
-            console.log("z/list busy was: "  + busyQ + ' now: ' +  Session.get('busy') );
+                        ZidUserLocalData.insert({
+                            zid: ZidStore.get().getAddresses()[0],
+                            created: new Date(),
+                            address: contract.address,
+                            state: ZoneState.NEW,
+                            name: name
+                        });
 
-            let Zone = template.Zone;
+                        sAlert.info("Created activity: " + name, ZoneAlertContent.confirmed);
 
-            Zone.new(ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]),
-                function (error, contract) {
-                    if (!error) {
-
-                        if (typeof contract.address != 'undefined') {
-
-                            ZidUserLocalData.insert({
-                                zid: ZidStore.get().getAddresses()[0],
-                                created: new Date(),
-                                address: contract.address,
-                                state: ZoneState.NEW,
-                                name: name
-                            });
-
-                            // todo: got to refactor out the parameters here and across all alerts currently
-                            // todo: I mean. shouldn't using the info method provide appropriate symbol?
-                            sAlert.info(contract.address,
-                                {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Activity ' + name + ' established'});
-
-                            Session.set('busy', Session.get('busy') - 1  );
-
-                        } else {
-                            sAlert.info('An Activity is being registered: ' + contract.transactionHash,
-                                {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Activity ' + name + ' requested'});
-
-                        }
+                        Session.set('busy', Session.get('busy') - 1);
 
                     } else {
-                        sAlert.info('if not, report: ' + error,
-                            {
-                                timeout: 'none',
-                                sAlertIcon: 'fa fa-info-circle',
-                                sAlertTitle: 'Session password wrong, WiFi down or low credit?'
-                            });
-                        Session.set('busy', Session.get('busy') - 1  );
-                    }
-                });
+                        sAlert.info('Registering Activity', ZoneAlertContent.waiting);
 
-            template.$('input[name=name]').val('');
-        }
+                    }
+
+                } else {
+                    sAlert.info('Encountered error: ' + error, ZoneAlertContent.inaccessible);
+                    Session.set('busy', Session.get('busy') - 1);
+                }
+            });
+
+        template.$('input[name=name]').val('');
+
     }
 
 });
