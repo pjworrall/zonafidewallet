@@ -57,6 +57,16 @@ Template.verify.helpers({
     zone() {
         return Template.instance().Zone.get();
     },
+    owner() {
+
+        let zone = Template.instance().Zone.get();
+
+        if(zone) {
+            return zone.getOwner({
+                from: ZidStore.get().getAddresses()[0]
+            });
+        }
+    },
     member() {
         return Template.instance().member.get();
     },
@@ -200,6 +210,7 @@ Template.verify.events({
 
         // todo: should maybe have a try catch
         let zone = template.ZoneFactory.at(zad);
+
 
         // check this user is the validator
         if(!zone.amIVerifier(ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]))) {

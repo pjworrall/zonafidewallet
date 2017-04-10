@@ -171,28 +171,17 @@ Template.details.events({
 
                 function (error, tranHash) {
                     if (error) {
-                        sAlert.error('Report error: ' + error,
-                            {
-                                timeout: 'none',
-                                sAlertIcon: 'fa fa-exclamation-circle',
-                                sAlertTitle: 'Network Access Failure'
-                            });
+                        sAlert.info('Encountered error: ' + error, ZoneAlertContent.inaccessible);
 
                         Session.set('busy', Session.get('busy') - 1);
 
                     } else {
 
-                        sAlert.info('A request to delete the Activity has been made: ' + tranHash,
-                            {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Deletion Requested'});
+                        sAlert.info('Deletion requested', ZoneAlertContent.waiting);
 
                         ZoneTransactionReceipt.check(tranHash, ZonafideWeb3.getInstance(), function (error, receipt) {
                             if (error) {
-                                sAlert.info('Could not delete the Activity: ' + error.toString(),
-                                    {
-                                        timeout: 'none',
-                                        sAlertIcon: 'fa fa-info-circle',
-                                        sAlertTitle: 'Failed to delete the Activity'
-                                    });
+                                sAlert.info('Encountered error: ' + error.toString(), ZoneAlertContent.inaccessible);
 
                                 Session.set('busy', Session.get('busy') - 1);
 
@@ -202,12 +191,7 @@ Template.details.events({
 
                                 ZidUserLocalData.remove({address: template.address});
 
-                                sAlert.info('Activity deleted at block: ' + receipt.blockNumber,
-                                    {
-                                        timeout: 'none',
-                                        sAlertIcon: 'fa fa-info-circle',
-                                        sAlertTitle: 'Activity deleted'
-                                    });
+                                sAlert.info('Deleted', ZoneAlertContent.confirmed);
 
                                 Session.set('busy', Session.get('busy') - 1);
                             }
@@ -233,28 +217,16 @@ Template.details.events({
 
             function (error, tranHash) {
                 if (error) {
-                    sAlert.error('Report error: ' + error,
-                        {
-                            timeout: 'none',
-                            sAlertIcon: 'fa fa-exclamation-circle',
-                            sAlertTitle: 'Network Access Failure'
-                        });
+                    sAlert.info('Encountered error: ' + error, ZoneAlertContent.inaccessible);
 
                     Session.set('busy', Session.get('busy') - 1);
 
                 } else {
-
-                    sAlert.info('A request to respond to Challenge has been made: ' + tranHash,
-                        {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Challenge Requested'});
+                    sAlert.info('Changing Challenge', ZoneAlertContent.waiting);
 
                     ZoneTransactionReceipt.check(tranHash, ZonafideWeb3.getInstance(), function (error, receipt) {
                         if (error) {
-                            sAlert.info('Could not set Challenge on Activity: ' + error.toString(),
-                                {
-                                    timeout: 'none',
-                                    sAlertIcon: 'fa fa-info-circle',
-                                    sAlertTitle: 'Failed to set Challenge'
-                                });
+                            sAlert.info('Encountered error: ' + error.toString(), ZoneAlertContent.inaccessible);
 
                             Session.set('busy', Session.get('busy') - 1);
 
@@ -267,12 +239,7 @@ Template.details.events({
                                 from: ZidStore.get().getAddresses()[0]
                             }));
 
-                            sAlert.info('Activity Challenge set at block: ' + receipt.blockNumber,
-                                {
-                                    timeout: 'none',
-                                    sAlertIcon: 'fa fa-info-circle',
-                                    sAlertTitle: 'Activity Challenged'
-                                });
+                            sAlert.info('Challenge Changed', ZoneAlertContent.confirmed);
 
                             Session.set('busy', Session.get('busy') - 1);
                         }
