@@ -16,7 +16,7 @@ import  {ZidStore, ZoneAlertContent } from '/imports/startup/client/globals.js';
 import  {AddressRules} from '/imports/startup/client/validation.js';
 
 
-Template.verify.onCreated(function consoleOnCreated() {
+Template.verify.onCreated(function () {
 
     this.ZoneFactory = ZonafideWeb3.getFactory();
 
@@ -48,6 +48,12 @@ Template.verify.onRendered(function () {
         messages: {
             zid: AddressRules.messages
         }
+    });
+
+    let template = this;
+    this.$('#zad').on("input", function () {
+        console.log("z/ verify zad input changed" );
+        template.Zone.set(null);
     });
 
 });
