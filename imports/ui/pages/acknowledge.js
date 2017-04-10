@@ -13,7 +13,7 @@ import  {ZonafideWeb3} from '/imports/startup/client/web3.js';
 import  {ZoneQRScanner} from '/imports/startup/client/qrscanner.js';
 import  {ZonafideEnvironment} from '/imports/startup/client/ethereum.js';
 import  {ZoneTransactionReceipt} from '/imports/startup/client/receipt.js';
-import  {ZidStore} from '/imports/startup/client/globals.js';
+import  {ZidStore, ZoneAlertContent} from '/imports/startup/client/globals.js';
 
 import  {AddressRules} from '/imports/startup/client/validation.js';
 
@@ -115,37 +115,22 @@ Template.acknowledge.events({
                 //todo: this is not handling errors like 'not a BigNumber' , do we need a try catch somewhere?
 
                 if (error) {
-                    sAlert.error('Report to Zonafide: ' + error,
-                        {
-                            timeout: 'none',
-                            sAlertIcon: 'fa fa-exclamation-circle',
-                            sAlertTitle: 'Zonafide Access Failure'
-                        });
+                    sAlert.info('Encountered error: ' + error, ZoneAlertContent.inaccessible);
 
                     Session.set('busy',  Session.get('busy') - 1  );
 
                 } else {
-                    sAlert.info('A request to acknowledge an Activity ' + zad + 'has been made: ' + tranHash,
-                        {timeout: 'none', sAlertIcon: 'fa fa-info-circle', sAlertTitle: 'Acknowledgment request made'});
+
+                    sAlert.info('Acknowledging the Activity', ZoneAlertContent.waiting);
 
                     ZoneTransactionReceipt.check(tranHash, ZonafideWeb3.getInstance(), function (error, receipt) {
                         if (error) {
-                            sAlert.info('Could not acknowledge Activity: ' + error.toString(),
-                                {
-                                    timeout: 'none',
-                                    sAlertIcon: 'fa fa-info-circle',
-                                    sAlertTitle: 'Failed to Acknowledge Activity'
-                                });
+                            sAlert.info('Encountered error: ' + error.toString(), ZoneAlertContent.inaccessible);
 
                                 Session.set('busy',  Session.get('busy') - 1  );
 
                         } else {
-                            sAlert.info('Acknowledge an Activity ' + zad + ' at block ' + receipt.blockNumber,
-                                {
-                                    timeout: 'none',
-                                    sAlertIcon: 'fa fa-info-circle',
-                                    sAlertTitle: 'Activity Acknowledged'
-                                });
+                            sAlert.info('Activity Acknowledged', ZoneAlertContent.confirmed);
 
                             Session.set('busy',  Session.get('busy') - 1  );
                         }
