@@ -10,7 +10,7 @@ let i18n = new Polyglot();
 i18n.extend({
     "share.js-share.message": "Please Acknowledge this Activity: %{address} .",
     "share.js-share.subject": "Please Acknowledge my Activity.",
-    "share.js-share.url": "Learn more at https://www.zonafide.net/a .",             //todo: this should be to the explanation page for acknowledgerd
+    "share.js-share.url": "Learn more at https://www.zonafide.net/a .",
     "share.js-share.title": "Share with Acknowledger"
 });
 
@@ -18,7 +18,7 @@ i18n.extend({
 i18n.extend({
     "send.js-send.message": "Verify Activity: %{address}, %{instruction}",
     "send.js-send.subject": "Please Verify my Activity.",
-    "send.js-send.url": "Learn more at https://www.zonafide.net/v .",             //todo: this should be to the explanation page for verifier
+    "send.js-send.url": "Learn more at https://www.zonafide.net/v .",
     "send.js-send.title": "Send to Verifier"
 });
 
@@ -26,7 +26,7 @@ i18n.extend({
 i18n.extend({
     "share.js-send.message": "Verify Activity: %{address}, %{instruction}",
     "share.js-send.subject": "Please Verify my Activity.",
-    "share.js-send.url": "Learn more at https://www.zonafide.net/v .",             //todo: this should be to the explanation page for verifier
+    "share.js-send.url": "Learn more at https://www.zonafide.net/v .",
     "share.js-send.title": "Share with Verifier"
 });
 
@@ -34,7 +34,7 @@ i18n.extend({
 i18n.extend({
     "details.js-share.message": "Please Acknowledge this Activity: %{address} .",
     "details.js-share.subject": "Please Acknowledge my Activity.",
-    "details.js-share.url": "Learn more at https://www.zonafide.net/a .",             //todo: this should be to the explanation page for acknowledgerd
+    "details.js-share.url": "Learn more at https://www.zonafide.net/a .",
     "details.js-share.title": "Share with Acknowledger"
 });
 
@@ -42,7 +42,7 @@ i18n.extend({
 i18n.extend({
     "details.js-send.message": "Verify Activity: %{address}, %{instruction}",
     "details.js-send.subject": "Please Verify my Activity.",
-    "details.js-send.url": "Learn more at https://www.zonafide.net/v .",             //todo: this should be to the explanation page for verifier
+    "details.js-send.url": "Learn more at https://www.zonafide.net/v .",
     "details.js-send.title": "Share with Verifier"
 });
 
@@ -50,7 +50,7 @@ i18n.extend({
 i18n.extend({
     "address.js-share.message": "Work together to prevent fraud. My Zonafide Address is %{address} ." ,
     "address.js-share.subject": "Let's Work Together!",
-    "address.js-share.url": "Learn more at https://www.zonafide.net/z .",             //todo: this should be to the explanation page for people in trusted zones
+    "address.js-share.url": "Learn more at https://www.zonafide.net/z .",
     "address.js-share.title": "Share your Address"
 });
 
