@@ -4,13 +4,16 @@
     {{#if seeded}}
         <div class="row">
             <div class="col-xs-12 text-left">
-                <h4>Your New Key</h4>
+                <h4>Your Address</h4>
+                <p>You can find your Address on the Share Address menu option once you unlock
+                    Zonafide<span class="standardtm">&reg;</span>.
+                </p>
+                <h4>The Key</h4>
                 <div class="panel panel-default">
                     <div class="panel-body">
                         {{mnemonic}}
                     </div>
                 </div>
-                <p>Remember this Key. Keep it secure.</p>
                 <p>For a higher level of security you can protect the Key when in use as well. See Settings.
                 </p>
             </div>
@@ -25,9 +28,10 @@
         <form class="js-seed">
             <div class="row">
                 <div class="col-xs-12 text-left">
-                    <h4>Create an Address for Zonafide</h4>
-                    <p>To create your Address we need to gather some randomness. This is currently provided by you
-                        as some random text. Minimum eighty characters. </p>
+                    <h4>Create an Address & Key</h4>
+                    <p>You need to provide some random text to help create an Address and it's Key.
+                        At least 80 characters but more is better.
+                    </p>
 
                 </div>
                 <div class="col-xs-12 text-center">
@@ -56,25 +60,25 @@
             </div>
         </form>
 
-        <div class="row">
-            <div class="col-xs-12 text-left">
-                <hr>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-xs-12 text-left">
-
-                <p>An Address is something you create and control. The Address will have a Key. You can share the Address
-                    with other Zonafide users but the Key <strong>must</strong> be kept a secret.</p>
-
-                <p> Don't forget the Key. Write it down offline or keep it safe in a password manager. If you
-                    lose it your Address and any Activities created with it will be unusable.</p>
-            </div>
-        </div>
 
     {{/if}}
 
+    <div class="row">
+        <div class="col-xs-12 text-left">
+            <hr>
+        </div>
+    </div>
 
+    <div class="row">
+        <div class="col-xs-12 text-left">
+            <p>The Address and it's Key are things you create and control.</p>
+            <p><b>Address</b> - A number starting with 0x. You can share the Address with anyone. </p>
+
+            <p><b>Key</b> - 12 words. Keep them secret. Don't forget them. Do not share. Record them offline or keep in a
+            password manager.</p>
+
+            <p>Lose the Key and your Address and any Activities created with it will be unusable.</p>
+        </div>
+    </div>
 
 </template>

@@ -48,7 +48,8 @@ i18n.extend({
     "details.js-send.message": "Verify Activity: %{address}, %{instruction}",
     "details.js-send.subject": "Please Verify my Activity.",
     "details.js-send.url": "Learn more at https://www.zonafide.net/v .",
-    "details.js-send.title": "Share with Verifier"
+    "details.js-send.title": "Share with Verifier",
+    "details.js-send.no_details": "No Details."
 });
 
 // content for social share of user Address

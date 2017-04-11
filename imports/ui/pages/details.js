@@ -283,11 +283,17 @@ Template.details.events({
         // Prevent default browser form submit
         event.preventDefault();
 
+        // if there is no instruction yet let the user know
+        let details = template.sfDescription;
+        if(!details) {
+            details = i18n.t("details.js-send.no_details");
+        }
+
         // this is the complete list of currently supported params you can pass to the plugin (all optional)
         let options = {
             message: i18n.t(
                 "details.js-send.message",
-                {address: template.address, instruction: template.sfDescription}
+                {address: template.address, instruction: details}
             ), // not supported on some apps (Facebook, Instagram)
             subject: i18n.t("details.js-send.subject"), // fi. for email
             //files: ['', ''], // an array of filenames either locally or remotely
