@@ -6,6 +6,11 @@ import  Polyglot from 'node-polyglot';
 
 let i18n = new Polyglot();
 
+// key creation
+i18n.extend({
+    "identities.js-create.confirm": "Have you taken note of your 12 word Key?",
+});
+
 // content for social share of Activity to Acknowledger
 i18n.extend({
     "share.js-share.message": "Please Acknowledge this Activity: %{address} .",

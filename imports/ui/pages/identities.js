@@ -7,6 +7,7 @@ import {ReactiveVar} from 'meteor/reactive-var';
 
 import lightwallet from 'eth-lightwallet';
 import  {Identities} from '/imports/startup/client/validation.js';
+import  {i18n} from '/imports/startup/client/lang.js';
 
 import  {
     ZidStore,
@@ -81,6 +82,11 @@ Template.identities.events({
         event.preventDefault();
 
         console.log("click .js-create");
+
+        //
+        if (!confirm(i18n.t("identities.js-create.confirm"))) {
+            return;
+        }
 
         // -- caution - lower security requirement use only
 
