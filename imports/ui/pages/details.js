@@ -7,7 +7,7 @@ import {Template} from 'meteor/templating';
 import  {
     ZidUserLocalData,
     ZidStore,
-    ZoneStateAttributes
+    ZoneStateAttributes, ZoneAlertContent
 } from '/imports/startup/client/globals.js';
 import  {ZoneTransactionReceipt} from '/imports/startup/client/receipt.js';
 import  {ZonafideEnvironment} from '/imports/startup/client/ethereum.js';
