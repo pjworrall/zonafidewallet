@@ -121,35 +121,49 @@ Template.members.events({
         let busyQ = Session.get('busy');
         Session.set('busy', (busyQ + 1));
 
-        zone.setMembers([zid], quorum,
-            ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]),
+        // get the gas price and an estimate of gas usage
+        let gasPrice = ZonafideWeb3.getGasPrice();
 
-            function (error, tranHash) {
-                if (error) {
-                    sAlert.info('Encountered error: ' + error, ZoneAlertContent.inaccessible);
-                    Session.set('busy', Session.get('busy') - 1);
-                } else {
-                    sAlert.info('Registering Acknowledger on Activity', ZoneAlertContent.waiting);
+        let params = ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]);
 
-                    // todo: this is changing to monitoring events
-                    ZoneTransactionReceipt.check(tranHash, ZonafideWeb3.getInstance(), function (error, receipt) {
-                        if (error) {
-                            sAlert.info('Encountered error: ' + error.toString(),
-                                ZoneAlertContent.inaccessible);
+        let gas = ZonafideWeb3.getGasEstimate(
+            zone,
+            zone.setMembers,
+            [zid],
+            quorum,
+            params
+        );
 
-                            Session.set('busy', Session.get('busy') - 1);
+        // override gasPrice and gas limit values
+        params.gas = gas;
+        params.gasPrice = gasPrice;
 
-                        } else {
+        zone.setMembers([zid], quorum, params, function (error, tranHash) {
+            if (error) {
+                sAlert.info('Encountered error: ' + error, ZoneAlertContent.inaccessible);
+                Session.set('busy', Session.get('busy') - 1);
+            } else {
+                sAlert.info('Registering Acknowledger on Activity', ZoneAlertContent.waiting);
 
-                            ZidUserLocalData.update({_id: template.ZoneRecord._id}, {$set: {state: ZoneState.ACKNOWLEDGERS}});
+                // todo: this is changing to monitoring events
+                ZoneTransactionReceipt.check(tranHash, ZonafideWeb3.getInstance(), function (error, receipt) {
+                    if (error) {
+                        sAlert.info('Encountered error: ' + error.toString(),
+                            ZoneAlertContent.inaccessible);
 
-                            sAlert.info('Acknowledger added', ZoneAlertContent.confirmed);
+                        Session.set('busy', Session.get('busy') - 1);
 
-                            Session.set('busy', Session.get('busy') - 1);
-                        }
-                    });
-                }
-            });
+                    } else {
+
+                        ZidUserLocalData.update({_id: template.ZoneRecord._id}, {$set: {state: ZoneState.ACKNOWLEDGERS}});
+
+                        sAlert.info('Acknowledger added', ZoneAlertContent.confirmed);
+
+                        Session.set('busy', Session.get('busy') - 1);
+                    }
+                });
+            }
+        });
 
     }
 

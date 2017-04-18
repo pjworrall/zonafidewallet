@@ -424,10 +424,11 @@ Template.settings.events({
         console.log("click .js-pricing");
 
         try {
+            let price = ZonafideWeb3.getGasPrice();
 
-            let price = ZonafideWeb3.getGasPrice().toFixed(2).toString();
-
-            Template.instance().gasPrice.set(price);
+            Template.instance().gasPrice.set(
+                ZonafideWeb3.getInstance().fromWei(price, 'ether').toString(10)
+            );
 
         } catch (error) {
             sAlert.error(error.toString(),

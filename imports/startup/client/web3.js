@@ -75,8 +75,7 @@ let ZonafideWeb3 = (function () {
             return this.getInstance().fromWei(balance, 'ether');
         },
         getGasPrice: function () {
-            let price = this.getInstance().eth.gasPrice;
-            return this.getInstance().fromWei(price, 'ether');
+            return this.getInstance().eth.gasPrice;
         },
         isAlive: function () {
 
@@ -93,6 +92,15 @@ let ZonafideWeb3 = (function () {
             }
 
             return status;
+        },
+        getGasEstimate: function() {
+            // note - shifting twice to take method and contract out of arguments before passing the remaining on
+            let contract = Array.prototype.shift.apply(arguments);
+            let method = Array.prototype.shift.apply(arguments);
+            let callData = method.getData.apply(this, arguments);
+            let estimatedGas = this.getInstance().eth.estimateGas({ to: contract.address, data: callData });
+            console.log("z/ gas estimate: " + estimatedGas);
+            return estimatedGas;
         },
         reset: function () {
             web3 = undefined;
