@@ -99,18 +99,20 @@
                     {{#if isActive}}
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                Verify Details
+                                Verify Details -
                                 {{#if hashCheck}}
-                                    <i class="fa fa-check-square-o" aria-hidden="true"></i>
-                                    {{else}}
-                                    <i class="fa fa-warning" aria-hidden="true"></i>
+                                    <span class="label label-success"><i class="fa fa-check" aria-hidden="true"></i></span>
+                                {{else}}
+                                    <span class="label label-danger"><i class="fa fa-warning" aria-hidden="true"></i></span>
                                 {{/if}}
                             </div>
                             <div class="panel-body">
-
                                 <div class="form-group">
-                                    <label for="comment">Paste Instruction:</label>
-                                    <textarea  class="form-control" rows="5" name="sfDescription"></textarea>
+                                    <label for="sfDescription">Paste Instruction: </label>
+                                        <textarea  class="form-control"
+                                                   rows="5"
+                                                   name="sfDescription">
+                                        </textarea>
                                     <button type="submit" class="btn btn-default">
                                         <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
                                     </button>
