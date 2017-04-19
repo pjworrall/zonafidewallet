@@ -167,9 +167,22 @@ Template.details.events({
             let busyQ = Session.get('busy');
             Session.set('busy', (busyQ + 1));
 
-            template.zone.kill(ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]),
+            // get the gas price
+            let gasPrice = ZonafideWeb3.getGasPrice();
 
-                function (error, tranHash) {
+            let params = ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]);
+            // Estimate of gas usage
+            let gas = ZonafideWeb3.getGasEstimate(
+                template.zone,
+                template.zone.kill,
+                params
+            );
+
+            // override gasPrice and gas limit values
+            params.gas = gas;
+            params.gasPrice = gasPrice;
+
+            template.zone.kill(params, function (error, tranHash) {
                     if (error) {
                         sAlert.info('Encountered error: ' + error, ZoneAlertContent.inaccessible);
 
@@ -213,9 +226,22 @@ Template.details.events({
         let busyQ = Session.get('busy');
         Session.set('busy', (busyQ + 1));
 
-        template.zone.setChallenge(ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]),
+        // get the gas price
+        let gasPrice = ZonafideWeb3.getGasPrice();
 
-            function (error, tranHash) {
+        let params = ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]);
+        // Estimate of gas usage
+        let gas = ZonafideWeb3.getGasEstimate(
+            template.zone,
+            template.zone.setChallenge,
+            params
+        );
+
+        // override gasPrice and gas limit values
+        params.gas = gas;
+        params.gasPrice = gasPrice;
+
+        template.zone.setChallenge(params, function (error, tranHash) {
                 if (error) {
                     sAlert.info('Encountered error: ' + error, ZoneAlertContent.inaccessible);
 
