@@ -121,11 +121,11 @@ Template.members.events({
         let busyQ = Session.get('busy');
         Session.set('busy', (busyQ + 1));
 
-        // get the gas price and an estimate of gas usage
+        // get the gas price
         let gasPrice = ZonafideWeb3.getGasPrice();
 
         let params = ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]);
-
+        // Estimate of gas usage
         let gas = ZonafideWeb3.getGasEstimate(
             zone,
             zone.setMembers,

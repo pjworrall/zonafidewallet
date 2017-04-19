@@ -154,9 +154,24 @@ Template.action.events({
         let busyQ = Session.get('busy');
         Session.set('busy', (busyQ + 1) );
 
-        zone.action(hash, zid,
-            ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]),
-            function (error, tranHash) {
+        // get the gas price
+        let gasPrice = ZonafideWeb3.getGasPrice();
+
+        let params = ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]);
+        // Estimate of gas usage
+        let gas = ZonafideWeb3.getGasEstimate(
+            zone,
+            zone.action,
+            hash,
+            zid,
+            params
+        );
+
+        // override gasPrice and gas limit values
+        params.gas = gas;
+        params.gasPrice = gasPrice;
+
+        zone.action(hash, zid, params, function (error, tranHash) {
                 //todo: this is not handling errors like 'not a BigNumber' , do we need a try catch somewhere?
 
                 console.log("error: " + error + ", obj: " + tranHash);
