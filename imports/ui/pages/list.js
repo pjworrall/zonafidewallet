@@ -12,7 +12,7 @@ import './list.html';
 Template.list.onCreated(function () {
 
     // todo: what do we do if this call does not work ? Should be using exceptions
-    this.Zone = ZonafideWeb3.getFactory();
+    this.ZoneFactory = ZonafideWeb3.getFactory();
 
 });
 
@@ -70,10 +70,19 @@ Template.list.events({
         let busyQ = Session.get('busy');
         Session.set('busy', (busyQ + 1));
 
-        let Zone = template.Zone;
+        let ZoneFactory = template.ZoneFactory;
 
-        Zone.new(ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]),
-            function (error, contract) {
+        let params = ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]);
+        // Estimate of gas usage for creation of contract
+        
+        // todo: override gas value but skipped because estimated gas price is too low
+        // params.gas = ZonafideWeb3.getInstance().eth.estimateGas(params);
+
+        console.log("z/ create - gas estimate: " + params.gas);
+        // override gasPrice
+        params.gasPrice = ZonafideWeb3.getGasPrice();
+
+        ZoneFactory.new(params, function (error, contract) {
                 if (!error) {
 
                     if (typeof contract.address != 'undefined') {
