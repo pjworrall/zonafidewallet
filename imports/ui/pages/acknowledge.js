@@ -109,9 +109,22 @@ Template.acknowledge.events({
 
         console.log("z/acknowledge busy was: "  + busyQ + ' now: ' +  Session.get('busy') );
 
-        zone.setAcknowledgement(
-            ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]),
-            function (error, tranHash) {
+        // get the gas price
+        let gasPrice = ZonafideWeb3.getGasPrice();
+
+        let params = ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]);
+        // Estimate of gas usage
+        let gas = ZonafideWeb3.getGasEstimate(
+            zone,
+            zone.setAcknowledgement,
+            params
+        );
+
+        // override gasPrice and gas limit values
+        params.gas = gas;
+        params.gasPrice = gasPrice;
+
+        zone.setAcknowledgement(params, function (error, tranHash) {
                 //todo: this is not handling errors like 'not a BigNumber' , do we need a try catch somewhere?
 
                 if (error) {
