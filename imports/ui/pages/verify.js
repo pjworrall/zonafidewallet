@@ -282,7 +282,22 @@ Template.verify.events({
 
         if (zone) {
 
-            zone.confirm(ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]), function (error, tranHash) {
+            // get the gas price
+            let gasPrice = ZonafideWeb3.getGasPrice();
+
+            let params = ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]);
+            // Estimate of gas usage
+            let gas = ZonafideWeb3.getGasEstimate(
+                zone,
+                zone.confirm,
+                params
+            );
+
+            // override gasPrice and gas limit values
+            params.gas = gas;
+            params.gasPrice = gasPrice;
+
+            zone.confirm(params, function (error, tranHash) {
                 if (error) {
                     sAlert.error('Report error: ' + error,
                         {
