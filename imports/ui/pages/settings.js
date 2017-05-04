@@ -40,7 +40,7 @@ Template.settings.onCreated(function () {
 
     //this.balance.set(ZonafideWeb3.getBalance());
 
-    this.balance.set("N/A");
+    this.balance.set("Tap button");
 
     this.recipient = new ReactiveVar('');
 

@@ -14,6 +14,12 @@ Template.list.onCreated(function () {
     // todo: what do we do if this call does not work ? Should be using exceptions
     this.ZoneFactory = ZonafideWeb3.getFactory();
 
+    try {
+        this.balance = ZonafideWeb3.getBalance().toFixed(4).toString();
+    } catch (error) {
+        this.balance = "N/A";
+    }
+
 });
 
 Template.list.onRendered(function () {
@@ -41,6 +47,9 @@ Template.list.helpers({
         }, {
             sort: {created: -1}
         });
+    },
+    balance() {
+        return Template.instance().balance;
     }
 
 });

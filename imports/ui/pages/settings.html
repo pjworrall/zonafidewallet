@@ -1,86 +1,79 @@
 <template name="settings">
 
+    <form class="balance">
+        <div class="row">
+            <div class="col-xs-12 text-left">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Current credit
+                    </div>
+                    <div class="panel-body">
+                        <div class="text-left">
+                            <p>
+                                <small>Your Address must have credit on the Ethereum network of your choice to use this App.</small>
+                            </p>
+                        </div>
+                        <div class="text-left">
+                            <button type="button" class="js-balance btn btn-default">
+                                <i class="fa fa-refresh" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                        <div class="text-center">
+                            <strong>{{balance}}</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
     <form class="js-transfer">
 
         <div class="row">
             <div class="col-xs-12 text-left">
-                <p><strong>Share some credit</strong></p>
 
-                <label for="recipient">Address:</label>
-                <div class="input-group">
-                    <span class="input-group-addon">0x</span>
-                    <input class="form-control"
-                           type="text"
-                           name="recipient"
-                           size="80"
-                           value="{{recipient}}"/>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Share some credit
+                    </div>
+                    <div class="panel-body">
+
+                        <label for="recipient">Recipient Address:</label>
+                        <div class="form-group">
+                            <input class="form-control"
+                                   type="text"
+                                   name="recipient"
+                                   size="80"
+                                   value="{{recipient}}"/>
+                        </div>
+                        <div class="form-group" role="group" aria-label="...">
+                            <button type="button" class="js-qrscanner btn btn-default">
+                                <i class="fa fa-qrcode" aria-hidden="true"></i>
+                            </button>
+                            <button type="button" class="js-contactdb btn btn-default">
+                                <i class="fa fa-book" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                        <div class="form-group">
+                            <label for="amount">Amount:</label>
+                            <input class="form-control"
+                                   type="text"
+                                   name="amount"
+                                   size="6"
+                                   placeholder="eg 1.00"/>
+                        </div>
+                        <div class="form-group" role="group" aria-label="...">
+                            <button type="submit" class="btn btn-default">
+                                <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <br>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12 text-left">
-                <div class="btn-group" role="group" aria-label="...">
-                    <button type="button" class="js-qrscanner btn btn-default">
-                        <i class="fa fa-qrcode" aria-hidden="true"></i>
-                    </button>
-                    <button type="button" class="js-contactdb btn btn-default">
-                        <i class="fa fa-book" aria-hidden="true"></i>
-                    </button>
-                </div>
+
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-xs-12 text-left">
-                <br>
-                <label for="amount">Amount:</label>
-                <div class="input-group">
-                    <span class="input-group-addon">ETH</span>
-                    <input class="form-control"
-                           type="text"
-                           name="amount"
-                           size="6"
-                           value="1.00"/>
-                </div>
-            </div>
-        </div>
-        <div class="col-xs-12 text-left">
-            <div class="row">
-                <br>
-                <button type="submit" class="btn btn-default">
-                    <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
-                </button>
-            </div>
-        </div>
     </form>
-
-    <div class="row">
-        <div class="col-xs-12 text-left">
-            <hr>
-        </div>
-    </div>
-
-    <form class="balance">
-        <div class="row">
-            <div class="col-xs-8 text-left">
-                <strong>Current balance:</strong> {{balance}} ETH
-            </div>
-            <div class="col-xs-4 text-right">
-                <button type="button" class="js-balance btn btn-default">
-                    <i class="fa fa-refresh" aria-hidden="true"></i>
-                </button>
-            </div>
-        </div>
-    </form>
-
-    <div class="row">
-        <div class="col-xs-12 text-left">
-            <p>You don't need to maintain a balance any bigger than required for a cup of coffee.</p>
-            <p>If the balance is insufficient you will need
-                to get credit your Address with real or test ETH on the Ethereum network that you use.</p>
-        </div>
-    </div>
 
     <div class="row">
         <div class="col-xs-12 text-left">
@@ -90,22 +83,32 @@
 
     <form class="js-node">
         <div class="row">
-            <div class="col-xs-8 text-left">
-                <strong>Network Access Point</strong>
-                <div class="server input-group">
-                    <p>Provide the address for the Ethereum network you want to use:</p>
-                    <input class="form-control"
-                           type="text"
-                           size="80"
-                           name="server"
-                           value="{{server}}"
-                           aria-describedby="basic-addon1"/>
+            <div class="col-xs-12 text-left">
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Network Access Point
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <p><small>Web address of the Ethereum node you want to access the network with.</small></p>
+                            <label for="server">URL:</label>
+                            <input class="form-control"
+                                   type="text"
+                                   size="80"
+                                   name="server"
+                                   value="{{server}}"
+                                   aria-describedby="basic-addon1"/>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-default">
+                                <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+
                 </div>
-            </div>
-            <div class="col-xs-4 text-right">
-                <button type="submit" class="btn btn-default">
-                    <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
-                </button>
             </div>
         </div>
     </form>
@@ -140,13 +143,17 @@
         <div class="row">
             <div class="col-xs-8 text-left">
                 <strong>Session Password:</strong>
-                <p>Increased protection for your Key while the application is running. Restart after changing this
-                    setting.</p>
             </div>
             <div class="col-xs-4 text-right">
                 <button type="button" class="js-sessionPassword btn btn-default">
                     <i class="fa {{#if sessionPassword }} fa-times {{else}} fa-check {{/if}}" aria-hidden="true"></i>
                 </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 text-left">
+                <p><small>Increased protection for your Key while the application is running. Restart after changing this
+                    setting.</small></p>
             </div>
         </div>
     </form>
@@ -162,7 +169,7 @@
     <form class="price">
         <div class="row">
             <div class="col-xs-8 text-left">
-                <strong>Gas Price:</strong> {{#if gasPrice}} ETH {{gasPrice}} {{/if}}
+                <strong>Gas Price:</strong> {{#if gasPrice}}{{gasPrice}} {{/if}}
             </div>
             <div class="col-xs-4 text-right">
                 <button type="button" class="js-pricing btn btn-default">
