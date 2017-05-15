@@ -5,7 +5,7 @@
 import  {i18n} from '/imports/startup/client/lang.js';
 
 // update with deployments
-let AppVersion = "0.3.0";
+let AppVersion = "0.3.X";
 
 // all this needs to migrate into a function avoid global namespace clashes!!!
 
@@ -58,6 +58,8 @@ let ZidUserLocalPersonalData = new Mongo.Collection('ZidUserLocalPersonalData', 
 
 let ZonafideDappData = new Mongo.Collection('ZonafideDappData', {connection: null});
 
+let ZidAddressData = new Mongo.Collection('ZidAddressData', {connection: null});
+
 // jeffm:local-persist used to persist the collection to browser store
 
 // todo: need to revisit these parameters
@@ -85,6 +87,15 @@ let ZonafideDappDataObserver = new LocalPersist(ZonafideDappData, 'ZonafideDappD
         storageFull: function (col, doc) {  // function to handle maximum being exceeded
             col.remove({_id: doc._id});
             alert('Restricted to storing one set of settings.');
+        }
+    });
+
+let ZidAddressDataObserver = new LocalPersist(ZidAddressData, 'ZidAddressDataObserver',
+    {                                     // options are optional!
+        maxDocuments: 100,                  // max number of docs to store
+        storageFull: function (col, doc) {  // function to handle maximum being exceeded
+            col.remove({_id: doc._id});
+            alert('Restricted to storing one hundred addresses.');
         }
     });
 
@@ -203,6 +214,7 @@ export {
     ZidUserLocalData,
     ZidUserLocalPersonalData,
     ZonafideDappData,
+    ZidAddressData,
     ZoneStateAttributes,
     NumberWithCommas,
     ZoneState,
