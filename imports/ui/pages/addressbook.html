@@ -1,0 +1,56 @@
+<template name="addressbook">
+
+    <div class="row">
+        <div class="col-xs-12 text-left">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Addresses</h3>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <form class="js-add">
+        <div class="row">
+            <div class="col-xs-12 text-left">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input class="form-control"
+                           type="text"
+                           name="name"
+                           size="40"/>
+                    <label for="address">Address:</label>
+                    <input class="form-control"
+                           type="text"
+                           name="address"
+                           size="40"
+                           value="{{address}}"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12 text-left">
+                <button type="button" class="js-qrscanner btn btn-default">
+                    <i class="fa fa-qrcode" role="button" aria-hidden="true"></i>
+                </button>
+                <button type="submit" class="btn btn-default">
+                    <i class="fa fa-plus-circle" role="button" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <div class="row">
+        <div class="col-xs-12 text-left">
+            <br>
+            {{#each record}}
+                {{> contact }}
+            {{/each}}
+        </div>
+    </div>
+
+    {{>qrreader}}
+
+</template>

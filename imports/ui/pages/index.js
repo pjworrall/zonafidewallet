@@ -5,6 +5,7 @@
 
 import './home.js';
 import './address.js';
+import './addressbook.js';
 import './members.js';
 import './share.js';
 import './send.js';
@@ -12,6 +13,7 @@ import './action.js';
 import './identities.js';
 import './list.js';
 import './zone.js';
+import './contact.js';
 import './details.js';
 import './personal.js';
 import './acknowledge.js';

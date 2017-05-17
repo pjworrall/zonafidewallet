@@ -99,6 +99,7 @@
         <item url="file://$PROJECT_DIR$/node_modules/promised-io/engines/node/http-client-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/promised-io/engines/rhino/delay-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/promised-io/engines/rhino/fs-compiled.js" />
+        <item url="file://$PROJECT_DIR$/imports/ui/pages/addressbook-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/promised-io/tests/promise-spawn-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/promised-io/tests/promises-aplus-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/promised-io/tests/querystring-compiled.js" />
@@ -143,10 +144,12 @@
         <item url="file://$PROJECT_DIR$/node_modules/babel-helper-define-map/lib/index-compiled.js" />
         <item url="file://$PROJECT_DIR$/imports/startup/client/monitor-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-es2015-function-name/lib/index-compiled.js" />
+        <item url="file://$PROJECT_DIR$/imports/api/addresses/index-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/regexpu-core/data/character-class-escape-sets-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-es2015-typeof-symbol/lib/index-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-es2015-template-literals/lib/index-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-es2015-spread/lib/index-compiled.js" />
+        <item url="file://$PROJECT_DIR$/imports/ui/pages/contact-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/eth-lightwallet/node_modules/keccakjs/browser-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/eth-lightwallet/node_modules/keccakjs/index-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/regexpu-core/rewrite-pattern-compiled.js" />
@@ -325,7 +328,6 @@
         <item url="file://$PROJECT_DIR$/node_modules/hooked-web3-provider/node_modules/web3/lib/web3/methods/net-compiled.js" />
         <item url="file://$PROJECT_DIR$/imports/ui/pages/zone-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/winston/node_modules/async/lib/async-compiled.js" />
-        <item url="file://$PROJECT_DIR$/mobile-config-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/cycle/cycle-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/winston/node_modules/async/support/sync-package-managers-compiled.js" />
         <item url="file://$PROJECT_DIR$/imports/startup/client/qrscanner-compiled.js" />
@@ -379,8 +381,8 @@
         <item url="file://$PROJECT_DIR$/node_modules/build/tasks/delete-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/build/tasks/cssmin-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/build/tasks/concat-compiled.js" />
-        <item url="file://$PROJECT_DIR$/imports/ui/pages/error-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/build/tasks/mkdir-compiled.js" />
+        <item url="file://$PROJECT_DIR$/imports/ui/pages/error-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/build/tasks/exec-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/build/tasks/echo-compiled.js" />
         <item url="file://$PROJECT_DIR$/node_modules/build/tasks/copy-compiled.js" />
@@ -3552,6 +3554,8 @@
       <root url="file://$PROJECT_DIR$/client/main-compiled.js" />
       <root url="file://$PROJECT_DIR$/client/a-alerts-compiled.js" />
       <root url="file://$PROJECT_DIR$/imports/startup/client/busy-compiled.js" />
+      <root url="file://$PROJECT_DIR$/mobile-config-compiled.js" />
+      <root url="file://$PROJECT_DIR$/mobile-config-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/uglify-js/test/unit/compress/expected/issue10-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/uglify-js/test/unit/compress/expected/mangle-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/uglify-js/test/unit/compress/expected/issue9-compiled.js" />
@@ -3649,6 +3653,7 @@
       <root url="file://$PROJECT_DIR$/node_modules/promised-io/engines/node/http-client-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/promised-io/engines/rhino/delay-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/promised-io/engines/rhino/fs-compiled.js" />
+      <root url="file://$PROJECT_DIR$/imports/ui/pages/addressbook-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/promised-io/tests/promise-spawn-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/promised-io/tests/promises-aplus-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/promised-io/tests/querystring-compiled.js" />
@@ -3693,10 +3698,14 @@
       <root url="file://$PROJECT_DIR$/node_modules/babel-helper-define-map/lib/index-compiled.js" />
       <root url="file://$PROJECT_DIR$/imports/startup/client/monitor-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-es2015-function-name/lib/index-compiled.js" />
+      <root url="file://$PROJECT_DIR$/imports/api/addresses/index-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/regexpu-core/data/character-class-escape-sets-compiled.js" />
+      <root url="file://$PROJECT_DIR$/imports/startup/client/_addressbook.test-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-es2015-typeof-symbol/lib/index-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-es2015-template-literals/lib/index-compiled.js" />
+      <root url="file://$PROJECT_DIR$/imports/startup/client/_addressbook-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/babel-plugin-transform-es2015-spread/lib/index-compiled.js" />
+      <root url="file://$PROJECT_DIR$/imports/ui/pages/contact-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/eth-lightwallet/node_modules/keccakjs/browser-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/eth-lightwallet/node_modules/keccakjs/index-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/regexpu-core/rewrite-pattern-compiled.js" />
@@ -3875,7 +3884,6 @@
       <root url="file://$PROJECT_DIR$/node_modules/hooked-web3-provider/node_modules/web3/lib/web3/methods/net-compiled.js" />
       <root url="file://$PROJECT_DIR$/imports/ui/pages/zone-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/winston/node_modules/async/lib/async-compiled.js" />
-      <root url="file://$PROJECT_DIR$/mobile-config-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/cycle/cycle-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/winston/node_modules/async/support/sync-package-managers-compiled.js" />
       <root url="file://$PROJECT_DIR$/imports/startup/client/qrscanner-compiled.js" />
@@ -3929,8 +3937,8 @@
       <root url="file://$PROJECT_DIR$/node_modules/build/tasks/delete-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/build/tasks/cssmin-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/build/tasks/concat-compiled.js" />
-      <root url="file://$PROJECT_DIR$/imports/ui/pages/error-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/build/tasks/mkdir-compiled.js" />
+      <root url="file://$PROJECT_DIR$/imports/ui/pages/error-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/build/tasks/exec-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/build/tasks/echo-compiled.js" />
       <root url="file://$PROJECT_DIR$/node_modules/build/tasks/copy-compiled.js" />
