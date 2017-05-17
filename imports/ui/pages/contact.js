@@ -35,6 +35,14 @@ Template.contact.events({
         console.log("z/ click .js-action")
         event.preventDefault();
 
+        // remove from the record
+
+        console.log("z/ removing: " + JSON.stringify(template.data._id));
+
+        if (confirm('Are you sure?')){
+            ZidAddressData.remove({ _id: template.data._id});
+        }
+
     },
 
     'click .js-details'(event, template) {
