@@ -7,6 +7,7 @@ import './home.js';
 import './address.js';
 import './addressbook.js';
 import './members.js';
+import './member.js';
 import './share.js';
 import './send.js';
 import './action.js';

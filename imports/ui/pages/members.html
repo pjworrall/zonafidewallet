@@ -52,6 +52,17 @@
         </div>
     </form>
 
+
+    <div class="row">
+        <div class="col-xs-12 text-left">
+            <br>
+            <hr>
+            {{#each record}}
+                {{> member }}
+            {{/each}}
+        </div>
+    </div>
+
     {{>qrreader}}
 
 </template>

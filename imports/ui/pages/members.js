@@ -13,7 +13,7 @@ import  {AddressRules} from '/imports/startup/client/validation.js';
 import  {ZoneQRScanner} from '/imports/startup/client/qrscanner.js';
 import  {ZonafideEnvironment} from '/imports/startup/client/ethereum.js';
 import  {ZoneTransactionReceipt} from '/imports/startup/client/receipt.js';
-import  {ZidStore, ZidUserLocalData, ZoneState, ZoneAlertContent} from '/imports/startup/client/globals.js';
+import  {ZidStore, ZidUserLocalData, ZoneState, ZoneAlertContent, ZidAddressData} from '/imports/startup/client/globals.js';
 
 import './members.html';
 
@@ -23,7 +23,8 @@ Template.members.onCreated(function () {
 
     this.ZoneRecord = ZidUserLocalData.findOne(Template.instance().data._id);
 
-    this.zid = new ReactiveVar('');
+    // the additional reference is to make this reactive var available to the child template
+    this.zid = this.data.zid = new ReactiveVar('');
 
 });
 
@@ -50,6 +51,14 @@ Template.members.helpers({
     },
     zid() {
         return Template.instance().zid.get();
+    },
+
+    record() {
+        return ZidAddressData.find({
+            zid: ZidStore.get().getAddresses()[0]
+        }, {
+            sort: {created: -1}
+        });
     }
 });
 
