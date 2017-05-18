@@ -63,8 +63,8 @@ Template.member.events({
                 let record = template.data;
 
                 let s1 = record.signature;
-                // for testing with Blind Lemon (Jefferson)
-               // let s1 = {"r":{"type":"Buffer","data":[96,154,147,44,20,235,174,223,168,38,93,244,213,178,35,185,44,207,57,182,182,58,227,50,119,46,75,230,196,205,68,153]},"s":{"type":"Buffer","data":[71,218,223,155,251,44,103,132,99,123,167,155,141,127,36,109,12,168,16,132,233,140,232,50,157,202,96,59,107,75,194,87]},"v":28};
+                // for testing with Blind Lemon (Jefferson) - first data element should be 95 but changed to 96 to cause failure
+                // let s1 = {"r":{"type":"Buffer","data":[96,154,147,44,20,235,174,223,168,38,93,244,213,178,35,185,44,207,57,182,182,58,227,50,119,46,75,230,196,205,68,153]},"s":{"type":"Buffer","data":[71,218,223,155,251,44,103,132,99,123,167,155,141,127,36,109,12,168,16,132,233,140,232,50,157,202,96,59,107,75,194,87]},"v":28};
 
                 // sign the contact object and add the signature to it
                 let s2 = JSON.stringify(lightwallet.signing.signMsg(ZidStore.get(),
