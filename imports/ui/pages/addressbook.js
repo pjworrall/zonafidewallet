@@ -123,12 +123,12 @@ Template.addressbook.events({
 
             if (!error) {
 
-                let _record = JSON.stringify(record);
+                let sig =  lightwallet.signing.signMsg(ZidStore.get(),
+                    pwDerivedKey,
+                    JSON.stringify(record.contact),
+                    ZidStore.get().getAddresses()[0]);
 
-                // sign the contact object and add the signature to it
-                record.signature = lightwallet.signing.signMsg(ZidStore.get(), pwDerivedKey, _record, ZidStore.get().getAddresses()[0]);
-
-                console.log("z/ name: " + record.contact.name + ", address: " + record.contact.address);
+               record.signature = JSON.stringify(sig);
 
                 ZidAddressData.update(record,
                     { $set: record },
@@ -138,7 +138,7 @@ Template.addressbook.events({
                 template.$('input[name=address]').val('');
 
             } else {
-                sAlert.error('Failed to derive Key from password..dev issue: ' + error, {timeout: 'none'});
+                sAlert.error('Failed signing contact record..dev issue: ' + error, {timeout: 'none'});
             }
 
         });
