@@ -5,7 +5,7 @@
 import  {i18n} from '/imports/startup/client/lang.js';
 
 // update with deployments
-let AppVersion = "0.3.X";
+let AppVersion = "0.4.0";
 
 // all this needs to migrate into a function avoid global namespace clashes!!!
 
