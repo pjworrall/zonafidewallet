@@ -9,6 +9,7 @@ import HookedWeb3Provider from 'hooked-web3-provider';
 import Web3 from 'web3';
 
 import  {ZoneState} from '/imports/startup/client/globals.js';
+import  {ZonafideEnvironment} from '/imports/startup/client/ethereum.js';
 
 
 describe('Activity', function () {
@@ -74,7 +75,7 @@ describe('Activity', function () {
 
         let owner = keystore.getAddresses()[0];
 
-        let _activity = new Activity(web3, "test", owner, ZoneState.NEW);
+        let _activity = new Activity(web3, "test", owner, null);
 
         try {
             _activity.get("0x181a5d7bbfbcfe8a5334f6b289822b718cdca098");
@@ -83,6 +84,40 @@ describe('Activity', function () {
 
         } catch (error) {
             chai.assert(false, "error getting Activity from contract: " + error);
+        }
+
+    });
+
+    it('should create an Activity', function (done) {
+
+        let owner = keystore.getAddresses()[0];
+        let data = ZonafideEnvironment.code;
+        let gas = ZonafideEnvironment.Gas;
+        let gasPrice = ZonafideEnvironment.GasPrice;
+
+        let params = { from: owner,
+                        gas: gas,
+                        gasPrice: gasPrice,
+                        data: data };
+
+        let _activity = new Activity(web3, null, null, ZoneState.NEW);
+
+        _activity.create(params, new Monitor() );
+
+        function Monitor() {
+            this.completed = function(contract, activity) {
+                expect(contract.address).to.be.ok
+                done();
+            };
+            this.requested = function(contract) {
+                expect(contract.transactionHash).to.be.ok
+                // maybe I could try getting transaction with this
+                console.log("z/ create Activity test requested callback: " + contract.transactionHash);
+            };
+            this.error = function(error) {
+                chai.assert(false, "error creating contract for Activity: " + error);
+                done()
+            }
         }
 
     });

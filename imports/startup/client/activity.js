@@ -11,7 +11,7 @@ function Activity(web3, name, owner, state) {
     // these arguments should be checked
 
     this.web3 = web3;
-    // required from a record
+    // required from a record. these are optional
     this.name = name;
     this.owner = owner;
     this.state = state;
@@ -76,49 +76,40 @@ Activity.prototype.get = function (address) {
     }
 
 };
-//
-// Activity.prototype.new = function (web3, name, params, monitor) {
-//
-//     // todo: override gas value but skipped because estimated gas price is too low
-//     // params.gas = ZonafideWeb3.getInstance().eth.estimateGas(params);
-//     // override gasPrice
-//     params.gasPrice = ZonafideWeb3.getGasPrice();
-//
-//     console.log("z/New activity params: " + JSON.stringify(params));
-//
-//     web3.eth.contract(ZonafideEnvironment.abi).new(params, newActivity);
-//
-//     function newActivity(error, contract) {
-//         if (!error) {
-//
-//             if (typeof contract.address != 'undefined') {
-//
-//                 // I hope the name and params in the enclosing block is available to this function?
-//                 this.contract = contract;
-//                 this.owner = params.from;
-//                 this.name = name;
-//                 this.state = ZoneState.NEW;
-//                 this.created = new Date();
-//                 // this is here because I am not sure the creation transactionHash is available on subsequent instantiations
-//                 this.creationTransactionHash = contract.transactionHash;
-//
-//                 console.log("z/ established activity address: " + JSON.stringify(this));
-//                 monitor.completed(contract, this);
-//
-//             } else {
-//
-//                 console.log('z/ registering activity tx: ' + contract.transactionHash);
-//                 monitor.requested(contract);
-//
-//             }
-//
-//         } else {
-//             console.log('z/ encountered error: ' + error);
-//             monitor.error(error);
-//         }
-//     }
-//
-// };
+
+Activity.prototype.create = function (params, monitor) {
+
+    console.log("z/New activity params: " + JSON.stringify(params));
+
+    this.web3.eth.contract(ZonafideEnvironment.abi).new(params, function (error, contract) {
+        if (!error) {
+            if (typeof contract.address != 'undefined') {
+
+                // // I hope the name and params in the enclosing block is available to this function?
+                // this.contract = contract;
+                // this.owner = params.from;
+                // this.name = name;
+                // this.state = ZoneState.NEW;
+                // this.created = new Date();
+                // // this is here because I am not sure the creation transactionHash is available on subsequent instantiations
+                // this.creationTransactionHash = contract.transactionHash;
+
+                //console.log("z/ established activity address: " + JSON.stringify(this));
+                monitor.completed(contract, this);
+
+            } else {
+
+                console.log('z/ registering activity tx: ' + contract.transactionHash);
+                monitor.requested(contract);
+
+            }
+        } else {
+            console.log('z/ encountered error: ' + error);
+            monitor.error(error);
+        }
+    });
+
+};
 
 
 export {Activity} ;
