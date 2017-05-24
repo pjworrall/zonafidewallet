@@ -6,15 +6,12 @@ import  {ZonafideEnvironment} from '/imports/startup/client/ethereum.js';
 import  {ZonafideWeb3} from '/imports/startup/client/web3.js';
 import {ZoneState} from '/imports/startup/client/globals.js';
 
-function Activity(web3, name, owner, state) {
+function Activity() {
 
-    // these arguments should be checked
-
-    this.web3 = web3;
     // required from a record. these are optional
-    this.name = name;
-    this.owner = owner;
-    this.state = state;
+    this.name = null;
+    this.owner = null;
+    this.state = null;
 
     // smart contract instance from get or create
     this.contract = null;
@@ -60,11 +57,13 @@ function Activity(web3, name, owner, state) {
 // };
 //
 // todo: get a try/ catch in here
-Activity.prototype.get = function (address) {
+Activity.prototype.get = function (web3, address) {
+
+    console.log("z/ get web3: " + web3);
 
     let factory = null;
     try {
-        factory = this.web3.eth.contract(ZonafideEnvironment.abi);
+        factory = web3.eth.contract(ZonafideEnvironment.abi);
     } catch (error) {
         throw "failed to get contract factory: " + error;
     }
@@ -77,39 +76,6 @@ Activity.prototype.get = function (address) {
 
 };
 
-Activity.prototype.create = function (params, monitor) {
-
-    console.log("z/New activity params: " + JSON.stringify(params));
-
-    this.web3.eth.contract(ZonafideEnvironment.abi).new(params, function (error, contract) {
-        if (!error) {
-            if (typeof contract.address != 'undefined') {
-
-                // // I hope the name and params in the enclosing block is available to this function?
-                // this.contract = contract;
-                // this.owner = params.from;
-                // this.name = name;
-                // this.state = ZoneState.NEW;
-                // this.created = new Date();
-                // // this is here because I am not sure the creation transactionHash is available on subsequent instantiations
-                // this.creationTransactionHash = contract.transactionHash;
-
-                //console.log("z/ established activity address: " + JSON.stringify(this));
-                monitor.completed(contract, this);
-
-            } else {
-
-                console.log('z/ registering activity tx: ' + contract.transactionHash);
-                monitor.requested(contract);
-
-            }
-        } else {
-            console.log('z/ encountered error: ' + error);
-            monitor.error(error);
-        }
-    });
-
-};
 
 
 export {Activity} ;

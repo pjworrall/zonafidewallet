@@ -1,15 +1,16 @@
 /**
- * Created by pjworrall on 04/04/2017.
+ * Created by pjworrall on 24/05/2017.
  */
 
-import {Activity} from './activity.js';
+import  {ZonafideEnvironment} from '/imports/startup/client/ethereum.js';
 
 import lightwallet from 'eth-lightwallet';
 import HookedWeb3Provider from 'hooked-web3-provider';
 import Web3 from 'web3';
 
+import {ActivityFactory} from './activityfactory.js';
 
-describe('Activity', function () {
+describe('ActivityFactory', function () {
 
     this.timeout(0);
 
@@ -56,29 +57,33 @@ describe('Activity', function () {
     beforeEach('keystore and web3 defined', function () {
         expect(keystore).to.be.ok;
         expect(web3).to.be.ok;
-    } );
-
-    it('should report server is accessible', function () {
-
-        try {
-            web3.net.listening;
-        } catch (error) {
-            chai.assert(false, "no access to the node");
-        }
-
     });
 
-    it('should report new Activity is inactive', function () {
+    it('should create an Activity', function (done) {
 
-        let _activity = new Activity();
+        let params = {
+            from: keystore.getAddresses()[0],
+            gas: ZonafideEnvironment.Gas,
+            gasPrice: ZonafideEnvironment.GasPrice,
+            data: ZonafideEnvironment.code
+        };
 
-        try {
-            _activity.get(web3, "0x181a5d7bbfbcfe8a5334f6b289822b718cdca098");
+        let _activity = new ActivityFactory(web3);
 
-            chai.assert(!_activity.isActive(), "Activity should have not been Active");
+        _activity.create(params, new Monitor());
 
-        } catch (error) {
-            chai.assert(false, "error getting Activity from contract: " + error);
+        function Monitor() {
+            this.completed = function (contract) {
+                expect(contract.address).to.be.ok
+                done();
+            };
+            this.requested = function (contract) {
+                expect(contract.transactionHash).to.be.ok
+            };
+            this.error = function (error) {
+                chai.assert(false, "error creating contract for Activity: " + error);
+                done()
+            }
         }
 
     });
