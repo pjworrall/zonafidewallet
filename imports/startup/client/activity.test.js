@@ -3,145 +3,87 @@
  */
 
 import {Activity} from './activity.js';
+
 import lightwallet from 'eth-lightwallet';
 import HookedWeb3Provider from 'hooked-web3-provider';
 import Web3 from 'web3';
 
+import  {ZoneState} from '/imports/startup/client/globals.js';
+
 
 describe('Activity', function () {
 
-    let seed = "foil unlock shy slice speed payment coral bring guard wheat grant upgrade",
-        sender = "0x09d5043d675d5ca75ee7bb51691fcc44543faade",
-        encpw = "testing",
-        host = "http://zonafide.space:3090",
-        signer = null,
-        web3 = new Web3();
+    this.timeout(0);
 
-    let candidates = {
-        created: {
-            address: '0x181a5d7bbfbcfe8a5334f6b289822b718cdca098'
-        },
-        acknowledgers: {
-            address: '',
-            values: ['0xf76216c08976e36aa276580efa818ffc9235cefa']
-        },
-        acknowledged: {
-            address: '0x450ccba3ad876e420febb6811de863a93f773762',
-            values: ['0xf76216c08976e36aa276580efa818ffc9235cefa']
-        },
-        actioned: {
-            address: ''
-        },
-        confirmed: {
-            address: ''
-        }
-    };
+    let node = "http://zonafide.net:3090";
+    let seed = "foil unlock shy slice speed payment coral bring guard wheat grant upgrade";
+    let web3 = new Web3();
+    let keystore = null;
 
-    before(function () {
+    before('setup keystore', function (done) {
 
-        lightwallet.keystore.deriveKeyFromPassword(encpw, function (pwerror, pwDerivedKey) {
+        lightwallet.keystore.deriveKeyFromPassword("test", function (err, pwDerivedKey) {
 
-            if (pwerror) {
-                console.log(pwerror);
+            if (err) {
+                chai.assert(false, "password error");
             } else {
+
                 try {
-                    signer = new lightwallet.keystore(
+                    keystore = new lightwallet.keystore(
                         seed,
                         pwDerivedKey);
-                } catch (kserror) {
-                    console.log(kserror1);
+
+                    keystore.generateNewAddress(pwDerivedKey, 1);
+
+                    keystore.passwordProvider = function (callback) {
+                        callback(null, "test");
+                    };
+
+                    web3.setProvider(new HookedWeb3Provider({
+                        host: node,
+                        transaction_signer: keystore
+                    }));
+
+                    done();
+
+                } catch (err) {
+                    chai.assert(false, "keystore creation error");
                 }
 
             }
 
         });
-
-        let web3Provider = new HookedWeb3Provider({
-            host: host,
-            transaction_signer: signer
-        });
-
-        web3.setProvider(web3Provider);
     });
 
-    // this appears to give false positives because the web3 API doesn't check if address is correct when using contract.at()
-    it('should report the Activity address', function () {
+    beforeEach('keystore and web3 defined', function () {
+        expect(keystore).to.be.ok;
+        expect(web3).to.be.ok;
+    } );
 
-        let _activity = new Activity(web3, candidates.created.address);
+    it('should report server is accessible', function () {
 
-        let _address = _activity.getAddress();
-
-        chai.assert.strictEqual(candidates.created.address, _address, "Activity Address was incorrect");
+        try {
+            web3.net.listening;
+        } catch (error) {
+            chai.assert(false, "no access to the node");
+        }
 
     });
 
-    it('should report status of Activity', function () {
+    it('should report new Activity is inactive', function () {
 
-        let _activity = new Activity(web3, candidates.created.address);
+        let owner = keystore.getAddresses()[0];
 
-        let _bool = _activity.isActive(sender);
+        let _activity = new Activity(web3, "test", owner, ZoneState.NEW);
 
-        console.log("z/ actioned: " + _bool);
+        try {
+            _activity.get("0x181a5d7bbfbcfe8a5334f6b289822b718cdca098");
 
-        chai.assert.isFalse(_bool, "Activity was not expected to be Active");
+            chai.assert(!_activity.isActive(), "Activity should have not been Active");
 
-    });
-
-    it('should report Acknowledged', function () {
-
-        let _activity = new Activity(web3, candidates.acknowledged.address);
-
-        let acknowledgers = _activity.getAcknowledgers(sender);
-
-        console.log("z/ acknowledgers: " + JSON.stringify(acknowledgers));
-
-        chai.assert.strictEqual(acknowledgers[0], candidates.acknowledged.values[0], "Acknowledger was not as expected");
-
-    });
-
-    it('should report Activity Events', function (done) {
-
-        let _activity = new Activity(web3, candidates.acknowledged.address);
-
-        _activity.getEvents().then(
-            function(result) {
-
-                let acked = false;
-
-                console.log("z/activity.tests.events then result: " + JSON.stringify(result));
-
-                // check the content is as expected
-
-                console.log("z/number of events: " + result.length);
-
-                for(let i = 0 ; i < result.length ; i++) {
-                        console.log("z/address: " + result[i].address);
-                        console.log("z/event: " + result[i].event);
-
-                        if(result[i].event === 'Acknowledged'){
-                            acked = true;
-                        }
-                }
-
-                // [{
-                //     "address": "0x450ccba3ad876e420febb6811de863a93f773762",
-                //     "blockHash": "0x8c909087ef8f7801c541df9c1d739efe6ccdb5f3dfc23ba4ea596989b301aa09",
-                //     "blockNumber": 1031176,
-                //     "logIndex": 0,
-                //     "transactionHash": "0x81b928624d008e76d1c11c4cf2b45c468d3019bc3c6bbcd09cdb68d84827d420",
-                //     "transactionIndex": 0,
-                //     "event": "Acknowledged",
-                //     "args": {"acknowledger": "0xf76216c08976e36aa276580efa818ffc9235cefa"}
-                // }]
-
-                chai.assert(acked, "Activity was not acknowledged.");
-
-                done();
-            },
-            function(error) {
-                chai.assert(false, "Activity Events failed to deliver on Promise: " + error);
-                done();
-            });
+        } catch (error) {
+            chai.assert(false, "error getting Activity from contract: " + error);
+        }
 
     });
 
