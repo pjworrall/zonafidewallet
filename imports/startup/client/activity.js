@@ -6,6 +6,8 @@ import  {ZonafideEnvironment} from '/imports/startup/client/ethereum.js';
 import  {ZonafideWeb3} from '/imports/startup/client/web3.js';
 import {ZoneState} from '/imports/startup/client/globals.js';
 
+import  {ZoneTransactionReceipt} from '/imports/startup/client/receipt.js';
+
 function Activity() {
 
     // required from a record. these are optional
@@ -76,6 +78,34 @@ Activity.prototype.get = function (web3, address) {
 
 };
 
+Activity.prototype.acknowledge = function (web3, params, monitor) {
+
+    //todo: this method should know how much gas is needed rather than getting it from params?
+
+    this.contract.setAcknowledgement(params, function (error, tranHash) {
+        //todo: this is not handling errors like 'not a BigNumber' , do we need a try catch somewhere?
+
+        if (error) {
+            monitor.error(error);
+        } else {
+            // this need to migrate from receipt to events
+
+            ZoneTransactionReceipt.check(tranHash, web3, function (error, receipt) {
+
+                if (error) {
+                    monitor.error(error);
+                } else {
+                    monitor.completed(receipt);
+                }
+
+            });
+
+        }
+
+    });
+
+
+};
 
 
 export {Activity} ;

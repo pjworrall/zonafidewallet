@@ -4,6 +4,9 @@
 
 import {Activity} from './activity.js';
 
+
+import  {ZonafideEnvironment} from '/imports/startup/client/ethereum.js';
+
 import lightwallet from 'eth-lightwallet';
 import HookedWeb3Provider from 'hooked-web3-provider';
 import Web3 from 'web3';
@@ -79,6 +82,33 @@ describe('Activity', function () {
 
         } catch (error) {
             chai.assert(false, "error getting Activity from contract: " + error);
+        }
+
+    });
+
+    it('should acknowledge an Activity', function (done) {
+
+        let params = {
+            from: keystore.getAddresses()[0],
+            gas: ZonafideEnvironment.Gas,
+            gasPrice: ZonafideEnvironment.GasPrice,
+            data: ZonafideEnvironment.code // this isn't needed
+        };
+
+        let _activity = new Activity();
+        _activity.get(web3, "0x7d5c4daa755a33fe12cac07793cb063c15c82212");
+
+        _activity.acknowledge(web3,params, new Monitor());
+
+        function Monitor() {
+            this.completed = function (receipt) {
+                expect(receipt).to.be.ok
+                done();
+            };
+            this.error = function (error) {
+                chai.assert(false, "error getting transaction receipt for Acknowledgement: " + error);
+                done();
+            }
         }
 
     });
