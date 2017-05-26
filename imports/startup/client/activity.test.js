@@ -143,6 +143,38 @@ describe('Activity', function () {
             }
         }
 
+        // todo: haven't actually checked this by reading that acknowledger was added! :-)
+
+    });
+
+    it('should action an Activity', function (done) {
+
+        let params = {
+            from: keystore.getAddresses()[0],
+            gas: ZonafideEnvironment.Gas,
+            gasPrice: ZonafideEnvironment.GasPrice,
+            data: ZonafideEnvironment.code // this isn't needed
+        };
+
+        let _activity = new Activity();
+        _activity.get(web3, "0xdc6dd177484130905552ae6c66035bb580d2a7a9");
+
+        let verifier = "0xf76216c08976e36aa276580efa818ffc9235cefa";
+        let instructionHash = "hash";
+
+        _activity.action(instructionHash, verifier, web3, params, new Monitor());
+
+        function Monitor() {
+            this.completed = function (receipt) {
+                expect(receipt).to.be.ok
+                done();
+            };
+            this.error = function (error) {
+                chai.assert(false, "error getting transaction receipt: " + error);
+                done();
+            }
+        }
+
     });
 
 
