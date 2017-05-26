@@ -61,8 +61,6 @@ function Activity() {
 // todo: get a try/ catch in here
 Activity.prototype.get = function (web3, address) {
 
-    console.log("z/ get web3: " + web3);
-
     let factory = null;
     try {
         factory = web3.eth.contract(ZonafideEnvironment.abi);
@@ -106,6 +104,35 @@ Activity.prototype.acknowledge = function (web3, params, monitor) {
 
 
 };
+
+Activity.prototype.addAcknowledger = function (acknowledgers, quorum, web3, params, monitor) {
+
+    //todo: this method should know how much gas is needed rather than getting it from params?
+    this.contract.setMembers(acknowledgers, quorum, params, function (error, tranHash) {
+        //todo: this is not handling errors like 'not a BigNumber' , do we need a try catch somewhere?
+
+        if (error) {
+            monitor.error(error);
+        } else {
+            // this need to migrate from receipt to events
+
+            ZoneTransactionReceipt.check(tranHash, web3, function (error, receipt) {
+
+                if (error) {
+                    monitor.error(error);
+                } else {
+                    monitor.completed(receipt);
+                }
+
+            });
+
+        }
+
+    });
+
+
+};
+
 
 
 export {Activity} ;
