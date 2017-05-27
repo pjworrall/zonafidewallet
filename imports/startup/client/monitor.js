@@ -7,66 +7,21 @@
  */
 
 /*
- *
- * Skeleton of a monitor that will watch for contract Events
- *
- * Should replace receipt polling and form the hub of Activity
- * event watching and dispatch across the App.
- *
- * Example use:
- *     let watch = ZonafideMonitor.getInstance();
- *     watch.monitor(Activity_or_Zone);
- *
+ * Expect functions to be replaced when used
  */
 
+function Monitor() {
+    this.completed = function (contract) {
+        console.log("z/ contract created, address: " + contract.address) ;
+    };
+    this.requested = function (contract) {
+        console.log("z/ contract creation transaction hash: " + contract.transactionHash) ;
+    };
+    this.error = function (error) {
+        console.log("z/ contract creation error: " + error) ;
 
-let ZonafideMonitor = (function ZonafideMonitor() {
-
-    let _monitor;
-
-    function Monitor() {
-
-        let _events;
-
-        return {
-
-            test: "test",
-            startWatch: function (zone, callback) {
-                console.log("z/monitor startWatch");
-                _events = zone.allEvents({fromBlock: 0, toBlock: 'latest'});
-                _events.watch(function (error,result) {
-                    if(!error) {
-                        console.log("z/monitor event caught: " + result);
-                        callback(result);
-                    }
-
-                });
-            },
-
-            stopWatch: function (zone, callback) {
-                console.log("z/monitor stopWatch");
-                _events.stopWatching();
-                callback(false,'stopped');
-            }
-        }
     }
+}
 
-    return {
-        getInstance: function () {
+export {Monitor}
 
-            if (_monitor) {
-                return _monitor;
-            } else {
-                _monitor = new Monitor();
-                return _monitor ;
-            }
-        }
-    }
-
-}());
-
-
-
-
-
-export {ZonafideMonitor};

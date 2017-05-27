@@ -100,6 +100,7 @@ let ZidAddressDataObserver = new LocalPersist(ZidAddressData, 'ZidAddressDataObs
     });
 
 let ZoneState = {
+    INIT: -1,
     NEW: 0,
     ACKNOWLEDGERS: 1,
     WAIT_ON_ACKNOWLEDGERS: 2,

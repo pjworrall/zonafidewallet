@@ -4,15 +4,14 @@
 import {Template} from 'meteor/templating';
 
 import  {ZonafideWeb3} from '/imports/startup/client/web3.js';
+import  {Monitor} from '/imports/startup/client/monitor.js';
+import  {ActivityFactory} from '/imports/startup/client/activityfactory.js';
 import  {ZonafideEnvironment} from '/imports/startup/client/ethereum.js';
 import  {ZidStore, ZidUserLocalData, ZoneState, ZoneAlertContent} from '/imports/startup/client/globals.js';
 
 import './list.html';
 
 Template.list.onCreated(function () {
-
-    // todo: what do we do if this call does not work ? Should be using exceptions
-    this.ZoneFactory = ZonafideWeb3.getFactory();
 
     try {
         this.balance = ZonafideWeb3.getBalance().toFixed(4).toString();
@@ -79,8 +78,6 @@ Template.list.events({
         let busyQ = Session.get('busy');
         Session.set('busy', (busyQ + 1));
 
-        let ZoneFactory = template.ZoneFactory;
-
         let params = ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]);
         // Estimate of gas usage for creation of contract
         
@@ -91,33 +88,38 @@ Template.list.events({
         // override gasPrice
         params.gasPrice = ZonafideWeb3.getGasPrice();
 
-        ZoneFactory.new(params, function (error, contract) {
-                if (!error) {
 
-                    if (typeof contract.address != 'undefined') {
+        let _factory = new ActivityFactory(ZonafideWeb3.getInstance());
 
-                        ZidUserLocalData.insert({
-                            zid: ZidStore.get().getAddresses()[0],
-                            created: new Date(),
-                            address: contract.address,
-                            state: ZoneState.NEW,
-                            name: name
-                        });
+        let _monitor = new Monitor();
 
-                        sAlert.info("Created Activity: " + name, ZoneAlertContent.confirmed);
+        _monitor.completed = function (contract) {
 
-                        Session.set('busy', Session.get('busy') - 1);
-
-                    } else {
-                        sAlert.info('Registering Activity', ZoneAlertContent.waiting);
-
-                    }
-
-                } else {
-                    sAlert.info('Encountered error: ' + error, ZoneAlertContent.inaccessible);
-                    Session.set('busy', Session.get('busy') - 1);
-                }
+            ZidUserLocalData.insert({
+                zid: ZidStore.get().getAddresses()[0],
+                created: new Date(),
+                address: contract.address,
+                state: ZoneState.NEW,
+                name: name
             });
+
+            sAlert.info("Created Activity: " + name, ZoneAlertContent.confirmed);
+
+            Session.set('busy', Session.get('busy') - 1);
+        };
+
+        _monitor.requested = function (contract) {
+            console.log("z/ js-create:" + contract.transactionHash) ;
+            sAlert.info('Registering Activity', ZoneAlertContent.waiting);
+        };
+
+        _monitor.error = function (error) {
+            sAlert.info('Encountered error: ' + error, ZoneAlertContent.inaccessible);
+            Session.set('busy', Session.get('busy') - 1);
+        };
+
+
+        _factory.create(params, _monitor);
 
         template.$('input[name=name]').val('');
 

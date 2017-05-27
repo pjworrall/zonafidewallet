@@ -116,6 +116,8 @@ Activity.prototype.addAcknowledger = function (acknowledgers, quorum, web3, para
         } else {
             // this need to migrate from receipt to events
 
+            monitor.requested(tranHash);
+
             ZoneTransactionReceipt.check(tranHash, web3, function (error, receipt) {
 
                 if (error) {

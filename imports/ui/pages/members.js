@@ -9,10 +9,11 @@ import '../../api/html5-qrcode/html5-qrcode.min.js';
 import '../../api/html5-qrcode/jsqrcode-combined.min.js';
 
 import  {ZonafideWeb3} from '/imports/startup/client/web3.js';
+import  {Activity} from '/imports/startup/client/activity.js';
 import  {AddressRules} from '/imports/startup/client/validation.js';
 import  {ZoneQRScanner} from '/imports/startup/client/qrscanner.js';
 import  {ZonafideEnvironment} from '/imports/startup/client/ethereum.js';
-import  {ZoneTransactionReceipt} from '/imports/startup/client/receipt.js';
+import  {Monitor} from '/imports/startup/client/monitor.js';
 import  {ZidStore, ZidUserLocalData, ZoneState, ZoneAlertContent, ZidAddressData} from '/imports/startup/client/globals.js';
 
 import './members.html';
@@ -120,9 +121,9 @@ Template.members.events({
 
         console.log("submit .js-add");
 
-        const zid = template.$('input[name=zid]').val();
+        const acknowledger = template.$('input[name=zid]').val();
 
-        let zone = template.ZoneFactory.at(template.ZoneRecord.address);
+       // let zone = template.ZoneFactory.at(template.ZoneRecord.address);
 
         // todo: quorum set hard at 1 for now
         const quorum = 1;
@@ -130,49 +131,52 @@ Template.members.events({
         let busyQ = Session.get('busy');
         Session.set('busy', (busyQ + 1));
 
+        let _activity = new Activity();
+        _activity.get(ZonafideWeb3.getInstance(), template.ZoneRecord.address);
+
         // get the gas price
         let gasPrice = ZonafideWeb3.getGasPrice();
 
         let params = ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]);
-        // Estimate of gas usage
-        let gas = ZonafideWeb3.getGasEstimate(
-            zone,
-            zone.setMembers,
-            [zid],
+
+
+        // override gasPrice and gas limit values
+        params.gas = ZonafideWeb3.getGasEstimate(
+            _activity.contract,
+            _activity.contract.setMembers,
+            [acknowledger],
             quorum,
             params
         );
 
-        // override gasPrice and gas limit values
-        params.gas = gas;
         params.gasPrice = gasPrice;
 
-        zone.setMembers([zid], quorum, params, function (error, tranHash) {
-            if (error) {
-                sAlert.info('Encountered error: ' + error, ZoneAlertContent.inaccessible);
-                Session.set('busy', Session.get('busy') - 1);
-            } else {
-                sAlert.info('Registering Acknowledger on Activity', ZoneAlertContent.waiting);
+        let _monitor = new Monitor();
 
-                // todo: this is changing to monitoring events
-                ZoneTransactionReceipt.check(tranHash, ZonafideWeb3.getInstance(), function (error, receipt) {
-                    if (error) {
-                        sAlert.info('Encountered error: ' + error.toString(),
-                            ZoneAlertContent.inaccessible);
+        _monitor.completed = function (receipt) {
 
-                        Session.set('busy', Session.get('busy') - 1);
+            console.log("z/ .js-add acknowledger(s) added to contract: " + receipt.to +
+            ", transaction hash: " + receipt.transactionHash );
 
-                    } else {
+            ZidUserLocalData.update({_id: template.ZoneRecord._id}, {$set: {state: ZoneState.ACKNOWLEDGERS}});
 
-                        ZidUserLocalData.update({_id: template.ZoneRecord._id}, {$set: {state: ZoneState.ACKNOWLEDGERS}});
+            sAlert.info('Acknowledger added', ZoneAlertContent.confirmed);
 
-                        sAlert.info('Acknowledger added', ZoneAlertContent.confirmed);
+            Session.set('busy', Session.get('busy') - 1);
+        };
 
-                        Session.set('busy', Session.get('busy') - 1);
-                    }
-                });
-            }
-        });
+        _monitor.requested = function (transactionHash) {
+            console.log("z/ .js-add add acknowledger(s) transaction: " + transactionHash);
+            sAlert.info('Registering Acknowledger on Activity', ZoneAlertContent.waiting);
+        };
+
+        _monitor.error = function (error) {
+            sAlert.info('Encountered error: ' + error, ZoneAlertContent.inaccessible);
+            Session.set('busy', Session.get('busy') - 1);
+        };
+
+        _activity.addAcknowledger([acknowledger], quorum, ZonafideWeb3.getInstance(), params, _monitor);
+
 
     }
 
