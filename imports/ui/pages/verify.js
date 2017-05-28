@@ -10,8 +10,10 @@ import './verify.html';
 import  {ZonafideWeb3} from '/imports/startup/client/web3.js';
 import  {ZoneQRScanner} from '/imports/startup/client/qrscanner.js';
 import  {ZonafideEnvironment} from '/imports/startup/client/ethereum.js';
-import  {ZoneTransactionReceipt} from '/imports/startup/client/receipt.js';
 import  {ZidStore, ZoneAlertContent } from '/imports/startup/client/globals.js';
+
+import  {Activity} from '/imports/startup/client/activity.js';
+import  {Monitor} from '/imports/startup/client/monitor.js';
 
 import  {AddressRules} from '/imports/startup/client/validation.js';
 
@@ -271,58 +273,61 @@ Template.verify.events({
 
     },
 
-    'click .js-confirm'(event, template) {
+    'click .js-confirm'(event,template) {
 
         event.preventDefault();
-
-        let busyQ = Session.get('busy');
-        Session.set('busy', (busyQ + 1) );
 
         let zone = template.Zone.get();
 
         if (zone) {
 
+            let busyQ = Session.get('busy');
+            Session.set('busy', (busyQ + 1) );
+
+            let _activity = new Activity();
+            _activity.contract = zone;
+
+            // todo: we already have zone so not necessary for the Activity to get it,
+            // but should refactor whole template to meet new Activity model patern
+            //_activity.get(ZonafideWeb3.getInstance(), zad);
+
             // get the gas price
             let gasPrice = ZonafideWeb3.getGasPrice();
 
             let params = ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]);
-            // Estimate of gas usage
-            let gas = ZonafideWeb3.getGasEstimate(
-                zone,
-                zone.confirm,
-                params
-            );
 
             // override gasPrice and gas limit values
-            params.gas = gas;
+            params.gas = ZonafideWeb3.getGasEstimate(
+                _activity.contract,
+                _activity.contract.confirm,
+                params
+            );
             params.gasPrice = gasPrice;
 
-            zone.confirm(params, function (error, tranHash) {
-                if (error) {
-                    sAlert.error('Report error: ' + error,
-                        {
-                            timeout: 'none',
-                            sAlertTitle: 'Network Access Failure'
-                        });
+            let _monitor = new Monitor();
 
-                    Session.set('busy', Session.get('busy') - 1  );
+            _monitor.completed = function (receipt) {
 
-                } else {
-                    sAlert.info('Request to Confirm submitted: ', ZoneAlertContent.waiting);
+                console.log("z/ .js-action actioned contract: " + receipt.to +
+                    ", transaction hash: " + receipt.transactionHash );
 
-                    ZoneTransactionReceipt.check(tranHash, ZonafideWeb3.getInstance(), function (error, receipt) {
-                        if (error) {
-                            sAlert.info('Encountered error: ' + error.toString(), ZoneAlertContent.inaccessible);
+                sAlert.info('Confirmed Activity', ZoneAlertContent.confirmed);
 
-                            Session.set('busy', Session.get('busy') - 1  );
-                        } else {
-                            sAlert.info('Confirmed Activity', ZoneAlertContent.confirmed);
+                Session.set('busy', Session.get('busy') - 1  );
+            };
 
-                            Session.set('busy', Session.get('busy') - 1  );
-                        }
-                    });
-                }
-            });
+            _monitor.requested = function (transactionHash) {
+                console.log("z/ .js-action transaction: " + transactionHash);
+                sAlert.info('Request to Confirm submitted: ', ZoneAlertContent.waiting);
+            };
+
+            _monitor.error = function (error) {
+                sAlert.info('Encountered error: ' + error, ZoneAlertContent.inaccessible);
+                Session.set('busy', Session.get('busy') - 1);
+            };
+
+            _activity.confirm(ZonafideWeb3.getInstance(), params, _monitor);
+
 
         } else {
             sAlert.info("Provide an Activity first",
