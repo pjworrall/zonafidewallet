@@ -86,7 +86,9 @@ Activity.prototype.acknowledge = function (web3, params, monitor) {
         if (error) {
             monitor.error(error);
         } else {
-            // this need to migrate from receipt to events
+            // todo: this need to migrate from receipt to events
+
+            // todo: and refactor out ZoneTransactionReceipt because it is duplicate everywhere
 
             ZoneTransactionReceipt.check(tranHash, web3, function (error, receipt) {
 
@@ -146,6 +148,8 @@ Activity.prototype.action = function (instructionHash, verifier, web3, params, m
         } else {
             // this need to migrate from receipt to events
 
+            monitor.requested(tranHash);
+
             ZoneTransactionReceipt.check(tranHash, web3, function (error, receipt) {
 
                 if (error) {
@@ -172,6 +176,8 @@ Activity.prototype.confirm = function (web3, params, monitor) {
         } else {
             // this need to migrate from receipt to events
 
+            monitor.requested(tranHash);
+
             ZoneTransactionReceipt.check(tranHash, web3, function (error, receipt) {
 
                 if (error) {
@@ -197,6 +203,8 @@ Activity.prototype.challenge = function (web3, params, monitor) {
             monitor.error(error);
         } else {
             // this need to migrate from receipt to events
+
+            monitor.requested(tranHash);
 
             ZoneTransactionReceipt.check(tranHash, web3, function (error, receipt) {
 

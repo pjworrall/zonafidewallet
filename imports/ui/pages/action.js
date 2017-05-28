@@ -7,6 +7,8 @@ import {ReactiveVar} from 'meteor/reactive-var';
 import '../../api/html5-qrcode/html5-qrcode.min.js';
 import '../../api/html5-qrcode/jsqrcode-combined.min.js';
 
+import  {Activity} from '/imports/startup/client/activity.js';
+import  {Monitor} from '/imports/startup/client/monitor.js';
 import  {ZonafideWeb3} from '/imports/startup/client/web3.js';
 import  {ZoneQRScanner} from '/imports/startup/client/qrscanner.js';
 import  {ZonafideEnvironment} from '/imports/startup/client/ethereum.js';
@@ -110,17 +112,12 @@ Template.action.events({
         const zad = zoneRecord.address;
         const zid = template.$('input[name=zid]').val();
 
-        /*
-         todo: this has to be encrypted with the counter party ZID
-         */
         let description = {
             action: template.$('input[name=action]').val(),
             reference: template.$('input[name=reference]').val()
         };
 
-        const includePersonalDetails = template.$('input[name=details]').is(':checked');
-
-        if (includePersonalDetails) {
+        if (template.$('input[name=details]').is(':checked')) {
 
             let pd = ZidUserLocalPersonalData.findOne();
 
@@ -142,14 +139,11 @@ Template.action.events({
             }
         }
 
-        let zone = template.ZoneFactory.at(zad);
-
         // got to hash the description
         let hash = ZonafideWeb3.getInstance().sha3(JSON.stringify(description));
 
-        // todo: remove these debug lines
-        let _bool = ( hash ===  ZonafideWeb3.getInstance().sha3(JSON.stringify(description))) ;
-        console.log("z/action: description:" + JSON.stringify(description) + ", hash: " + hash + ", match: " + _bool );
+        let _activity = new Activity();
+        _activity.get(ZonafideWeb3.getInstance(), zad);
 
         let busyQ = Session.get('busy');
         Session.set('busy', (busyQ + 1) );
@@ -158,58 +152,52 @@ Template.action.events({
         let gasPrice = ZonafideWeb3.getGasPrice();
 
         let params = ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]);
-        // Estimate of gas usage
-        let gas = ZonafideWeb3.getGasEstimate(
-            zone,
-            zone.action,
+
+        // override gasPrice and gas limit values
+        params.gas = ZonafideWeb3.getGasEstimate(
+            _activity.contract,
+            _activity.contract.action,
             hash,
             zid,
             params
         );
 
-        // override gasPrice and gas limit values
-        params.gas = gas;
         params.gasPrice = gasPrice;
 
-        zone.action(hash, zid, params, function (error, tranHash) {
-                //todo: this is not handling errors like 'not a BigNumber' , do we need a try catch somewhere?
+        let _monitor = new Monitor();
 
-                console.log("error: " + error + ", obj: " + tranHash);
+        _monitor.completed = function (receipt) {
 
-                if (error) {
-                    sAlert.info('Encountered error: ' + error, ZoneAlertContent.inaccessible);
-
-                    Session.set('busy', Session.get('busy') - 1  );
-
-                } else {
-
-                    sAlert.info('Actioning the Activity', ZoneAlertContent.waiting);
-
-                    ZoneTransactionReceipt.check(tranHash, ZonafideWeb3.getInstance(), function (error, receipt) {
-                        if (error) {
-                            sAlert.info('Encountered error: ' + error.toString(), ZoneAlertContent.inaccessible);
-
-                            Session.set('busy', Session.get('busy') - 1  );
-
-                        } else {
-                            // todo: watchout, using address property and not record id
-                            ZidUserLocalData.update({_id: zoneRecord._id},
-                                {
-                                    $set: {
-                                        state: ZoneState.ACTIONED,
-                                        description: description
-                                    }
-                                }
-                            );
-
-                            sAlert.info('Activity Actioned', ZoneAlertContent.confirmed);
-
-                            Session.set('busy', Session.get('busy') - 1  );
-                        }
-                    });
-
+            console.log("z/ .js-action actioned contract: " + receipt.to +
+                ", transaction hash: " + receipt.transactionHash );
+            // todo: watchout, using address property and not record id
+            ZidUserLocalData.update({_id: zoneRecord._id},
+                {
+                    $set: {
+                        state: ZoneState.ACTIONED,
+                        description: description
+                    }
                 }
-            });
+            );
+
+            sAlert.info('Activity Actioned', ZoneAlertContent.confirmed);
+
+            Session.set('busy', Session.get('busy') - 1  );
+        };
+
+        _monitor.requested = function (transactionHash) {
+            console.log("z/ .js-action transaction: " + transactionHash);
+            sAlert.info('Actioning the Activity', ZoneAlertContent.waiting);
+        };
+
+        _monitor.error = function (error) {
+            sAlert.info('Encountered error: ' + error, ZoneAlertContent.inaccessible);
+            Session.set('busy', Session.get('busy') - 1);
+        };
+
+
+        _activity.action(hash, zid, ZonafideWeb3.getInstance(), params, _monitor);
+
     }
 
 });
