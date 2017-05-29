@@ -19,6 +19,7 @@ import './details.js';
 import './personal.js';
 import './acknowledge.js';
 import './settings.js';
+import './transactions.js';
 import './about.js';
 import './verify.js';
 import './menu.js';

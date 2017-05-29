@@ -60,6 +60,8 @@ let ZonafideDappData = new Mongo.Collection('ZonafideDappData', {connection: nul
 
 let ZidAddressData = new Mongo.Collection('ZidAddressData', {connection: null});
 
+let ZidTransactionData = new Mongo.Collection('ZidTransactionData', {connection: null});
+
 // jeffm:local-persist used to persist the collection to browser store
 
 // todo: need to revisit these parameters
@@ -96,6 +98,15 @@ let ZidAddressDataObserver = new LocalPersist(ZidAddressData, 'ZidAddressDataObs
         storageFull: function (col, doc) {  // function to handle maximum being exceeded
             col.remove({_id: doc._id});
             alert('Restricted to storing one hundred addresses.');
+        }
+    });
+
+let ZidTransactionDataObserver = new LocalPersist(ZidTransactionData, 'ZidTransactionDataObserver',
+    {                                     // options are optional!
+        maxDocuments: 500,                  // max number of docs to store
+        storageFull: function (col, doc) {  // function to handle maximum being exceeded
+            col.remove({_id: doc._id});
+            alert('Restricted to storing 250 records.');
         }
     });
 
@@ -219,7 +230,8 @@ export {
     ZoneStateAttributes,
     NumberWithCommas,
     ZoneState,
-    ZoneAlertContent
+    ZoneAlertContent,
+    ZidTransactionData
 };
 
 

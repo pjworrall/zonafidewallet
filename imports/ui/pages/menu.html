@@ -20,19 +20,20 @@
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
                     {{#if keystore}}
-                        <li><a href="/list"><i class="fa fa-list fa-2x" aria-hidden="true"></i>&nbsp;Activities</a></li>
-                        <li><a href="/acknowledge"><i class="fa fa-thumbs-o-up fa-2x" aria-hidden="true"></i>&nbsp;Acknowledge</a></li>
-                        <li><a href="/verify"><i class="fa fa-check-square-o fa-2x" aria-hidden="true"></i>&nbsp;Verify</a></li>
+                        <li><a href="/list"><i class="fa fa-list" aria-hidden="true"></i>&nbsp;Activities</a></li>
+                        <li><a href="/acknowledge"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>&nbsp;Acknowledge</a></li>
+                        <li><a href="/verify"><i class="fa fa-check-square-o" aria-hidden="true"></i>&nbsp;Verify</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="/address"><i class="fa fa-user  fa-2x" aria-hidden="true"></i>&nbsp;Share Address</a></li>
-                        <li><a href="/addressbook"><i class="fa fa-users  fa-2x" aria-hidden="true"></i>&nbsp;Address Book</a></li>
-                        <li><a href="/personal"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>&nbsp;Information</a></li>
-                        <li><a href="/settings"><i class="fa fa-sliders fa-2x" aria-hidden="true"></i>&nbsp;Settings</a></li>
-                        <li><a href="#" class="js-lock"><i class="fa fa-lock fa-2x" aria-hidden="true"></i>&nbsp;Lock</a></li>
-                        <li><a href="/about"><i class="fa fa-question-circle-o fa-2x" aria-hidden="true"></i>&nbsp;About</a></li>
+                        <li><a href="/address"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;Share Address</a></li>
+                        <li><a href="/addressbook"><i class="fa fa-users" aria-hidden="true"></i>&nbsp;Address Book</a></li>
+                        <li><a href="/personal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;Information</a></li>
+                        <li><a href="/settings"><i class="fa fa-sliders" aria-hidden="true"></i>&nbsp;Settings</a></li>
+                        <li><a href="/transactions"><i class="fa fa-database" aria-hidden="true"></i> Tx</a></li>
+                        <li><a href="#" class="js-lock"><i class="fa fa-lock" aria-hidden="true"></i>&nbsp;Lock</a></li>
+                        <li><a href="/about"><i class="fa fa-question-circle-o" aria-hidden="true"></i>&nbsp;About</a></li>
                     {{else}}
-                        <li><a href="/identities"><i class="fa fa-users  fa-2x" aria-hidden="true"></i>&nbsp;Address</a></li>
-                        <li><a href="/about"><i class="fa fa-question-circle-o fa-2x" aria-hidden="true"></i>&nbsp;About</a></li>
+                        <li><a href="/identities"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;Address</a></li>
+                        <li><a href="/about"><i class="fa fa-question-circle-o" aria-hidden="true"></i>&nbsp;About</a></li>
                     {{/if}}
                 </ul>
             </div>

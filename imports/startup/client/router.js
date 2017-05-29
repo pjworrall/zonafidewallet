@@ -28,6 +28,8 @@ Router.route('/', function () {
     this.render('/home');
 });
 
+Router.route('/transactions', {name: 'transactions'});
+
 Router.route('/home', {name: 'home'});
 
 Router.route('/lock', {name: 'lock'});

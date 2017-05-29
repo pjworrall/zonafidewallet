@@ -3,8 +3,7 @@
  */
 
 import  {ZonafideEnvironment} from '/imports/startup/client/ethereum.js';
-import  {ZonafideWeb3} from '/imports/startup/client/web3.js';
-import {ZoneState} from '/imports/startup/client/globals.js';
+import {ZidTransactionData} from '/imports/startup/client/globals.js';
 
 import  {ZoneTransactionReceipt} from '/imports/startup/client/receipt.js';
 
@@ -88,6 +87,8 @@ Activity.prototype.acknowledge = function (web3, params, monitor) {
         } else {
             // todo: this need to migrate from receipt to events
 
+            monitor.requested(tranHash);
+
             // todo: and refactor out ZoneTransactionReceipt because it is duplicate everywhere
 
             ZoneTransactionReceipt.check(tranHash, web3, function (error, receipt) {
@@ -95,6 +96,22 @@ Activity.prototype.acknowledge = function (web3, params, monitor) {
                 if (error) {
                     monitor.error(error);
                 } else {
+
+                    // log the transaction
+
+                    ZidTransactionData.insert({
+                        type: "Acknowledge Activity",
+                        date: new Date(),
+                        transactionHash: receipt.transactionHash,
+                        blockNumber: receipt.blockNumber,
+                        from: receipt.from,
+                        to: receipt.to,
+                        gas: receipt.gasUsed,
+                        cumulativeGasUsed: receipt.cumulativeGasUsed
+                    });
+
+                    // let the caller know
+
                     monitor.completed(receipt);
                 }
 
@@ -125,6 +142,22 @@ Activity.prototype.addAcknowledger = function (acknowledgers, quorum, web3, para
                 if (error) {
                     monitor.error(error);
                 } else {
+
+                    // log the transaction
+
+                    ZidTransactionData.insert({
+                        type: "Add Acknowledger",
+                        date: new Date(),
+                        transactionHash: receipt.transactionHash,
+                        blockNumber: receipt.blockNumber,
+                        from: receipt.from,
+                        to: receipt.to,
+                        gas: receipt.gasUsed,
+                        cumulativeGasUsed: receipt.cumulativeGasUsed
+                    });
+
+                    // let the caller know
+
                     monitor.completed(receipt);
                 }
 
@@ -155,6 +188,21 @@ Activity.prototype.action = function (instructionHash, verifier, web3, params, m
                 if (error) {
                     monitor.error(error);
                 } else {
+                    // log the transaction
+
+                    ZidTransactionData.insert({
+                        type: "Action Activity",
+                        date: new Date(),
+                        transactionHash: receipt.transactionHash,
+                        blockNumber: receipt.blockNumber,
+                        from: receipt.from,
+                        to: receipt.to,
+                        gas: receipt.gasUsed,
+                        cumulativeGasUsed: receipt.cumulativeGasUsed
+                    });
+
+                    // let the caller know
+
                     monitor.completed(receipt);
                 }
 
@@ -183,6 +231,21 @@ Activity.prototype.confirm = function (web3, params, monitor) {
                 if (error) {
                     monitor.error(error);
                 } else {
+                    // log the transaction
+
+                    ZidTransactionData.insert({
+                        type: "Confirm verification",
+                        date: new Date(),
+                        transactionHash: receipt.transactionHash,
+                        blockNumber: receipt.blockNumber,
+                        from: receipt.from,
+                        to: receipt.to,
+                        gas: receipt.gasUsed,
+                        cumulativeGasUsed: receipt.cumulativeGasUsed
+                    });
+
+                    // let the caller know
+
                     monitor.completed(receipt);
                 }
 
@@ -211,6 +274,22 @@ Activity.prototype.challenge = function (web3, params, monitor) {
                 if (error) {
                     monitor.error(error);
                 } else {
+
+                    // log the transaction
+
+                    ZidTransactionData.insert({
+                        type: "Challenge response",
+                        date: new Date(),
+                        transactionHash: receipt.transactionHash,
+                        blockNumber: receipt.blockNumber,
+                        from: receipt.from,
+                        to: receipt.to,
+                        gas: receipt.gasUsed,
+                        cumulativeGasUsed: receipt.cumulativeGasUsed
+                    });
+
+                    // let the caller know
+
                     monitor.completed(receipt);
                 }
 
@@ -239,6 +318,21 @@ Activity.prototype.delete = function (web3, params, monitor) {
                 if (error) {
                     monitor.error(error);
                 } else {
+                    // log the transaction
+
+                    ZidTransactionData.insert({
+                        type: "Delete Activity",
+                        date: new Date(),
+                        transactionHash: receipt.transactionHash,
+                        blockNumber: receipt.blockNumber,
+                        from: receipt.from,
+                        to: receipt.to,
+                        gas: receipt.gasUsed,
+                        cumulativeGasUsed: receipt.cumulativeGasUsed
+                    });
+
+                    // let the caller know
+
                     monitor.completed(receipt);
                 }
 

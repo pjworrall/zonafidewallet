@@ -1,0 +1,27 @@
+<template name="transactions">
+
+    <div class="row">
+        <div class="col-xs-12 text-left">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Transactions</h3>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 text-left">
+            {{#each tx}}
+                <b>{{type}}</b><br>
+                <b>Date:</b> {{date}}<br>
+                <b>Gas used:</b> {{gas}}<br>
+                <b>Activity address:</b> {{to}}<br>
+                <b>Tx:</b> {{transactionHash}}<br>
+                <hr>
+            {{/each}}
+        </div>
+    </div>
+
+</template>
