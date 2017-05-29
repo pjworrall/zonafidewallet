@@ -13,7 +13,9 @@ import  {ZoneTransactionReceipt} from '/imports/startup/client/receipt.js';
 import  {ZonafideEnvironment} from '/imports/startup/client/ethereum.js';
 import  {ZonafideWeb3} from '/imports/startup/client/web3.js';
 import  {i18n} from '/imports/startup/client/lang.js';
-//import { ZonafideMonitor } from '/imports/startup/client/monitor.js';
+
+import  {Activity} from '/imports/startup/client/activity.js';
+import  {Monitor} from '/imports/startup/client/monitor.js';
 
 import { ReactiveVar } from 'meteor/reactive-var';
 
@@ -167,50 +169,48 @@ Template.details.events({
             let busyQ = Session.get('busy');
             Session.set('busy', (busyQ + 1));
 
+            let _activity = new Activity();
+            _activity.contract = template.zone;
+
+            // todo: we already have zone so not necessary for the Activity to get it,
+            // but should refactor whole template to meet new Activity model pattern
+            //_activity.get(ZonafideWeb3.getInstance(), zad);
+
             // get the gas price
             let gasPrice = ZonafideWeb3.getGasPrice();
 
             let params = ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]);
-            // Estimate of gas usage
-            let gas = ZonafideWeb3.getGasEstimate(
-                template.zone,
-                template.zone.kill,
+            params.gas = ZonafideWeb3.getGasEstimate(
+                _activity.contract,
+                _activity.contract.confirm,
                 params
             );
-
-            // override gasPrice and gas limit values
-            params.gas = gas;
             params.gasPrice = gasPrice;
 
-            template.zone.kill(params, function (error, tranHash) {
-                    if (error) {
-                        sAlert.info('Encountered error: ' + error, ZoneAlertContent.inaccessible);
+            let _monitor = new Monitor();
 
-                        Session.set('busy', Session.get('busy') - 1);
+            _monitor.completed = function (receipt) {
 
-                    } else {
+                console.log("z/ .js-delete completed: " + receipt.to +
+                    ", transaction hash: " + receipt.transactionHash );
+                ZidUserLocalData.remove({address: _activity.getAddress()});
 
-                        sAlert.info('Deletion requested', ZoneAlertContent.waiting);
+                sAlert.info('Deleted', ZoneAlertContent.confirmed);
 
-                        ZoneTransactionReceipt.check(tranHash, ZonafideWeb3.getInstance(), function (error, receipt) {
-                            if (error) {
-                                sAlert.info('Encountered error: ' + error.toString(), ZoneAlertContent.inaccessible);
+                Session.set('busy', Session.get('busy') - 1  );
+            };
 
-                                Session.set('busy', Session.get('busy') - 1);
+            _monitor.requested = function (transactionHash) {
+                console.log("z/ .js-delete transaction: " + transactionHash);
+                sAlert.info('Deletion requested', ZoneAlertContent.waiting);
+            };
 
-                            } else {
-                                //todo: small chance the zone might not exist but decided not to test because it is so unlikely
-                                //todo: maybe should be data._id not we have it?
+            _monitor.error = function (error) {
+                sAlert.info('Encountered error: ' + error, ZoneAlertContent.inaccessible);
+                Session.set('busy', Session.get('busy') - 1);
+            };
 
-                                ZidUserLocalData.remove({address: template.address});
-
-                                sAlert.info('Deleted', ZoneAlertContent.confirmed);
-
-                                Session.set('busy', Session.get('busy') - 1);
-                            }
-                        });
-                    }
-                });
+            _activity.delete(ZonafideWeb3.getInstance(), params, _monitor);
 
             Router.go("list");
 
@@ -223,56 +223,57 @@ Template.details.events({
         // Prevent default browser form submit
         event.preventDefault();
 
+        // todo: c'mon , now put it into Activity
         let busyQ = Session.get('busy');
         Session.set('busy', (busyQ + 1));
+
+        let _activity = new Activity();
+        _activity.contract = template.zone;
+
+        // todo: we already have zone so not necessary for the Activity to get it,
+        // but should refactor whole template to meet new Activity model pattern
+        //_activity.get(ZonafideWeb3.getInstance(), zad);
 
         // get the gas price
         let gasPrice = ZonafideWeb3.getGasPrice();
 
         let params = ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]);
-        // Estimate of gas usage
-        let gas = ZonafideWeb3.getGasEstimate(
-            template.zone,
-            template.zone.setChallenge,
+        params.gas = ZonafideWeb3.getGasEstimate(
+            _activity.contract,
+            _activity.contract.confirm,
             params
         );
-
-        // override gasPrice and gas limit values
-        params.gas = gas;
         params.gasPrice = gasPrice;
 
-        template.zone.setChallenge(params, function (error, tranHash) {
-                if (error) {
-                    sAlert.info('Encountered error: ' + error, ZoneAlertContent.inaccessible);
+        let _monitor = new Monitor();
 
-                    Session.set('busy', Session.get('busy') - 1);
+        _monitor.completed = function (receipt) {
 
-                } else {
-                    sAlert.info('Changing Challenge', ZoneAlertContent.waiting);
+            console.log("z/ .js-challenge changed challenge: " + receipt.to +
+                ", transaction hash: " + receipt.transactionHash );
 
-                    ZoneTransactionReceipt.check(tranHash, ZonafideWeb3.getInstance(), function (error, receipt) {
-                        if (error) {
-                            sAlert.info('Encountered error: ' + error.toString(), ZoneAlertContent.inaccessible);
+            // get the challenge value here and set tha reactive var - challenge
 
-                            Session.set('busy', Session.get('busy') - 1);
+            template.challenge.set(_activity.contract.getChallenge({
+                from: ZidStore.get().getAddresses()[0]
+            }));
 
-                        } else {
-                            //todo: small chance the zone might not exist but decided not to test because it is so unlikely
+            sAlert.info('Challenge Changed', ZoneAlertContent.confirmed);
 
-                            // get the challenge value here and set tha reactive var - challenge
+            Session.set('busy', Session.get('busy') - 1  );
+        };
 
-                            template.challenge.set(template.zone.getChallenge({
-                                from: ZidStore.get().getAddresses()[0]
-                            }));
+        _monitor.requested = function (transactionHash) {
+            console.log("z/ .js-action transaction: " + transactionHash);
+            sAlert.info('Challenge requested', ZoneAlertContent.waiting);
+        };
 
-                            sAlert.info('Challenge Changed', ZoneAlertContent.confirmed);
+        _monitor.error = function (error) {
+            sAlert.info('Encountered error: ' + error, ZoneAlertContent.inaccessible);
+            Session.set('busy', Session.get('busy') - 1);
+        };
 
-                            Session.set('busy', Session.get('busy') - 1);
-                        }
-                    });
-                }
-            });
-
+        _activity.challenge(ZonafideWeb3.getInstance(), params, _monitor);
 
     },
 

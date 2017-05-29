@@ -15,6 +15,10 @@ import  {ZonafideEnvironment} from '/imports/startup/client/ethereum.js';
 import  {ZoneTransactionReceipt} from '/imports/startup/client/receipt.js';
 import  {ZidStore, ZoneAlertContent} from '/imports/startup/client/globals.js';
 
+import  {Activity} from '/imports/startup/client/activity.js';
+import  {Monitor} from '/imports/startup/client/monitor.js';
+
+
 import  {AddressRules} from '/imports/startup/client/validation.js';
 
 Template.acknowledge.onCreated(function () {
@@ -89,68 +93,60 @@ Template.acknowledge.events({
             return;
         }
 
-        // todo: what will this actually catch? what circumstances cause a throw?
-        let zone; try {
-            zone = factory.at(zad);
-        } catch (error) {
-            sAlert.info('Activity inaccessible: ' + error,
-                {timeout: 'none', sAlertIcon: 'fa fa-exclamation-circle', sAlertTitle: 'Activity inaccessible'});
-            return;
-        }
+        let _activity = new Activity();
+        _activity.get(ZonafideWeb3.getInstance(), zad);
 
-        if(!zone.amIAnAcknowledger(ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]))) {
+        if(!_activity.contract.amIAnAcknowledger(ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]))) {
             sAlert.info('Activity does not have you as an Acknowledger',
                 {timeout: 'none', sAlertIcon: 'fa fa-exclamation-circle', sAlertTitle: 'Not Acknowledger'});
             return;
         }
 
+
+        // todo: this should go into Activity now so it is not duplicated across the controllers
         let busyQ = Session.get('busy');
         Session.set('busy', (busyQ + 1) );
 
-        console.log("z/acknowledge busy was: "  + busyQ + ' now: ' +  Session.get('busy') );
+        // todo : all this params stuff should go into the Activity model now
 
         // get the gas price
         let gasPrice = ZonafideWeb3.getGasPrice();
 
         let params = ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]);
-        // Estimate of gas usage
-        let gas = ZonafideWeb3.getGasEstimate(
-            zone,
-            zone.setAcknowledgement,
-            params
-        );
 
         // override gasPrice and gas limit values
-        params.gas = gas;
+        params.gas = ZonafideWeb3.getGasEstimate(
+            _activity.contract,
+            _activity.contract.setAcknowledgement,
+            params
+        );
         params.gasPrice = gasPrice;
 
-        zone.setAcknowledgement(params, function (error, tranHash) {
-                //todo: this is not handling errors like 'not a BigNumber' , do we need a try catch somewhere?
 
-                if (error) {
-                    sAlert.info('Encountered error: ' + error, ZoneAlertContent.inaccessible);
+        let _monitor = new Monitor();
 
-                    Session.set('busy',  Session.get('busy') - 1  );
+        _monitor.completed = function (receipt) {
 
-                } else {
+            console.log("z/ .js-acknowledge acknowledged contract: " + receipt.to +
+                ", transaction hash: " + receipt.transactionHash );
 
-                    sAlert.info('Acknowledging the Activity', ZoneAlertContent.waiting);
+            sAlert.info('Activity Acknowledged', ZoneAlertContent.confirmed);
 
-                    ZoneTransactionReceipt.check(tranHash, ZonafideWeb3.getInstance(), function (error, receipt) {
-                        if (error) {
-                            sAlert.info('Encountered error: ' + error.toString(), ZoneAlertContent.inaccessible);
+            Session.set('busy', Session.get('busy') - 1  );
+        };
 
-                                Session.set('busy',  Session.get('busy') - 1  );
+        _monitor.requested = function (transactionHash) {
+            console.log("z/ .js-acknowledge transaction: " + transactionHash);
+            sAlert.info('Acknowledging the Activity', ZoneAlertContent.waiting);
+        };
 
-                        } else {
-                            sAlert.info('Activity Acknowledged', ZoneAlertContent.confirmed);
+        _monitor.error = function (error) {
+            sAlert.info('Encountered error: ' + error, ZoneAlertContent.inaccessible);
+            Session.set('busy', Session.get('busy') - 1);
+        };
 
-                            Session.set('busy',  Session.get('busy') - 1  );
-                        }
-                    });
+        _activity.acknowledge(ZonafideWeb3.getInstance(), params, _monitor);
 
-                }
-            });
     }
 
 });
