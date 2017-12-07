@@ -1,4 +1,4 @@
-cdvVersionCode = '1034'
+cdvVersionCode = '1035'
 android {
   lintOptions {
       disable 'MissingTranslation'
