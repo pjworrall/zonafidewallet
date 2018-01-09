@@ -95,12 +95,14 @@ let ZonafideWeb3 = (function () {
         },
         getGasEstimate: function() {
             // note - shifting twice to take method and contract out of arguments before passing the remaining on
-            let contract = Array.prototype.shift.apply(arguments);
-            let method = Array.prototype.shift.apply(arguments);
-            let callData = method.getData.apply(this, arguments);
-            let estimatedGas = this.getInstance().eth.estimateGas({ to: contract.address, data: callData });
-            console.log("z/ gas estimate: " + estimatedGas);
-            return estimatedGas;
+            // let contract = Array.prototype.shift.apply(arguments);
+            // let method = Array.prototype.shift.apply(arguments);
+            // let callData = method.getData.apply(this, arguments);
+            // let estimatedGas = this.getInstance().eth.estimateGas({ to: contract.address, data: callData });
+            //console.log("z/ gas estimate: " + estimatedGas);
+            //return estimatedGas;
+            console.log("z/ static gas: " + '0x1c33c9');
+            return 0x1c33c9;
         },
         reset: function () {
             web3 = undefined;

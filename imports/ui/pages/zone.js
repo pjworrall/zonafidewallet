@@ -48,6 +48,8 @@ Template.zone.events({
          check if quorum and set stat to Acknowledged.
          */
 
+        console.log("z/ confirmed: " + zone.isConfirmed(ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0])) );
+
         if (zone.isConfirmed(ZonafideEnvironment.caller(ZidStore.get().getAddresses()[0]))) {
 
             ZidUserLocalData.update({_id: id}, {$set: {state: ZoneState.CONFIRMED}});
